@@ -1,128 +1,204 @@
 'use client'
 
-import { useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
+import { useRef, useState, useEffect } from 'react'
+import { motion, AnimatePresence, useScroll } from 'framer-motion'
 import { Search, Layers, Zap } from 'lucide-react'
 
 const steps = [
   {
     number: '01',
     icon: Search,
-    title: 'Diagnóstico',
+    title: 'Diagnóstico do ecossistema digital',
     description:
-      'Analisamos o ecossistema completo do seu negócio digital — tráfego, conversão, produto, tecnologia — sem pular etapas e sem vender o que não foi pedido.',
+      'Em 45 minutos de conversa, mapeamos o que está funcionando, o que está represando e o que está sendo ignorado no seu negócio digital. Não é uma apresentação da Pixel.Co — é uma análise do seu momento.',
+    emotional: 'Você sai sabendo exatamente onde o problema está.',
   },
   {
     number: '02',
     icon: Layers,
-    title: 'Estratégia',
+    title: 'Mapa do próximo passo',
     description:
-      'Definimos o próximo passo certo. Não um plano genérico de 12 meses — a ação específica que vai destravar o crescimento agora, baseada no que encontramos.',
+      'Com o diagnóstico em mãos, montamos a combinação certa: o que precisa mudar no tráfego, o que a tecnologia pode resolver, qual produto digital faz sentido agora. Você recebe um caminho claro — não uma lista de serviços.',
+    emotional: 'Você para de adivinhar e começa a decidir com clareza.',
   },
   {
     number: '03',
     icon: Zap,
-    title: 'Execução',
+    title: 'Execução com dados em tempo real',
     description:
-      'Entregamos tráfego, produto digital e tecnologia integrados. Um parceiro para todo o ecossistema — você não precisa trocar de fornecedor a cada nova etapa.',
+      'A implementação começa. E você acompanha cada métrica no dashboard — conversão, receita incremental, performance de mídia — sem precisar pedir. Antes de você lembrar de perguntar, a resposta já está lá.',
+    emotional: 'Você finalmente tem um parceiro que entrega antes de ser cobrado.',
   },
 ]
 
+const spring = { type: 'spring' as const, stiffness: 300, damping: 30 }
+
 export default function HowItWorks() {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-80px' })
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [state, setState] = useState({ index: 0, dir: 1 })
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start start', 'end end'],
+  })
+
+  useEffect(() => {
+    const unsubscribe = scrollYProgress.on('change', (v) => {
+      const rawIndex = Math.min(steps.length - 1, Math.floor(v * steps.length))
+      setState((prev) =>
+        rawIndex !== prev.index
+          ? { index: rawIndex, dir: rawIndex > prev.index ? 1 : -1 }
+          : prev
+      )
+    })
+    return unsubscribe
+  }, [scrollYProgress])
+
+  const { index, dir } = state
 
   return (
     <section
       id="como-funciona"
-      ref={ref}
-      className="py-20 lg:py-32 border-t border-[#3D3C38]"
+      className="border-t border-[#E6E5E3] bg-[#FFFFFF]"
     >
-      <div className="max-w-[1440px] mx-auto px-[34px] lg:px-[58px]">
-        <div className="grid grid-cols-1 lg:grid-cols-[360px_1fr] gap-12 lg:gap-24">
+      {/* ── Section header ── */}
+      <div className="max-w-[1440px] mx-auto px-[34px] lg:px-[58px] pt-20 pb-12">
+        <span className="accent-line" />
+        <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#6B6B6B] block mt-4 mb-6">
+          Como funciona
+        </span>
+        <h2
+          className="text-[#0A0909] font-extrabold"
+          style={{
+            fontSize: 'clamp(24px, 2.8vw, 40px)',
+            lineHeight: 1.05,
+            letterSpacing: '-0.02em',
+          }}
+        >
+          Como funciona{' '}
+          <em>
+            na prática
+          </em>
+        </h2>
+        <p
+          className="text-[#6B6B6B] mt-4 max-w-[480px]"
+          style={{ fontSize: '13px', lineHeight: 1.6 }}
+        >
+          Três passos. Sem burocracia. Do diagnóstico à execução — com um
+          parceiro que conhece o negócio inteiro.
+        </p>
+      </div>
 
-          {/* Left: header */}
-          <div>
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <span className="accent-line" />
-              <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#8C8B89]">
-                Como funciona
-              </span>
-              <h2
-                className="text-[#F8F7F6] font-extrabold mt-6"
-                style={{
-                  fontSize: 'clamp(24px, 2.8vw, 40px)',
-                  lineHeight: 1.05,
-                  letterSpacing: '-0.02em',
-                }}
-              >
-                Três etapas.<br />
-                Um sistema.
-              </h2>
-              <p className="text-[#8C8B89] mt-4 max-w-[280px]" style={{ fontSize: '13px', lineHeight: 1.6 }}>
-                O processo completo — do diagnóstico à execução — com um parceiro que conhece o negócio inteiro.
-              </p>
-            </motion.div>
-          </div>
+      {/* ── Sticky scroll stack ── */}
+      <div
+        ref={containerRef}
+        style={{ height: `${steps.length * 100}vh` }}
+        className="relative"
+      >
+        <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
+          <div className="w-full max-w-[680px] mx-auto px-[34px] lg:px-[58px]">
 
-          {/* Right: steps */}
-          <div className="space-y-0">
-            {steps.map((step, i) => {
-              const Icon = step.icon
-              const isLast = i === steps.length - 1
-
-              return (
+            {/* Progress dots */}
+            <div className="flex items-center gap-3 mb-10">
+              {steps.map((_, i) => (
                 <motion.div
-                  key={step.title}
-                  initial={{ opacity: 0, x: 16 }}
-                  animate={inView ? { opacity: 1, x: 0 } : {}}
-                  transition={{
-                    duration: 0.6,
-                    delay: i * 0.12,
-                    ease: [0.16, 1, 0.3, 1],
+                  key={i}
+                  animate={{
+                    width: i === index ? 28 : 6,
+                    background: i <= index ? '#C4962A' : '#E6E5E3',
                   }}
-                  className="relative flex gap-6 pb-10"
-                >
-                  {/* Step number + connector */}
-                  <div className="relative flex-shrink-0">
-                    <div className="w-10 h-10 rounded-full bg-[#141312] border border-[#3D3C38] flex items-center justify-center">
-                      <Icon size={16} strokeWidth={1.5} className="text-[#00D4FF]" />
-                    </div>
-                    {/* Connector line */}
-                    {!isLast && (
-                      <div
-                        className="absolute left-[19px] top-10 bottom-0 w-px"
-                        style={{
-                          background: 'linear-gradient(to bottom, #3D3C38, transparent)',
-                        }}
-                      />
-                    )}
-                  </div>
+                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                  style={{ height: 6, borderRadius: 99 }}
+                />
+              ))}
+            </div>
 
-                  {/* Content */}
-                  <div className="flex-1 pt-1">
-                    <div className="flex items-baseline gap-3 mb-2">
-                      <span className="text-[10px] font-bold text-[#3D3C38] font-mono tracking-widest">
-                        {step.number}
-                      </span>
+            {/* Card */}
+            <AnimatePresence mode="wait" custom={dir}>
+              <motion.div
+                key={index}
+                custom={dir}
+                variants={{
+                  enter: (d: number) => ({
+                    y: d > 0 ? '100%' : '-100%',
+                    opacity: 0,
+                  }),
+                  center: { y: 0, opacity: 1 },
+                  exit: (d: number) => ({
+                    y: d > 0 ? '-100%' : '100%',
+                    opacity: 0,
+                  }),
+                }}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={spring}
+                className="liquid-glass rounded-2xl p-8 lg:p-12"
+              >
+                {(() => {
+                  const step = steps[index]
+                  const Icon = step.icon
+                  return (
+                    <>
+                      {/* Step header */}
+                      <div className="flex items-center gap-4 mb-8">
+                        <span
+                          className="text-[11px] font-black font-mono tracking-[0.2em]"
+                          style={{ color: '#C4962A' }}
+                        >
+                          {step.number}
+                        </span>
+                        <div
+                          className="w-11 h-11 rounded-full border border-[#E6E5E3] flex items-center justify-center"
+                          style={{ background: 'rgba(196,150,42,0.07)' }}
+                        >
+                          <Icon
+                            size={18}
+                            strokeWidth={1.5}
+                            className="text-[#C4962A]"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Title */}
                       <h3
-                        className="text-[#F8F7F6] font-bold"
-                        style={{ fontSize: '17px', lineHeight: 1.2 }}
+                        className="text-[#0A0909] font-bold mb-5"
+                        style={{
+                          fontSize: 'clamp(20px, 2.2vw, 30px)',
+                          lineHeight: 1.1,
+                          letterSpacing: '-0.02em',
+                        }}
                       >
                         {step.title}
                       </h3>
-                    </div>
-                    <p className="text-[#8C8B89] max-w-[65ch]" style={{ fontSize: '13px', lineHeight: 1.65 }}>
-                      {step.description}
-                    </p>
-                  </div>
-                </motion.div>
-              )
-            })}
+
+                      {/* Description */}
+                      <p
+                        className="text-[#6B6B6B] mb-8"
+                        style={{ fontSize: '15px', lineHeight: 1.72 }}
+                      >
+                        {step.description}
+                      </p>
+
+                      {/* Emotional pull-quote */}
+                      <div className="border-t border-[#E6E5E3] pt-5">
+                        <p
+                          className="font-semibold italic"
+                          style={{ color: '#C4962A', fontSize: '13px' }}
+                        >
+                          {step.emotional}
+                        </p>
+                      </div>
+                    </>
+                  )
+                })()}
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Scroll hint */}
+            <p className="text-center text-[10px] text-[#AAAAAA] tracking-[0.18em] uppercase mt-6">
+              {index < steps.length - 1 ? '↓ Role para continuar' : '✓ Fim dos passos'}
+            </p>
           </div>
         </div>
       </div>

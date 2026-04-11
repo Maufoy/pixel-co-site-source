@@ -1,20 +1,12 @@
 import type { Metadata } from 'next'
-import { DM_Sans } from 'next/font/google'
 import './globals.css'
-
-const dmSans = DM_Sans({
-  subsets: ['latin'],
-  weight: ['400', '600', '700', '800'],
-  variable: '--font-dm-sans',
-  display: 'swap',
-})
 
 export const metadata: Metadata = {
   title: 'Pixel.Co — Inteligência Digital',
-  description: 'Você já sabe que pode faturar mais. Nós sabemos por onde começar. Diagnóstico estratégico do ecossistema digital do seu negócio.',
+  description: 'A Pixel.Co diagnostica o ecossistema digital do seu negócio e entrega a combinação certa de tráfego, tecnologia e produto digital para destravar o crescimento. Diagnóstico gratuito.',
   openGraph: {
     title: 'Pixel.Co — Do pixel à escala.',
-    description: 'Antes de qualquer proposta, diagnosticamos o ecossistema digital do seu negócio — e entregamos o próximo passo com precisão.',
+    description: 'Você fatura bem. O potencial está represado. A Pixel.Co enxerga o que está bloqueando o crescimento do seu negócio — e entrega o próximo passo com clareza.',
     type: 'website',
   },
 }
@@ -25,8 +17,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="pt-BR" className={dmSans.variable}>
-      <body className="bg-[#0A0909] text-[#F8F7F6] antialiased">
+    <html lang="pt-BR">
+      <body className="bg-[#F8F7F6] text-[#0A0909] antialiased">
         {children}
       </body>
     </html>

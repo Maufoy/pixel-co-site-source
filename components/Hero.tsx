@@ -1,225 +1,150 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { ArrowRight, ChevronRight } from 'lucide-react'
+import { useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
+import { ArrowRight, ChevronDown } from 'lucide-react'
 
-const containerVariants = {
+const HERO_VIDEO = 'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260405_074625_a81f018a-956b-43fb-9aee-4d1508e30e6a.mp4'
+
+const container = {
   hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.3,
-    },
-  },
+  show: { transition: { staggerChildren: 0.11, delayChildren: 0.3 } },
 }
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 16 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: [0.16, 1, 0.3, 1],
-    },
-  },
+const item = {
+  hidden: { opacity: 0, y: 22 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.16, 1, 0.3, 1] } },
 }
 
-const visualVariants = {
-  hidden: { opacity: 0, x: 24 },
-  show: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      duration: 0.8,
-      ease: [0.16, 1, 0.3, 1],
-      delay: 0.5,
-    },
-  },
-}
+const metrics = [
+  { value: '+R$ 1,2M', label: 'em receita incremental identificada em diagnósticos' },
+  { value: '47%',     label: 'de aumento médio em conversão nos primeiros 90 dias' },
+  { value: '100%',    label: 'dos clientes com dashboard em tempo real' },
+]
 
 export default function Hero() {
+  const metricsRef = useRef(null)
+  const metricsInView = useInView(metricsRef, { once: true, margin: '-60px' })
+
   return (
-    <section
-      id="hero"
-      className="relative min-h-[100dvh] flex items-center overflow-hidden"
-    >
-      {/* Pixel grid background */}
-      <div className="pixel-grid-bg" />
+    <section className="relative min-h-[100dvh] flex flex-col justify-center items-center overflow-hidden">
 
-      <div className="relative z-10 w-full max-w-[1440px] mx-auto px-[34px] lg:px-[58px] pt-24 pb-16">
-        {/* Asymmetric grid: text left (wider), visual right */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-16 lg:gap-24 items-center">
+      {/* ── Video background ── */}
+      <div className="absolute inset-0 z-0">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="w-full h-full object-cover"
+          src={HERO_VIDEO}
+        />
+        {/* Light mode overlay */}
+        <div
+          className="absolute inset-0"
+          style={{ background: 'rgba(248,247,246,0.82)' }}
+        />
+        {/* Pixel grid */}
+        <div className="absolute inset-0 pixel-grid" style={{ opacity: 0.35 }} />
+      </div>
 
-          {/* Left: Text content */}
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="show"
-            className="max-w-[640px]"
-          >
-            {/* Label */}
-            <motion.div variants={itemVariants} className="mb-8">
-              <span className="accent-line" />
-              <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#8C8B89]">
-                Inteligência Digital
-              </span>
-            </motion.div>
-
-            {/* Headline */}
-            <motion.h1
-              variants={itemVariants}
-              className="font-extrabold text-[#F8F7F6] mb-[58px]"
-              style={{
-                fontSize: 'clamp(32px, 4.4vw, 64px)',
-                lineHeight: 0.90,
-                letterSpacing: '-0.02em',
-              }}
-            >
-              Você já sabe que<br />
-              pode faturar mais.<br />
-              <span className="text-[#00D4FF]">Nós sabemos por</span><br />
-              onde começar.
-            </motion.h1>
-
-            {/* Subhead */}
-            <motion.p
-              variants={itemVariants}
-              className="text-[#8C8B89] mb-10 max-w-[65ch]"
-              style={{ fontSize: '17px', lineHeight: 1.55, fontWeight: 400 }}
-            >
-              Antes de qualquer proposta, diagnosticamos o ecossistema digital
-              do seu negócio — e entregamos o próximo passo com precisão.
-            </motion.p>
-
-            {/* CTAs */}
-            <motion.div
-              variants={itemVariants}
-              className="flex flex-col sm:flex-row items-start sm:items-center gap-4"
-            >
-              <motion.a
-                href="#como-funciona"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.97 }}
-                transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-                className="flex items-center gap-2 px-6 py-3.5 bg-[#00D4FF] text-[#0A0909] rounded-lg font-bold text-sm hover:bg-[#00AECF] transition-colors duration-200"
-              >
-                Ver como funciona
-                <ArrowRight size={16} strokeWidth={2} />
-              </motion.a>
-
-              <motion.a
-                href="#cases"
-                whileHover={{ x: 2 }}
-                transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-                className="flex items-center gap-1.5 text-[#8C8B89] hover:text-[#F8F7F6] text-sm font-semibold transition-colors duration-200"
-              >
-                Ler cases reais
-                <ChevronRight size={14} strokeWidth={2} />
-              </motion.a>
-            </motion.div>
+      {/* ── Content ── */}
+      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-[34px] lg:px-[58px] pb-20 pt-36">
+        <motion.div
+          variants={container}
+          initial="hidden"
+          animate="show"
+          className="max-w-[840px] mx-auto flex flex-col items-center text-center"
+        >
+          {/* Label */}
+          <motion.div variants={item} className="section-label mb-8 justify-center">
+            Inteligência Digital
           </motion.div>
 
-          {/* Right: Visual element */}
-          <motion.div
-            variants={visualVariants}
-            initial="hidden"
-            animate="show"
-            className="hidden lg:block"
+          {/* Headline — copy from landing-page.md, recommended headline */}
+          <motion.h1
+            variants={item}
+            className="font-extrabold text-[#0A0909] mb-8"
+            style={{
+              fontSize: 'clamp(34px, 4.6vw, 64px)',
+              lineHeight: 0.93,
+              letterSpacing: '-0.03em',
+            }}
           >
-            <HeroVisual />
+            Você investe. Você fatura.<br />
+            E ainda assim sente que está{' '}
+            <em>deixando dinheiro</em>{' '}
+            na mesa.
+          </motion.h1>
+
+          {/* Subhead */}
+          <motion.p
+            variants={item}
+            className="text-[#6B6B6B] mb-10 max-w-[58ch] mx-auto"
+            style={{ fontSize: '18px', lineHeight: 1.55, fontWeight: 400 }}
+          >
+            A Pixel.Co diagnostica o ecossistema digital do seu negócio inteiro —
+            e entrega o próximo passo com clareza. Não mais um serviço.
+            A combinação certa para o momento que você está.
+          </motion.p>
+
+          {/* Inline metrics — 3 numbers, no icons, no boxes */}
+          <motion.div
+            ref={metricsRef}
+            variants={item}
+            className="grid grid-cols-3 gap-0 mb-12 divide-x divide-[#E6E5E3] w-full"
+          >
+            {metrics.map((m, i) => (
+              <motion.div
+                key={m.value}
+                initial={{ opacity: 0, y: 10 }}
+                animate={metricsInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.1 + i * 0.09, ease: [0.16, 1, 0.3, 1] }}
+                className="flex flex-col gap-1 px-0 pr-6 first:pl-0 pl-6"
+              >
+                <span
+                  className="font-extrabold text-[#0A0909] font-mono leading-none"
+                  style={{ fontSize: 'clamp(24px, 3vw, 44px)' }}
+                >
+                  {m.value}
+                </span>
+                <span className="text-[11px] text-[#8C8B89] font-medium leading-snug max-w-[18ch]">
+                  {m.label}
+                </span>
+              </motion.div>
+            ))}
           </motion.div>
-        </div>
+
+          {/* CTAs */}
+          <motion.div variants={item} className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <motion.a
+              href="#diagnostico"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.97, y: 1 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+              className="flex items-center gap-2 px-6 py-3.5 bg-[#0A0909] text-[#F8F7F6] rounded-lg font-bold text-sm tracking-tight hover:bg-[#333333] transition-colors duration-200"
+            >
+              Quero entender o que está represando meu crescimento
+              <ArrowRight size={15} strokeWidth={2} />
+            </motion.a>
+            <a
+              href="#como-funciona"
+              className="flex items-center gap-1.5 text-[13px] font-semibold text-[#6B6B6B] hover:text-[#0A0909] transition-colors duration-200 py-3.5"
+            >
+              Ver como funciona
+              <ChevronDown size={14} strokeWidth={2} />
+            </a>
+          </motion.div>
+
+          {/* Subtexto CTA */}
+          <motion.p
+            variants={item}
+            className="text-[11px] text-[#999999] tracking-wide mt-4"
+          >
+            Diagnóstico gratuito. Resposta em até 24 horas. Sem compromisso.
+          </motion.p>
+        </motion.div>
       </div>
     </section>
-  )
-}
-
-function HeroVisual() {
-  return (
-    <div className="relative w-full aspect-square max-w-[420px]">
-      {/* Outer ring */}
-      <div className="absolute inset-0 rounded-full border border-[#3D3C38]" />
-      <div className="absolute inset-6 rounded-full border border-[#262523]" />
-
-      {/* Center panel */}
-      <div className="absolute inset-12 rounded-2xl bg-[#141312] border border-[#3D3C38] p-6 flex flex-col justify-between">
-        {/* Header */}
-        <div>
-          <div className="flex items-center justify-between mb-4">
-            <span className="text-[10px] font-semibold uppercase tracking-widest text-[#8C8B89]">
-              Diagnóstico
-            </span>
-            <span
-              className="w-1.5 h-1.5 rounded-full bg-[#00D4FF]"
-              style={{ animation: 'pulse 2s infinite ease-in-out' }}
-            />
-          </div>
-          <div className="h-px bg-[#3D3C38] mb-4" />
-        </div>
-
-        {/* Metrics */}
-        <div className="space-y-3">
-          {[
-            { label: 'Tráfego orgânico', value: '+38%', color: '#00D4FF' },
-            { label: 'Taxa de conversão', value: '+47%', color: '#00AECF' },
-            { label: 'Receita incremental', value: '+R$280k', color: '#0086A6' },
-          ].map((metric, i) => (
-            <motion.div
-              key={metric.label}
-              initial={{ opacity: 0, x: 8 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{
-                duration: 0.5,
-                delay: 0.8 + i * 0.1,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-              className="flex items-center justify-between"
-            >
-              <span className="text-[10px] text-[#616059]">{metric.label}</span>
-              <span
-                className="text-[11px] font-bold font-mono"
-                style={{ color: metric.color }}
-              >
-                {metric.value}
-              </span>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Footer */}
-        <div>
-          <div className="h-px bg-[#3D3C38] mt-4 mb-3" />
-          <div className="flex items-center gap-2">
-            <span
-              className="w-1.5 h-1.5 rounded-full bg-[#00D4FF]"
-              style={{ animation: 'pulse 2s infinite ease-in-out' }}
-            />
-            <span className="text-[10px] text-[#8C8B89]">Análise em tempo real</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Floating data points */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 1.0, duration: 0.4, type: 'spring', stiffness: 300 }}
-        className="absolute -top-2 -right-4 bg-[#141312] border border-[#3D3C38] border-l-2 border-l-[#00D4FF] rounded-lg px-3 py-2"
-      >
-        <div className="text-[10px] text-[#8C8B89]">Ecossistema</div>
-        <div className="text-[13px] font-bold text-[#F8F7F6] font-mono">100%</div>
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 1.2, duration: 0.4, type: 'spring', stiffness: 300 }}
-        className="absolute -bottom-2 -left-4 bg-[#141312] border border-[#3D3C38] border-l-2 border-l-[#00AECF] rounded-lg px-3 py-2"
-      >
-        <div className="text-[10px] text-[#8C8B89]">90 dias</div>
-        <div className="text-[13px] font-bold text-[#F8F7F6] font-mono">+47%</div>
-      </motion.div>
-    </div>
   )
 }
