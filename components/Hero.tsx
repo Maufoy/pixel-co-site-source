@@ -39,13 +39,6 @@ export default function Hero() {
           className="w-full h-full object-cover"
           src={HERO_VIDEO}
         />
-        {/* Light mode overlay */}
-        <div
-          className="absolute inset-0"
-          style={{ background: 'rgba(248,247,246,0.82)' }}
-        />
-        {/* Pixel grid */}
-        <div className="absolute inset-0 pixel-grid" style={{ opacity: 0.35 }} />
       </div>
 
       {/* ── Content ── */}
@@ -57,14 +50,14 @@ export default function Hero() {
           className="max-w-[840px] mx-auto flex flex-col items-center text-center"
         >
           {/* Label */}
-          <motion.div variants={item} className="section-label mb-8 justify-center">
+          <motion.div variants={item} className="section-label mb-8 justify-center" style={{ color: 'rgba(255,255,255,0.7)', borderColor: 'rgba(255,255,255,0.2)' }}>
             Inteligência Digital
           </motion.div>
 
           {/* Headline — copy from landing-page.md, recommended headline */}
           <motion.h1
             variants={item}
-            className="font-extrabold text-[#0A0909] mb-8"
+            className="font-extrabold text-white mb-8"
             style={{
               fontSize: 'clamp(34px, 4.6vw, 64px)',
               lineHeight: 0.93,
@@ -73,15 +66,15 @@ export default function Hero() {
           >
             Você investe. Você fatura.<br />
             E ainda assim sente que está{' '}
-            <em>deixando dinheiro</em>{' '}
+            <em style={{ color: '#C4962A', fontStyle: 'italic' }}>deixando dinheiro</em>{' '}
             na mesa.
           </motion.h1>
 
           {/* Subhead */}
           <motion.p
             variants={item}
-            className="text-[#6B6B6B] mb-10 max-w-[58ch] mx-auto"
-            style={{ fontSize: '18px', lineHeight: 1.55, fontWeight: 400 }}
+            className="mb-10 max-w-[58ch] mx-auto"
+            style={{ fontSize: '18px', lineHeight: 1.55, fontWeight: 400, color: 'rgba(255,255,255,0.75)' }}
           >
             A Pixel.Co diagnostica o ecossistema digital do seu negócio inteiro —
             e entrega o próximo passo com clareza. Não mais um serviço.
@@ -92,7 +85,7 @@ export default function Hero() {
           <motion.div
             ref={metricsRef}
             variants={item}
-            className="grid grid-cols-3 gap-0 mb-12 divide-x divide-[#E6E5E3] w-full"
+            className="grid grid-cols-3 gap-0 mb-12 divide-x divide-[rgba(255,255,255,0.15)] w-full"
           >
             {metrics.map((m, i) => (
               <motion.div
@@ -103,12 +96,12 @@ export default function Hero() {
                 className="flex flex-col gap-1 px-0 pr-6 first:pl-0 pl-6"
               >
                 <span
-                  className="font-extrabold text-[#0A0909] font-mono leading-none"
+                  className="font-extrabold text-white font-mono leading-none"
                   style={{ fontSize: 'clamp(24px, 3vw, 44px)' }}
                 >
                   {m.value}
                 </span>
-                <span className="text-[11px] text-[#8C8B89] font-medium leading-snug max-w-[18ch]">
+                <span className="text-[11px] font-medium leading-snug max-w-[18ch]" style={{ color: 'rgba(255,255,255,0.55)' }}>
                   {m.label}
                 </span>
               </motion.div>
@@ -122,14 +115,15 @@ export default function Hero() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.97, y: 1 }}
               transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-              className="flex items-center gap-2 px-6 py-3.5 bg-[#0A0909] text-[#F8F7F6] rounded-lg font-bold text-sm tracking-tight hover:bg-[#333333] transition-colors duration-200"
+              className="flex items-center gap-2 px-6 py-3.5 bg-white text-[#0A0909] rounded-lg font-bold text-sm tracking-tight hover:bg-[#F0EFEE] transition-colors duration-200"
             >
               Quero entender o que está represando meu crescimento
               <ArrowRight size={15} strokeWidth={2} />
             </motion.a>
             <a
               href="#como-funciona"
-              className="flex items-center gap-1.5 text-[13px] font-semibold text-[#6B6B6B] hover:text-[#0A0909] transition-colors duration-200 py-3.5"
+              className="flex items-center gap-1.5 text-[13px] font-semibold transition-colors duration-200 py-3.5"
+              style={{ color: 'rgba(255,255,255,0.7)' }}
             >
               Ver como funciona
               <ChevronDown size={14} strokeWidth={2} />
@@ -139,7 +133,8 @@ export default function Hero() {
           {/* Subtexto CTA */}
           <motion.p
             variants={item}
-            className="text-[11px] text-[#999999] tracking-wide mt-4"
+            className="text-[11px] tracking-wide mt-4"
+            style={{ color: 'rgba(255,255,255,0.45)' }}
           >
             Diagnóstico gratuito. Resposta em até 24 horas. Sem compromisso.
           </motion.p>
