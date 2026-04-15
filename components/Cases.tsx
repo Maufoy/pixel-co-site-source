@@ -6,31 +6,31 @@ import { ArrowRight } from 'lucide-react'
 
 const cases = [
   {
-    segment: 'E-commerce de Moda — Amapá',
+    segment: 'Júlia — Oliver For Man',
     before:
-      'A loja investia R$18.000/mês em tráfego pago. Taxa de conversão: 0,8%. O problema estava sendo diagnosticado como "criativo fraco" há quatro meses — mais vídeos, mais variações de anúncio, mesmo resultado.',
+      'Ela faturava bem vendendo para quem já a conhecia. Queria o Brasil. Precisava de escala. A resposta não era mais tráfego para o mesmo canal.',
     action:
-      'O diagnóstico revelou que 74% do tráfego chegava pelo celular e encontrava um checkout com três etapas desnecessárias. Reestruturamos o funil de compra, implementamos recuperação de carrinho via push e ajustamos a segmentação para o perfil que de fato convertia.',
-    result: '+63% em taxa de conversão em 60 dias.',
-    resultDetail: 'Receita mensal: R$87k → R$142k com o mesmo investimento em mídia.',
+      'Era um e-commerce integrado aos maiores marketplaces do país — Mercado Livre, Magazine Luiza — com tráfego pago rodando em cima de uma estrutura que comportava volume.',
+    result: '+R$70 mil em faturamento novo por mês.',
+    resultDetail: 'De vendas locais para escala nacional.',
   },
   {
-    segment: 'Varejo de Grande Porte — Amapá',
+    segment: 'Varejo com 4 lojas físicas',
     before:
-      'Rede com 4 lojas físicas e operação digital subutilizada. Mais de 12.000 clientes cadastrados sem nenhum canal de reengajamento ativo. Campanhas de tráfego desconectadas do histórico de compra na loja física.',
+      '12.000 clientes cadastrados. Nenhum canal de reengajamento ativo. Tráfego desconectado do histórico de compra.',
     action:
-      'Desenvolvemos um aplicativo com catálogo digital, notificações push segmentadas por perfil de compra e integração com o sistema de estoque. As campanhas passaram a usar dados do app para retargeting com intenção de compra real.',
-    result: '+8.400 downloads nos primeiros 45 dias.',
-    resultDetail: 'Recompra +38% entre usuários do app. CPV reduzido em 22%.',
+      'Desenvolvemos um aplicativo com catálogo digital, notificações push segmentadas e integração com o estoque físico. As campanhas passaram a usar dados reais de comportamento de compra.',
+    result: '8.400 downloads em 45 dias.',
+    resultDetail: 'Recompra +38%. Custo por venda no tráfego -22%.',
   },
   {
-    segment: 'E-commerce de Nicho — Empreendedora',
+    segment: 'E-commerce — produto de alta margem',
     before:
-      'Negócio validado com produto de alta margem, faturando R$80k/mês via Instagram e indicação. Sem site próprio, sem tráfego pago, sem funil estruturado. Potencial represado sem um caminho claro para escalar.',
+      'Faturava R$80k/mês fechando venda por DM no Instagram. Sabia que estava preso num canal único. Queria crescer com consistência.',
     action:
-      'O diagnóstico revelou dependência de um único canal (DM do Instagram) para fechar vendas. Construímos e-commerce de alta conversão integrado ao tráfego pago e à produção de criativos. A operação passou de manual para sistematizada em 45 dias.',
-    result: 'Faturamento: R$80k → R$210k/mês em 90 dias.',
-    resultDetail: 'Custo de aquisição caiu 41%. Vendas saíram do DM para o dashboard.',
+      'Construímos o e-commerce, estruturamos o funil de tráfego pago e a produção de criativos. Em 45 dias, a operação estava sistematizada.',
+    result: 'R$80k → R$210k/mês em 90 dias.',
+    resultDetail: 'Custo de aquisição -41%.',
   },
 ]
 
@@ -53,21 +53,20 @@ export default function Cases() {
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="mb-12 lg:mb-16"
         >
-          <div className="section-label mb-6">Resultados reais</div>
           <h2
             className="text-[#0A0909] font-extrabold"
             style={{
-              fontSize: 'clamp(26px, 3vw, 44px)',
+              fontSize: 'clamp(28px, 3.2vw, 48px)',
               lineHeight: 1.0,
               letterSpacing: '-0.02em',
             }}
           >
-            Resultados reais.{' '}
-            <em>Números reais</em>.
+            O que aconteceu quando a{' '}
+            <em>solução certa</em>{' '}
+            foi entregue.
           </h2>
-          <p className="text-[#6B6B6B] mt-4 max-w-[55ch]" style={{ fontSize: '14px', lineHeight: 1.6 }}>
-            Cada número abaixo tem um negócio real por trás. Um problema diagnosticado,
-            uma combinação certa de soluções e uma execução que entregou o que foi prometido.
+          <p className="text-[#6B6B6B] mt-4 max-w-[55ch]" style={{ fontSize: '16px', lineHeight: 1.6 }}>
+            Cada número abaixo tem um negócio real por trás. Um diagnóstico honesto, a combinação certa — e o resultado entregue.
           </p>
         </motion.div>
 
@@ -81,15 +80,23 @@ export default function Cases() {
               transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="liquid-glass rounded-card overflow-hidden flex flex-col"
             >
-              {/* Segment tag */}
+              {/* Result number — destaque no topo */}
               <div className="px-6 pt-6 pb-4 border-b border-[#E6E5E3]">
+                <p
+                  className="text-[#0A0909] font-extrabold font-mono leading-none mb-1"
+                  style={{ fontSize: 'clamp(22px, 2.2vw, 30px)' }}
+                >
+                  {c.result}
+                </p>
+                <p className="text-[#6B6B6B] text-[11px]">{c.resultDetail}</p>
+              </div>
+
+              {/* Narrativa */}
+              <div className="px-6 py-5 flex-1 flex flex-col gap-4">
                 <span className="text-[10px] font-bold uppercase tracking-widest text-[#C4962A]">
                   {c.segment}
                 </span>
-              </div>
 
-              {/* Before */}
-              <div className="px-6 py-4 flex-1 flex flex-col gap-4">
                 <div>
                   <p className="text-[10px] font-semibold uppercase tracking-widest text-[#6B6B6B] mb-2">
                     Situação antes
@@ -102,17 +109,6 @@ export default function Cases() {
                     O que foi feito
                   </p>
                   <p className="text-[#333333] text-[12px] leading-relaxed">{c.action}</p>
-                </div>
-
-                {/* Result highlight */}
-                <div className="mt-auto pt-4 border-t border-[#E6E5E3]">
-                  <p
-                    className="text-[#0A0909] font-extrabold font-mono mb-1"
-                    style={{ fontSize: 'clamp(15px, 1.5vw, 18px)', lineHeight: 1.2 }}
-                  >
-                    {c.result}
-                  </p>
-                  <p className="text-[#6B6B6B] text-[11px] leading-snug">{c.resultDetail}</p>
                 </div>
               </div>
 

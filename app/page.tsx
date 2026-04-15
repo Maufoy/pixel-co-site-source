@@ -1,9 +1,7 @@
 import Nav from '@/components/Nav'
 import Hero from '@/components/Hero'
-import SocialProof from '@/components/SocialProof'
-import FeaturedVideo from '@/components/FeaturedVideo'
+import TrustedBy from '@/components/TrustedBy'
 import ValueProps from '@/components/ValueProps'
-import Manifesto from '@/components/Manifesto'
 import HowItWorks from '@/components/HowItWorks'
 import Cases from '@/components/Cases'
 import CTASection from '@/components/CTASection'
@@ -14,10 +12,8 @@ export default function Home() {
     <main>
       <Nav />
       <Hero />
-      <SocialProof />
-      <FeaturedVideo />
+      <TrustedBy />
       <ValueProps />
-      <Manifesto />
       <HowItWorks />
       <Cases />
       <CTASection />

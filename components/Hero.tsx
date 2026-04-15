@@ -1,7 +1,6 @@
 'use client'
 
-import { useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { ArrowRight, ChevronDown } from 'lucide-react'
 
 const HERO_VIDEO = 'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260405_074625_a81f018a-956b-43fb-9aee-4d1508e30e6a.mp4'
@@ -16,15 +15,7 @@ const item = {
   show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.16, 1, 0.3, 1] } },
 }
 
-const metrics = [
-  { value: '+R$ 1,2M', label: 'em receita incremental identificada em diagnósticos' },
-  { value: '47%',     label: 'de aumento médio em conversão nos primeiros 90 dias' },
-  { value: '100%',    label: 'dos clientes com dashboard em tempo real' },
-]
-
 export default function Hero() {
-  const metricsRef = useRef(null)
-  const metricsInView = useInView(metricsRef, { once: true, margin: '-60px' })
 
   return (
     <section className="relative min-h-[100dvh] flex flex-col justify-center items-center overflow-hidden">
@@ -49,64 +40,37 @@ export default function Hero() {
           animate="show"
           className="max-w-[840px] mx-auto flex flex-col items-center text-center"
         >
-          {/* Label */}
-          <motion.div variants={item} className="section-label mb-8 justify-center" style={{ color: 'rgba(255,255,255,0.7)', borderColor: 'rgba(255,255,255,0.2)' }}>
-            Inteligência Digital
-          </motion.div>
-
-          {/* Headline — copy from landing-page.md, recommended headline */}
+          {/* Headline — copy from landing-page-v3.md */}
           <motion.h1
             variants={item}
-            className="font-extrabold text-white mb-8"
+            className="font-extrabold text-white mb-4"
             style={{
               fontSize: 'clamp(34px, 4.6vw, 64px)',
               lineHeight: 0.93,
               letterSpacing: '-0.03em',
             }}
           >
-            Você investe. Você fatura.<br />
-            E ainda assim sente que está{' '}
-            <em style={{ color: '#C4962A', fontStyle: 'italic' }}>deixando dinheiro</em>{' '}
-            na mesa.
+            Tráfego, tecnologia e estratégia integrados para{' '}
+            <em style={{ color: '#C4962A', fontStyle: 'italic' }}>crescimento acelerado</em>.
           </motion.h1>
+
+          <motion.p
+            variants={item}
+            className="mb-8 max-w-[52ch] mx-auto"
+            style={{ fontSize: '20px', lineHeight: 1.4, fontWeight: 400, color: 'rgba(255,255,255,0.85)' }}
+          >
+            Aqui não existe pacote — existe diagnóstico.
+          </motion.p>
 
           {/* Subhead */}
           <motion.p
             variants={item}
             className="mb-10 max-w-[58ch] mx-auto"
-            style={{ fontSize: '18px', lineHeight: 1.55, fontWeight: 400, color: 'rgba(255,255,255,0.75)' }}
+            style={{ fontSize: '16px', lineHeight: 1.65, fontWeight: 400, color: 'rgba(255,255,255,0.65)' }}
           >
-            A Pixel.Co diagnostica o ecossistema digital do seu negócio inteiro —
-            e entrega o próximo passo com clareza. Não mais um serviço.
-            A combinação certa para o momento que você está.
+            7 anos de mercado. Mais de 50 empresas atendidas — de Macapá a São Paulo.
+            O que aprendemos: o que trava o crescimento raramente é o que aparece na superfície.
           </motion.p>
-
-          {/* Inline metrics — 3 numbers, no icons, no boxes */}
-          <motion.div
-            ref={metricsRef}
-            variants={item}
-            className="grid grid-cols-3 gap-0 mb-12 divide-x divide-[rgba(255,255,255,0.15)] w-full"
-          >
-            {metrics.map((m, i) => (
-              <motion.div
-                key={m.value}
-                initial={{ opacity: 0, y: 10 }}
-                animate={metricsInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.1 + i * 0.09, ease: [0.16, 1, 0.3, 1] }}
-                className="flex flex-col gap-1 px-0 pr-6 first:pl-0 pl-6"
-              >
-                <span
-                  className="font-extrabold text-white font-mono leading-none"
-                  style={{ fontSize: 'clamp(24px, 3vw, 44px)' }}
-                >
-                  {m.value}
-                </span>
-                <span className="text-[11px] font-medium leading-snug max-w-[18ch]" style={{ color: 'rgba(255,255,255,0.55)' }}>
-                  {m.label}
-                </span>
-              </motion.div>
-            ))}
-          </motion.div>
 
           {/* CTAs */}
           <motion.div variants={item} className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -117,7 +81,7 @@ export default function Hero() {
               transition={{ type: 'spring', stiffness: 400, damping: 25 }}
               className="flex items-center gap-2 px-6 py-3.5 bg-white text-[#0A0909] rounded-lg font-bold text-sm tracking-tight hover:bg-[#F0EFEE] transition-colors duration-200"
             >
-              Quero entender o que está represando meu crescimento
+              Quero acelerar minha empresa
               <ArrowRight size={15} strokeWidth={2} />
             </motion.a>
             <a

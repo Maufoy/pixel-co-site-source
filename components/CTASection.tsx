@@ -44,7 +44,7 @@ export default function CTASection() {
             transition={{ duration: 0.6, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
             className="text-[#0A0909] font-extrabold mt-6 mb-4"
             style={{
-              fontSize: 'clamp(28px, 3.5vw, 52px)',
+              fontSize: 'clamp(28px, 3.2vw, 48px)',
               lineHeight: 1.0,
               letterSpacing: '-0.02em',
             }}
@@ -59,11 +59,11 @@ export default function CTASection() {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.16, ease: [0.16, 1, 0.3, 1] }}
             className="text-[#6B6B6B] mb-12 max-w-[48ch]"
-            style={{ fontSize: '15px', lineHeight: 1.65 }}
+            style={{ fontSize: '16px', lineHeight: 1.65 }}
           >
-            Em 45 minutos, você sai com clareza sobre o que está funcionando, o que está quebrando
-            e qual é o próximo passo para o seu negócio. Sem apresentação de portfólio.
-            Sem pitch de serviços. Só o que importa para o seu momento.
+            45 minutos. A gente entende o seu negócio, mapeia onde está a oportunidade e te diz qual é o próximo passo —
+            sem apresentação de portfólio, sem pitch de serviços.
+            Só o que importa para o seu momento.
           </motion.p>
 
           {/* Form */}
@@ -152,7 +152,7 @@ export default function CTASection() {
                     </span>
                   ) : (
                     <>
-                      Quero entender o que está represando meu crescimento
+                      Quero entender o que está travando meu crescimento
                       <ArrowRight size={15} strokeWidth={2} />
                     </>
                   )}

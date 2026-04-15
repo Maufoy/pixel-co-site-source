@@ -2,32 +2,40 @@
 
 import { useRef, useState, useEffect } from 'react'
 import { motion, AnimatePresence, useScroll } from 'framer-motion'
-import { Search, Layers, Zap } from 'lucide-react'
+import { Search, Layers, Zap, Target } from 'lucide-react'
 
 const steps = [
   {
     number: '01',
     icon: Search,
-    title: 'Diagnóstico do ecossistema digital',
+    title: 'Diagnóstico',
     description:
-      'Em 45 minutos de conversa, mapeamos o que está funcionando, o que está represando e o que está sendo ignorado no seu negócio digital. Não é uma apresentação da Pixel.Co — é uma análise do seu momento.',
-    emotional: 'Você sai sabendo exatamente onde o problema está.',
+      'Antes de qualquer proposta, a gente entende o seu negócio. Em 45 minutos mapeamos o que está funcionando, o que está travando e o que você acha que precisa — e o que de fato precisa.',
+    emotional: 'Você sai com clareza. A gente sai com o caminho.',
   },
   {
     number: '02',
     icon: Layers,
-    title: 'Mapa do próximo passo',
+    title: 'Reunião de alinhamento',
     description:
-      'Com o diagnóstico em mãos, montamos a combinação certa: o que precisa mudar no tráfego, o que a tecnologia pode resolver, qual produto digital faz sentido agora. Você recebe um caminho claro — não uma lista de serviços.',
-    emotional: 'Você para de adivinhar e começa a decidir com clareza.',
+      'Fechou? A gente senta junto para alinhar cada detalhe. A conversa é gravada e transcrita com IA — tudo documentado, nada perdido. O resultado é um mapa claro do que vai ser feito, em qual ordem e com qual objetivo.',
+    emotional: 'Assim que sua conta é configurada, você já tem acesso ao dashboard em tempo real.',
   },
   {
     number: '03',
     icon: Zap,
-    title: 'Execução com dados em tempo real',
+    title: 'Sprints de execução',
     description:
-      'A implementação começa. E você acompanha cada métrica no dashboard — conversão, receita incremental, performance de mídia — sem precisar pedir. Antes de você lembrar de perguntar, a resposta já está lá.',
-    emotional: 'Você finalmente tem um parceiro que entrega antes de ser cobrado.',
+      'A gente executa em sprints — ciclos focados para resolver o que foi mapeado. Tráfego, tecnologia, produto digital — cada sprint com objetivo claro e prazo definido.',
+    emotional: 'Sem chute. Sem achismo.',
+  },
+  {
+    number: '04',
+    icon: Target,
+    title: 'Otimização contínua',
+    description:
+      'Depois da implementação, os dados falam. A gente analisa o que funcionou, ajusta o que precisa e acelera o que está gerando resultado.',
+    emotional: 'Crescimento não é entrega única — é processo.',
   },
 ]
 
@@ -63,29 +71,22 @@ export default function HowItWorks() {
     >
       {/* ── Section header ── */}
       <div className="max-w-[1440px] mx-auto px-[34px] lg:px-[58px] pt-20 pb-12">
-        <span className="accent-line" />
-        <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#6B6B6B] block mt-4 mb-6">
-          Como funciona
-        </span>
         <h2
           className="text-[#0A0909] font-extrabold"
           style={{
-            fontSize: 'clamp(24px, 2.8vw, 40px)',
-            lineHeight: 1.05,
+            fontSize: 'clamp(28px, 3.2vw, 48px)',
+            lineHeight: 1.0,
             letterSpacing: '-0.02em',
           }}
         >
-          Como funciona{' '}
-          <em>
-            na prática
-          </em>
+          Do diagnóstico à execução —{' '}
+          <em>sem chute, sem achismo</em>
         </h2>
         <p
           className="text-[#6B6B6B] mt-4 max-w-[480px]"
-          style={{ fontSize: '13px', lineHeight: 1.6 }}
+          style={{ fontSize: '16px', lineHeight: 1.6 }}
         >
-          Três passos. Sem burocracia. Do diagnóstico à execução — com um
-          parceiro que conhece o negócio inteiro.
+          Cada passo com objetivo claro e prazo definido.
         </p>
       </div>
 
@@ -175,7 +176,7 @@ export default function HowItWorks() {
                       {/* Description */}
                       <p
                         className="text-[#6B6B6B] mb-8"
-                        style={{ fontSize: '15px', lineHeight: 1.72 }}
+                        style={{ fontSize: '16px', lineHeight: 1.72 }}
                       >
                         {step.description}
                       </p>
