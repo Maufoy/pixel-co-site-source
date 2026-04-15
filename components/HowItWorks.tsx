@@ -1,7 +1,7 @@
 'use client'
 
-import { useRef, useState, useEffect } from 'react'
-import { motion, AnimatePresence, useScroll } from 'framer-motion'
+import { useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
 import { Search, Layers, Zap, Target } from 'lucide-react'
 
 const steps = [
@@ -39,169 +39,77 @@ const steps = [
   },
 ]
 
-const spring = { type: 'spring' as const, stiffness: 300, damping: 30 }
-
 export default function HowItWorks() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const [state, setState] = useState({ index: 0, dir: 1 })
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start start', 'end end'],
-  })
-
-  useEffect(() => {
-    const unsubscribe = scrollYProgress.on('change', (v) => {
-      const rawIndex = Math.min(steps.length - 1, Math.floor(v * steps.length))
-      setState((prev) =>
-        rawIndex !== prev.index
-          ? { index: rawIndex, dir: rawIndex > prev.index ? 1 : -1 }
-          : prev
-      )
-    })
-    return unsubscribe
-  }, [scrollYProgress])
-
-  const { index, dir } = state
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, margin: '-60px' })
 
   return (
-    <section
-      id="como-funciona"
-      className="border-t border-[#E6E5E3] bg-[#FFFFFF]"
-    >
-      {/* ── Section header ── */}
-      <div className="max-w-[1440px] mx-auto px-[34px] lg:px-[58px] pt-20 pb-12">
-        <h2
-          className="text-[#0A0909] font-extrabold"
-          style={{
-            fontSize: 'clamp(28px, 3.2vw, 48px)',
-            lineHeight: 1.0,
-            letterSpacing: '-0.02em',
-          }}
+    <section id="como-funciona" ref={ref} className="py-20 lg:py-32 border-t border-[#E6E5E3] bg-[#FFFFFF]">
+      <div className="max-w-[1440px] mx-auto px-[34px] lg:px-[58px]">
+
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-16"
         >
-          Do diagnóstico à execução —{' '}
-          <em>sem chute, sem achismo</em>
-        </h2>
-        <p
-          className="text-[#6B6B6B] mt-4 max-w-[480px]"
-          style={{ fontSize: '16px', lineHeight: 1.6 }}
-        >
-          Cada passo com objetivo claro e prazo definido.
-        </p>
-      </div>
+          <h2
+            className="text-[#0A0909] font-extrabold"
+            style={{ fontSize: 'clamp(28px, 3.2vw, 48px)', lineHeight: 1.0, letterSpacing: '-0.02em' }}
+          >
+            Do diagnóstico à execução —{' '}
+            <em>sem chute, sem achismo</em>
+          </h2>
+          <p className="text-[#6B6B6B] mt-4 max-w-[480px]" style={{ fontSize: '16px', lineHeight: 1.6 }}>
+            Cada passo com objetivo claro e prazo definido.
+          </p>
+        </motion.div>
 
-      {/* ── Sticky scroll stack ── */}
-      <div
-        ref={containerRef}
-        style={{ height: `${steps.length * 100}vh` }}
-        className="relative"
-      >
-        <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
-          <div className="w-full max-w-[680px] mx-auto px-[34px] lg:px-[58px]">
-
-            {/* Progress dots */}
-            <div className="flex items-center gap-3 mb-10">
-              {steps.map((_, i) => (
-                <motion.div
-                  key={i}
-                  animate={{
-                    width: i === index ? 28 : 6,
-                    background: i <= index ? '#C4962A' : '#E6E5E3',
-                  }}
-                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                  style={{ height: 6, borderRadius: 99 }}
-                />
-              ))}
-            </div>
-
-            {/* Card */}
-            <AnimatePresence mode="wait" custom={dir}>
+        {/* Steps grid — 2 colunas desktop, 1 mobile */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          {steps.map((step, i) => {
+            const Icon = step.icon
+            return (
               <motion.div
-                key={index}
-                custom={dir}
-                variants={{
-                  enter: (d: number) => ({
-                    y: d > 0 ? '100%' : '-100%',
-                    opacity: 0,
-                  }),
-                  center: { y: 0, opacity: 1 },
-                  exit: (d: number) => ({
-                    y: d > 0 ? '-100%' : '100%',
-                    opacity: 0,
-                  }),
-                }}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={spring}
-                className="liquid-glass rounded-2xl p-8 lg:p-12"
+                key={step.number}
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="liquid-glass rounded-card p-8 flex flex-col gap-5"
               >
-                {(() => {
-                  const step = steps[index]
-                  const Icon = step.icon
-                  return (
-                    <>
-                      {/* Step header */}
-                      <div className="flex items-center gap-4 mb-8">
-                        <span
-                          className="text-[11px] font-black font-mono tracking-[0.2em]"
-                          style={{ color: '#C4962A' }}
-                        >
-                          {step.number}
-                        </span>
-                        <div
-                          className="w-11 h-11 rounded-full border border-[#E6E5E3] flex items-center justify-center"
-                          style={{ background: 'rgba(196,150,42,0.07)' }}
-                        >
-                          <Icon
-                            size={18}
-                            strokeWidth={1.5}
-                            className="text-[#C4962A]"
-                          />
-                        </div>
-                      </div>
+                {/* Ícone */}
+                <div
+                  className="w-10 h-10 rounded-full border border-[#E6E5E3] flex items-center justify-center"
+                  style={{ background: 'rgba(196,150,42,0.07)' }}
+                >
+                  <Icon size={17} strokeWidth={1.5} className="text-[#C4962A]" />
+                </div>
 
-                      {/* Title */}
-                      <h3
-                        className="text-[#0A0909] font-bold mb-5"
-                        style={{
-                          fontSize: 'clamp(20px, 2.2vw, 30px)',
-                          lineHeight: 1.1,
-                          letterSpacing: '-0.02em',
-                        }}
-                      >
-                        {step.title}
-                      </h3>
+                {/* Título */}
+                <h3
+                  className="text-[#0A0909] font-bold"
+                  style={{ fontSize: '20px', lineHeight: 1.15, letterSpacing: '-0.01em' }}
+                >
+                  {step.title}
+                </h3>
 
-                      {/* Description */}
-                      <p
-                        className="text-[#6B6B6B] mb-8"
-                        style={{ fontSize: '16px', lineHeight: 1.72 }}
-                      >
-                        {step.description}
-                      </p>
+                {/* Descrição */}
+                <p className="text-[#6B6B6B] flex-1" style={{ fontSize: '15px', lineHeight: 1.72 }}>
+                  {step.description}
+                </p>
 
-                      {/* Emotional pull-quote */}
-                      <div className="border-t border-[#E6E5E3] pt-5">
-                        <p
-                          className="font-semibold italic"
-                          style={{ color: '#C4962A', fontSize: '13px' }}
-                        >
-                          {step.emotional}
-                        </p>
-                      </div>
-                    </>
-                  )
-                })()}
+                {/* Frase emocional */}
+                <div className="border-t border-[#E6E5E3] pt-4">
+                  <p className="font-semibold italic" style={{ color: '#C4962A', fontSize: '13px' }}>
+                    {step.emotional}
+                  </p>
+                </div>
               </motion.div>
-            </AnimatePresence>
-
-            {/* Scroll hint */}
-            <p className="text-center text-[10px] text-[#AAAAAA] tracking-[0.18em] uppercase mt-6">
-              {index < steps.length - 1 ? '↓ Role para continuar' : '✓ Fim dos passos'}
-            </p>
-          </div>
+            )
+          })}
         </div>
+
       </div>
     </section>
   )

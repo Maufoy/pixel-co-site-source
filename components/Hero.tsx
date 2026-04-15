@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ArrowRight, ChevronDown } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 
 const HERO_VIDEO = 'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260405_074625_a81f018a-956b-43fb-9aee-4d1508e30e6a.mp4'
 
@@ -72,8 +72,8 @@ export default function Hero() {
             O que aprendemos: o que trava o crescimento raramente é o que aparece na superfície.
           </motion.p>
 
-          {/* CTAs */}
-          <motion.div variants={item} className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          {/* CTA */}
+          <motion.div variants={item} className="flex items-center justify-center">
             <motion.a
               href="#diagnostico"
               whileHover={{ scale: 1.02 }}
@@ -84,14 +84,6 @@ export default function Hero() {
               Quero acelerar minha empresa
               <ArrowRight size={15} strokeWidth={2} />
             </motion.a>
-            <a
-              href="#como-funciona"
-              className="flex items-center gap-1.5 text-[13px] font-semibold transition-colors duration-200 py-3.5"
-              style={{ color: 'rgba(255,255,255,0.7)' }}
-            >
-              Ver como funciona
-              <ChevronDown size={14} strokeWidth={2} />
-            </a>
           </motion.div>
 
           {/* Subtexto CTA */}
