@@ -7,8 +7,8 @@ const logos = [
   { name: 'Odonto Advance', src: '/logos/odonto-advance.png', width: 120 },
   { name: 'Fitoderme',      src: '/logos/fitoderme.png',      width: 120 },
   { name: 'Webflash',       src: '/logos/webflash.png',       width: 120 },
-  { name: 'Berrini',        src: '/logos/berrini.png',        width: 120 },
-  { name: 'Benoliel',       src: '/logos/benoliel.png',       width: 200 },
+  { name: 'Berrini',        src: '/logos/berrini.png',        width: 280 },
+  { name: 'Benoliel',       src: '/logos/benoliel.png',       width: 120 },
 ]
 
 // Duplica para loop contínuo

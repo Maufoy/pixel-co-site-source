@@ -6,12 +6,38 @@ import { ArrowRight } from 'lucide-react'
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
+  const [overHero, setOverHero] = useState(true)
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40)
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  useEffect(() => {
+    const hero = document.getElementById('hero-sentinel')
+    if (!hero) return
+    const observer = new IntersectionObserver(
+      ([entry]) => setOverHero(entry.isIntersecting),
+      { threshold: 0 }
+    )
+    observer.observe(hero)
+    return () => observer.disconnect()
+  }, [])
+
+  const logoColor = overHero ? 'text-white' : 'text-[#0A0909]'
+  const linkColor = overHero ? 'rgba(255,255,255,0.75)' : '#6B6B6B'
+  const navBg = overHero
+    ? 'rgba(255,255,255,0.12)'
+    : 'rgba(255,255,255,0.85)'
+  const navBorder = overHero
+    ? scrolled ? 'border-white/20' : 'border-white/10'
+    : 'border-black/8'
+  const navShadow = scrolled
+    ? overHero
+      ? 'shadow-[0_8px_32px_rgba(0,0,0,0.18)]'
+      : 'shadow-[0_4px_24px_rgba(0,0,0,0.08)]'
+    : 'shadow-[0_4px_16px_rgba(0,0,0,0.06)]'
 
   return (
     <motion.header
@@ -20,28 +46,18 @@ export default function Nav() {
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       className="fixed top-6 left-0 right-0 z-50 flex justify-center px-6"
     >
-      {/* Floating pill nav */}
       <div
-        className={`liquid-glass flex items-center justify-between gap-8 px-5 py-3 rounded-full border transition-all duration-400 w-full max-w-[780px] ${
-          scrolled
-            ? 'shadow-[0_8px_32px_rgba(0,0,0,0.18)] border-white/20'
-            : 'border-white/10 shadow-[0_4px_16px_rgba(0,0,0,0.12)]'
-        }`}
-        style={{ background: 'rgba(255,255,255,0.12)', backdropFilter: 'blur(16px)' }}
+        className={`liquid-glass flex items-center justify-between gap-8 px-5 py-3 rounded-full border transition-all duration-300 w-full max-w-[780px] ${navBorder} ${navShadow}`}
+        style={{ background: navBg, backdropFilter: 'blur(16px)' }}
       >
         {/* Logo */}
-        <a
-          href="#"
-          className="flex items-center"
-          style={{ minWidth: '80px' }}
-          aria-label="Pixel.Co"
-        >
-          <span className="font-extrabold text-[18px] tracking-[-0.03em] text-white">
+        <a href="#" className="flex items-center" style={{ minWidth: '80px' }} aria-label="Pixel.Co">
+          <span className={`font-extrabold text-[18px] tracking-[-0.03em] transition-colors duration-300 ${logoColor}`}>
             Pixel<span className="text-[#C4962A]">.</span>Co
           </span>
         </a>
 
-        {/* Nav links — hidden on mobile */}
+        {/* Nav links */}
         <nav className="hidden md:flex items-center gap-7">
           {[
             { label: 'Como funciona', href: '#como-funciona' },
@@ -51,15 +67,15 @@ export default function Nav() {
             <a
               key={label}
               href={href}
-              className="text-[11px] font-semibold transition-colors duration-200 tracking-widest uppercase"
-              style={{ color: 'rgba(255,255,255,0.75)' }}
+              className="text-[11px] font-semibold tracking-widest uppercase transition-colors duration-300"
+              style={{ color: linkColor }}
             >
               {label}
             </a>
           ))}
         </nav>
 
-        {/* CTA pill */}
+        {/* CTA */}
         <motion.a
           href="#diagnostico"
           whileHover={{ scale: 1.03 }}

@@ -18,7 +18,7 @@ const item = {
 export default function Hero() {
 
   return (
-    <section className="relative min-h-[100dvh] flex flex-col justify-center items-center overflow-hidden">
+    <section id="hero" className="relative min-h-[100dvh] flex flex-col justify-center items-center overflow-hidden">
 
       {/* ── Video background ── */}
       <div className="absolute inset-0 z-0">
@@ -104,6 +104,9 @@ export default function Hero() {
           </motion.p>
         </motion.div>
       </div>
+
+      {/* Sentinel — Nav detecta quando Hero sai da tela */}
+      <div id="hero-sentinel" className="absolute bottom-0 left-0 w-full h-1 pointer-events-none" />
     </section>
   )
 }
