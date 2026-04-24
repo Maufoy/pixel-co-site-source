@@ -1,6 +1,7 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
 import Image from 'next/image'
 
 const logos = [
@@ -11,23 +12,35 @@ const logos = [
   { name: 'Benoliel',       src: '/logos/benoliel.png',       width: 120 },
 ]
 
-// Duplica para loop contínuo
 const track = [...logos, ...logos]
 
 export default function TrustedBy() {
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, margin: '-40px' })
+
   return (
-    <section className="py-12 border-t border-[#E6E5E3] bg-[#F8F7F6] overflow-hidden">
-      <div className="max-w-[1440px] mx-auto px-[34px] lg:px-[58px] mb-8">
+    <section ref={ref} className="py-12 border-t border-[#E6E5E3] bg-[#F8F7F6] overflow-hidden">
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        className="max-w-[1440px] mx-auto px-[34px] lg:px-[58px] mb-8"
+      >
         <p
           className="text-[#8C8B89] font-semibold uppercase tracking-widest text-center lg:text-left"
           style={{ fontSize: '11px' }}
         >
           Empresas que já cresceram
         </p>
-      </div>
+      </motion.div>
 
       {/* Carrossel */}
-      <div className="relative w-full overflow-hidden">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={inView ? { opacity: 1 } : {}}
+        transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+        className="relative w-full overflow-hidden"
+      >
         {/* Fade nas bordas */}
         <div className="absolute left-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
           style={{ background: 'linear-gradient(to right, #F8F7F6, transparent)' }} />
@@ -66,7 +79,7 @@ export default function TrustedBy() {
             </div>
           ))}
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   )
 }

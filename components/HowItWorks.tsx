@@ -6,7 +6,6 @@ import { Search, Layers, Zap, Target } from 'lucide-react'
 
 const steps = [
   {
-    number: '01',
     icon: Search,
     title: 'Diagnóstico',
     description:
@@ -14,7 +13,6 @@ const steps = [
     emotional: 'Você sai com clareza. A gente sai com o caminho.',
   },
   {
-    number: '02',
     icon: Layers,
     title: 'Reunião de alinhamento',
     description:
@@ -22,7 +20,6 @@ const steps = [
     emotional: 'Assim que sua conta é configurada, você já tem acesso ao dashboard em tempo real.',
   },
   {
-    number: '03',
     icon: Zap,
     title: 'Sprints de execução',
     description:
@@ -30,13 +27,20 @@ const steps = [
     emotional: 'Sem chute. Sem achismo.',
   },
   {
-    number: '04',
     icon: Target,
     title: 'Otimização contínua',
     description:
       'Depois da implementação, os dados falam. A gente analisa o que funcionou, ajusta o que precisa e acelera o que está gerando resultado.',
     emotional: 'Crescimento não é entrega única — é processo.',
   },
+]
+
+/* top-left, top-right, bottom-left, bottom-right */
+const directions = [
+  { x: -28, y: 16 },
+  { x: 28,  y: 16 },
+  { x: -28, y: 16 },
+  { x: 28,  y: 16 },
 ]
 
 export default function HowItWorks() {
@@ -49,11 +53,17 @@ export default function HowItWorks() {
 
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="mb-16"
         >
+          <motion.div
+            initial={{ width: 0 }}
+            animate={inView ? { width: 32 } : {}}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            className="h-[2px] bg-[#C4962A] mb-6"
+          />
           <h2
             className="text-[#0A0909] font-extrabold"
             style={{ fontSize: 'clamp(28px, 3.2vw, 48px)', lineHeight: 1.0, letterSpacing: '-0.02em' }}
@@ -61,30 +71,41 @@ export default function HowItWorks() {
             Do diagnóstico à execução —{' '}
             <em>sem chute, sem achismo</em>
           </h2>
-          <p className="text-[#6B6B6B] mt-4 max-w-[480px]" style={{ fontSize: '16px', lineHeight: 1.6 }}>
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.55, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            className="text-[#6B6B6B] mt-4 max-w-[480px]"
+            style={{ fontSize: '16px', lineHeight: 1.6 }}
+          >
             Cada passo com objetivo claro e prazo definido.
-          </p>
+          </motion.p>
         </motion.div>
 
         {/* Steps grid — 2 colunas desktop, 1 mobile */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           {steps.map((step, i) => {
             const Icon = step.icon
+            const dir = directions[i]
             return (
               <motion.div
-                key={step.number}
-                initial={{ opacity: 0, y: 20 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                key={step.title}
+                initial={{ opacity: 0, x: dir.x, y: dir.y }}
+                animate={inView ? { opacity: 1, x: 0, y: 0 } : {}}
+                transition={{ duration: 0.65, delay: 0.1 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                whileHover={{ y: -3, transition: { duration: 0.2, ease: [0.16, 1, 0.3, 1] } }}
                 className="liquid-glass rounded-card p-8 flex flex-col gap-5"
               >
                 {/* Ícone */}
-                <div
+                <motion.div
+                  initial={{ scale: 0.5, opacity: 0 }}
+                  animate={inView ? { scale: 1, opacity: 1 } : {}}
+                  transition={{ duration: 0.4, delay: 0.2 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
                   className="w-10 h-10 rounded-full border border-[#E6E5E3] flex items-center justify-center"
                   style={{ background: 'rgba(196,150,42,0.07)' }}
                 >
                   <Icon size={17} strokeWidth={1.5} className="text-[#C4962A]" />
-                </div>
+                </motion.div>
 
                 {/* Título */}
                 <h3

@@ -1,21 +1,30 @@
 'use client'
 
+import { useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
+
 const links = [
   { label: 'Como funciona', href: '#como-funciona' },
   { label: 'Resultados',    href: '#cases' },
-  { label: 'Sobre',         href: '#manifesto' },
+  { label: 'Diagnóstico',   href: '#diagnostico' },
   { label: 'Privacidade',   href: '#privacidade' },
-  { label: 'Termos de Uso', href: '#termos' },
 ]
 
 export default function Footer() {
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, margin: '-40px' })
+
   return (
-    <footer className="bg-[#F8F7F6] border-t border-[#E6E5E3]">
+    <footer ref={ref} className="bg-[#F8F7F6] border-t border-[#E6E5E3]">
       <div className="max-w-[1400px] mx-auto px-[34px] lg:px-[58px] py-12">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8">
 
           {/* Logo + tagline */}
-          <div>
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          >
             <div className="font-extrabold text-[18px] tracking-[-0.03em] text-[#0A0909] mb-1">
               Pixel<span className="text-[#C4962A]">.</span>Co
             </div>
@@ -23,10 +32,15 @@ export default function Footer() {
               Do pixel à{' '}
               <em className="em-serif text-[#C4962A]">escala</em>.
             </p>
-          </div>
+          </motion.div>
 
           {/* Links */}
-          <nav className="flex flex-wrap items-center gap-6">
+          <motion.nav
+            initial={{ opacity: 0, y: 12 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-wrap items-center gap-6"
+          >
             {links.map(({ label, href }) => (
               <a
                 key={label}
@@ -36,10 +50,15 @@ export default function Footer() {
                 {label}
               </a>
             ))}
-          </nav>
+          </motion.nav>
 
           {/* Status + copyright */}
-          <div className="flex flex-col items-end gap-2">
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-col items-end gap-2"
+          >
             <div className="flex items-center gap-2">
               <span
                 className="w-1.5 h-1.5 rounded-full bg-[#C4962A] flex-shrink-0"
@@ -50,7 +69,8 @@ export default function Footer() {
             <p className="text-[#BFBDBA] text-[10px] font-mono">
               &copy; 2025 Pixel.Co — Inteligência Digital
             </p>
-          </div>
+          </motion.div>
+
         </div>
       </div>
     </footer>

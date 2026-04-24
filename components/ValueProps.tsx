@@ -5,19 +5,25 @@ import { motion, useInView } from 'framer-motion'
 
 export default function ValueProps() {
   const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-80px' })
+  const inView = useInView(ref, { once: true, margin: '-60px' })
 
   return (
     <section id="problema" ref={ref} className="py-20 lg:py-32 border-t border-[#E6E5E3] bg-[#F8F7F6]">
       <div className="max-w-[1440px] mx-auto px-[34px] lg:px-[58px]">
 
-        {/* H2 */}
+        {/* H2 com linha de acento */}
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="mb-16"
         >
+          <motion.div
+            initial={{ width: 0 }}
+            animate={inView ? { width: 32 } : {}}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            className="h-[2px] bg-[#C4962A] mb-6"
+          />
           <h2
             className="text-[#0A0909] font-extrabold max-w-[640px]"
             style={{ fontSize: 'clamp(28px, 3.2vw, 48px)', lineHeight: 1.0, letterSpacing: '-0.02em' }}
@@ -29,40 +35,33 @@ export default function ValueProps() {
         {/* Grid assimétrico */}
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-8 lg:gap-14">
 
-          {/* Narrativa */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.65, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col gap-5"
-          >
-            <p className="text-[#3D3C38]" style={{ fontSize: '16px', lineHeight: 1.75 }}>
-              Você contratou uma agência. Entregaram o card, entregaram o vídeo, jogaram o tráfego.
-              Três meses depois, você ainda estava na mesma conversa.
-            </p>
-            <p className="text-[#6B6B6B]" style={{ fontSize: '16px', lineHeight: 1.75 }}>
-              Não porque eram ruins. Porque eles chegaram com a solução antes de entender o problema.
-            </p>
-            <p className="text-[#3D3C38]" style={{ fontSize: '16px', lineHeight: 1.75 }}>
-              A maioria das agências tem três ofertas: tráfego pago, card e vídeo.
-              É o que elas fazem — independente do que você precisa.
-            </p>
-            <p className="text-[#3D3C38]" style={{ fontSize: '16px', lineHeight: 1.75 }}>
-              A Pixel.Co funciona diferente. Antes de qualquer proposta, a gente entende o que está
-              travando o crescimento do seu negócio. Às vezes é tráfego. Às vezes é o processo
-              comercial. Às vezes é o e-commerce que não existe ainda. Às vezes é o CRM que ninguém
-              configurou direito.
-            </p>
-            <p className="text-[#0A0909] font-semibold" style={{ fontSize: '16px', lineHeight: 1.75 }}>
-              A solução depende do diagnóstico.
-            </p>
-          </motion.div>
+          {/* Narrativa — fade up com stagger nos parágrafos */}
+          <div className="flex flex-col gap-5">
+            {[
+              { text: 'Você contratou uma agência. Entregaram o card, entregaram o vídeo, jogaram o tráfego. Três meses depois, você ainda estava na mesma conversa.', color: '#3D3C38' },
+              { text: 'Não porque eram ruins. Porque eles chegaram com a solução antes de entender o problema.', color: '#6B6B6B' },
+              { text: 'A maioria das agências tem três ofertas: tráfego pago, card e vídeo. É o que elas fazem — independente do que você precisa.', color: '#3D3C38' },
+              { text: 'A Pixel.Co funciona diferente. Antes de qualquer proposta, a gente entende o que está travando o crescimento do seu negócio. Às vezes é tráfego. Às vezes é o processo comercial. Às vezes é o e-commerce que não existe ainda. Às vezes é o CRM que ninguém configurou direito.', color: '#3D3C38' },
+              { text: 'A solução depende do diagnóstico.', color: '#0A0909', bold: true },
+            ].map((p, i) => (
+              <motion.p
+                key={i}
+                initial={{ opacity: 0, y: 16 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.55, delay: 0.1 + i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                className={p.bold ? 'font-semibold' : ''}
+                style={{ fontSize: '16px', lineHeight: 1.75, color: p.color }}
+              >
+                {p.text}
+              </motion.p>
+            ))}
+          </div>
 
-          {/* Card — Júlia */}
+          {/* Card Júlia — slide da direita */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.65, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ opacity: 0, x: 40 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="liquid-glass rounded-card p-8 flex flex-col gap-5 self-start"
           >
             <div>
@@ -86,12 +85,15 @@ export default function ValueProps() {
             </p>
 
             <div className="border-t border-[#E6E5E3] pt-5">
-              <div
+              <motion.div
+                initial={{ opacity: 0, y: 8 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
                 className="text-[#0A0909] font-extrabold font-mono"
                 style={{ fontSize: 'clamp(22px, 2.5vw, 32px)', lineHeight: 1 }}
               >
                 +R$70 mil
-              </div>
+              </motion.div>
               <p className="text-[#6B6B6B] mt-1" style={{ fontSize: '13px' }}>
                 em faturamento novo por mês
               </p>
