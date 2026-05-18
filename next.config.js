@@ -4,5 +4,13 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  async rewrites() {
+    return [
+      {
+        source: '/pagina-express-v1/',
+        destination: '/pagina-express-v1/index.html',
+      },
+    ]
+  },
 }
 module.exports = nextConfig
