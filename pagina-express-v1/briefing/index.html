@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Briefing — Pixel.Co Página Express</title>
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23002D25'/%3E%3Crect x='22' y='22' width='20' height='20' rx='4' fill='%23FAFFEE'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@1,400;1,600&family=Sora:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    :root {
+      --bg-deep: #002D25;
+      --bg-mid: #003A30;
+      --bg-card: #0F3328;
+      --bg-bright: #025547;
+      --fg-cream: #FAFFEE;
+      --accent-1: #C1D66D;
+      --accent-1-soft: #E5EDB4;
+      --accent-2: #B49DD0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 8% 12%, rgba(193, 214, 109, 0.05), transparent 38%),
+        radial-gradient(circle at 92% 8%, rgba(180, 157, 208, 0.045), transparent 35%),
+        radial-gradient(circle at 50% 50%, rgba(193, 214, 109, 0.025), transparent 50%),
+        var(--bg-deep);
+      background-attachment: fixed;
+      color: var(--fg-cream);
+      font-family: 'Sora', system-ui, sans-serif;
+      font-weight: 300;
+      line-height: 1.55;
+      min-height: 100dvh;
+    }
+
+    .italic-b {
+      font-family: 'Newsreader', serif;
+      font-style: italic;
+      font-weight: 600;
+    }
+
+    .mono {
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    .it {
+      font-family: 'Newsreader', serif;
+      font-style: italic;
+      font-weight: 600;
+      color: var(--accent-1);
+    }
+
+    .grain::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.035;
+      z-index: 1;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    /* Header */
+    .header {
+      padding: 22px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--fg-cream);
+      text-decoration: none;
+      line-height: 1;
+    }
+
+    .logo-mark {
+      width: 13px;
+      height: 13px;
+      background: var(--fg-cream);
+      display: inline-block;
+      border-radius: 3px;
+    }
+
+    .logo-text {
+      font-family: 'Sora', sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      letter-spacing: -0.01em;
+    }
+
+    .logo-text .dot {
+      color: var(--accent-1);
+    }
+
+    .header-meta {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(250, 255, 238, 0.5);
+    }
+
+    /* Layout */
+    .briefing {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 24px 28px 120px;
+      position: relative;
+    }
+
+    .intro {
+      margin-bottom: 48px;
+      padding: 28px 28px 24px;
+      border: 1px solid color-mix(in oklab, var(--accent-1) 22%, transparent);
+      border-radius: 18px;
+      background: color-mix(in oklab, var(--bg-card) 50%, transparent);
+      backdrop-filter: blur(10px);
+    }
+
+    .intro-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent-1);
+      margin-bottom: 14px;
+    }
+
+    .intro-eyebrow .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-1);
+      box-shadow: 0 0 8px var(--accent-1);
+      animation: dotPulse 1.6s ease-in-out infinite;
+    }
+
+    @keyframes dotPulse {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.35;
+      }
+    }
+
+    .intro h1 {
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+      font-size: clamp(28px, 4vw, 40px);
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      margin-bottom: 14px;
+    }
+
+    .intro h1 em {
+      font-family: 'Newsreader', serif;
+      font-style: italic;
+      font-weight: 600;
+      color: var(--accent-1);
+    }
+
+    .intro p {
+      font-size: 15px;
+      color: rgba(250, 255, 238, 0.78);
+      margin-bottom: 8px;
+    }
+
+    .intro p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Progress */
+    .progress-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      padding: 18px 0 18px;
+      background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-deep) 70%, transparent 100%);
+      margin-bottom: 28px;
+    }
+
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(250, 255, 238, 0.6);
+      margin-bottom: 10px;
+    }
+
+    .progress-meta .step-name {
+      color: var(--accent-1);
+    }
+
+    .progress-bar {
+      height: 4px;
+      background: rgba(250, 255, 238, 0.08);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+      width: 12.5%;
+      transition: width 0.4s cubic-bezier(.2, .8, .2, 1);
+      border-radius: 999px;
+    }
+
+    /* Steps */
+    .step {
+      display: none;
+    }
+
+    .step.active {
+      display: block;
+      animation: stepIn 0.45s cubic-bezier(.2, .8, .2, 1);
+    }
+
+    @keyframes stepIn {
+      from {
+        opacity: 0;
+        transform: translate3d(0, 14px, 0);
+        filter: blur(6px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+        filter: blur(0);
+      }
+    }
+
+    .step h2 {
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+      font-size: clamp(26px, 3.4vw, 36px);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+
+    .step h2 .num {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent-1);
+      font-weight: 500;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .step-intro {
+      font-size: 15px;
+      color: rgba(250, 255, 238, 0.7);
+      margin-bottom: 32px;
+      max-width: 560px;
+      line-height: 1.55;
+    }
+
+    /* Fields */
+    .field {
+      margin-bottom: 22px;
+    }
+
+    .field-label {
+      display: block;
+      font-family: 'Sora', sans-serif;
+      font-weight: 500;
+      font-size: 15px;
+      color: var(--fg-cream);
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+
+    .field-help {
+      font-size: 13px;
+      color: rgba(250, 255, 238, 0.55);
+      margin: -4px 0 10px;
+      line-height: 1.5;
+    }
+
+    .field-help em {
+      color: var(--accent-1);
+      font-style: normal;
+      font-weight: 500;
+    }
+
+    .field-required {
+      color: var(--accent-1);
+      font-weight: 600;
+      margin-left: 4px;
+    }
+
+    .input,
+    .textarea,
+    .select {
+      width: 100%;
+      padding: 14px 16px;
+      background: color-mix(in oklab, var(--bg-card) 50%, transparent);
+      border: 1px solid color-mix(in oklab, var(--accent-1) 14%, transparent);
+      border-radius: 12px;
+      color: var(--fg-cream);
+      font-family: 'Sora', sans-serif;
+      font-size: 15px;
+      font-weight: 300;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+    }
+
+    .input:hover,
+    .textarea:hover,
+    .select:hover {
+      border-color: color-mix(in oklab, var(--accent-1) 30%, transparent);
+    }
+
+    .input:focus,
+    .textarea:focus,
+    .select:focus {
+      border-color: var(--accent-1);
+      background: color-mix(in oklab, var(--bg-card) 70%, transparent);
+      box-shadow: 0 0 0 4px color-mix(in oklab, var(--accent-1) 12%, transparent);
+    }
+
+    .input::placeholder,
+    .textarea::placeholder {
+      color: rgba(250, 255, 238, 0.32);
+    }
+
+    .textarea {
+      min-height: 100px;
+      resize: vertical;
+      line-height: 1.55;
+      font-family: 'Sora', sans-serif;
+    }
+
+    .select {
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23C1D66D' d='M0 0h12L6 8z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      padding-right: 44px;
+    }
+
+    .select option {
+      background: var(--bg-deep);
+      color: var(--fg-cream);
+    }
+
+    /* Radio group */
+    .radio-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .radio-pill {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      background: color-mix(in oklab, var(--bg-card) 50%, transparent);
+      border: 1px solid color-mix(in oklab, var(--accent-1) 14%, transparent);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .radio-pill:hover {
+      border-color: color-mix(in oklab, var(--accent-1) 35%, transparent);
+    }
+
+    .radio-pill input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .radio-pill .dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 1.5px solid color-mix(in oklab, var(--accent-1) 45%, transparent);
+      flex-shrink: 0;
+      position: relative;
+      transition: all 0.2s;
+    }
+
+    .radio-pill input:checked+.dot {
+      border-color: var(--accent-1);
+      background: var(--accent-1);
+      box-shadow: 0 0 12px color-mix(in oklab, var(--accent-1) 40%, transparent);
+    }
+
+    .radio-pill input:checked+.dot::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 6px;
+      height: 6px;
+      background: var(--bg-deep);
+      border-radius: 50%;
+    }
+
+    .radio-pill:has(input:checked) {
+      border-color: var(--accent-1);
+      background: color-mix(in oklab, var(--bg-card) 80%, transparent);
+    }
+
+    .radio-pill .label {
+      font-size: 14.5px;
+      line-height: 1.4;
+    }
+
+    .radio-pill .label small {
+      display: block;
+      color: rgba(250, 255, 238, 0.55);
+      font-size: 12.5px;
+      margin-top: 2px;
+    }
+
+    /* Navigation */
+    .nav-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 40px;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 14px 26px;
+      border-radius: 999px;
+      font-family: 'Sora', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid color-mix(in oklab, var(--accent-1) 35%, transparent);
+      color: var(--accent-1);
+    }
+
+    .btn-ghost:hover {
+      background: color-mix(in oklab, var(--accent-1) 8%, transparent);
+    }
+
+    .btn-ghost:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    .btn-solid {
+      background: linear-gradient(135deg, var(--accent-1) 0%, var(--accent-2) 100%);
+      color: var(--bg-deep);
+    }
+
+    .btn-solid:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(193, 214, 109, 0.3);
+    }
+
+    .btn-solid:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .autosave {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10.5px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(250, 255, 238, 0.4);
+      margin-top: 24px;
+      text-align: center;
+    }
+
+    .autosave .check {
+      color: var(--accent-1);
+    }
+
+    /* Submit overlay */
+    .submit-state {
+      display: none;
+      padding: 48px 28px;
+      text-align: center;
+    }
+
+    .submit-state.active {
+      display: block;
+      animation: stepIn 0.45s cubic-bezier(.2, .8, .2, 1);
+    }
+
+    .submit-state.success h2 {
+      color: var(--accent-1);
+    }
+
+    .submit-state h2 {
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+    }
+
+    .submit-state h2 em {
+      font-family: 'Newsreader', serif;
+      font-style: italic;
+      font-weight: 600;
+      color: var(--accent-1);
+    }
+
+    .submit-state p {
+      font-size: 16px;
+      color: rgba(250, 255, 238, 0.7);
+      max-width: 480px;
+      margin: 0 auto 28px;
+    }
+
+    .submit-state .small {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11.5px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(250, 255, 238, 0.5);
+      margin-top: 28px;
+    }
+
+    /* Mobile */
+    @media (max-width: 600px) {
+      .briefing {
+        padding: 18px 18px 100px;
+      }
+
+      .intro {
+        padding: 22px 20px;
+      }
+
+      .header {
+        padding: 18px 18px;
+      }
+
+      .header-meta {
+        display: none;
+      }
+
+      .nav-row {
+        flex-direction: column-reverse;
+      }
+
+      .nav-row .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="header">
+    <a href="/pagina-express-v1/" class="logo">
+      <span class="logo-mark"></span>
+      <span class="logo-text">Pixel<span class="dot">.</span>Co</span>
+    </a>
+    <span class="header-meta">Briefing · Página Express</span>
+  </header>
+
+  <main class="briefing">
+
+    <div class="intro">
+      <div class="intro-eyebrow"><span class="dot"></span>Tempo estimado: 20 minutos</div>
+      <h1>Briefing <em>Página Express</em></h1>
+      <p>Se a resposta vier vaga ("ajudo pessoas a serem melhores"), a copy sai genérica. Se vier concreta ("atendo
+        advogados de 35-50 anos que querem sair do escritório antes das 19h"), sai específica e converte. Pode abrir o
+        seu coração. Fale tudo.</p>
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-meta">
+        <span>Bloco <span id="current-step">1</span> de 8</span>
+        <span class="step-name" id="step-name">Negócio</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+    </div>
+
+    <form id="briefing-form" autocomplete="on" novalidate>
+
+      <!-- BLOCO 1 — NEGÓCIO -->
+      <section class="step active" data-step="1" data-name="Negócio">
+        <h2><span class="num">Bloco 01</span>Quem é você, <span class="it">de onde fala</span></h2>
+        <p class="step-intro">Contexto pra IA. 6 perguntas rápidas.</p>
+
+        <div class="field">
+          <label class="field-label">Nome completo<span class="field-required">*</span></label>
+          <input type="text" class="input" name="nome_completo" required>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Como quer aparecer na página</label>
+          <div class="field-help">Ex: "Maria", "Dra. Maria Silva", "Estúdio Marina"</div>
+          <input type="text" class="input" name="nome_apresentacao">
+        </div>
+
+        <div class="field">
+          <label class="field-label">Profissão / título<span class="field-required">*</span></label>
+          <div class="field-help">Ex: "advogada criminalista", "nutri esportiva", "arquiteto de interiores"</div>
+          <input type="text" class="input" name="profissao" required>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Cidade onde atende</label>
+          <input type="text" class="input" name="cidade">
+        </div>
+
+        <div class="field">
+          <label class="field-label">Atendimento</label>
+          <div class="radio-group">
+            <label class="radio-pill"><input type="radio" name="atendimento" value="Presencial"><span
+                class="dot"></span><span class="label">Presencial</span></label>
+            <label class="radio-pill"><input type="radio" name="atendimento" value="Online"><span
+                class="dot"></span><span class="label">Online</span></label>
+            <label class="radio-pill"><input type="radio" name="atendimento" value="Presencial e online"><span
+                class="dot"></span><span class="label">Presencial e online</span></label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Há quanto tempo atua nessa área?</label>
+          <input type="text" class="input" name="tempo_atuacao" placeholder="Ex: 5 anos">
+        </div>
+
+        <div class="field">
+          <label class="field-label">Site, Instagram, redes atuais</label>
+          <div class="field-help">Cola os links, um por linha</div>
+          <textarea class="textarea" name="links_atuais"
+            placeholder="instagram.com/seu-perfil&#10;seusite.com.br"></textarea>
+        </div>
+      </section>
+
+      <!-- BLOCO 2 — CLIENTE -->
+      <section class="step" data-step="2" data-name="Cliente ideal">
+        <h2><span class="num">Bloco 02</span>Cliente ideal — <span class="it">a parte mais importante</span></h2>
+        <p class="step-intro">Define toda a copy. Quanto mais específico, mais converte.</p>
+
+        <div class="field">
+          <label class="field-label">Descreve em 2 frases quem é o cliente perfeito<span
+              class="field-required">*</span></label>
+          <div class="field-help">Idade, profissão, momento de vida. <em>Sem "qualquer pessoa".</em></div>
+          <textarea class="textarea" name="cliente_perfil" required
+            placeholder="Ex: Mulheres de 35-50 anos, executivas em empresas grandes, casadas com filhos pequenos, que sentem ansiedade alta e não conseguem mais dormir direito."></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Qual o problema dele NAS PALAVRAS DELE?</label>
+          <div class="field-help">O que ele diz pra você na primeira conversa? <em>Escreve em primeira pessoa</em>,
+            tipo: "tô há 3 meses tentando…"</div>
+          <textarea class="textarea" name="cliente_problema"
+            placeholder='"Tô há 6 meses tentando dormir e não consigo. Já fiz exame, tomei chá, baixei aquele app, mas continuo acordando 3 da manhã com pensamento acelerado."'></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">O que ele já tentou que não deu certo?</label>
+          <div class="field-help">Outro profissional, outro método, vídeo no YouTube, app, livro</div>
+          <textarea class="textarea" name="cliente_tentativas"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Maior medo / objeção pra fechar com você?</label>
+          <div class="field-help">Preço? "Não vai funcionar pra mim"? Vergonha? Tempo?</div>
+          <textarea class="textarea" name="cliente_objecao"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Quando o trabalho dá certo, como ele descreve o resultado?</label>
+          <div class="field-help">Resposta concreta. <em>"Voltei a dormir". "Fechei meu primeiro contrato". "Parei de
+              chorar no escritório."</em></div>
+          <textarea class="textarea" name="cliente_resultado"></textarea>
+        </div>
+      </section>
+
+      <!-- BLOCO 3 — OFERTA -->
+      <section class="step" data-step="3" data-name="Oferta">
+        <h2><span class="num">Bloco 03</span>A <span class="it">oferta</span> — o que vai pra copy do meio</h2>
+        <p class="step-intro">O que você vende, como funciona e por que escolheriam você.</p>
+
+        <div class="field">
+          <label class="field-label">O que exatamente você vende?<span class="field-required">*</span></label>
+          <div class="field-help">Um pacote? Sessão? Programa de X semanas? Mentoria?</div>
+          <textarea class="textarea" name="oferta_descricao" required></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Como funciona? Descreve em 3 passos.</label>
+          <div class="field-help">Etapa 1, 2, 3 — vira a seção "como funciona" da página</div>
+          <textarea class="textarea" name="oferta_passos"
+            placeholder="1. Anamnese inicial em 50 min&#10;2. Plano de tratamento semanal por 12 semanas&#10;3. Sessão de manutenção mensal"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Como você quer mostrar o preço?</label>
+          <div class="radio-group">
+            <label class="radio-pill"><input type="radio" name="preco_modo" value="Mostrar valor"><span
+                class="dot"></span><span class="label">Mostro o preço na página<small>"R$ 497"</small></span></label>
+            <label class="radio-pill"><input type="radio" name="preco_modo" value="A partir de"><span
+                class="dot"></span><span class="label">A partir de R$X<small>"A partir de R$
+                  200/sessão"</small></span></label>
+            <label class="radio-pill"><input type="radio" name="preco_modo" value="Sob consulta"><span
+                class="dot"></span><span class="label">Não mostro<small>"Consulte valores"</small></span></label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Qual o valor?</label>
+          <div class="field-help">Se "Sob consulta", deixa vazio</div>
+          <input type="text" class="input" name="preco_valor" placeholder="Ex: R$ 497 ou R$ 200/sessão">
+        </div>
+
+        <div class="field">
+          <label class="field-label">Por que um cliente te escolheria em vez de um concorrente 50% mais barato?<span
+              class="field-required">*</span></label>
+          <div class="field-help">Responde <em>como se tivesse explicando pra um amigo no bar</em>.</div>
+          <textarea class="textarea" name="diferencial" required></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Você dá alguma garantia?</label>
+          <div class="field-help">Devolução, primeira sessão grátis, reagendamento sem custo</div>
+          <input type="text" class="input" name="garantia">
+        </div>
+      </section>
+
+      <!-- BLOCO 4 — PROVAS -->
+      <section class="step" data-step="4" data-name="Provas">
+        <h2><span class="num">Bloco 04</span>Provas — <span class="it">credibilidade</span></h2>
+        <p class="step-intro">Social proof define se acreditam em você.</p>
+
+        <div class="field">
+          <label class="field-label">Depoimento 1</label>
+          <div class="field-help">Texto + primeiro nome + sobrenome inicial (ex: "Maria S.")</div>
+          <textarea class="textarea" name="depoimento_1"
+            placeholder='"Mandei o briefing terça e quinta tinha link." — Maria S., Psicóloga'></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Depoimento 2</label>
+          <textarea class="textarea" name="depoimento_2"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Depoimento 3</label>
+          <textarea class="textarea" name="depoimento_3"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Algum número concreto?</label>
+          <div class="field-help">"Atendi 200 pacientes em 2 anos", "92% renovam", "4,8 no Google"</div>
+          <textarea class="textarea" name="numeros"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Formações, certificações, instituições onde passou</label>
+          <div class="field-help">Só as que o cliente reconhece. <em>Se ele não conhece, não cola.</em></div>
+          <textarea class="textarea" name="formacoes"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Apareceu em algum lugar?</label>
+          <div class="field-help">Podcast, jornal, palestra, prêmio — links se tiver</div>
+          <textarea class="textarea" name="aparicoes"></textarea>
+        </div>
+      </section>
+
+      <!-- BLOCO 5 — VOZ -->
+      <section class="step" data-step="5" data-name="Voz e estilo">
+        <h2><span class="num">Bloco 05</span>Voz e estilo — <span class="it">como a página soa</span></h2>
+        <p class="step-intro">Parâmetros de tom e visual pra IA.</p>
+
+        <div class="field">
+          <label class="field-label">3 sites que você AMA</label>
+          <div class="field-help">Cola os links + 1 frase do que gostou em cada</div>
+          <textarea class="textarea" name="sites_ama"
+            placeholder="apple.com — tipografia limpa, espaço respira&#10;basecamp.com — copy direta, sem rodeios"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">3 sites que você odeia / acha cara de Canva</label>
+          <div class="field-help">Pra IA evitar</div>
+          <textarea class="textarea" name="sites_odeia"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Como você fala com cliente?</label>
+          <div class="radio-group">
+            <label class="radio-pill"><input type="radio" name="tratamento" value="Formal"><span
+                class="dot"></span><span class="label">Formal<small>"o senhor", "a senhora"</small></span></label>
+            <label class="radio-pill"><input type="radio" name="tratamento" value="Neutro"><span
+                class="dot"></span><span class="label">Neutro<small>"você"</small></span></label>
+            <label class="radio-pill"><input type="radio" name="tratamento" value="Informal"><span
+                class="dot"></span><span class="label">Informal<small>"oi, sumida", "fala comigo"</small></span></label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label">5 palavras que você usa muito e quer ver na página</label>
+          <div class="field-help">Ex: "leveza", "estratégia", "presença"</div>
+          <input type="text" class="input" name="palavras_sim">
+        </div>
+
+        <div class="field">
+          <label class="field-label">3 palavras que você NÃO quer ver de jeito nenhum</label>
+          <div class="field-help">Ex: "jornada", "transformação", "potencializar"</div>
+          <input type="text" class="input" name="palavras_nao">
+        </div>
+
+        <div class="field">
+          <label class="field-label">Paleta de cor</label>
+          <div class="field-help">Cola os HEX se tiver. Sem paleta, descreve em 1 palavra: <em>sóbrio, vibrante,
+              terroso, clínico, masculino, feminino</em>.</div>
+          <input type="text" class="input" name="paleta"
+            placeholder="Ex: #002D25, #FAFFEE, #C1D66D ou 'sóbrio com toque vibrante'">
+        </div>
+      </section>
+
+      <!-- BLOCO 6 — AÇÃO -->
+      <section class="step" data-step="6" data-name="Ação">
+        <h2><span class="num">Bloco 06</span>Ação — <span class="it">pra onde a página leva</span></h2>
+        <p class="step-intro">O CTA. Toda a página converge pra UMA ação.</p>
+
+        <div class="field">
+          <label class="field-label">Qual a ÚNICA coisa que o visitante precisa fazer?<span
+              class="field-required">*</span></label>
+          <div class="field-help">Marcar consulta? Chamar no WhatsApp? Baixar PDF? <em>Escolhe UMA.</em></div>
+          <input type="text" class="input" name="cta_unica" required>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Pra onde vai esse clique?</label>
+          <div class="radio-group">
+            <label class="radio-pill"><input type="radio" name="cta_destino" value="WhatsApp"><span
+                class="dot"></span><span class="label">WhatsApp<small>manda número + mensagem que
+                  abre</small></span></label>
+            <label class="radio-pill"><input type="radio" name="cta_destino" value="Formulário"><span
+                class="dot"></span><span class="label">Formulário<small>quais campos? pra onde a
+                  notificação?</small></span></label>
+            <label class="radio-pill"><input type="radio" name="cta_destino" value="Calendário"><span
+                class="dot"></span><span class="label">Calendário<small>Calendly, Google, Cal.com</small></span></label>
+            <label class="radio-pill"><input type="radio" name="cta_destino" value="Outro"><span
+                class="dot"></span><span class="label">Outro<small>explica em "detalhes" abaixo</small></span></label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Detalhes do destino</label>
+          <div class="field-help">Se WhatsApp: número + mensagem inicial. Se formulário: lista de campos. Se calendário:
+            URL.</div>
+          <textarea class="textarea" name="cta_detalhes"
+            placeholder="WhatsApp: +55 11 99999-9999, mensagem: 'Oi! Vim do site, quero saber sobre...'"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">De onde vem o tráfego?</label>
+          <div class="field-help">Anúncio Meta? Indicação por WhatsApp? Bio do Insta? Orgânico? <em>Muda a copy do
+              topo</em>.</div>
+          <textarea class="textarea" name="origem_trafego"></textarea>
+        </div>
+      </section>
+
+      <!-- BLOCO 7 — TÉCNICO -->
+      <section class="step" data-step="7" data-name="Técnico">
+        <h2><span class="num">Bloco 07</span>Técnico — <span class="it">passa direto pro dev</span></h2>
+        <p class="step-intro">Detalhes de implementação.</p>
+
+        <div class="field">
+          <label class="field-label">Domínio</label>
+          <div class="field-help">Já tem ou precisa registrar? Qual?</div>
+          <input type="text" class="input" name="dominio"
+            placeholder="Ex: tenho mariasilva.com.br / preciso registrar mariasilva-nutri">
+        </div>
+
+        <div class="field">
+          <label class="field-label">Logo</label>
+          <div class="field-help">Tem em vetor (.svg, .ai, .pdf)? Manda por email/WhatsApp depois.</div>
+          <input type="text" class="input" name="logo" placeholder="Tenho em SVG / Só PNG / Não tenho, criar texto">
+        </div>
+
+        <div class="field">
+          <label class="field-label">Fotos profissionais</label>
+          <div class="field-help">Tem foto sua? 3-5 que você gosta. Sem foto, usamos banco.</div>
+          <input type="text" class="input" name="fotos"
+            placeholder="Tenho ensaio recente / Tenho só selfies / Usar banco de imagens">
+        </div>
+
+        <div class="field">
+          <label class="field-label">Pixel Meta (Facebook/Instagram Ads)</label>
+          <div class="field-help">Quer rastreamento de anúncio? Manda o ID.</div>
+          <input type="text" class="input" name="pixel_meta" placeholder="ID do pixel ou 'não tenho, criar'">
+        </div>
+
+        <div class="field">
+          <label class="field-label">Google Analytics / Tag Manager</label>
+          <div class="field-help">Já tem? Manda o ID. Senão a gente cria.</div>
+          <input type="text" class="input" name="ga_gtm">
+        </div>
+
+        <div class="field">
+          <label class="field-label">Integrações necessárias</label>
+          <div class="field-help">Calendly, Mailchimp, RD Station, CRM</div>
+          <textarea class="textarea" name="integracoes"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">E-mail @seudominio (plano R$799)</label>
+          <div class="field-help">Quer? Quantas caixas?</div>
+          <input type="text" class="input" name="email_dominio" placeholder="Sim, 2 caixas: contato@ e maria@">
+        </div>
+      </section>
+
+      <!-- BLOCO 8 — ÚLTIMA -->
+      <section class="step" data-step="8" data-name="Última">
+        <h2><span class="num">Bloco 08</span>Por último — <span class="it">o que faltou perguntar</span></h2>
+        <p class="step-intro">Checagem final. Algo essencial que sentimos falta?</p>
+
+        <div class="field">
+          <label class="field-label">Tem alguma coisa que você sente que é essencial pra essa página dar certo e a gente
+            não perguntou?</label>
+          <div class="field-help">Espaço livre. Conta o que achar relevante.</div>
+          <textarea class="textarea" name="extra" style="min-height: 160px"></textarea>
+        </div>
+      </section>
+
+      <!-- Submit success / error -->
+      <div class="submit-state success" id="state-success">
+        <h2>Briefing <em>recebido</em>.</h2>
+        <p>A gente já tá com tudo aqui. Em até 1h útil você recebe no WhatsApp a confirmação de início, e o link de
+          preview no fim do dia 2.</p>
+        <div class="small">Pode fechar essa página · Nada se perde, ficou tudo salvo</div>
+      </div>
+
+      <div class="submit-state error" id="state-error">
+        <h2 style="color:var(--accent-2)">Algo deu errado.</h2>
+        <p id="error-detail">Tenta enviar de novo. Se persistir, manda um WhatsApp pra +55 11 94037-4318 que a gente
+          recebe na mão.</p>
+        <button type="button" class="btn btn-solid" id="btn-retry">Tentar novamente</button>
+      </div>
+
+      <div class="nav-row" id="nav-row">
+        <button type="button" class="btn btn-ghost" id="btn-prev" disabled>← Voltar</button>
+        <button type="button" class="btn btn-solid" id="btn-next">Próximo →</button>
+        <button type="submit" class="btn btn-solid" id="btn-submit" hidden>Enviar briefing</button>
+      </div>
+
+      <div class="autosave"><span class="check">●</span> Salvo automaticamente · pode fechar e voltar quando quiser
+      </div>
+
+    </form>
+
+  </main>
+
+  <script>
+    (() => {
+      const STORAGE_KEY = 'pixelco-briefing-v1';
+      const TOTAL_STEPS = 8;
+      const form = document.getElementById('briefing-form');
+      const steps = [...document.querySelectorAll('.step')];
+      const prevBtn = document.getElementById('btn-prev');
+      const nextBtn = document.getElementById('btn-next');
+      const submitBtn = document.getElementById('btn-submit');
+      const navRow = document.getElementById('nav-row');
+      const currentStepEl = document.getElementById('current-step');
+      const stepNameEl = document.getElementById('step-name');
+      const progressFill = document.getElementById('progress-fill');
+      const successState = document.getElementById('state-success');
+      const errorState = document.getElementById('state-error');
+      const errorDetail = document.getElementById('error-detail');
+      const retryBtn = document.getElementById('btn-retry');
+
+      let currentStep = 1;
+
+      // ====== Restore from localStorage ======
+      function loadSaved() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return;
+          const data = JSON.parse(raw);
+          Object.entries(data).forEach(([name, value]) => {
+            const els = form.querySelectorAll(`[name="${name}"]`);
+            els.forEach((el) => {
+              if (el.type === 'radio') {
+                el.checked = el.value === value;
+              } else {
+                el.value = value;
+              }
+            });
+          });
+          if (data.__step && data.__step >= 1 && data.__step <= TOTAL_STEPS) {
+            currentStep = data.__step;
+          }
+        } catch (e) {
+          console.warn('briefing restore failed', e);
+        }
+      }
+
+      function persist() {
+        const data = serializeForm();
+        data.__step = currentStep;
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        } catch (e) { }
+      }
+
+      function serializeForm() {
+        const fd = new FormData(form);
+        const out = {};
+        for (const [k, v] of fd.entries()) {
+          out[k] = (v || '').toString().trim();
+        }
+        return out;
+      }
+
+      // ====== Step navigation ======
+      function showStep(n) {
+        currentStep = Math.max(1, Math.min(TOTAL_STEPS, n));
+        steps.forEach((s) => s.classList.toggle('active', Number(s.dataset.step) === currentStep));
+        currentStepEl.textContent = currentStep;
+        const active = steps.find((s) => Number(s.dataset.step) === currentStep);
+        stepNameEl.textContent = active?.dataset.name || '';
+        progressFill.style.width = `${(currentStep / TOTAL_STEPS) * 100}%`;
+        prevBtn.disabled = currentStep === 1;
+        nextBtn.hidden = currentStep === TOTAL_STEPS;
+        submitBtn.hidden = currentStep !== TOTAL_STEPS;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        persist();
+      }
+
+      function validateCurrent() {
+        const active = steps.find((s) => Number(s.dataset.step) === currentStep);
+        if (!active) return true;
+        const required = active.querySelectorAll('[required]');
+        for (const el of required) {
+          if (!el.value.trim()) {
+            el.focus();
+            el.style.borderColor = 'var(--accent-2)';
+            setTimeout(() => (el.style.borderColor = ''), 1800);
+            return false;
+          }
+        }
+        return true;
+      }
+
+      prevBtn.addEventListener('click', () => showStep(currentStep - 1));
+      nextBtn.addEventListener('click', () => {
+        if (!validateCurrent()) return;
+        showStep(currentStep + 1);
+      });
+
+      // Auto-save on any input change
+      form.addEventListener('input', persist);
+      form.addEventListener('change', persist);
+
+      // ====== Submit ======
+      async function submit(e) {
+        e.preventDefault();
+        if (!validateCurrent()) return;
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Enviando...';
+        const payload = serializeForm();
+        delete payload.__step;
+
+        try {
+          const res = await fetch('/api/briefing', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          });
+          const data = await res.json().catch(() => ({}));
+          if (!res.ok || !data.ok) {
+            throw new Error(data.error || `HTTP ${res.status}`);
+          }
+          // Success
+          localStorage.removeItem(STORAGE_KEY);
+          navRow.style.display = 'none';
+          document.querySelector('.progress-wrap').style.display = 'none';
+          steps.forEach((s) => s.classList.remove('active'));
+          successState.classList.add('active');
+          document.querySelector('.autosave').style.display = 'none';
+        } catch (err) {
+          console.error(err);
+          navRow.style.display = 'none';
+          steps.forEach((s) => s.classList.remove('active'));
+          errorDetail.textContent = `Erro: ${err.message}. Tenta enviar de novo. Se persistir, manda um WhatsApp pra +55 11 94037-4318 que a gente recebe na mão.`;
+          errorState.classList.add('active');
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Enviar briefing';
+        }
+      }
+
+      form.addEventListener('submit', submit);
+      retryBtn.addEventListener('click', () => {
+        errorState.classList.remove('active');
+        navRow.style.display = '';
+        steps.forEach((s) => s.classList.toggle('active', Number(s.dataset.step) === currentStep));
+      });
+
+      // ====== Boot ======
+      loadSaved();
+      showStep(currentStep);
+    })();
+  </script>
+</body>
+
+</html>
