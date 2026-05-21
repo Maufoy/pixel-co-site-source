@@ -14,6 +14,10 @@ const nextConfig = {
         source: '/pagina-express-v1/briefing/',
         destination: '/pagina-express-v1/briefing/index.html',
       },
+      {
+        source: '/portfolio-sites/nutri/',
+        destination: '/portfolio-sites/nutri/index.html',
+      },
     ]
   },
 }
