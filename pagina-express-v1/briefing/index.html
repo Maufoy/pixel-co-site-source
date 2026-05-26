@@ -497,6 +497,49 @@
       margin-top: 2px;
     }
 
+    .choice-group {
+      display: grid;
+      gap: 10px;
+    }
+
+    .choice-option {
+      display: grid;
+      grid-template-columns: 18px 1fr;
+      gap: 12px;
+      align-items: start;
+      padding: 14px 16px;
+      background: color-mix(in oklab, var(--bg-card) 50%, transparent);
+      border: 1px solid color-mix(in oklab, var(--accent-1) 14%, transparent);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .choice-option:hover {
+      border-color: color-mix(in oklab, var(--accent-1) 35%, transparent);
+    }
+
+    .choice-option input {
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      accent-color: var(--accent-1);
+    }
+
+    .choice-option span {
+      display: block;
+      font-size: 14.5px;
+      line-height: 1.4;
+      color: var(--fg-cream);
+    }
+
+    .choice-option small {
+      display: block;
+      color: rgba(250, 255, 238, 0.55);
+      font-size: 12.5px;
+      margin-top: 2px;
+    }
+
     /* Navigation */
     .nav-row {
       display: flex;
@@ -924,17 +967,12 @@
           <div class="field">
             <label class="field-label">Que provas você já tem?</label>
             <div class="field-help">Pode marcar mais de uma opção.</div>
-            <div class="radio-group">
-              <label class="radio-pill"><input type="checkbox" name="provas_disponiveis" value="Depoimentos escritos"><span
-                  class="dot"></span><span class="label">Depoimentos escritos</span></label>
-              <label class="radio-pill"><input type="checkbox" name="provas_disponiveis" value="Prints de WhatsApp/Instagram"><span
-                  class="dot"></span><span class="label">Prints de WhatsApp/Instagram</span></label>
-              <label class="radio-pill"><input type="checkbox" name="provas_disponiveis" value="Avaliações no Google"><span
-                  class="dot"></span><span class="label">Avaliações no Google</span></label>
-              <label class="radio-pill"><input type="checkbox" name="provas_disponiveis" value="Números de resultado"><span
-                  class="dot"></span><span class="label">Números de resultado</span></label>
-              <label class="radio-pill"><input type="checkbox" name="provas_disponiveis" value="Ainda não tenho provas"><span
-                  class="dot"></span><span class="label">Ainda não tenho provas</span></label>
+            <div class="choice-group">
+              <label class="choice-option"><input type="checkbox" name="provas_disponiveis" value="Depoimentos escritos"><span>Depoimentos escritos</span></label>
+              <label class="choice-option"><input type="checkbox" name="provas_disponiveis" value="Prints de WhatsApp/Instagram"><span>Prints de WhatsApp/Instagram</span></label>
+              <label class="choice-option"><input type="checkbox" name="provas_disponiveis" value="Avaliações no Google"><span>Avaliações no Google</span></label>
+              <label class="choice-option"><input type="checkbox" name="provas_disponiveis" value="Números de resultado"><span>Números de resultado</span></label>
+              <label class="choice-option"><input type="checkbox" name="provas_disponiveis" value="Ainda não tenho provas"><span>Ainda não tenho provas</span></label>
             </div>
           </div>
 
@@ -942,7 +980,7 @@
             <label class="field-label">Depoimentos, prints ou frases de clientes</label>
             <div class="field-help">Pode colar tudo junto. Se tiver nome, use primeiro nome + inicial do sobrenome.</div>
             <textarea class="textarea" name="provas"
-              placeholder='"Voltei a dormir depois de anos." — Maria S.&#10;Prints no Instagram: tenho 4, mando por WhatsApp depois."></textarea>
+              placeholder="Cole os depoimentos aqui. Ex: Maria S. disse que voltou a dormir depois do acompanhamento."></textarea>
           </div>
 
           <div class="field">
@@ -965,55 +1003,40 @@
 
           <div class="field">
             <label class="field-label">Qual caminho visual combina mais?</label>
-            <div class="radio-group">
-              <label class="radio-pill"><input type="radio" name="estilo_visual" value="Sóbrio e premium"><span
-                  class="dot"></span><span class="label">Sóbrio e premium<small>elegante, limpo, com bastante respiro</small></span></label>
-              <label class="radio-pill"><input type="radio" name="estilo_visual" value="Moderno e direto"><span
-                  class="dot"></span><span class="label">Moderno e direto<small>objetivo, comercial, sem enfeite</small></span></label>
-              <label class="radio-pill"><input type="radio" name="estilo_visual" value="Humano e acolhedor"><span
-                  class="dot"></span><span class="label">Humano e acolhedor<small>próximo, leve, com sensação de confiança</small></span></label>
-              <label class="radio-pill"><input type="radio" name="estilo_visual" value="Forte e autoral"><span
-                  class="dot"></span><span class="label">Forte e autoral<small>mais marcante, com personalidade</small></span></label>
+            <div class="choice-group">
+              <label class="choice-option"><input type="radio" name="estilo_visual" value="Sóbrio e premium"><span>Sóbrio e premium<small>elegante, limpo, com bastante respiro</small></span></label>
+              <label class="choice-option"><input type="radio" name="estilo_visual" value="Moderno e direto"><span>Moderno e direto<small>objetivo, comercial, sem enfeite</small></span></label>
+              <label class="choice-option"><input type="radio" name="estilo_visual" value="Humano e acolhedor"><span>Humano e acolhedor<small>próximo, leve, com sensação de confiança</small></span></label>
+              <label class="choice-option"><input type="radio" name="estilo_visual" value="Forte e autoral"><span>Forte e autoral<small>mais marcante, com personalidade</small></span></label>
             </div>
           </div>
 
           <div class="field">
             <label class="field-label">O que você quer evitar?</label>
             <div class="field-help">Pode marcar mais de uma opção.</div>
-            <div class="radio-group">
-              <label class="radio-pill"><input type="checkbox" name="evitar_visual" value="Cara de template/Canva"><span
-                  class="dot"></span><span class="label">Cara de template/Canva</span></label>
-              <label class="radio-pill"><input type="checkbox" name="evitar_visual" value="Exagero de cores"><span
-                  class="dot"></span><span class="label">Exagero de cores</span></label>
-              <label class="radio-pill"><input type="checkbox" name="evitar_visual" value="Visual frio demais"><span
-                  class="dot"></span><span class="label">Visual frio demais</span></label>
-              <label class="radio-pill"><input type="checkbox" name="evitar_visual" value="Texto muito vendedor"><span
-                  class="dot"></span><span class="label">Texto muito vendedor</span></label>
+            <div class="choice-group">
+              <label class="choice-option"><input type="checkbox" name="evitar_visual" value="Cara de template/Canva"><span>Cara de template/Canva</span></label>
+              <label class="choice-option"><input type="checkbox" name="evitar_visual" value="Exagero de cores"><span>Exagero de cores</span></label>
+              <label class="choice-option"><input type="checkbox" name="evitar_visual" value="Visual frio demais"><span>Visual frio demais</span></label>
+              <label class="choice-option"><input type="checkbox" name="evitar_visual" value="Texto muito vendedor"><span>Texto muito vendedor</span></label>
             </div>
           </div>
 
           <div class="field">
             <label class="field-label">Como você fala com cliente?</label>
-            <div class="radio-group">
-              <label class="radio-pill"><input type="radio" name="tratamento" value="Formal"><span
-                  class="dot"></span><span class="label">Formal<small>"o senhor", "a senhora"</small></span></label>
-              <label class="radio-pill"><input type="radio" name="tratamento" value="Neutro"><span
-                  class="dot"></span><span class="label">Neutro<small>"você"</small></span></label>
-              <label class="radio-pill"><input type="radio" name="tratamento" value="Informal"><span
-                  class="dot"></span><span class="label">Informal<small>"oi, sumida", "fala
-                    comigo"</small></span></label>
+            <div class="choice-group">
+              <label class="choice-option"><input type="radio" name="tratamento" value="Formal"><span>Formal<small>o senhor, a senhora</small></span></label>
+              <label class="choice-option"><input type="radio" name="tratamento" value="Neutro"><span>Neutro<small>você</small></span></label>
+              <label class="choice-option"><input type="radio" name="tratamento" value="Informal"><span>Informal<small>direto, próximo e leve</small></span></label>
             </div>
           </div>
 
           <div class="field">
             <label class="field-label">Cores</label>
-            <div class="radio-group">
-              <label class="radio-pill"><input type="radio" name="paleta" value="Já tenho paleta definida"><span
-                  class="dot"></span><span class="label">Já tenho paleta definida<small>mando as cores depois</small></span></label>
-              <label class="radio-pill"><input type="radio" name="paleta" value="Quero que a Pixel.Co defina"><span
-                  class="dot"></span><span class="label">Quero que a Pixel.Co defina</span></label>
-              <label class="radio-pill"><input type="radio" name="paleta" value="Usar cores da minha marca/logo"><span
-                  class="dot"></span><span class="label">Usar cores da minha marca/logo</span></label>
+            <div class="choice-group">
+              <label class="choice-option"><input type="radio" name="paleta" value="Já tenho paleta definida"><span>Já tenho paleta definida<small>mando as cores depois</small></span></label>
+              <label class="choice-option"><input type="radio" name="paleta" value="Quero que a Pixel.Co defina"><span>Quero que a Pixel.Co defina</span></label>
+              <label class="choice-option"><input type="radio" name="paleta" value="Usar cores da minha marca/logo"><span>Usar cores da minha marca/logo</span></label>
             </div>
           </div>
 
@@ -1033,32 +1056,21 @@
           <div class="field">
             <label class="field-label">Qual a ÚNICA coisa que o visitante precisa fazer?<span
                 class="field-required">*</span></label>
-            <div class="radio-group">
-              <label class="radio-pill"><input type="radio" name="cta_unica" value="Chamar no WhatsApp" required><span
-                  class="dot"></span><span class="label">Chamar no WhatsApp</span></label>
-              <label class="radio-pill"><input type="radio" name="cta_unica" value="Marcar consulta/reunião"><span
-                  class="dot"></span><span class="label">Marcar consulta/reunião</span></label>
-              <label class="radio-pill"><input type="radio" name="cta_unica" value="Preencher formulário"><span
-                  class="dot"></span><span class="label">Preencher formulário</span></label>
-              <label class="radio-pill"><input type="radio" name="cta_unica" value="Comprar ou pagar online"><span
-                  class="dot"></span><span class="label">Comprar ou pagar online</span></label>
+            <div class="choice-group">
+              <label class="choice-option"><input type="radio" name="cta_unica" value="Chamar no WhatsApp" required><span>Chamar no WhatsApp</span></label>
+              <label class="choice-option"><input type="radio" name="cta_unica" value="Marcar consulta/reunião"><span>Marcar consulta/reunião</span></label>
+              <label class="choice-option"><input type="radio" name="cta_unica" value="Preencher formulário"><span>Preencher formulário</span></label>
+              <label class="choice-option"><input type="radio" name="cta_unica" value="Comprar ou pagar online"><span>Comprar ou pagar online</span></label>
             </div>
           </div>
 
           <div class="field">
             <label class="field-label">Pra onde vai esse clique?</label>
-            <div class="radio-group">
-              <label class="radio-pill"><input type="radio" name="cta_destino" value="WhatsApp"><span
-                  class="dot"></span><span class="label">WhatsApp<small>manda número + mensagem que
-                    abre</small></span></label>
-              <label class="radio-pill"><input type="radio" name="cta_destino" value="Formulário"><span
-                  class="dot"></span><span class="label">Formulário<small>quais campos? pra onde a
-                    notificação?</small></span></label>
-              <label class="radio-pill"><input type="radio" name="cta_destino" value="Calendário"><span
-                  class="dot"></span><span class="label">Calendário<small>Calendly, Google,
-                    Cal.com</small></span></label>
-              <label class="radio-pill"><input type="radio" name="cta_destino" value="Outro"><span
-                  class="dot"></span><span class="label">Outro<small>explica em "detalhes" abaixo</small></span></label>
+            <div class="choice-group">
+              <label class="choice-option"><input type="radio" name="cta_destino" value="WhatsApp"><span>WhatsApp<small>número e mensagem inicial</small></span></label>
+              <label class="choice-option"><input type="radio" name="cta_destino" value="Formulário"><span>Formulário<small>campos e notificação</small></span></label>
+              <label class="choice-option"><input type="radio" name="cta_destino" value="Calendário"><span>Calendário<small>Calendly, Google, Cal.com</small></span></label>
+              <label class="choice-option"><input type="radio" name="cta_destino" value="Outro"><span>Outro<small>explica em detalhes abaixo</small></span></label>
             </div>
           </div>
 
@@ -1072,17 +1084,12 @@
           <div class="field">
             <label class="field-label">De onde vem o tráfego?</label>
             <div class="field-help">Pode marcar mais de uma opção. Isso muda a copy do topo.</div>
-            <div class="radio-group">
-              <label class="radio-pill"><input type="checkbox" name="origem_trafego" value="Anúncios Meta/Instagram"><span
-                  class="dot"></span><span class="label">Anúncios Meta/Instagram</span></label>
-              <label class="radio-pill"><input type="checkbox" name="origem_trafego" value="Bio do Instagram"><span
-                  class="dot"></span><span class="label">Bio do Instagram</span></label>
-              <label class="radio-pill"><input type="checkbox" name="origem_trafego" value="Indicação por WhatsApp"><span
-                  class="dot"></span><span class="label">Indicação por WhatsApp</span></label>
-              <label class="radio-pill"><input type="checkbox" name="origem_trafego" value="Google/orgânico"><span
-                  class="dot"></span><span class="label">Google/orgânico</span></label>
-              <label class="radio-pill"><input type="checkbox" name="origem_trafego" value="Ainda não sei"><span
-                  class="dot"></span><span class="label">Ainda não sei</span></label>
+            <div class="choice-group">
+              <label class="choice-option"><input type="checkbox" name="origem_trafego" value="Anúncios Meta/Instagram"><span>Anúncios Meta/Instagram</span></label>
+              <label class="choice-option"><input type="checkbox" name="origem_trafego" value="Bio do Instagram"><span>Bio do Instagram</span></label>
+              <label class="choice-option"><input type="checkbox" name="origem_trafego" value="Indicação por WhatsApp"><span>Indicação por WhatsApp</span></label>
+              <label class="choice-option"><input type="checkbox" name="origem_trafego" value="Google/orgânico"><span>Google/orgânico</span></label>
+              <label class="choice-option"><input type="checkbox" name="origem_trafego" value="Ainda não sei"><span>Ainda não sei</span></label>
             </div>
           </div>
         </section>
