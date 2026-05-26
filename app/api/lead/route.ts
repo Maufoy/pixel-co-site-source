@@ -21,7 +21,7 @@ function nowStamp() {
 async function sendWhatsApp(message: string) {
   if (!CALLMEBOT_APIKEY) return
   const url = `https://api.callmebot.com/whatsapp.php?phone=${encodeURIComponent(CALLMEBOT_PHONE)}&text=${encodeURIComponent(message)}&apikey=${encodeURIComponent(CALLMEBOT_APIKEY)}`
-  await fetch(url).catch(() => {})
+  await fetch(url).catch(() => { })
 }
 
 export async function POST(req: NextRequest) {
