@@ -571,6 +571,32 @@
       margin-top: 28px;
     }
 
+    /* Lead Gate */
+    #lead-gate {
+      max-width: 480px;
+      margin: 48px auto 0;
+      animation: stepIn 0.5s cubic-bezier(.2, .8, .2, 1);
+    }
+
+    #lead-gate .intro {
+      margin-bottom: 40px;
+    }
+
+    .btn-gate {
+      width: 100%;
+      justify-content: center;
+      margin-top: 8px;
+    }
+
+    .gate-note {
+      text-align: center;
+      font-size: 11.5px;
+      color: rgba(250, 255, 238, 0.32);
+      margin-top: 18px;
+      font-family: 'IBM Plex Mono', monospace;
+      letter-spacing: 0.08em;
+    }
+
     /* Mobile */
     @media (max-width: 600px) {
       .briefing {
@@ -612,6 +638,46 @@
   </header>
 
   <main class="briefing">
+
+    <!-- LEAD GATE -->
+    <div id="lead-gate">
+
+      <div class="intro">
+        <div class="intro-eyebrow"><span class="dot"></span>Página Express · Pixel.Co</div>
+        <h1>Vamos criar a <em>sua página</em></h1>
+        <p>Preenche os dados abaixo para reservar sua vaga e iniciar o briefing.</p>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="gate-nome">Nome<span class="field-required">*</span></label>
+        <input type="text" class="input" id="gate-nome" autocomplete="name" placeholder="Seu nome completo">
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="gate-email">E-mail<span class="field-required">*</span></label>
+        <input type="email" class="input" id="gate-email" autocomplete="email" placeholder="seu@email.com">
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="gate-telefone">WhatsApp<span class="field-required">*</span></label>
+        <div class="field-help">Com DDD. Ex: (11) 99999-9999</div>
+        <input type="tel" class="input" id="gate-telefone" autocomplete="tel" placeholder="(11) 99999-9999">
+      </div>
+
+      <button type="button" class="btn btn-solid btn-gate" id="btn-gate-start">
+        Iniciar briefing
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+          stroke-linejoin="round" style="width:16px;height:16px">
+          <line x1="5" y1="12" x2="19" y2="12" />
+          <polyline points="12 5 19 12 12 19" />
+        </svg>
+      </button>
+
+      <p class="gate-note">Seus dados ficam somente com a Pixel.Co · nunca compartilhamos</p>
+
+    </div><!-- /lead-gate -->
+
+    <div id="briefing-main" style="display:none">
 
     <div class="intro">
       <div class="intro-eyebrow"><span class="dot"></span>Tempo estimado: 20 minutos</div>
@@ -1002,10 +1068,65 @@
 
     </form>
 
+    </div><!-- /briefing-main -->
+
   </main>
 
   <script>
     (() => {
+      // ====== LEAD GATE ======
+      const gate = document.getElementById('lead-gate');
+      const briefingMain = document.getElementById('briefing-main');
+      const gateNome = document.getElementById('gate-nome');
+      const gateEmail = document.getElementById('gate-email');
+      const gateTelefone = document.getElementById('gate-telefone');
+      const gateBtnStart = document.getElementById('btn-gate-start');
+      const GATE_KEY = 'pixelco-gate-v1';
+
+      function gateError(el) {
+        el.focus();
+        el.style.borderColor = 'var(--accent-2)';
+        setTimeout(() => (el.style.borderColor = ''), 1800);
+      }
+
+      function showBriefing() {
+        gate.style.display = 'none';
+        briefingMain.style.display = '';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      try {
+        const gd = JSON.parse(localStorage.getItem(GATE_KEY) || 'null');
+        if (gd && gd.done) showBriefing();
+      } catch (e) {}
+
+      gateBtnStart.addEventListener('click', () => {
+        const nome = (gateNome.value || '').trim();
+        const email = (gateEmail.value || '').trim();
+        const telefone = (gateTelefone.value || '').trim();
+
+        if (!nome) return gateError(gateNome);
+        if (!email || !email.includes('@')) return gateError(gateEmail);
+        if (!telefone || telefone.replace(/\D/g, '').length < 10) return gateError(gateTelefone);
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: 'lead', lead_nome: nome, lead_email: email, lead_telefone: telefone });
+
+        fetch('/api/lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ nome, email, telefone }),
+        }).catch(() => {});
+
+        try { localStorage.setItem(GATE_KEY, JSON.stringify({ done: true })); } catch (e) {}
+
+        const nomeField = form.querySelector('[name="nome_completo"]');
+        if (nomeField && !nomeField.value) nomeField.value = nome;
+
+        showBriefing();
+      });
+
+      // ====== BRIEFING FORM ======
       const STORAGE_KEY = 'pixelco-briefing-v1';
       const TOTAL_STEPS = 8;
       const form = document.getElementById('briefing-form');
