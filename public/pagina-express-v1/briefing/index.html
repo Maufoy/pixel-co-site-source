@@ -1110,6 +1110,11 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
 
+      function createEventId() {
+        if (window.crypto && window.crypto.randomUUID) return `lead-${window.crypto.randomUUID()}`;
+        return `lead-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
+      }
+
       try {
         const gd = JSON.parse(localStorage.getItem(GATE_KEY) || 'null');
         if (gd && gd.done) showBriefing();
@@ -1124,13 +1129,23 @@
         if (!email || !email.includes('@')) return gateError(gateEmail);
         if (!telefone || telefone.replace(/\D/g, '').length < 10) return gateError(gateTelefone);
 
+        const eventId = createEventId();
+
         window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({ event: 'lead', lead_nome: nome, lead_email: email, lead_telefone: telefone });
+        window.dataLayer.push({
+          event: 'lead',
+          event_name: 'Lead',
+          event_id: eventId,
+          meta_event_id: eventId,
+          lead_nome: nome,
+          lead_email: email,
+          lead_telefone: telefone
+        });
 
         fetch('/api/lead', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ nome, email, telefone }),
+          body: JSON.stringify({ nome, email, telefone, eventId, sourceUrl: window.location.href }),
         }).catch(() => { });
 
         try { localStorage.setItem(GATE_KEY, JSON.stringify({ done: true })); } catch (e) { }

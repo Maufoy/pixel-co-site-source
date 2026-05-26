@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { writeFile, mkdir } from 'fs/promises'
 import { join } from 'path'
+import { sendMetaLeadEvent } from '@/lib/meta-capi'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -25,7 +26,7 @@ async function sendWhatsApp(message: string) {
 }
 
 export async function POST(req: NextRequest) {
-  let body: { nome?: string; email?: string; telefone?: string }
+  let body: { nome?: string; email?: string; telefone?: string; eventId?: string; sourceUrl?: string }
   try {
     body = await req.json()
   } catch {
@@ -43,6 +44,7 @@ export async function POST(req: NextRequest) {
   const stamp = nowStamp()
   const shortId = Math.random().toString(36).slice(2, 8)
   const id = `lead-${stamp.file}-${shortId}`
+  const eventId = (body.eventId || id).trim()
 
   const content = `# Lead — Página Express\n\n**Recebido:** ${stamp.human} (BRT)\n**ID:** ${id}\n\n**Nome:** ${nome}\n**E-mail:** ${email}\n**Telefone:** ${telefone || '—'}\n`
 
@@ -54,8 +56,15 @@ export async function POST(req: NextRequest) {
   }
 
   await sendWhatsApp(`*Novo lead — Página Express*\n\n*Nome:* ${nome}\n*E-mail:* ${email}\n*Fone:* ${telefone || '—'}`)
+  const meta = await sendMetaLeadEvent(req, {
+    eventId,
+    nome,
+    email,
+    telefone,
+    sourceUrl: body.sourceUrl,
+  })
 
-  return NextResponse.json({ ok: true, id })
+  return NextResponse.json({ ok: true, id, eventId, meta })
 }
 
 export async function GET() {
