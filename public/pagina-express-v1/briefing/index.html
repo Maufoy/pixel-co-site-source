@@ -1017,40 +1017,54 @@
 
           <div class="field">
             <label class="field-label">Domínio</label>
-            <div class="field-help">Já tem ou precisa registrar? Qual?</div>
-            <input type="text" class="input" name="dominio"
-              placeholder="Ex: tenho mariasilva.com.br / preciso registrar mariasilva-nutri">
+            <div class="field-help">Se já tiver, a gente pede o endereço na confirmação por WhatsApp.</div>
+            <div class="radio-group">
+              <label class="radio-pill"><input type="radio" name="dominio" value="Já tenho domínio"><span
+                  class="dot"></span><span class="label">Já tenho domínio</span></label>
+              <label class="radio-pill"><input type="radio" name="dominio" value="Preciso registrar"><span
+                  class="dot"></span><span class="label">Preciso registrar</span></label>
+              <label class="radio-pill"><input type="radio" name="dominio" value="Não sei ainda"><span
+                  class="dot"></span><span class="label">Não sei ainda</span></label>
+            </div>
           </div>
 
           <div class="field">
             <label class="field-label">Logo</label>
-            <div class="field-help">Tem em vetor (.svg, .ai, .pdf)? Manda por email/WhatsApp depois.</div>
-            <input type="text" class="input" name="logo" placeholder="Tenho em SVG / Só PNG / Não tenho, criar texto">
+            <div class="field-help">Se tiver arquivo, você manda depois por WhatsApp ou e-mail.</div>
+            <div class="radio-group">
+              <label class="radio-pill"><input type="radio" name="logo" value="Tenho logo em boa qualidade"><span
+                  class="dot"></span><span class="label">Tenho logo em boa qualidade<small>SVG, PDF, AI ou PNG grande</small></span></label>
+              <label class="radio-pill"><input type="radio" name="logo" value="Tenho só imagem simples"><span
+                  class="dot"></span><span class="label">Tenho só imagem simples<small>print, PNG pequeno ou foto</small></span></label>
+              <label class="radio-pill"><input type="radio" name="logo" value="Não tenho logo"><span
+                  class="dot"></span><span class="label">Não tenho logo</span></label>
+            </div>
           </div>
 
           <div class="field">
             <label class="field-label">Fotos profissionais</label>
-            <div class="field-help">Tem foto sua? 3-5 que você gosta. Sem foto, usamos banco.</div>
-            <input type="text" class="input" name="fotos"
-              placeholder="Tenho ensaio recente / Tenho só selfies / Usar banco de imagens">
-          </div>
-
-          <div class="field">
-            <label class="field-label">Rastreamento</label>
-            <div class="field-help">Meta Pixel, Google Analytics, Tag Manager. Se não souber, escreva "não sei".</div>
-            <input type="text" class="input" name="pixel_meta" placeholder="ID do pixel ou 'não tenho, criar'">
-          </div>
-
-          <div class="field">
-            <label class="field-label">Integrações necessárias</label>
-            <div class="field-help">Calendly, Mailchimp, RD Station, CRM, formulário, WhatsApp.</div>
-            <textarea class="textarea" name="integracoes"></textarea>
+            <div class="field-help">A escolha já basta. Se tiver fotos, você manda os arquivos depois.</div>
+            <div class="radio-group">
+              <label class="radio-pill"><input type="radio" name="fotos" value="Tenho fotos profissionais"><span
+                  class="dot"></span><span class="label">Tenho fotos profissionais</span></label>
+              <label class="radio-pill"><input type="radio" name="fotos" value="Tenho fotos simples"><span
+                  class="dot"></span><span class="label">Tenho fotos simples<small>selfies, celular ou bastidores</small></span></label>
+              <label class="radio-pill"><input type="radio" name="fotos" value="Não tenho fotos"><span
+                  class="dot"></span><span class="label">Não tenho fotos</span></label>
+            </div>
           </div>
 
           <div class="field">
             <label class="field-label">E-mail @seudominio (plano R$799)</label>
-            <div class="field-help">Quer? Quantas caixas?</div>
-            <input type="text" class="input" name="email_dominio" placeholder="Sim, 2 caixas: contato@ e maria@">
+            <div class="field-help">Se quiser, definimos quantas caixas depois.</div>
+            <div class="radio-group">
+              <label class="radio-pill"><input type="radio" name="email_dominio" value="Quero e-mail do domínio"><span
+                  class="dot"></span><span class="label">Quero e-mail do domínio</span></label>
+              <label class="radio-pill"><input type="radio" name="email_dominio" value="Não preciso"><span
+                  class="dot"></span><span class="label">Não preciso</span></label>
+              <label class="radio-pill"><input type="radio" name="email_dominio" value="Decidir depois"><span
+                  class="dot"></span><span class="label">Decidir depois</span></label>
+            </div>
           </div>
         </section>
 

@@ -121,8 +121,6 @@ ${Q('De onde vem o tráfego', 'origem_trafego')}
 ${Q('Domínio (tem ou registrar)', 'dominio')}
 ${Q('Logo (vetor disponível?)', 'logo')}
 ${Q('Fotos profissionais', 'fotos')}
-${Q('Rastreamento (Meta Pixel / GA / GTM)', 'pixel_meta')}
-${Q('Integrações necessárias', 'integracoes')}
 ${Q('E-mail @seudominio (plano R$799)', 'email_dominio')}
 
 ## Bloco 8 — Última
