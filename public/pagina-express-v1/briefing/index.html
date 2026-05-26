@@ -37,6 +37,10 @@
       box-sizing: border-box;
     }
 
+    [hidden] {
+      display: none !important;
+    }
+
     html {
       scroll-behavior: smooth;
     }
@@ -1184,7 +1188,7 @@
         <div class="nav-row" id="nav-row">
           <button type="button" class="btn btn-ghost" id="btn-prev" disabled>← Voltar</button>
           <button type="button" class="btn btn-solid" id="btn-next">Próximo →</button>
-          <button type="submit" class="btn btn-solid" id="btn-submit" hidden>Enviar briefing</button>
+          <button type="submit" class="btn btn-solid" id="btn-submit" style="display:none">Enviar briefing</button>
         </div>
 
         <div class="autosave"><span class="check">●</span> Salvo automaticamente · pode fechar e voltar quando quiser
@@ -1381,8 +1385,8 @@
         stepNameEl.textContent = active?.dataset.name || '';
         progressFill.style.width = `${(currentStep / TOTAL_STEPS) * 100}%`;
         prevBtn.disabled = currentStep === 1;
-        nextBtn.hidden = currentStep === TOTAL_STEPS;
-        submitBtn.hidden = currentStep !== TOTAL_STEPS;
+        nextBtn.style.display = currentStep === TOTAL_STEPS ? 'none' : '';
+        submitBtn.style.display = currentStep === TOTAL_STEPS ? '' : 'none';
         window.scrollTo({ top: 0, behavior: 'smooth' });
         persist();
       }
