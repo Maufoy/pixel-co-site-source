@@ -47,6 +47,8 @@ function renderMarkdown(b: Briefing, meta: { id: string; recebido: string }) {
   return `# Briefing Página Express
 
 **Cliente:** ${answerOrDash(b.nome_completo)}
+**E-mail:** ${answerOrDash(b.lead_email)}
+**WhatsApp:** ${answerOrDash(b.lead_telefone)}
 **Recebido:** ${meta.recebido}
 **ID:** ${meta.id}
 
@@ -55,6 +57,8 @@ function renderMarkdown(b: Briefing, meta: { id: string; recebido: string }) {
 ## Bloco 1 — Negócio
 
 ${Q('Nome completo', 'nome_completo')}
+${Q('E-mail capturado no lead gate', 'lead_email')}
+${Q('WhatsApp capturado no lead gate', 'lead_telefone')}
 ${Q('Como quer aparecer', 'nome_apresentacao')}
 ${Q('Profissão / título', 'profissao')}
 ${Q('Cidade', 'cidade')}
@@ -89,25 +93,18 @@ ${Q('Garantia', 'garantia')}
 
 ## Bloco 4 — Provas
 
-${Qblock('Depoimento 1', 'depoimento_1')}
-${Qblock('Depoimento 2', 'depoimento_2')}
-${Qblock('Depoimento 3', 'depoimento_3')}
+${Qblock('Depoimentos, prints ou frases de clientes', 'provas')}
 
 ${Qblock('Números concretos', 'numeros')}
 
-${Qblock('Formações / certificações', 'formacoes')}
-
-${Qblock('Aparições (podcast, jornal, palestra, prêmio)', 'aparicoes')}
+${Qblock('Autoridade (formações, certificações, instituições e aparições)', 'formacoes')}
 
 ## Bloco 5 — Voz e estilo
 
-${Qblock('3 sites que ama', 'sites_ama')}
-${Qblock('3 sites que odeia', 'sites_odeia')}
+${Qblock('Referências visuais que gosta', 'sites_ama')}
+${Qblock('O que quer evitar', 'sites_odeia')}
 
 ${Q('Como fala com cliente', 'tratamento')}
-
-${Qblock('5 palavras que quer ver', 'palavras_sim')}
-${Qblock('3 palavras que NÃO quer ver', 'palavras_nao')}
 
 ${Qblock('Paleta de cor (HEX ou descrição)', 'paleta')}
 
@@ -124,8 +121,7 @@ ${Q('De onde vem o tráfego', 'origem_trafego')}
 ${Q('Domínio (tem ou registrar)', 'dominio')}
 ${Q('Logo (vetor disponível?)', 'logo')}
 ${Q('Fotos profissionais', 'fotos')}
-${Q('Pixel Meta', 'pixel_meta')}
-${Q('Google Analytics / Tag Manager', 'ga_gtm')}
+${Q('Rastreamento (Meta Pixel / GA / GTM)', 'pixel_meta')}
 ${Q('Integrações necessárias', 'integracoes')}
 ${Q('E-mail @seudominio (plano R$799)', 'email_dominio')}
 
@@ -188,9 +184,11 @@ export async function POST(req: NextRequest) {
   const summary =
     `*Novo briefing recebido*\n\n` +
     `*Cliente:* ${answerOrDash(body.nome_completo)}\n` +
+    `*E-mail:* ${answerOrDash(body.lead_email)}\n` +
+    `*WhatsApp:* ${answerOrDash(body.lead_telefone)}\n` +
     `*Profissão:* ${answerOrDash(body.profissao)}\n` +
     `*Cidade:* ${answerOrDash(body.cidade)}\n` +
-    `*Contato:* ${answerOrDash(body.links_atuais)}\n\n` +
+    `*Redes:* ${answerOrDash(body.links_atuais)}\n\n` +
     `*Arquivo:*\n\`${filepath}\``
 
   const whats = await sendWhatsApp(summary)
