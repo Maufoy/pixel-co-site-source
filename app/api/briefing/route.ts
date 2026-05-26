@@ -9,7 +9,7 @@ const BRIEFINGS_DIR = process.env.BRIEFINGS_DIR || '/app/briefings-recebidos'
 const CALLMEBOT_PHONE = process.env.CALLMEBOT_PHONE || '5511940374318'
 const CALLMEBOT_APIKEY = process.env.CALLMEBOT_APIKEY || ''
 
-type Briefing = Record<string, string>
+type Briefing = Record<string, string | string[]>
 
 function slugify(s: string) {
   return (s || 'sem-nome')
@@ -32,6 +32,10 @@ function nowStamp() {
 }
 
 function answerOrDash(v: unknown) {
+  if (Array.isArray(v)) {
+    const s = v.map((item) => item.toString().trim()).filter(Boolean).join(', ')
+    return s || '—'
+  }
   const s = (v ?? '').toString().trim()
   return s || '—'
 }
@@ -93,6 +97,8 @@ ${Q('Garantia', 'garantia')}
 
 ## Bloco 4 — Provas
 
+${Q('Provas disponíveis', 'provas_disponiveis')}
+
 ${Qblock('Depoimentos, prints ou frases de clientes', 'provas')}
 
 ${Qblock('Números concretos', 'numeros')}
@@ -101,12 +107,14 @@ ${Qblock('Autoridade (formações, certificações, instituições e aparições
 
 ## Bloco 5 — Voz e estilo
 
-${Qblock('Referências visuais que gosta', 'sites_ama')}
-${Qblock('O que quer evitar', 'sites_odeia')}
+${Q('Caminho visual', 'estilo_visual')}
+${Q('Evitar no visual/copy', 'evitar_visual')}
 
 ${Q('Como fala com cliente', 'tratamento')}
 
-${Qblock('Paleta de cor (HEX ou descrição)', 'paleta')}
+${Q('Cores', 'paleta')}
+
+${Qblock('Referência visual específica', 'referencia_visual')}
 
 ## Bloco 6 — Ação
 
@@ -160,7 +168,7 @@ export async function POST(req: NextRequest) {
 
   const stamp = nowStamp()
   const shortId = Math.random().toString(36).slice(2, 8)
-  const slug = slugify(body.nome_completo || body.nome_apresentacao || 'sem-nome')
+  const slug = slugify(answerOrDash(body.nome_completo || body.nome_apresentacao || 'sem-nome'))
   const id = `briefing-${stamp.file}-${slug}-${shortId}`
   const filepath = join(BRIEFINGS_DIR, `${id}.md`)
 

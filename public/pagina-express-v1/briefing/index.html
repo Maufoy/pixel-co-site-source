@@ -796,7 +796,16 @@
 
           <div class="field">
             <label class="field-label">Há quanto tempo atua nessa área?</label>
-            <input type="text" class="input" name="tempo_atuacao" placeholder="Ex: 5 anos">
+            <div class="radio-group">
+              <label class="radio-pill"><input type="radio" name="tempo_atuacao" value="Menos de 1 ano"><span
+                  class="dot"></span><span class="label">Menos de 1 ano</span></label>
+              <label class="radio-pill"><input type="radio" name="tempo_atuacao" value="1 a 3 anos"><span
+                  class="dot"></span><span class="label">1 a 3 anos</span></label>
+              <label class="radio-pill"><input type="radio" name="tempo_atuacao" value="4 a 7 anos"><span
+                  class="dot"></span><span class="label">4 a 7 anos</span></label>
+              <label class="radio-pill"><input type="radio" name="tempo_atuacao" value="8 anos ou mais"><span
+                  class="dot"></span><span class="label">8 anos ou mais</span></label>
+            </div>
           </div>
 
           <div class="field">
@@ -894,8 +903,16 @@
 
           <div class="field">
             <label class="field-label">Você dá alguma garantia?</label>
-            <div class="field-help">Devolução, primeira sessão grátis, reagendamento sem custo</div>
-            <input type="text" class="input" name="garantia">
+            <div class="radio-group">
+              <label class="radio-pill"><input type="radio" name="garantia" value="Sim, tenho garantia clara"><span
+                  class="dot"></span><span class="label">Sim, tenho garantia clara</span></label>
+              <label class="radio-pill"><input type="radio" name="garantia" value="Tenho alguma política de segurança"><span
+                  class="dot"></span><span class="label">Tenho alguma política de segurança<small>reagendamento, primeira conversa, suporte</small></span></label>
+              <label class="radio-pill"><input type="radio" name="garantia" value="Não tenho garantia"><span
+                  class="dot"></span><span class="label">Não tenho garantia</span></label>
+              <label class="radio-pill"><input type="radio" name="garantia" value="Não sei ainda"><span
+                  class="dot"></span><span class="label">Não sei ainda</span></label>
+            </div>
           </div>
         </section>
 
@@ -903,6 +920,23 @@
         <section class="step" data-step="4" data-name="Provas">
           <h2><span class="num">Bloco 04</span>Provas — <span class="it">credibilidade</span></h2>
           <p class="step-intro">Não precisa preencher tudo. Mande o que já existe e a gente decide o que entra na página.</p>
+
+          <div class="field">
+            <label class="field-label">Que provas você já tem?</label>
+            <div class="field-help">Pode marcar mais de uma opção.</div>
+            <div class="radio-group">
+              <label class="radio-pill"><input type="checkbox" name="provas_disponiveis" value="Depoimentos escritos"><span
+                  class="dot"></span><span class="label">Depoimentos escritos</span></label>
+              <label class="radio-pill"><input type="checkbox" name="provas_disponiveis" value="Prints de WhatsApp/Instagram"><span
+                  class="dot"></span><span class="label">Prints de WhatsApp/Instagram</span></label>
+              <label class="radio-pill"><input type="checkbox" name="provas_disponiveis" value="Avaliações no Google"><span
+                  class="dot"></span><span class="label">Avaliações no Google</span></label>
+              <label class="radio-pill"><input type="checkbox" name="provas_disponiveis" value="Números de resultado"><span
+                  class="dot"></span><span class="label">Números de resultado</span></label>
+              <label class="radio-pill"><input type="checkbox" name="provas_disponiveis" value="Ainda não tenho provas"><span
+                  class="dot"></span><span class="label">Ainda não tenho provas</span></label>
+            </div>
+          </div>
 
           <div class="field">
             <label class="field-label">Depoimentos, prints ou frases de clientes</label>
@@ -927,19 +961,35 @@
         <!-- BLOCO 5 — VOZ -->
         <section class="step" data-step="5" data-name="Voz e estilo">
           <h2><span class="num">Bloco 05</span>Voz e estilo — <span class="it">como a página soa</span></h2>
-          <p class="step-intro">Referências ajudam, mas uma boa descrição também resolve.</p>
+          <p class="step-intro">Escolhas rápidas para guiar design e texto. Referência é opcional.</p>
 
           <div class="field">
-            <label class="field-label">Referências visuais que você gosta</label>
-            <div class="field-help">Pode ser site, Instagram, marca ou só uma descrição do clima visual.</div>
-            <textarea class="textarea" name="sites_ama"
-              placeholder="apple.com — tipografia limpa, espaço respira&#10;Quero algo sóbrio, premium, sem cara de template"></textarea>
+            <label class="field-label">Qual caminho visual combina mais?</label>
+            <div class="radio-group">
+              <label class="radio-pill"><input type="radio" name="estilo_visual" value="Sóbrio e premium"><span
+                  class="dot"></span><span class="label">Sóbrio e premium<small>elegante, limpo, com bastante respiro</small></span></label>
+              <label class="radio-pill"><input type="radio" name="estilo_visual" value="Moderno e direto"><span
+                  class="dot"></span><span class="label">Moderno e direto<small>objetivo, comercial, sem enfeite</small></span></label>
+              <label class="radio-pill"><input type="radio" name="estilo_visual" value="Humano e acolhedor"><span
+                  class="dot"></span><span class="label">Humano e acolhedor<small>próximo, leve, com sensação de confiança</small></span></label>
+              <label class="radio-pill"><input type="radio" name="estilo_visual" value="Forte e autoral"><span
+                  class="dot"></span><span class="label">Forte e autoral<small>mais marcante, com personalidade</small></span></label>
+            </div>
           </div>
 
           <div class="field">
             <label class="field-label">O que você quer evitar?</label>
-            <div class="field-help">Cores, palavras, estilos, sites ou qualquer coisa que não combina com você.</div>
-            <textarea class="textarea" name="sites_odeia"></textarea>
+            <div class="field-help">Pode marcar mais de uma opção.</div>
+            <div class="radio-group">
+              <label class="radio-pill"><input type="checkbox" name="evitar_visual" value="Cara de template/Canva"><span
+                  class="dot"></span><span class="label">Cara de template/Canva</span></label>
+              <label class="radio-pill"><input type="checkbox" name="evitar_visual" value="Exagero de cores"><span
+                  class="dot"></span><span class="label">Exagero de cores</span></label>
+              <label class="radio-pill"><input type="checkbox" name="evitar_visual" value="Visual frio demais"><span
+                  class="dot"></span><span class="label">Visual frio demais</span></label>
+              <label class="radio-pill"><input type="checkbox" name="evitar_visual" value="Texto muito vendedor"><span
+                  class="dot"></span><span class="label">Texto muito vendedor</span></label>
+            </div>
           </div>
 
           <div class="field">
@@ -956,24 +1006,43 @@
           </div>
 
           <div class="field">
-            <label class="field-label">Paleta de cor</label>
-            <div class="field-help">Cola os HEX se tiver. Sem paleta, descreve em 1 palavra: <em>sóbrio, vibrante,
-                terroso, clínico, masculino, feminino</em>.</div>
-            <input type="text" class="input" name="paleta"
-              placeholder="Ex: #002D25, #FAFFEE, #C1D66D ou 'sóbrio com toque vibrante'">
+            <label class="field-label">Cores</label>
+            <div class="radio-group">
+              <label class="radio-pill"><input type="radio" name="paleta" value="Já tenho paleta definida"><span
+                  class="dot"></span><span class="label">Já tenho paleta definida<small>mando as cores depois</small></span></label>
+              <label class="radio-pill"><input type="radio" name="paleta" value="Quero que a Pixel.Co defina"><span
+                  class="dot"></span><span class="label">Quero que a Pixel.Co defina</span></label>
+              <label class="radio-pill"><input type="radio" name="paleta" value="Usar cores da minha marca/logo"><span
+                  class="dot"></span><span class="label">Usar cores da minha marca/logo</span></label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field-label">Tem alguma referência específica?</label>
+            <div class="field-help">Opcional. Pode colar site, Instagram ou marca que você gosta.</div>
+            <textarea class="textarea" name="referencia_visual"
+              placeholder="Ex: gosto da clareza da Apple, da autoridade da XP, do estilo do perfil @..."></textarea>
           </div>
         </section>
 
         <!-- BLOCO 6 — AÇÃO -->
         <section class="step" data-step="6" data-name="Ação">
           <h2><span class="num">Bloco 06</span>Ação — <span class="it">pra onde a página leva</span></h2>
-          <p class="step-intro">O CTA. Toda a página converge pra UMA ação.</p>
+          <p class="step-intro">A página precisa levar para uma ação clara. Escolha o caminho principal.</p>
 
           <div class="field">
             <label class="field-label">Qual a ÚNICA coisa que o visitante precisa fazer?<span
                 class="field-required">*</span></label>
-            <div class="field-help">Marcar consulta? Chamar no WhatsApp? Baixar PDF? <em>Escolhe UMA.</em></div>
-            <input type="text" class="input" name="cta_unica" required>
+            <div class="radio-group">
+              <label class="radio-pill"><input type="radio" name="cta_unica" value="Chamar no WhatsApp" required><span
+                  class="dot"></span><span class="label">Chamar no WhatsApp</span></label>
+              <label class="radio-pill"><input type="radio" name="cta_unica" value="Marcar consulta/reunião"><span
+                  class="dot"></span><span class="label">Marcar consulta/reunião</span></label>
+              <label class="radio-pill"><input type="radio" name="cta_unica" value="Preencher formulário"><span
+                  class="dot"></span><span class="label">Preencher formulário</span></label>
+              <label class="radio-pill"><input type="radio" name="cta_unica" value="Comprar ou pagar online"><span
+                  class="dot"></span><span class="label">Comprar ou pagar online</span></label>
+            </div>
           </div>
 
           <div class="field">
@@ -995,18 +1064,26 @@
 
           <div class="field">
             <label class="field-label">Detalhes do destino</label>
-            <div class="field-help">Se WhatsApp: número + mensagem inicial. Se formulário: lista de campos. Se
-              calendário:
-              URL.</div>
+            <div class="field-help">Opcional. Se souber, informe número, link de agenda ou URL. Se não souber, a gente resolve depois.</div>
             <textarea class="textarea" name="cta_detalhes"
               placeholder="WhatsApp: +55 11 99999-9999, mensagem: 'Oi! Vim do site, quero saber sobre...'"></textarea>
           </div>
 
           <div class="field">
             <label class="field-label">De onde vem o tráfego?</label>
-            <div class="field-help">Anúncio Meta? Indicação por WhatsApp? Bio do Insta? Orgânico? <em>Muda a copy do
-                topo</em>.</div>
-            <textarea class="textarea" name="origem_trafego"></textarea>
+            <div class="field-help">Pode marcar mais de uma opção. Isso muda a copy do topo.</div>
+            <div class="radio-group">
+              <label class="radio-pill"><input type="checkbox" name="origem_trafego" value="Anúncios Meta/Instagram"><span
+                  class="dot"></span><span class="label">Anúncios Meta/Instagram</span></label>
+              <label class="radio-pill"><input type="checkbox" name="origem_trafego" value="Bio do Instagram"><span
+                  class="dot"></span><span class="label">Bio do Instagram</span></label>
+              <label class="radio-pill"><input type="checkbox" name="origem_trafego" value="Indicação por WhatsApp"><span
+                  class="dot"></span><span class="label">Indicação por WhatsApp</span></label>
+              <label class="radio-pill"><input type="checkbox" name="origem_trafego" value="Google/orgânico"><span
+                  class="dot"></span><span class="label">Google/orgânico</span></label>
+              <label class="radio-pill"><input type="checkbox" name="origem_trafego" value="Ainda não sei"><span
+                  class="dot"></span><span class="label">Ainda não sei</span></label>
+            </div>
           </div>
         </section>
 
@@ -1245,7 +1322,9 @@
           Object.entries(data).forEach(([name, value]) => {
             const els = form.querySelectorAll(`[name="${name}"]`);
             els.forEach((el) => {
-              if (el.type === 'radio') {
+              if (el.type === 'checkbox') {
+                el.checked = Array.isArray(value) ? value.includes(el.value) : value === el.value;
+              } else if (el.type === 'radio') {
                 el.checked = el.value === value;
               } else {
                 el.value = value;
@@ -1272,7 +1351,12 @@
         const fd = new FormData(form);
         const out = {};
         for (const [k, v] of fd.entries()) {
-          out[k] = (v || '').toString().trim();
+          const value = (v || '').toString().trim();
+          if (out[k]) {
+            out[k] = Array.isArray(out[k]) ? [...out[k], value] : [out[k], value];
+          } else {
+            out[k] = value;
+          }
         }
         const lead = getGateData();
         if (lead && lead.nome && !out.nome_completo) out.nome_completo = lead.nome.trim();
@@ -1301,7 +1385,12 @@
         if (!active) return true;
         const required = active.querySelectorAll('[required]');
         for (const el of required) {
-          if (!el.value.trim()) {
+          if ((el.type === 'radio' || el.type === 'checkbox') && !active.querySelector(`[name="${el.name}"]:checked`)) {
+            el.closest('.field')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            el.closest('.radio-pill')?.focus?.();
+            return false;
+          }
+          if (el.type !== 'radio' && el.type !== 'checkbox' && !el.value.trim()) {
             el.focus();
             el.style.borderColor = 'var(--accent-2)';
             setTimeout(() => (el.style.borderColor = ''), 1800);
