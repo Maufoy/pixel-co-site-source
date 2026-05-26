@@ -2,6 +2,13 @@
 <html lang="pt-BR">
 
 <head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-MVWRMS98');</script>
+  <!-- End Google Tag Manager -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Briefing — Pixel.Co Página Express</title>
@@ -322,6 +329,44 @@
       margin-left: 4px;
     }
 
+    .lead-summary {
+      display: grid;
+      gap: 12px;
+      padding: 18px;
+      margin-bottom: 26px;
+      border: 1px solid color-mix(in oklab, var(--accent-1) 18%, transparent);
+      border-radius: 14px;
+      background: color-mix(in oklab, var(--bg-card) 54%, transparent);
+    }
+
+    .lead-summary-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10.5px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(250, 255, 238, 0.48);
+    }
+
+    .lead-summary-main {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--fg-cream);
+    }
+
+    .lead-summary-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 12.5px;
+      color: rgba(250, 255, 238, 0.62);
+    }
+
+    .lead-summary-meta span {
+      padding: 6px 9px;
+      border-radius: 999px;
+      background: rgba(250, 255, 238, 0.06);
+    }
+
     .input,
     .textarea,
     .select {
@@ -628,6 +673,10 @@
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVWRMS98"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 
   <header class="header">
     <a href="/pagina-express-v1/" class="logo">
@@ -679,394 +728,371 @@
 
     <div id="briefing-main" style="display:none">
 
-    <div class="intro">
-      <div class="intro-eyebrow"><span class="dot"></span>Tempo estimado: 20 minutos</div>
-      <h1>Briefing <em>Página Express</em></h1>
-      <p>Se a resposta vier vaga ("ajudo pessoas a serem melhores"), a copy sai genérica. Se vier concreta ("atendo
-        advogados de 35-50 anos que querem sair do escritório antes das 19h"), sai específica e converte. Pode abrir o
-        seu coração. Fale tudo.</p>
-    </div>
-
-    <div class="progress-wrap">
-      <div class="progress-meta">
-        <span>Bloco <span id="current-step">1</span> de 8</span>
-        <span class="step-name" id="step-name">Negócio</span>
+      <div class="intro">
+        <div class="intro-eyebrow"><span class="dot"></span>Tempo estimado: 20 minutos</div>
+        <h1>Briefing <em>Página Express</em></h1>
+        <p>Nome e contato já estão salvos. Agora responda só o que muda a qualidade da página: cliente ideal, oferta,
+          provas, estilo e ação principal.</p>
       </div>
-      <div class="progress-bar">
-        <div class="progress-fill" id="progress-fill"></div>
+
+      <div class="progress-wrap">
+        <div class="progress-meta">
+          <span>Bloco <span id="current-step">1</span> de 8</span>
+          <span class="step-name" id="step-name">Negócio</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
       </div>
-    </div>
 
-    <form id="briefing-form" autocomplete="on" novalidate>
+      <form id="briefing-form" autocomplete="on" novalidate>
 
-      <!-- BLOCO 1 — NEGÓCIO -->
-      <section class="step active" data-step="1" data-name="Negócio">
-        <h2><span class="num">Bloco 01</span>Quem é você, <span class="it">de onde fala</span></h2>
-        <p class="step-intro">Contexto pra IA. 6 perguntas rápidas.</p>
+        <!-- BLOCO 1 — NEGÓCIO -->
+        <section class="step active" data-step="1" data-name="Negócio">
+          <h2><span class="num">Bloco 01</span>Seu negócio, <span class="it">sem repetir cadastro</span></h2>
+          <p class="step-intro">Confirmamos seus dados abaixo e seguimos direto para o contexto que ajuda a página a vender.</p>
 
-        <div class="field">
-          <label class="field-label">Nome completo<span class="field-required">*</span></label>
-          <input type="text" class="input" name="nome_completo" required>
-        </div>
+          <input type="hidden" name="nome_completo" id="lead-nome-briefing">
+          <input type="hidden" name="lead_email" id="lead-email-briefing">
+          <input type="hidden" name="lead_telefone" id="lead-telefone-briefing">
 
-        <div class="field">
-          <label class="field-label">Como quer aparecer na página</label>
-          <div class="field-help">Ex: "Maria", "Dra. Maria Silva", "Estúdio Marina"</div>
-          <input type="text" class="input" name="nome_apresentacao">
-        </div>
-
-        <div class="field">
-          <label class="field-label">Profissão / título<span class="field-required">*</span></label>
-          <div class="field-help">Ex: "advogada criminalista", "nutri esportiva", "arquiteto de interiores"</div>
-          <input type="text" class="input" name="profissao" required>
-        </div>
-
-        <div class="field">
-          <label class="field-label">Cidade onde atende</label>
-          <input type="text" class="input" name="cidade">
-        </div>
-
-        <div class="field">
-          <label class="field-label">Atendimento</label>
-          <div class="radio-group">
-            <label class="radio-pill"><input type="radio" name="atendimento" value="Presencial"><span
-                class="dot"></span><span class="label">Presencial</span></label>
-            <label class="radio-pill"><input type="radio" name="atendimento" value="Online"><span
-                class="dot"></span><span class="label">Online</span></label>
-            <label class="radio-pill"><input type="radio" name="atendimento" value="Presencial e online"><span
-                class="dot"></span><span class="label">Presencial e online</span></label>
+          <div class="lead-summary" id="lead-summary" aria-live="polite">
+            <div class="lead-summary-label">Contato salvo</div>
+            <div class="lead-summary-main" id="lead-summary-name">Seu nome</div>
+            <div class="lead-summary-meta">
+              <span id="lead-summary-email">email salvo</span>
+              <span id="lead-summary-phone">WhatsApp salvo</span>
+            </div>
           </div>
-        </div>
 
-        <div class="field">
-          <label class="field-label">Há quanto tempo atua nessa área?</label>
-          <input type="text" class="input" name="tempo_atuacao" placeholder="Ex: 5 anos">
-        </div>
-
-        <div class="field">
-          <label class="field-label">Site, Instagram, redes atuais</label>
-          <div class="field-help">Cola os links, um por linha</div>
-          <textarea class="textarea" name="links_atuais"
-            placeholder="instagram.com/seu-perfil&#10;seusite.com.br"></textarea>
-        </div>
-      </section>
-
-      <!-- BLOCO 2 — CLIENTE -->
-      <section class="step" data-step="2" data-name="Cliente ideal">
-        <h2><span class="num">Bloco 02</span>Cliente ideal — <span class="it">a parte mais importante</span></h2>
-        <p class="step-intro">Define toda a copy. Quanto mais específico, mais converte.</p>
-
-        <div class="field">
-          <label class="field-label">Descreve em 2 frases quem é o cliente perfeito<span
-              class="field-required">*</span></label>
-          <div class="field-help">Idade, profissão, momento de vida. <em>Sem "qualquer pessoa".</em></div>
-          <textarea class="textarea" name="cliente_perfil" required
-            placeholder="Ex: Mulheres de 35-50 anos, executivas em empresas grandes, casadas com filhos pequenos, que sentem ansiedade alta e não conseguem mais dormir direito."></textarea>
-        </div>
-
-        <div class="field">
-          <label class="field-label">Qual o problema dele NAS PALAVRAS DELE?</label>
-          <div class="field-help">O que ele diz pra você na primeira conversa? <em>Escreve em primeira pessoa</em>,
-            tipo: "tô há 3 meses tentando…"</div>
-          <textarea class="textarea" name="cliente_problema"
-            placeholder='"Tô há 6 meses tentando dormir e não consigo. Já fiz exame, tomei chá, baixei aquele app, mas continuo acordando 3 da manhã com pensamento acelerado."'></textarea>
-        </div>
-
-        <div class="field">
-          <label class="field-label">O que ele já tentou que não deu certo?</label>
-          <div class="field-help">Outro profissional, outro método, vídeo no YouTube, app, livro</div>
-          <textarea class="textarea" name="cliente_tentativas"></textarea>
-        </div>
-
-        <div class="field">
-          <label class="field-label">Maior medo / objeção pra fechar com você?</label>
-          <div class="field-help">Preço? "Não vai funcionar pra mim"? Vergonha? Tempo?</div>
-          <textarea class="textarea" name="cliente_objecao"></textarea>
-        </div>
-
-        <div class="field">
-          <label class="field-label">Quando o trabalho dá certo, como ele descreve o resultado?</label>
-          <div class="field-help">Resposta concreta. <em>"Voltei a dormir". "Fechei meu primeiro contrato". "Parei de
-              chorar no escritório."</em></div>
-          <textarea class="textarea" name="cliente_resultado"></textarea>
-        </div>
-      </section>
-
-      <!-- BLOCO 3 — OFERTA -->
-      <section class="step" data-step="3" data-name="Oferta">
-        <h2><span class="num">Bloco 03</span>A <span class="it">oferta</span> — o que vai pra copy do meio</h2>
-        <p class="step-intro">O que você vende, como funciona e por que escolheriam você.</p>
-
-        <div class="field">
-          <label class="field-label">O que exatamente você vende?<span class="field-required">*</span></label>
-          <div class="field-help">Um pacote? Sessão? Programa de X semanas? Mentoria?</div>
-          <textarea class="textarea" name="oferta_descricao" required></textarea>
-        </div>
-
-        <div class="field">
-          <label class="field-label">Como funciona? Descreve em 3 passos.</label>
-          <div class="field-help">Etapa 1, 2, 3 — vira a seção "como funciona" da página</div>
-          <textarea class="textarea" name="oferta_passos"
-            placeholder="1. Anamnese inicial em 50 min&#10;2. Plano de tratamento semanal por 12 semanas&#10;3. Sessão de manutenção mensal"></textarea>
-        </div>
-
-        <div class="field">
-          <label class="field-label">Como você quer mostrar o preço?</label>
-          <div class="radio-group">
-            <label class="radio-pill"><input type="radio" name="preco_modo" value="Mostrar valor"><span
-                class="dot"></span><span class="label">Mostro o preço na página<small>"R$ 497"</small></span></label>
-            <label class="radio-pill"><input type="radio" name="preco_modo" value="A partir de"><span
-                class="dot"></span><span class="label">A partir de R$X<small>"A partir de R$
-                  200/sessão"</small></span></label>
-            <label class="radio-pill"><input type="radio" name="preco_modo" value="Sob consulta"><span
-                class="dot"></span><span class="label">Não mostro<small>"Consulte valores"</small></span></label>
+          <div class="field">
+            <label class="field-label">Como você quer aparecer na página?</label>
+            <div class="field-help">Ex: "Maria", "Dra. Maria Silva", "Estúdio Marina". Se deixar vazio, usamos o nome salvo.</div>
+            <input type="text" class="input" name="nome_apresentacao" autocomplete="organization">
           </div>
-        </div>
 
-        <div class="field">
-          <label class="field-label">Qual o valor?</label>
-          <div class="field-help">Se "Sob consulta", deixa vazio</div>
-          <input type="text" class="input" name="preco_valor" placeholder="Ex: R$ 497 ou R$ 200/sessão">
-        </div>
-
-        <div class="field">
-          <label class="field-label">Por que um cliente te escolheria em vez de um concorrente 50% mais barato?<span
-              class="field-required">*</span></label>
-          <div class="field-help">Responde <em>como se tivesse explicando pra um amigo no bar</em>.</div>
-          <textarea class="textarea" name="diferencial" required></textarea>
-        </div>
-
-        <div class="field">
-          <label class="field-label">Você dá alguma garantia?</label>
-          <div class="field-help">Devolução, primeira sessão grátis, reagendamento sem custo</div>
-          <input type="text" class="input" name="garantia">
-        </div>
-      </section>
-
-      <!-- BLOCO 4 — PROVAS -->
-      <section class="step" data-step="4" data-name="Provas">
-        <h2><span class="num">Bloco 04</span>Provas — <span class="it">credibilidade</span></h2>
-        <p class="step-intro">Social proof define se acreditam em você.</p>
-
-        <div class="field">
-          <label class="field-label">Depoimento 1</label>
-          <div class="field-help">Texto + primeiro nome + sobrenome inicial (ex: "Maria S.")</div>
-          <textarea class="textarea" name="depoimento_1"
-            placeholder='"Mandei o briefing terça e quinta tinha link." — Maria S., Psicóloga'></textarea>
-        </div>
-
-        <div class="field">
-          <label class="field-label">Depoimento 2</label>
-          <textarea class="textarea" name="depoimento_2"></textarea>
-        </div>
-
-        <div class="field">
-          <label class="field-label">Depoimento 3</label>
-          <textarea class="textarea" name="depoimento_3"></textarea>
-        </div>
-
-        <div class="field">
-          <label class="field-label">Algum número concreto?</label>
-          <div class="field-help">"Atendi 200 pacientes em 2 anos", "92% renovam", "4,8 no Google"</div>
-          <textarea class="textarea" name="numeros"></textarea>
-        </div>
-
-        <div class="field">
-          <label class="field-label">Formações, certificações, instituições onde passou</label>
-          <div class="field-help">Só as que o cliente reconhece. <em>Se ele não conhece, não cola.</em></div>
-          <textarea class="textarea" name="formacoes"></textarea>
-        </div>
-
-        <div class="field">
-          <label class="field-label">Apareceu em algum lugar?</label>
-          <div class="field-help">Podcast, jornal, palestra, prêmio — links se tiver</div>
-          <textarea class="textarea" name="aparicoes"></textarea>
-        </div>
-      </section>
-
-      <!-- BLOCO 5 — VOZ -->
-      <section class="step" data-step="5" data-name="Voz e estilo">
-        <h2><span class="num">Bloco 05</span>Voz e estilo — <span class="it">como a página soa</span></h2>
-        <p class="step-intro">Parâmetros de tom e visual pra IA.</p>
-
-        <div class="field">
-          <label class="field-label">3 sites que você AMA</label>
-          <div class="field-help">Cola os links + 1 frase do que gostou em cada</div>
-          <textarea class="textarea" name="sites_ama"
-            placeholder="apple.com — tipografia limpa, espaço respira&#10;basecamp.com — copy direta, sem rodeios"></textarea>
-        </div>
-
-        <div class="field">
-          <label class="field-label">3 sites que você odeia / acha cara de Canva</label>
-          <div class="field-help">Pra IA evitar</div>
-          <textarea class="textarea" name="sites_odeia"></textarea>
-        </div>
-
-        <div class="field">
-          <label class="field-label">Como você fala com cliente?</label>
-          <div class="radio-group">
-            <label class="radio-pill"><input type="radio" name="tratamento" value="Formal"><span
-                class="dot"></span><span class="label">Formal<small>"o senhor", "a senhora"</small></span></label>
-            <label class="radio-pill"><input type="radio" name="tratamento" value="Neutro"><span
-                class="dot"></span><span class="label">Neutro<small>"você"</small></span></label>
-            <label class="radio-pill"><input type="radio" name="tratamento" value="Informal"><span
-                class="dot"></span><span class="label">Informal<small>"oi, sumida", "fala comigo"</small></span></label>
+          <div class="field">
+            <label class="field-label">Profissão / título<span class="field-required">*</span></label>
+            <div class="field-help">Ex: "advogada criminalista", "nutri esportiva", "arquiteto de interiores"</div>
+            <input type="text" class="input" name="profissao" required>
           </div>
-        </div>
 
-        <div class="field">
-          <label class="field-label">5 palavras que você usa muito e quer ver na página</label>
-          <div class="field-help">Ex: "leveza", "estratégia", "presença"</div>
-          <input type="text" class="input" name="palavras_sim">
-        </div>
-
-        <div class="field">
-          <label class="field-label">3 palavras que você NÃO quer ver de jeito nenhum</label>
-          <div class="field-help">Ex: "jornada", "transformação", "potencializar"</div>
-          <input type="text" class="input" name="palavras_nao">
-        </div>
-
-        <div class="field">
-          <label class="field-label">Paleta de cor</label>
-          <div class="field-help">Cola os HEX se tiver. Sem paleta, descreve em 1 palavra: <em>sóbrio, vibrante,
-              terroso, clínico, masculino, feminino</em>.</div>
-          <input type="text" class="input" name="paleta"
-            placeholder="Ex: #002D25, #FAFFEE, #C1D66D ou 'sóbrio com toque vibrante'">
-        </div>
-      </section>
-
-      <!-- BLOCO 6 — AÇÃO -->
-      <section class="step" data-step="6" data-name="Ação">
-        <h2><span class="num">Bloco 06</span>Ação — <span class="it">pra onde a página leva</span></h2>
-        <p class="step-intro">O CTA. Toda a página converge pra UMA ação.</p>
-
-        <div class="field">
-          <label class="field-label">Qual a ÚNICA coisa que o visitante precisa fazer?<span
-              class="field-required">*</span></label>
-          <div class="field-help">Marcar consulta? Chamar no WhatsApp? Baixar PDF? <em>Escolhe UMA.</em></div>
-          <input type="text" class="input" name="cta_unica" required>
-        </div>
-
-        <div class="field">
-          <label class="field-label">Pra onde vai esse clique?</label>
-          <div class="radio-group">
-            <label class="radio-pill"><input type="radio" name="cta_destino" value="WhatsApp"><span
-                class="dot"></span><span class="label">WhatsApp<small>manda número + mensagem que
-                  abre</small></span></label>
-            <label class="radio-pill"><input type="radio" name="cta_destino" value="Formulário"><span
-                class="dot"></span><span class="label">Formulário<small>quais campos? pra onde a
-                  notificação?</small></span></label>
-            <label class="radio-pill"><input type="radio" name="cta_destino" value="Calendário"><span
-                class="dot"></span><span class="label">Calendário<small>Calendly, Google, Cal.com</small></span></label>
-            <label class="radio-pill"><input type="radio" name="cta_destino" value="Outro"><span
-                class="dot"></span><span class="label">Outro<small>explica em "detalhes" abaixo</small></span></label>
+          <div class="field">
+            <label class="field-label">Cidade onde atende</label>
+            <input type="text" class="input" name="cidade">
           </div>
+
+          <div class="field">
+            <label class="field-label">Atendimento</label>
+            <div class="radio-group">
+              <label class="radio-pill"><input type="radio" name="atendimento" value="Presencial"><span
+                  class="dot"></span><span class="label">Presencial</span></label>
+              <label class="radio-pill"><input type="radio" name="atendimento" value="Online"><span
+                  class="dot"></span><span class="label">Online</span></label>
+              <label class="radio-pill"><input type="radio" name="atendimento" value="Presencial e online"><span
+                  class="dot"></span><span class="label">Presencial e online</span></label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field-label">Há quanto tempo atua nessa área?</label>
+            <input type="text" class="input" name="tempo_atuacao" placeholder="Ex: 5 anos">
+          </div>
+
+          <div class="field">
+            <label class="field-label">Site, Instagram, redes atuais</label>
+            <div class="field-help">Cola os links, um por linha</div>
+            <textarea class="textarea" name="links_atuais"
+              placeholder="instagram.com/seu-perfil&#10;seusite.com.br"></textarea>
+          </div>
+        </section>
+
+        <!-- BLOCO 2 — CLIENTE -->
+        <section class="step" data-step="2" data-name="Cliente ideal">
+          <h2><span class="num">Bloco 02</span>Cliente ideal — <span class="it">a parte mais importante</span></h2>
+          <p class="step-intro">Define toda a copy. Quanto mais específico, mais converte.</p>
+
+          <div class="field">
+            <label class="field-label">Descreve em 2 frases quem é o cliente perfeito<span
+                class="field-required">*</span></label>
+            <div class="field-help">Idade, profissão, momento de vida. <em>Sem "qualquer pessoa".</em></div>
+            <textarea class="textarea" name="cliente_perfil" required
+              placeholder="Ex: Mulheres de 35-50 anos, executivas em empresas grandes, casadas com filhos pequenos, que sentem ansiedade alta e não conseguem mais dormir direito."></textarea>
+          </div>
+
+          <div class="field">
+            <label class="field-label">Qual o problema dele NAS PALAVRAS DELE?</label>
+            <div class="field-help">O que ele diz pra você na primeira conversa? <em>Escreve em primeira pessoa</em>,
+              tipo: "tô há 3 meses tentando…"</div>
+            <textarea class="textarea" name="cliente_problema"
+              placeholder='"Tô há 6 meses tentando dormir e não consigo. Já fiz exame, tomei chá, baixei aquele app, mas continuo acordando 3 da manhã com pensamento acelerado."'></textarea>
+          </div>
+
+          <div class="field">
+            <label class="field-label">O que ele já tentou que não deu certo?</label>
+            <div class="field-help">Outro profissional, outro método, vídeo no YouTube, app, livro</div>
+            <textarea class="textarea" name="cliente_tentativas"></textarea>
+          </div>
+
+          <div class="field">
+            <label class="field-label">Maior medo / objeção pra fechar com você?</label>
+            <div class="field-help">Preço? "Não vai funcionar pra mim"? Vergonha? Tempo?</div>
+            <textarea class="textarea" name="cliente_objecao"></textarea>
+          </div>
+
+          <div class="field">
+            <label class="field-label">Quando o trabalho dá certo, como ele descreve o resultado?</label>
+            <div class="field-help">Resposta concreta. <em>"Voltei a dormir". "Fechei meu primeiro contrato". "Parei de
+                chorar no escritório."</em></div>
+            <textarea class="textarea" name="cliente_resultado"></textarea>
+          </div>
+        </section>
+
+        <!-- BLOCO 3 — OFERTA -->
+        <section class="step" data-step="3" data-name="Oferta">
+          <h2><span class="num">Bloco 03</span>A <span class="it">oferta</span> — o que vai pra copy do meio</h2>
+          <p class="step-intro">O que você vende, como funciona e por que escolheriam você.</p>
+
+          <div class="field">
+            <label class="field-label">O que exatamente você vende?<span class="field-required">*</span></label>
+            <div class="field-help">Um pacote? Sessão? Programa de X semanas? Mentoria?</div>
+            <textarea class="textarea" name="oferta_descricao" required></textarea>
+          </div>
+
+          <div class="field">
+            <label class="field-label">Como funciona? Descreve em 3 passos.</label>
+            <div class="field-help">Etapa 1, 2, 3 — vira a seção "como funciona" da página</div>
+            <textarea class="textarea" name="oferta_passos"
+              placeholder="1. Anamnese inicial em 50 min&#10;2. Plano de tratamento semanal por 12 semanas&#10;3. Sessão de manutenção mensal"></textarea>
+          </div>
+
+          <div class="field">
+            <label class="field-label">Como você quer mostrar o preço?</label>
+            <div class="radio-group">
+              <label class="radio-pill"><input type="radio" name="preco_modo" value="Mostrar valor"><span
+                  class="dot"></span><span class="label">Mostro o preço na página<small>"R$ 497"</small></span></label>
+              <label class="radio-pill"><input type="radio" name="preco_modo" value="A partir de"><span
+                  class="dot"></span><span class="label">A partir de R$X<small>"A partir de R$
+                    200/sessão"</small></span></label>
+              <label class="radio-pill"><input type="radio" name="preco_modo" value="Sob consulta"><span
+                  class="dot"></span><span class="label">Não mostro<small>"Consulte valores"</small></span></label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field-label">Qual o valor?</label>
+            <div class="field-help">Se "Sob consulta", deixa vazio</div>
+            <input type="text" class="input" name="preco_valor" placeholder="Ex: R$ 497 ou R$ 200/sessão">
+          </div>
+
+          <div class="field">
+            <label class="field-label">Por que um cliente te escolheria em vez de um concorrente 50% mais barato?<span
+                class="field-required">*</span></label>
+            <div class="field-help">Responde <em>como se tivesse explicando pra um amigo no bar</em>.</div>
+            <textarea class="textarea" name="diferencial" required></textarea>
+          </div>
+
+          <div class="field">
+            <label class="field-label">Você dá alguma garantia?</label>
+            <div class="field-help">Devolução, primeira sessão grátis, reagendamento sem custo</div>
+            <input type="text" class="input" name="garantia">
+          </div>
+        </section>
+
+        <!-- BLOCO 4 — PROVAS -->
+        <section class="step" data-step="4" data-name="Provas">
+          <h2><span class="num">Bloco 04</span>Provas — <span class="it">credibilidade</span></h2>
+          <p class="step-intro">Não precisa preencher tudo. Mande o que já existe e a gente decide o que entra na página.</p>
+
+          <div class="field">
+            <label class="field-label">Depoimentos, prints ou frases de clientes</label>
+            <div class="field-help">Pode colar tudo junto. Se tiver nome, use primeiro nome + inicial do sobrenome.</div>
+            <textarea class="textarea" name="provas"
+              placeholder='"Voltei a dormir depois de anos." — Maria S.&#10;Prints no Instagram: tenho 4, mando por WhatsApp depois."></textarea>
+          </div>
+
+          <div class="field">
+            <label class="field-label">Números concretos</label>
+            <div class="field-help">"Atendi 200 pacientes em 2 anos", "92% renovam", "4,8 no Google"</div>
+            <textarea class="textarea" name="numeros"></textarea>
+          </div>
+
+          <div class="field">
+            <label class="field-label">Autoridade</label>
+            <div class="field-help">Formações, certificações, instituições, podcast, jornal, palestra, prêmio. Só o que o cliente reconhece.</div>
+            <textarea class="textarea" name="formacoes"></textarea>
+          </div>
+        </section>
+
+        <!-- BLOCO 5 — VOZ -->
+        <section class="step" data-step="5" data-name="Voz e estilo">
+          <h2><span class="num">Bloco 05</span>Voz e estilo — <span class="it">como a página soa</span></h2>
+          <p class="step-intro">Referências ajudam, mas uma boa descrição também resolve.</p>
+
+          <div class="field">
+            <label class="field-label">Referências visuais que você gosta</label>
+            <div class="field-help">Pode ser site, Instagram, marca ou só uma descrição do clima visual.</div>
+            <textarea class="textarea" name="sites_ama"
+              placeholder="apple.com — tipografia limpa, espaço respira&#10;Quero algo sóbrio, premium, sem cara de template"></textarea>
+          </div>
+
+          <div class="field">
+            <label class="field-label">O que você quer evitar?</label>
+            <div class="field-help">Cores, palavras, estilos, sites ou qualquer coisa que não combina com você.</div>
+            <textarea class="textarea" name="sites_odeia"></textarea>
+          </div>
+
+          <div class="field">
+            <label class="field-label">Como você fala com cliente?</label>
+            <div class="radio-group">
+              <label class="radio-pill"><input type="radio" name="tratamento" value="Formal"><span
+                  class="dot"></span><span class="label">Formal<small>"o senhor", "a senhora"</small></span></label>
+              <label class="radio-pill"><input type="radio" name="tratamento" value="Neutro"><span
+                  class="dot"></span><span class="label">Neutro<small>"você"</small></span></label>
+              <label class="radio-pill"><input type="radio" name="tratamento" value="Informal"><span
+                  class="dot"></span><span class="label">Informal<small>"oi, sumida", "fala
+                    comigo"</small></span></label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field-label">Paleta de cor</label>
+            <div class="field-help">Cola os HEX se tiver. Sem paleta, descreve em 1 palavra: <em>sóbrio, vibrante,
+                terroso, clínico, masculino, feminino</em>.</div>
+            <input type="text" class="input" name="paleta"
+              placeholder="Ex: #002D25, #FAFFEE, #C1D66D ou 'sóbrio com toque vibrante'">
+          </div>
+        </section>
+
+        <!-- BLOCO 6 — AÇÃO -->
+        <section class="step" data-step="6" data-name="Ação">
+          <h2><span class="num">Bloco 06</span>Ação — <span class="it">pra onde a página leva</span></h2>
+          <p class="step-intro">O CTA. Toda a página converge pra UMA ação.</p>
+
+          <div class="field">
+            <label class="field-label">Qual a ÚNICA coisa que o visitante precisa fazer?<span
+                class="field-required">*</span></label>
+            <div class="field-help">Marcar consulta? Chamar no WhatsApp? Baixar PDF? <em>Escolhe UMA.</em></div>
+            <input type="text" class="input" name="cta_unica" required>
+          </div>
+
+          <div class="field">
+            <label class="field-label">Pra onde vai esse clique?</label>
+            <div class="radio-group">
+              <label class="radio-pill"><input type="radio" name="cta_destino" value="WhatsApp"><span
+                  class="dot"></span><span class="label">WhatsApp<small>manda número + mensagem que
+                    abre</small></span></label>
+              <label class="radio-pill"><input type="radio" name="cta_destino" value="Formulário"><span
+                  class="dot"></span><span class="label">Formulário<small>quais campos? pra onde a
+                    notificação?</small></span></label>
+              <label class="radio-pill"><input type="radio" name="cta_destino" value="Calendário"><span
+                  class="dot"></span><span class="label">Calendário<small>Calendly, Google,
+                    Cal.com</small></span></label>
+              <label class="radio-pill"><input type="radio" name="cta_destino" value="Outro"><span
+                  class="dot"></span><span class="label">Outro<small>explica em "detalhes" abaixo</small></span></label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field-label">Detalhes do destino</label>
+            <div class="field-help">Se WhatsApp: número + mensagem inicial. Se formulário: lista de campos. Se
+              calendário:
+              URL.</div>
+            <textarea class="textarea" name="cta_detalhes"
+              placeholder="WhatsApp: +55 11 99999-9999, mensagem: 'Oi! Vim do site, quero saber sobre...'"></textarea>
+          </div>
+
+          <div class="field">
+            <label class="field-label">De onde vem o tráfego?</label>
+            <div class="field-help">Anúncio Meta? Indicação por WhatsApp? Bio do Insta? Orgânico? <em>Muda a copy do
+                topo</em>.</div>
+            <textarea class="textarea" name="origem_trafego"></textarea>
+          </div>
+        </section>
+
+        <!-- BLOCO 7 — TÉCNICO -->
+        <section class="step" data-step="7" data-name="Técnico">
+          <h2><span class="num">Bloco 07</span>Técnico — <span class="it">passa direto pro dev</span></h2>
+          <p class="step-intro">Marque o estado atual. O que faltar a gente resolve na confirmação por WhatsApp.</p>
+
+          <div class="field">
+            <label class="field-label">Domínio</label>
+            <div class="field-help">Já tem ou precisa registrar? Qual?</div>
+            <input type="text" class="input" name="dominio"
+              placeholder="Ex: tenho mariasilva.com.br / preciso registrar mariasilva-nutri">
+          </div>
+
+          <div class="field">
+            <label class="field-label">Logo</label>
+            <div class="field-help">Tem em vetor (.svg, .ai, .pdf)? Manda por email/WhatsApp depois.</div>
+            <input type="text" class="input" name="logo" placeholder="Tenho em SVG / Só PNG / Não tenho, criar texto">
+          </div>
+
+          <div class="field">
+            <label class="field-label">Fotos profissionais</label>
+            <div class="field-help">Tem foto sua? 3-5 que você gosta. Sem foto, usamos banco.</div>
+            <input type="text" class="input" name="fotos"
+              placeholder="Tenho ensaio recente / Tenho só selfies / Usar banco de imagens">
+          </div>
+
+          <div class="field">
+            <label class="field-label">Rastreamento</label>
+            <div class="field-help">Meta Pixel, Google Analytics, Tag Manager. Se não souber, escreva "não sei".</div>
+            <input type="text" class="input" name="pixel_meta" placeholder="ID do pixel ou 'não tenho, criar'">
+          </div>
+
+          <div class="field">
+            <label class="field-label">Integrações necessárias</label>
+            <div class="field-help">Calendly, Mailchimp, RD Station, CRM, formulário, WhatsApp.</div>
+            <textarea class="textarea" name="integracoes"></textarea>
+          </div>
+
+          <div class="field">
+            <label class="field-label">E-mail @seudominio (plano R$799)</label>
+            <div class="field-help">Quer? Quantas caixas?</div>
+            <input type="text" class="input" name="email_dominio" placeholder="Sim, 2 caixas: contato@ e maria@">
+          </div>
+        </section>
+
+        <!-- BLOCO 8 — ÚLTIMA -->
+        <section class="step" data-step="8" data-name="Última">
+          <h2><span class="num">Bloco 08</span>Por último — <span class="it">o que faltou perguntar</span></h2>
+          <p class="step-intro">Checagem final. Algo essencial que sentimos falta?</p>
+
+          <div class="field">
+            <label class="field-label">Tem alguma coisa que você sente que é essencial pra essa página dar certo e a
+              gente
+              não perguntou?</label>
+            <div class="field-help">Espaço livre. Conta o que achar relevante.</div>
+            <textarea class="textarea" name="extra" style="min-height: 160px"></textarea>
+          </div>
+        </section>
+
+        <!-- Submit success / error -->
+        <div class="submit-state success" id="state-success">
+          <h2>Briefing <em>recebido</em>.</h2>
+          <p>A gente já tá com tudo aqui. Em até 1h útil você recebe no WhatsApp a confirmação de início, e o link de
+            preview no fim do dia 2.</p>
+          <div class="small">Pode fechar essa página · Nada se perde, ficou tudo salvo</div>
         </div>
 
-        <div class="field">
-          <label class="field-label">Detalhes do destino</label>
-          <div class="field-help">Se WhatsApp: número + mensagem inicial. Se formulário: lista de campos. Se calendário:
-            URL.</div>
-          <textarea class="textarea" name="cta_detalhes"
-            placeholder="WhatsApp: +55 11 99999-9999, mensagem: 'Oi! Vim do site, quero saber sobre...'"></textarea>
+        <div class="submit-state error" id="state-error">
+          <h2 style="color:var(--accent-2)">Algo deu errado.</h2>
+          <p id="error-detail">Tenta enviar de novo. Se persistir, manda um WhatsApp pra +55 11 94037-4318 que a gente
+            recebe na mão.</p>
+          <button type="button" class="btn btn-solid" id="btn-retry">Tentar novamente</button>
         </div>
 
-        <div class="field">
-          <label class="field-label">De onde vem o tráfego?</label>
-          <div class="field-help">Anúncio Meta? Indicação por WhatsApp? Bio do Insta? Orgânico? <em>Muda a copy do
-              topo</em>.</div>
-          <textarea class="textarea" name="origem_trafego"></textarea>
-        </div>
-      </section>
-
-      <!-- BLOCO 7 — TÉCNICO -->
-      <section class="step" data-step="7" data-name="Técnico">
-        <h2><span class="num">Bloco 07</span>Técnico — <span class="it">passa direto pro dev</span></h2>
-        <p class="step-intro">Detalhes de implementação.</p>
-
-        <div class="field">
-          <label class="field-label">Domínio</label>
-          <div class="field-help">Já tem ou precisa registrar? Qual?</div>
-          <input type="text" class="input" name="dominio"
-            placeholder="Ex: tenho mariasilva.com.br / preciso registrar mariasilva-nutri">
+        <div class="nav-row" id="nav-row">
+          <button type="button" class="btn btn-ghost" id="btn-prev" disabled>← Voltar</button>
+          <button type="button" class="btn btn-solid" id="btn-next">Próximo →</button>
+          <button type="submit" class="btn btn-solid" id="btn-submit" hidden>Enviar briefing</button>
         </div>
 
-        <div class="field">
-          <label class="field-label">Logo</label>
-          <div class="field-help">Tem em vetor (.svg, .ai, .pdf)? Manda por email/WhatsApp depois.</div>
-          <input type="text" class="input" name="logo" placeholder="Tenho em SVG / Só PNG / Não tenho, criar texto">
+        <div class="autosave"><span class="check">●</span> Salvo automaticamente · pode fechar e voltar quando quiser
         </div>
 
-        <div class="field">
-          <label class="field-label">Fotos profissionais</label>
-          <div class="field-help">Tem foto sua? 3-5 que você gosta. Sem foto, usamos banco.</div>
-          <input type="text" class="input" name="fotos"
-            placeholder="Tenho ensaio recente / Tenho só selfies / Usar banco de imagens">
-        </div>
-
-        <div class="field">
-          <label class="field-label">Pixel Meta (Facebook/Instagram Ads)</label>
-          <div class="field-help">Quer rastreamento de anúncio? Manda o ID.</div>
-          <input type="text" class="input" name="pixel_meta" placeholder="ID do pixel ou 'não tenho, criar'">
-        </div>
-
-        <div class="field">
-          <label class="field-label">Google Analytics / Tag Manager</label>
-          <div class="field-help">Já tem? Manda o ID. Senão a gente cria.</div>
-          <input type="text" class="input" name="ga_gtm">
-        </div>
-
-        <div class="field">
-          <label class="field-label">Integrações necessárias</label>
-          <div class="field-help">Calendly, Mailchimp, RD Station, CRM</div>
-          <textarea class="textarea" name="integracoes"></textarea>
-        </div>
-
-        <div class="field">
-          <label class="field-label">E-mail @seudominio (plano R$799)</label>
-          <div class="field-help">Quer? Quantas caixas?</div>
-          <input type="text" class="input" name="email_dominio" placeholder="Sim, 2 caixas: contato@ e maria@">
-        </div>
-      </section>
-
-      <!-- BLOCO 8 — ÚLTIMA -->
-      <section class="step" data-step="8" data-name="Última">
-        <h2><span class="num">Bloco 08</span>Por último — <span class="it">o que faltou perguntar</span></h2>
-        <p class="step-intro">Checagem final. Algo essencial que sentimos falta?</p>
-
-        <div class="field">
-          <label class="field-label">Tem alguma coisa que você sente que é essencial pra essa página dar certo e a gente
-            não perguntou?</label>
-          <div class="field-help">Espaço livre. Conta o que achar relevante.</div>
-          <textarea class="textarea" name="extra" style="min-height: 160px"></textarea>
-        </div>
-      </section>
-
-      <!-- Submit success / error -->
-      <div class="submit-state success" id="state-success">
-        <h2>Briefing <em>recebido</em>.</h2>
-        <p>A gente já tá com tudo aqui. Em até 1h útil você recebe no WhatsApp a confirmação de início, e o link de
-          preview no fim do dia 2.</p>
-        <div class="small">Pode fechar essa página · Nada se perde, ficou tudo salvo</div>
-      </div>
-
-      <div class="submit-state error" id="state-error">
-        <h2 style="color:var(--accent-2)">Algo deu errado.</h2>
-        <p id="error-detail">Tenta enviar de novo. Se persistir, manda um WhatsApp pra +55 11 94037-4318 que a gente
-          recebe na mão.</p>
-        <button type="button" class="btn btn-solid" id="btn-retry">Tentar novamente</button>
-      </div>
-
-      <div class="nav-row" id="nav-row">
-        <button type="button" class="btn btn-ghost" id="btn-prev" disabled>← Voltar</button>
-        <button type="button" class="btn btn-solid" id="btn-next">Próximo →</button>
-        <button type="submit" class="btn btn-solid" id="btn-submit" hidden>Enviar briefing</button>
-      </div>
-
-      <div class="autosave"><span class="check">●</span> Salvo automaticamente · pode fechar e voltar quando quiser
-      </div>
-
-    </form>
+      </form>
 
     </div><!-- /briefing-main -->
 
@@ -1081,6 +1107,12 @@
       const gateEmail = document.getElementById('gate-email');
       const gateTelefone = document.getElementById('gate-telefone');
       const gateBtnStart = document.getElementById('btn-gate-start');
+      const leadNomeBriefing = document.getElementById('lead-nome-briefing');
+      const leadEmailBriefing = document.getElementById('lead-email-briefing');
+      const leadTelefoneBriefing = document.getElementById('lead-telefone-briefing');
+      const leadSummaryName = document.getElementById('lead-summary-name');
+      const leadSummaryEmail = document.getElementById('lead-summary-email');
+      const leadSummaryPhone = document.getElementById('lead-summary-phone');
       const GATE_KEY = 'pixelco-gate-v1';
 
       function gateError(el) {
@@ -1095,10 +1127,45 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
 
+      function createEventId() {
+        if (window.crypto && window.crypto.randomUUID) return `lead-${window.crypto.randomUUID()}`;
+        return `lead-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
+      }
+
+      function getGateData() {
+        try {
+          return JSON.parse(localStorage.getItem(GATE_KEY) || 'null');
+        } catch (e) {
+          return null;
+        }
+      }
+
+      function fillLeadData(data) {
+        if (!data) return;
+        const nome = (data.nome || '').trim();
+        const email = (data.email || '').trim();
+        const telefone = (data.telefone || '').trim();
+
+        if (gateNome && nome) gateNome.value = nome;
+        if (gateEmail && email) gateEmail.value = email;
+        if (gateTelefone && telefone) gateTelefone.value = telefone;
+        if (leadNomeBriefing) leadNomeBriefing.value = nome;
+        if (leadEmailBriefing) leadEmailBriefing.value = email;
+        if (leadTelefoneBriefing) leadTelefoneBriefing.value = telefone;
+        if (leadSummaryName) leadSummaryName.textContent = nome || 'Nome salvo';
+        if (leadSummaryEmail) leadSummaryEmail.textContent = email || 'email salvo';
+        if (leadSummaryPhone) leadSummaryPhone.textContent = telefone || 'WhatsApp salvo';
+      }
+
       try {
-        const gd = JSON.parse(localStorage.getItem(GATE_KEY) || 'null');
-        if (gd && gd.done) showBriefing();
-      } catch (e) {}
+        const gd = getGateData();
+        if (gd && gd.nome) fillLeadData(gd);
+        if (gd && gd.done && gd.nome && gd.email) {
+          showBriefing();
+        } else if (gd && gd.done) {
+          localStorage.removeItem(GATE_KEY);
+        }
+      } catch (e) { }
 
       gateBtnStart.addEventListener('click', () => {
         const nome = (gateNome.value || '').trim();
@@ -1109,19 +1176,29 @@
         if (!email || !email.includes('@')) return gateError(gateEmail);
         if (!telefone || telefone.replace(/\D/g, '').length < 10) return gateError(gateTelefone);
 
+        const eventId = createEventId();
+
         window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({ event: 'lead', lead_nome: nome, lead_email: email, lead_telefone: telefone });
+        window.dataLayer.push({
+          event: 'lead',
+          event_name: 'Lead',
+          event_id: eventId,
+          meta_event_id: eventId,
+          lead_nome: nome,
+          lead_email: email,
+          lead_telefone: telefone
+        });
 
         fetch('/api/lead', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ nome, email, telefone }),
-        }).catch(() => {});
+          body: JSON.stringify({ nome, email, telefone, eventId, sourceUrl: window.location.href }),
+        }).catch(() => { });
 
-        try { localStorage.setItem(GATE_KEY, JSON.stringify({ done: true })); } catch (e) {}
+        const gateData = { done: true, nome, email, telefone };
+        try { localStorage.setItem(GATE_KEY, JSON.stringify(gateData)); } catch (e) { }
 
-        const nomeField = form.querySelector('[name="nome_completo"]');
-        if (nomeField && !nomeField.value) nomeField.value = nome;
+        fillLeadData(gateData);
 
         showBriefing();
       });
@@ -1183,6 +1260,10 @@
         for (const [k, v] of fd.entries()) {
           out[k] = (v || '').toString().trim();
         }
+        const lead = getGateData();
+        if (lead && lead.nome && !out.nome_completo) out.nome_completo = lead.nome.trim();
+        if (lead && lead.email && !out.lead_email) out.lead_email = lead.email.trim();
+        if (lead && lead.telefone && !out.lead_telefone) out.lead_telefone = lead.telefone.trim();
         return out;
       }
 
@@ -1273,6 +1354,7 @@
 
       // ====== Boot ======
       loadSaved();
+      fillLeadData(getGateData());
       showStep(currentStep);
     })();
   </script>
