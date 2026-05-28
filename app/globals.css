@@ -182,6 +182,62 @@ em {
   background: linear-gradient(to bottom, var(--color-border), transparent);
 }
 
+/* ─── Briefing viewer prose ────────────────────────────────── */
+
+.prose-custom h2 {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.prose-custom h3 {
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+.prose-custom p {
+  color: var(--color-ink-2);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.prose-custom strong {
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.prose-custom blockquote {
+  padding-left: 1rem;
+  border-left: 2px solid var(--color-accent);
+  color: var(--color-ink-2);
+  font-style: italic;
+  margin: 0.75rem 0;
+  line-height: 1.6;
+}
+
+.prose-custom ul {
+  margin: 0.75rem 0;
+  padding-left: 1.25rem;
+}
+
+.prose-custom li {
+  list-style: disc;
+  color: var(--color-ink-2);
+  margin-bottom: 0.25rem;
+  line-height: 1.6;
+}
+
+.prose-custom hr {
+  margin: 2.5rem 0;
+  border: none;
+  border-top: 1px solid var(--color-border);
+}
+
 /* ─── Scrollbar ────────────────────────────────────────────── */
 
 ::-webkit-scrollbar { width: 4px; }
