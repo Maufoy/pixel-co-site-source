@@ -207,10 +207,51 @@ export async function POST(req: NextRequest) {
   })
 }
 
-export async function GET() {
-  return NextResponse.json({
-    ok: true,
-    service: 'briefing-receiver',
-    method: 'POST application/json to this endpoint',
-  })
+export async function GET(req: NextRequest) {
+  const id = req.nextUrl.searchParams.get('id')
+  const list = req.nextUrl.searchParams.get('list') === 'true'
+
+  if (list) {
+    const { readdir } = await import('fs/promises')
+    try {
+      const files = await readdir(BRIEFINGS_DIR)
+      const briefings = files
+        .filter((f) => f.endsWith('.md'))
+        .map((f) => ({
+          id: f.replace(/\.md$/, ''),
+          file: f,
+          url: `/api/briefing?id=${encodeURIComponent(f.replace(/\.md$/, ''))}`,
+        }))
+        .reverse()
+      return NextResponse.json({ ok: true, briefings })
+    } catch {
+      return NextResponse.json({ ok: false, error: 'read_failed' }, { status: 500 })
+    }
+  }
+
+  if (!id) {
+    return NextResponse.json({
+      ok: true,
+      service: 'briefing-receiver',
+      usage: {
+        list: 'GET /api/briefing?list=true',
+        view: 'GET /api/briefing?id=<briefing-id>',
+        submit: 'POST /api/briefing (application/json)',
+      },
+    })
+  }
+
+  const { readFile } = await import('fs/promises')
+  try {
+    const filepath = join(BRIEFINGS_DIR, `${id}.md`)
+    const content = await readFile(filepath, 'utf8')
+    return new NextResponse(content, {
+      headers: {
+        'Content-Type': 'text/markdown; charset=utf-8',
+        'Content-Disposition': `inline; filename="${id}.md"`,
+      },
+    })
+  } catch {
+    return NextResponse.json({ ok: false, error: 'briefing_not_found' }, { status: 404 })
+  }
 }
