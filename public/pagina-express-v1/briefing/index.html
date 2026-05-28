@@ -1280,17 +1280,6 @@
 
         const eventId = createEventId();
 
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({
-          event: 'lead',
-          event_name: 'Lead',
-          event_id: eventId,
-          meta_event_id: eventId,
-          lead_nome: nome,
-          lead_email: email,
-          lead_telefone: telefone
-        });
-
         fetch('/api/lead', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
