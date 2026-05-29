@@ -18,6 +18,10 @@ const nextConfig = {
         source: '/portfolio-sites/nutri/',
         destination: '/portfolio-sites/nutri/index.html',
       },
+      {
+        source: '/portfolio-sites/escrita-viva/',
+        destination: '/portfolio-sites/escrita-viva/index.html',
+      },
     ]
   },
 }
