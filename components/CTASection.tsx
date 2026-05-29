@@ -4,17 +4,54 @@ import { useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 
+declare global {
+  interface Window {
+    dataLayer: unknown[]
+  }
+}
+
 export default function CTASection() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
   const [loading, setLoading] = useState(false)
   const [sent, setSent] = useState(false)
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     setLoading(true)
-    // Simula envio — em produção, substituir por fetch real
-    setTimeout(() => { setLoading(false); setSent(true) }, 1400)
+
+    const form = e.currentTarget
+    const formData = new FormData(form)
+    const nome = (formData.get('name') as string || '').trim()
+    const email = (formData.get('email') as string || '').trim()
+    const telefone = (formData.get('whatsapp') as string || '').trim()
+
+    // Gera eventID único para dedup browser pixel ↔ CAPI
+    const eventId = crypto.randomUUID()
+
+    // Push pro dataLayer pro GTM ler e disparar fbq('track', 'Lead', {eventID})
+    window.dataLayer = window.dataLayer || []
+    window.dataLayer.push({
+      event: 'leadSubmission',
+      eventID: eventId,
+      leadNome: nome,
+      leadEmail: email,
+      leadTelefone: telefone,
+    })
+
+    // Envia pro CAPI (servidor) com o MESMO eventId
+    try {
+      await fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ eventId, nome, email, telefone }),
+      })
+    } catch {
+      // Non-fatal — GTM pixel já disparou o Lead
+    }
+
+    setLoading(false)
+    setSent(true)
   }
 
   return (
@@ -89,6 +126,7 @@ export default function CTASection() {
                   </label>
                   <input
                     id="name"
+                    name="name"
                     type="text"
                     required
                     className="w-full px-4 py-2.5 rounded-lg bg-white border border-[#E6E5E3] text-[#0A0909] text-sm focus:outline-none focus:border-[#C4962A] transition-colors duration-200"
@@ -102,6 +140,7 @@ export default function CTASection() {
                   </label>
                   <input
                     id="email"
+                    name="email"
                     type="email"
                     required
                     className="w-full px-4 py-2.5 rounded-lg bg-white border border-[#E6E5E3] text-[#0A0909] text-sm focus:outline-none focus:border-[#C4962A] transition-colors duration-200"
@@ -115,6 +154,7 @@ export default function CTASection() {
                   </label>
                   <input
                     id="whatsapp"
+                    name="whatsapp"
                     type="tel"
                     required
                     className="w-full px-4 py-2.5 rounded-lg bg-white border border-[#E6E5E3] text-[#0A0909] text-sm focus:outline-none focus:border-[#C4962A] transition-colors duration-200"
@@ -128,6 +168,7 @@ export default function CTASection() {
                   </label>
                   <textarea
                     id="desafio"
+                    name="desafio"
                     rows={3}
                     className="w-full px-4 py-2.5 rounded-lg bg-white border border-[#E6E5E3] text-[#0A0909] text-sm focus:outline-none focus:border-[#C4962A] transition-colors duration-200 resize-none"
                     placeholder="Ex: Invisto em tráfego mas não sei se está convertendo de verdade."
