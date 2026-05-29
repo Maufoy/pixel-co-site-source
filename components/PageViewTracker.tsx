@@ -20,6 +20,7 @@ export function PageViewTracker() {
       body: JSON.stringify({
         eventId,
         url: window.location.href,
+        pathname,
       }),
       keepalive: true,
     }).catch(() => {

@@ -17,6 +17,7 @@ type LeadEventInput = {
 type PageViewEventInput = {
   eventId: string
   url: string
+  pathname?: string
 }
 
 type MetaUserData = {
@@ -147,6 +148,12 @@ export async function sendMetaPageView(req: NextRequest, input?: PageViewEventIn
     fbc: getCookie(req, '_fbc'),
   }
 
+  // Map pathname to structured content data
+  const pathname = input?.pathname || '/'
+  const isBriefing = pathname.startsWith('/briefing')
+  const contentName = isBriefing ? 'Briefing Express' : 'Pagina Express'
+  const contentCategory = isBriefing ? 'briefing_form' : 'landing_page'
+
   const payload: Record<string, unknown> = {
     data: [
       {
@@ -157,8 +164,8 @@ export async function sendMetaPageView(req: NextRequest, input?: PageViewEventIn
         event_source_url: input?.url || req.headers.get('referer') || 'https://pixelco.com.br',
         user_data: userData,
         custom_data: {
-          content_name: 'Pagina Express',
-          content_category: 'landing_page',
+          content_name: contentName,
+          content_category: contentCategory,
         },
       },
     ],
