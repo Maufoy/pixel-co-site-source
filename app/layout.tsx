@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
+import { Suspense } from 'react'
 import './globals.css'
+import { PageViewTracker } from '@/components/PageViewTracker'
 
 export const metadata: Metadata = {
   title: 'Pixel.Co — Inteligência Digital',
@@ -19,6 +21,9 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className="bg-[#F8F7F6] text-[#0A0909] antialiased">
+        <Suspense fallback={null}>
+          <PageViewTracker />
+        </Suspense>
         {children}
       </body>
     </html>

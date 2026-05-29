@@ -14,6 +14,11 @@ type LeadEventInput = {
   sourceUrl?: string
 }
 
+type PageViewEventInput = {
+  eventId: string
+  url: string
+}
+
 type MetaUserData = {
   em?: string[]
   ph?: string[]
@@ -125,6 +130,61 @@ export async function sendMetaLeadEvent(req: NextRequest, input: LeadEventInput)
     return { sent: true, status: res.status, result }
   } catch (err) {
     console.warn('[meta-capi] Lead event failed', err)
+    return { sent: false, error: err instanceof Error ? err.message : String(err) }
+  }
+}
+
+export async function sendMetaPageView(req: NextRequest, input?: PageViewEventInput) {
+  if (!META_PIXEL_ID || !META_ACCESS_TOKEN) {
+    console.warn('[meta-capi] META_PIXEL_ID or META_ACCESS_TOKEN not set — skipping PageView event')
+    return { sent: false, reason: 'missing_config' }
+  }
+
+  const userData: MetaUserData = {
+    client_ip_address: getClientIp(req),
+    client_user_agent: req.headers.get('user-agent') || undefined,
+    fbp: getCookie(req, '_fbp'),
+    fbc: getCookie(req, '_fbc'),
+  }
+
+  const payload: Record<string, unknown> = {
+    data: [
+      {
+        event_name: 'PageView',
+        event_time: Math.floor(Date.now() / 1000),
+        event_id: input?.eventId || crypto.randomUUID(),
+        action_source: 'website',
+        event_source_url: input?.url || req.headers.get('referer') || 'https://pixelco.com.br',
+        user_data: userData,
+        custom_data: {
+          content_name: 'Pagina Express',
+          content_category: 'landing_page',
+        },
+      },
+    ],
+  }
+
+  if (META_TEST_EVENT_CODE) payload.test_event_code = META_TEST_EVENT_CODE
+
+  const url = new URL(`https://graph.facebook.com/${META_GRAPH_VERSION}/${META_PIXEL_ID}/events`)
+  url.searchParams.set('access_token', META_ACCESS_TOKEN)
+
+  try {
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    })
+    const result = (await res.json().catch(() => ({}))) as Record<string, unknown>
+
+    if (!res.ok) {
+      console.warn('[meta-capi] PageView event rejected', { status: res.status, result })
+      return { sent: false, status: res.status, result }
+    }
+
+    return { sent: true, status: res.status, result }
+  } catch (err) {
+    console.warn('[meta-capi] PageView event failed', err)
     return { sent: false, error: err instanceof Error ? err.message : String(err) }
   }
 }
