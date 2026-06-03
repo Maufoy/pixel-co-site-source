@@ -104,6 +104,10 @@ function renderQuizPlaybook(b: Briefing, meta: { id: string; recebido: string })
   const corPref = answerOrDash(b.cor_preferida);
   const extra = answerOrDash(b.extra);
   const portfolioIdx = b.portfolio_escolhido as string | undefined;
+  const detalheSituacao = answerOrDash(b.detalhe_situacao);
+  const detalheProfissao = answerOrDash(b.detalhe_profissao);
+  const detalheDesafio = answerOrDash(b.detalhe_desafio);
+  const detalheDominio = answerOrDash(b.detalhe_dominio);
 
   return `# Briefing de produção — ${nome}
 > ${profissao} · Recebido em ${meta.recebido}
@@ -118,13 +122,13 @@ function renderQuizPlaybook(b: Briefing, meta: { id: string; recebido: string })
 | WhatsApp | ${tel} |
 | E-mail | ${email} |
 | Como quer aparecer na página | ${nomePagina} |
-| Profissão | ${profissao} |
+| Profissão | ${profissao}${detalheProfissao !== '—' ? ` — ${detalheProfissao}` : ''} |
 
 ## 📍 Contexto
 
-**Situação atual:** ${situacao}
+**Situação atual:** ${situacao}${detalheSituacao !== '—' ? `\n\n**Detalhe:** ${detalheSituacao}` : ''}
 
-**Maior desafio:** ${desafio}
+**Maior desafio:** ${desafio}${detalheDesafio !== '—' ? `\n\n**Detalhe:** ${detalheDesafio}` : ''}
 
 ## 🧠 Cliente ideal
 
@@ -140,7 +144,7 @@ ${oferta !== '—' ? `> ${oferta.replace(/\n/g, '\n> ')}` : '—'}
 
 **Logo:** ${logoStatus}
 
-**Domínio:** ${dominioStatus}
+**Domínio:** ${dominioStatus}${detalheDominio !== '—' ? ` (${detalheDominio})` : ''}
 
 ${portfolioIdx ? `**Página de referência escolhida:** #${portfolioIdx} no portfolio` : ''}
 
