@@ -183,7 +183,7 @@
     .options {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
       flex: 1;
     }
     .option {
@@ -191,9 +191,9 @@
       align-items: center;
       gap: 16px;
       width: 100%;
-      padding: 18px 20px;
+      padding: 20px 22px;
       border-radius: var(--radius);
-      border: 1.5px solid var(--border);
+      border: 2px solid rgba(255,255,255,0.06);
       background: rgba(255,255,255,0.02);
       backdrop-filter: blur(4px);
       cursor: pointer;
@@ -235,43 +235,47 @@
       transform: scale(1.08);
     }
     .option .icon-box .ico {
-      font-size: 26px;
+      font-size: 28px;
       color: var(--green-bright);
     }
     .option .opt-body { flex: 1; min-width: 0; }
     .option .opt-title {
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 600;
       color: var(--text);
       line-height: 1.25;
     }
     .option .opt-sub {
-      font-size: 12px;
+      font-size: 13px;
       color: var(--text-soft);
       line-height: 1.4;
-      margin-top: 2px;
+      margin-top: 3px;
     }
     .option .dot {
-      width: 22px;
-      height: 22px;
+      width: 24px;
+      height: 24px;
       border-radius: 50%;
-      border: 2px solid var(--border);
+      border: 2px solid rgba(255,255,255,0.1);
       flex-shrink: 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.25s;
+      transition: border-color 0.3s, background 0.3s;
     }
     .option.selected .dot {
       border-color: var(--green-bright);
       background: var(--green-bright);
     }
-    .option.selected .dot::after {
-      content: '';
-      width: 8px;
-      height: 8px;
+    .option .dot-inner {
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
-      background: white;
+      background: #fff;
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+    .option.selected .dot-inner {
+      opacity: 1;
     }
     .option .badge {
       position: absolute;
@@ -529,8 +533,8 @@
       .quiz-wrap { padding: 0 24px 16px; }
       .q-card { padding: 28px 26px; }
       .option { min-height: 90px; padding: 22px 26px; gap: 20px; }
-      .option .opt-title { font-size: 16px; }
-      .option .opt-sub { font-size: 13px; }
+      .option .opt-title { font-size: 18px; }
+      .option .opt-sub { font-size: 14px; }
       .btn { font-size: 16px; }
     }
     @media (min-width: 640px) {
@@ -578,7 +582,7 @@
                 <span class="opt-sub">Nunca criei uma página profissional para meu negócio</span>
               </span>
             </span>
-            <span class="dot"></span>
+            <span class="dot"><span class="dot-inner"></span></span>
           </button>
           <button class="option" data-value="linktree">
             <span class="opt-left">
@@ -588,7 +592,7 @@
                 <span class="opt-sub">Uso redes como vitrine, mas quero algo mais profissional</span>
               </span>
             </span>
-            <span class="dot"></span>
+            <span class="dot"><span class="dot-inner"></span></span>
           </button>
           <button class="option" data-value="sim_mas" data-detail="d-q1-sim-mas">
             <span class="opt-left">
@@ -598,7 +602,7 @@
                 <span class="opt-sub">Minha página atual não representa bem meu trabalho</span>
               </span>
             </span>
-            <span class="dot"></span>
+            <span class="dot"><span class="dot-inner"></span></span>
           </button>
           <div class="detail-field" id="d-q1-sim-mas">
             <input type="text" class="input" placeholder="O que você não gosta na página atual? Ex: design antigo, sem CTA..." autocomplete="off">
@@ -611,7 +615,7 @@
                 <span class="opt-sub">O projeto ficou parado ou perdi o domínio</span>
               </span>
             </span>
-            <span class="dot"></span>
+            <span class="dot"><span class="dot-inner"></span></span>
           </button>
           <div class="detail-field" id="d-q1-saiu-ar">
             <input type="text" class="input" placeholder="O que aconteceu? Ex: domínio venceu, freela sumiu..." autocomplete="off">
@@ -637,7 +641,7 @@
                 <span class="opt-sub">Acolhimento e saúde mental</span>
               </span>
             </span>
-            <span class="dot"></span>
+            <span class="dot"><span class="dot-inner"></span></span>
           </button>
           <button class="option" data-value="advocacia">
             <span class="opt-left">
@@ -647,7 +651,7 @@
                 <span class="opt-sub">Direito e advocacia</span>
               </span>
             </span>
-            <span class="dot"></span>
+            <span class="dot"><span class="dot-inner"></span></span>
           </button>
           <button class="option" data-value="nutricao">
             <span class="opt-left">
@@ -657,7 +661,7 @@
                 <span class="opt-sub">Nutrição e bem-estar</span>
               </span>
             </span>
-            <span class="dot"></span>
+            <span class="dot"><span class="dot-inner"></span></span>
           </button>
           <button class="option" data-value="arquitetura">
             <span class="opt-left">
@@ -667,7 +671,7 @@
                 <span class="opt-sub">Espaços e projetos</span>
               </span>
             </span>
-            <span class="dot"></span>
+            <span class="dot"><span class="dot-inner"></span></span>
           </button>
           <button class="option" data-value="consultoria">
             <span class="opt-left">
@@ -677,7 +681,7 @@
                 <span class="opt-sub">Mentoria e desenvolvimento</span>
               </span>
             </span>
-            <span class="dot"></span>
+            <span class="dot"><span class="dot-inner"></span></span>
           </button>
           <button class="option" data-value="outro" data-detail="d-q2-outro">
             <span class="opt-left">
@@ -687,7 +691,7 @@
                 <span class="opt-sub">Outra área de atuação</span>
               </span>
             </span>
-            <span class="dot"></span>
+            <span class="dot"><span class="dot-inner"></span></span>
           </button>
           <div class="detail-field" id="d-q2-outro">
             <input type="text" class="input" placeholder="Qual sua profissão? Ex: Fisioterapeuta, Corretor..." autocomplete="off">
@@ -714,62 +718,52 @@
       </div>
     </div>
 
-    <!-- STEP 4: Desafio -->
-    <div class="step" data-step="4" data-name="Desafio">
-      <div class="q-card">
-        <div class="q-number">Pergunta 3</div>
-        <h2 class="q-title">Qual seu maior <em>desafio</em> hoje?</h2>
-        <div class="options" id="q4-opts">
-                  <button class="option" data-value="clientes">
-                    <span class="opt-left">
-                      <span class="icon-box"><span class="ico">trending_up</span></span>
-                      <span class="opt-body">
-                        <span class="opt-title">Não consigo atrair clientes novos</span>
-                        <span class="opt-sub">Meu marketing digital não gera resultados</span>
-                      </span>
-                    </span>
-                    <span class="dot"></span>
-                  </button>
-                  <button class="option" data-value="tempo">
-                    <span class="opt-left">
-                      <span class="icon-box"><span class="ico">schedule</span></span>
-                      <span class="opt-body">
-                        <span class="opt-title">Não tenho tempo de criar uma página</span>
-                        <span class="opt-sub">Minha agenda não permite dedicar horas ao site</span>
-                      </span>
-                    </span>
-                    <span class="dot"></span>
-                  </button>
-                  <button class="option" data-value="tentei">
-                    <span class="opt-left">
-                      <span class="icon-box"><span class="ico">build</span></span>
-                      <span class="opt-body">
-                        <span class="opt-title">Já tentei fazer e desisti / ficou ruim</span>
-                        <span class="opt-sub">O resultado não ficou profissional</span>
-                      </span>
-                    </span>
-                    <span class="dot"></span>
-                  </button>
-                  <button class="option" data-value="outro_desafio" data-detail="d-q4-outro">
-                    <span class="opt-left">
-                      <span class="icon-box"><span class="ico">chat</span></span>
-                      <span class="opt-body">
-                        <span class="opt-title">Outro desafio</span>
-                        <span class="opt-sub">Tenho um desafio diferente</span>
-                      </span>
-                    </span>
-                    <span class="dot"></span>
-                  </button>
-                  <div class="detail-field" id="d-q4-outro">
-                    <input type="text" class="input" placeholder="Qual seu maior desafio hoje?" autocomplete="off">
-                  </div>
-                </div>
-      </div>
-      <div class="btn-row">
-        <button class="btn btn-ghost" onclick="goStep(3)">← Voltar</button>
-        <button class="btn btn-solid" id="btn-next-4" disabled>Quero minha página →</button>
-      </div>
-    </div>
+    <!-- STEP 4: Prazo -->
+        <div class="step" data-step="4" data-name="Prazo">
+          <div class="q-card">
+            <div class="q-number">Pergunta 3</div>
+            <h2 class="q-title">Em quanto tempo você precisa da sua <em>página pronta</em>?</h2>
+            <p class="q-sub">Isso nos ajuda a alocar a equipe de desenvolvimento e design correta para o seu projeto.</p>
+            <div class="options" id="q4-opts">
+              <!-- Urgente (destaque) -->
+              <button class="option" data-value="urgente">
+                <span class="badge"><span class="ico">auto_awesome</span> Mais Popular</span>
+                <span class="opt-left">
+                  <span class="icon-box"><span class="ico">speed</span></span>
+                  <span class="opt-body">
+                    <span class="opt-title">Urgente</span>
+                    <span class="opt-sub">Pronta em até 3 dias úteis</span>
+                  </span>
+                </span>
+                <span class="dot"><span class="dot-inner"></span></span>
+              </button>
+              <button class="option" data-value="tenho_tempo">
+                <span class="opt-left">
+                  <span class="icon-box"><span class="ico">calendar_month</span></span>
+                  <span class="opt-body">
+                    <span class="opt-title">Tenho tempo</span>
+                    <span class="opt-sub">Entrega entre 7 a 15 dias</span>
+                  </span>
+                </span>
+                <span class="dot"><span class="dot-inner"></span></span>
+              </button>
+              <button class="option" data-value="planejando">
+                <span class="opt-left">
+                  <span class="icon-box"><span class="ico">architecture</span></span>
+                  <span class="opt-body">
+                    <span class="opt-title">Ainda estou planejando</span>
+                    <span class="opt-sub">Sem prazo definido no momento</span>
+                  </span>
+                </span>
+                <span class="dot"><span class="dot-inner"></span></span>
+              </button>
+            </div>
+          </div>
+          <div class="btn-row">
+            <button class="btn btn-ghost" onclick="goStep(3)">← Voltar</button>
+            <button class="btn btn-solid" id="btn-next-4" disabled>Continuar →</button>
+          </div>
+        </div>
 
     <!-- STEP 5: Lead capture -->
     <div class="step" data-step="5" data-name="Seus dados">
@@ -864,7 +858,7 @@
                   <span class="opt-sub">Arquivo em alta resolução, pronta pra usar</span>
                 </span>
               </span>
-              <span class="dot"></span>
+              <span class="dot"><span class="dot-inner"></span></span>
             </button>
             <button class="option" data-value="sim_simples">
               <span class="opt-left">
@@ -874,7 +868,7 @@
                   <span class="opt-sub">Precisa de refinamento ou vetorização</span>
                 </span>
               </span>
-              <span class="dot"></span>
+              <span class="dot"><span class="dot-inner"></span></span>
             </button>
             <button class="option" data-value="nao_logo">
               <span class="opt-left">
@@ -884,7 +878,7 @@
                   <span class="opt-sub">Preciso de ajuda com identidade visual</span>
                 </span>
               </span>
-              <span class="dot"></span>
+              <span class="dot"><span class="dot-inner"></span></span>
             </button>
           </div>
         </div>
@@ -909,7 +903,7 @@
                 <span class="opt-sub">Já comprei, só preciso apontar</span>
               </span>
             </span>
-            <span class="dot"></span>
+            <span class="dot"><span class="dot-inner"></span></span>
           </button>
           <div class="detail-field" id="d-q10-dominio">
             <input type="text" class="input" placeholder="Qual seu domínio? Ex: meusite.com.br" autocomplete="url">
@@ -922,7 +916,7 @@
                 <span class="opt-sub">Ainda não tenho domínio registrado</span>
               </span>
             </span>
-            <span class="dot"></span>
+            <span class="dot"><span class="dot-inner"></span></span>
           </button>
           <button class="option" data-value="nao_sei">
             <span class="opt-left">
@@ -932,7 +926,7 @@
                 <span class="opt-sub">Pode me orientar sobre domínios</span>
               </span>
             </span>
-            <span class="dot"></span>
+            <span class="dot"><span class="dot-inner"></span></span>
           </button>
         </div>
       </div>
@@ -1256,7 +1250,6 @@
           oferta: ($('b-oferta').value || '').trim(),
           detalhe_situacao: (document.getElementById('d-q1-sim-mas')?.querySelector('.input')?.value || document.getElementById('d-q1-saiu-ar')?.querySelector('.input')?.value || '').trim(),
           detalhe_profissao: (document.getElementById('d-q2-outro')?.querySelector('.input')?.value || '').trim(),
-          detalhe_desafio: (document.getElementById('d-q4-outro')?.querySelector('.input')?.value || '').trim(),
           detalhe_dominio: (document.getElementById('d-q10-dominio')?.querySelector('.input')?.value || '').trim(),
           cor_preferida: ($('b-cor').value || '').trim(),
           logo: state.respostas.q9 || '',
