@@ -19,6 +19,10 @@ const nextConfig = {
         destination: '/portfolio-sites/nutri/index.html',
       },
       {
+        source: '/pagina-express-v2/',
+        destination: '/pagina-express-v2/index.html',
+      },
+      {
         source: '/portfolio-sites/escrita-viva/',
         destination: '/portfolio-sites/escrita-viva/index.html',
       },

@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-MVWRMS98');</script>
+  <!-- End Google Tag Manager -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pixel.Co — Qual página combina com você?</title>
+  <meta name="description" content="Responda 4 perguntas rápidas e veja páginas profissionais reais feitas para a sua área. A partir de R$499.">
+  <meta property="og:title" content="Pixel.Co — Qual página combina com você?">
+  <meta property="og:description" content="Veja páginas reais feitas para profissionais como você. Em 3 dias úteis, a sua no ar.">
+  <meta property="og:url" content="https://pixelco.com.br/pagina-express-v2/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F6F7F5;
+      --bg-card: #FFFFFF;
+      --bg-accent: #E8F0EA;
+      --text: #1A1A1A;
+      --text-soft: #6B6B6B;
+      --green-deep: #002D25;
+      --green-mid: #003A30;
+      --green-bright: #025547;
+      --accent-1: #C1D66D;
+      --accent-2: #B49DD0;
+      --border: #E2E4E0;
+      --radius: 14px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Sora', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    /* ====== Header ====== */
+    .header {
+      width: 100%;
+      max-width: 900px;
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+    .logo-mark {
+      width: 28px; height: 28px;
+      background: var(--green-deep);
+      border-radius: 7px;
+    }
+    .logo-text {
+      font-weight: 600; font-size: 17px;
+      color: var(--text); letter-spacing: -0.02em;
+    }
+    .logo-text .dot { color: var(--accent-1); }
+    .header-small {
+      font-size: 11px; color: var(--text-soft);
+      font-family: 'IBM Plex Mono', monospace;
+      text-transform: uppercase; letter-spacing: 0.12em;
+    }
+    /* ====== Main container ====== */
+    .quiz-wrap {
+      width: 100%;
+      max-width: 780px;
+      padding: 0 24px 60px;
+    }
+    /* ====== Progress bar ====== */
+    .progress-wrap {
+      margin-bottom: 32px;
+    }
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--text-soft);
+      margin-bottom: 8px;
+      font-family: 'IBM Plex Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .progress-bar {
+      height: 4px;
+      background: var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--green-deep), var(--green-bright));
+      border-radius: 2px;
+      transition: width 0.5s cubic-bezier(.2,.8,.2,1);
+      width: 0%;
+    }
+    /* ====== Steps ====== */
+    .step {
+      display: none;
+      animation: stepIn 0.45s cubic-bezier(.2,.8,.2,1);
+    }
+    .step.active { display: block; }
+    @keyframes stepIn {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    /* ====== Card / Question ====== */
+    .q-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 36px 32px;
+      margin-bottom: 20px;
+    }
+    .q-number {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent-2);
+      margin-bottom: 8px;
+    }
+    .q-title {
+      font-size: clamp(22px, 4vw, 30px);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 24px;
+      letter-spacing: -0.02em;
+    }
+    .q-title em {
+      font-style: italic;
+      color: var(--green-bright);
+    }
+    .q-sub {
+      font-size: 15px;
+      color: var(--text-soft);
+      margin-bottom: 28px;
+      line-height: 1.5;
+    }
+    /* ====== Options ====== */
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .option {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 18px;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: var(--bg-card);
+      font-size: 15px;
+      font-weight: 500;
+      font-family: 'Sora', sans-serif;
+      color: var(--text);
+      text-align: left;
+      width: 100%;
+    }
+    .option:hover {
+      border-color: var(--green-bright);
+      background: var(--bg-accent);
+      transform: translateY(-1px);
+    }
+    .option.selected {
+      border-color: var(--green-bright);
+      background: #F0F9F0;
+    }
+    .option .dot {
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    .option.selected .dot {
+      border-color: var(--green-bright);
+      background: var(--green-bright);
+    }
+    .option.selected .dot::after {
+      content: '';
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: white;
+    }
+    .option .opt-icon {
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+    /* ====== Portfolio grid ====== */
+    .port-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+    .port-card {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      border: 2px solid var(--border);
+      transition: all 0.25s;
+      aspect-ratio: 3/4;
+      background: var(--bg-accent);
+    }
+    .port-card:hover {
+      border-color: var(--accent-2);
+      transform: translateY(-2px);
+    }
+    .port-card.selected {
+      border-color: var(--green-bright);
+      box-shadow: 0 0 0 3px rgba(0,45,37,0.15);
+    }
+    .port-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .port-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 10px 12px;
+      background: linear-gradient(transparent, rgba(0,0,0,0.75));
+      color: white;
+      font-size: 12px;
+      font-weight: 500;
+    }
+    .port-label small {
+      display: block;
+      opacity: 0.7;
+      font-weight: 300;
+      font-size: 10px;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+    /* ====== Lead form ====== */
+    .field {
+      margin-bottom: 16px;
+    }
+    .field-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+    .field .input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      font-size: 15px;
+      font-family: 'Sora', sans-serif;
+      color: var(--text);
+      background: var(--bg-card);
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    .field .input:focus {
+      border-color: var(--green-bright);
+    }
+    .field .input.error {
+      border-color: #E06060;
+    }
+    /* ====== Buttons ====== */
+    .btn-row {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 14px 28px;
+      border-radius: 999px;
+      font-family: 'Sora', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+    .btn-solid {
+      background: linear-gradient(135deg, var(--green-deep) 0%, var(--green-bright) 100%);
+      color: white;
+    }
+    .btn-solid:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,45,37,0.2);
+    }
+    .btn-solid:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+    .btn-ghost:hover {
+      border-color: var(--text-soft);
+    }
+    /* ====== Final screen ====== */
+    .final {
+      text-align: center;
+      padding: 40px 24px;
+    }
+    .final h2 {
+      font-size: clamp(28px, 5vw, 38px);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+    }
+    .final h2 em { color: var(--green-bright); font-style: italic; }
+    .final p {
+      font-size: 16px;
+      color: var(--text-soft);
+      max-width: 480px;
+      margin: 0 auto 28px;
+      line-height: 1.5;
+    }
+    .final .small {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10.5px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.3);
+      margin-top: 20px;
+    }
+    .final .checkmark {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: var(--accent-1);
+      color: var(--green-deep);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 28px;
+    }
+    /* ====== Responsive ====== */
+    @media (max-width: 600px) {
+      .header { padding: 14px 18px; }
+      .quiz-wrap { padding: 0 16px 40px; }
+      .q-card { padding: 24px 18px; }
+      .port-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .btn-row { flex-direction: column; }
+      .btn { width: 100%; justify-content: center; }
+    }
+    /* ====== Brag strip ====== */
+    .brag {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 20px;
+      padding: 14px 0;
+      border-top: 1px solid var(--border);
+    }
+    .brag span {
+      font-size: 12px;
+      color: var(--text-soft);
+      font-family: 'IBM Plex Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .brag .chk { color: var(--green-bright); }
+  </style>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVWRMS98"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <header class="header">
+    <a href="/pagina-express-v2/" class="logo">
+      <div class="logo-mark"></div>
+      <span class="logo-text">Pixel<span class="dot">.</span>Co</span>
+    </a>
+    <span class="header-small">Página Express</span>
+  </header>
+
+  <div class="quiz-wrap" id="app">
+
+    <!-- Progress -->
+    <div class="progress-wrap" id="progress-wrap">
+      <div class="progress-meta">
+        <span><span id="current-step">1</span> de <span id="total-steps">9</span></span>
+        <span id="step-name">Começo</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+    </div>
+
+    <!-- STEP 1: Já tem página? -->
+    <div class="step active" data-step="1" data-name="Página atual">
+      <div class="q-card">
+        <div class="q-number">Pergunta 1</div>
+        <h2 class="q-title">Você já tem uma <em>página profissional</em>?</h2>
+        <div class="options" id="q1-opts">
+          <button class="option" data-value="nao_nunca">
+            <span class="dot"></span>
+            <span>Não, nunca tive</span>
+          </button>
+          <button class="option" data-value="linktree">
+            <span class="dot"></span>
+            <span>Tenho um Linktree / Instagram só</span>
+          </button>
+          <button class="option" data-value="sim_mas">
+            <span class="dot"></span>
+            <span>Tenho, mas não gosto / está feia</span>
+          </button>
+          <button class="option" data-value="saiu_do_ar">
+            <span class="dot"></span>
+            <span>Já tive mas saiu do ar / nunca finalizei</span>
+          </button>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-solid" id="btn-next-1" disabled>Próximo →</button>
+      </div>
+    </div>
+
+    <!-- STEP 2: Profissão -->
+    <div class="step" data-step="2" data-name="Profissão">
+      <div class="q-card">
+        <div class="q-number">Pergunta 2</div>
+        <h2 class="q-title">Qual é a sua <em>profissão</em>?</h2>
+        <div class="options" id="q2-opts">
+          <button class="option" data-value="psicologia">
+            <span class="dot"></span>
+            <span>Psicóloga(o)</span>
+          </button>
+          <button class="option" data-value="advocacia">
+            <span class="dot"></span>
+            <span>Advogada(o)</span>
+          </button>
+          <button class="option" data-value="nutricao">
+            <span class="dot"></span>
+            <span>Nutricionista</span>
+          </button>
+          <button class="option" data-value="arquitetura">
+            <span class="dot"></span>
+            <span>Arquiteta(o) / Designer de interiores</span>
+          </button>
+          <button class="option" data-value="consultoria">
+            <span class="dot"></span>
+            <span>Consultora(o) / Coach</span>
+          </button>
+          <button class="option" data-value="outro">
+            <span class="dot"></span>
+            <span>Outra profissão</span>
+          </button>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-ghost" onclick="goStep(1)">← Voltar</button>
+        <button class="btn btn-solid" id="btn-next-2" disabled>Ver páginas →</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: Portfolio -->
+    <div class="step" data-step="3" data-name="Inspiração">
+      <div class="q-card">
+        <div class="q-number">Inspire-se</div>
+        <h2 class="q-title">Veja páginas que fizemos <em>para profissionais como você</em></h2>
+        <p class="q-sub">Toque na que mais combina com o que você imagina pra sua.</p>
+        <div class="port-grid" id="port-grid"></div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-ghost" onclick="goStep(2)">← Voltar</button>
+        <button class="btn btn-solid" id="btn-next-3" disabled>Escolhi essa! →</button>
+      </div>
+    </div>
+
+    <!-- STEP 4: Desafio -->
+    <div class="step" data-step="4" data-name="Desafio">
+      <div class="q-card">
+        <div class="q-number">Pergunta 3</div>
+        <h2 class="q-title">Qual seu maior <em>desafio</em> hoje?</h2>
+        <div class="options" id="q4-opts">
+          <button class="option" data-value="clientes">
+            <span class="dot"></span>
+            <span>Não consigo atrair clientes novos</span>
+          </button>
+          <button class="option" data-value="tempo">
+            <span class="dot"></span>
+            <span>Não tenho tempo de criar uma página</span>
+          </button>
+          <button class="option" data-value="tentei">
+            <span class="dot"></span>
+            <span>Já tentei fazer e desisti / ficou ruim</span>
+          </button>
+          <button class="option" data-value="outro_desafio">
+            <span class="dot"></span>
+            <span>Outro desafio</span>
+          </button>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-ghost" onclick="goStep(3)">← Voltar</button>
+        <button class="btn btn-solid" id="btn-next-4" disabled>Quero minha página →</button>
+      </div>
+    </div>
+
+    <!-- STEP 5: Lead capture -->
+    <div class="step" data-step="5" data-name="Seus dados">
+      <div class="q-card">
+        <div class="q-number">Quase lá</div>
+        <h2 class="q-title">Pronto! Vamos preparar <em>sua página personalizada</em></h2>
+        <p class="q-sub">Só precisamos dos seus dados pra começar:</p>
+        <div class="field">
+          <label class="field-label">Qual seu nome?</label>
+          <input type="text" class="input" id="lead-nome" placeholder="Seu nome completo" autocomplete="name">
+        </div>
+        <div class="field">
+          <label class="field-label">Qual seu WhatsApp?</label>
+          <input type="tel" class="input" id="lead-tel" placeholder="(11) 99999-9999" autocomplete="tel">
+        </div>
+        <div class="field">
+          <label class="field-label">E-mail (opcional)</label>
+          <input type="email" class="input" id="lead-email" placeholder="seu@email.com" autocomplete="email">
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-ghost" onclick="goStep(4)">← Voltar</button>
+        <button class="btn btn-solid" id="btn-next-5" disabled>Continuar →</button>
+      </div>
+    </div>
+
+    <!-- STEPS 6-8: Briefing leve -->
+    <!-- STEP 6: Nome na página -->
+    <div class="step" data-step="6" data-name="Briefing">
+      <div class="q-card">
+        <div class="q-number">Quase lá • 1 de 3</div>
+        <h2 class="q-title">Como quer ser chamado(a) <em>na sua página</em>?</h2>
+        <p class="q-sub">Ex: "Maria", "Dra. Maria Silva", "Estúdio Marina".<br>Se deixar vazio, usamos seu nome.</p>
+        <div class="field">
+          <input type="text" class="input" id="b-nome-pagina" placeholder="Como aparece na página">
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-ghost" onclick="goStep(5)">← Voltar</button>
+        <button class="btn btn-solid" onclick="goStep(7)">Próximo →</button>
+      </div>
+    </div>
+
+    <!-- STEP 7: Cor / estilo -->
+    <div class="step" data-step="7" data-name="Briefing">
+      <div class="q-card">
+        <div class="q-number">Quase lá • 2 de 3</div>
+        <h2 class="q-title"><em>Cores e logo</em> — o básico</h2>
+        <div class="field" style="margin-bottom:20px">
+          <label class="field-label">Tem uma cor ou paleta preferida?</label>
+          <input type="text" class="input" id="b-cor" placeholder="Ex: azul marinho e dourado, verde e branco...">
+        </div>
+        <div class="field">
+          <label class="field-label">Já tem logo?</label>
+          <div class="options" id="q7-opts">
+            <button class="option" data-value="sim_logo">
+              <span class="dot"></span>
+              <span>Sim, tenho logo em boa qualidade</span>
+            </button>
+            <button class="option" data-value="sim_simples">
+              <span class="dot"></span>
+              <span>Tenho uma logo simples / print</span>
+            </button>
+            <button class="option" data-value="nao_logo">
+              <span class="dot"></span>
+              <span>Ainda não tenho logo</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-ghost" onclick="goStep(6)">← Voltar</button>
+        <button class="btn btn-solid" id="btn-next-7" disabled>Próximo →</button>
+      </div>
+    </div>
+
+    <!-- STEP 8: Domínio -->
+    <div class="step" data-step="8" data-name="Briefing">
+      <div class="q-card">
+        <div class="q-number">Quase lá • 3 de 3</div>
+        <h2 class="q-title">Já tem <em>domínio</em>?</h2>
+        <div class="options" id="q8-opts">
+          <button class="option" data-value="ja_tenho">
+            <span class="dot"></span>
+            <span>Já tenho domínio</span>
+          </button>
+          <button class="option" data-value="preciso">
+            <span class="dot"></span>
+            <span>Preciso registrar um</span>
+          </button>
+          <button class="option" data-value="nao_sei">
+            <span class="dot"></span>
+            <span>Não sei / me ajuda nessa parte</span>
+          </button>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-ghost" onclick="goStep(7)">← Voltar</button>
+        <button class="btn btn-solid" id="btn-next-8" disabled>Próximo →</button>
+      </div>
+    </div>
+
+    <!-- STEP 9: Extra + Submit -->
+    <div class="step" data-step="9" data-name="Finalizar">
+      <div class="q-card">
+        <div class="q-number">Pra fechar</div>
+        <h2 class="q-title">Algo mais que queira <em>contar</em>?</h2>
+        <p class="q-sub">Espaço livre. Se quiser, conta mais sobre seu negócio, seu público, ou o que espera da página.</p>
+        <div class="field">
+          <textarea class="input" id="b-extra" style="min-height:120px;resize:vertical;font-family:'Sora',sans-serif" placeholder="Ex: Atendo presencial e online, meu diferencial é tal..."></textarea>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-ghost" onclick="goStep(8)">← Voltar</button>
+        <button class="btn btn-solid" id="btn-submit">Enviar e receber proposta</button>
+      </div>
+    </div>
+
+    <!-- SUCCESS -->
+    <div class="step" data-step="done" id="step-done">
+      <div class="final">
+        <div class="checkmark">✓</div>
+        <h2>Briefing <em>recebido!</em> 🎉</h2>
+        <p>A gente já tá com tudo aqui. Em até 1h útil você recebe no WhatsApp a confirmação de início e o link de preview no fim do dia 2.</p>
+        <div class="small">Pode fechar essa página · Nada se perde</div>
+        <div class="brag">
+          <span><span class="chk">✓</span> 3 dias úteis</span>
+          <span><span class="chk">✓</span> 3 rodadas de ajuste</span>
+          <span><span class="chk">✓</span> Publicada no ar</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (() => {
+      'use strict';
+
+      // ====== STATE ======
+      const state = {
+        passo: 1,         // pergunta atual: 1-9, depois 'done'
+        respostas: {},    // { q1: 'nao_nunca', q2: 'psicologia', ... }
+        lead: {},         // { nome, telefone, email }
+        selectedPortfolio: null,
+      };
+
+      const TOTAL = 9;
+
+      // ====== DOM refs ======
+      const $ = (id) => document.getElementById(id);
+      const steps = document.querySelectorAll('.step');
+      const progressFill = $('progress-fill');
+      const currentStepEl = $('current-step');
+      const totalStepsEl = $('total-steps');
+      const stepNameEl = $('step-name');
+      const progressWrap = $('progress-wrap');
+
+      totalStepsEl.textContent = TOTAL;
+
+      // ====== Portfolio data ======
+      const BASE = '/pagina-express-v1/portfolio';
+      const portfolioMap = {
+        psicologia: [
+          { img: `${BASE}/02-psicologa.webp`, label: 'Psicóloga clínica', sub: 'nicolegaggiola.com.br' },
+          { img: `${BASE}/04-erica.webp`, label: 'Erica Dourado', sub: 'ericadourado.com.br' },
+        ],
+        advocacia: [
+          { img: `${BASE}/01-advogado.webp`, label: 'Advogado criminalista', sub: 'vitormancini.adv.br' },
+          { img: `${BASE}/06-instituto.webp`, label: 'Instituto', sub: 'institutoibrasil.org' },
+        ],
+        nutricao: [
+          { img: `${BASE}/05-nutricionista.webp`, label: 'Nutricionista', sub: 'raphaelnutri.com' },
+          { img: `${BASE}/02-psicologa.webp`, label: 'Referência clean', sub: 'nicolegaggiola.com.br' },
+        ],
+        arquitetura: [
+          { img: `${BASE}/03-mafua.webp`, label: 'Arquitetura de interiores', sub: 'mafuaarquitetura.com.br' },
+          { img: `${BASE}/06-instituto.webp`, label: 'Institucional', sub: 'institutoibrasil.org' },
+        ],
+        consultoria: [
+          { img: `${BASE}/04-erica.webp`, label: 'Erica Dourado', sub: 'ericadourado.com.br' },
+          { img: `${BASE}/03-mafua.webp`, label: 'Portfólio profissional', sub: 'mafuaarquitetura.com.br' },
+        ],
+        outro: [
+          { img: `${BASE}/06-instituto.webp`, label: 'Institucional versátil', sub: 'institutoibrasil.org' },
+          { img: `${BASE}/01-advogado.webp`, label: 'Página de autoridade', sub: 'vitormancini.adv.br' },
+        ],
+      };
+
+      // ====== Step management ======
+      function showStep(n) {
+        if (n === 'done') {
+          steps.forEach(s => s.classList.remove('active'));
+          $('step-done').classList.add('active');
+          progressWrap.style.display = 'none';
+          return;
+        }
+        state.passo = Math.max(1, Math.min(TOTAL, n));
+        steps.forEach(s => s.classList.toggle('active', Number(s.dataset.step) === state.passo));
+        currentStepEl.textContent = state.passo;
+        const active = [...steps].find(s => Number(s.dataset.step) === state.passo);
+        stepNameEl.textContent = active?.dataset.name || '';
+        progressFill.style.width = `${(state.passo / TOTAL) * 100}%`;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      window.goStep = showStep;
+
+      // ====== Option selection (generic) ======
+      function initOptions(containerId, key) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        const btns = container.querySelectorAll('.option');
+        btns.forEach(btn => {
+          btn.addEventListener('click', () => {
+            btns.forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            const val = btn.dataset.value;
+            state.respostas[key] = val;
+
+            // Enable next button
+            const step = container.closest('.step');
+            if (step) {
+              const nextBtn = step.querySelector('.btn-solid');
+              if (nextBtn) nextBtn.disabled = false;
+            }
+          });
+        });
+      }
+
+      initOptions('q1-opts', 'q1');
+      initOptions('q2-opts', 'q2');
+      initOptions('q4-opts', 'q4');
+      initOptions('q7-opts', 'q7');
+      initOptions('q8-opts', 'q8');
+
+      // ====== Step 1 → 2 ======
+      $('btn-next-1').addEventListener('click', () => showStep(2));
+
+      // ====== Step 2 → 3 (Portfolio) ======
+      $('btn-next-2').addEventListener('click', () => {
+        const prof = state.respostas.q2;
+        const items = portfolioMap[prof] || portfolioMap.outro;
+        const grid = $('port-grid');
+        grid.innerHTML = '';
+        state.selectedPortfolio = null;
+        $('btn-next-3').disabled = true;
+
+        items.forEach((item, idx) => {
+          const card = document.createElement('div');
+          card.className = 'port-card';
+          card.dataset.idx = idx;
+          card.innerHTML = `
+            <img src="${item.img}" alt="${item.label}" loading="lazy">
+            <div class="port-label">${item.label}<small>${item.sub}</small></div>
+          `;
+          card.addEventListener('click', () => {
+            grid.querySelectorAll('.port-card').forEach(c => c.classList.remove('selected'));
+            card.classList.add('selected');
+            state.selectedPortfolio = idx;
+            $('btn-next-3').disabled = false;
+          });
+          grid.appendChild(card);
+        });
+
+        showStep(3);
+      });
+
+      // ====== Step 3 → 4 ======
+      $('btn-next-3').addEventListener('click', () => showStep(4));
+
+      // ====== Step 4 → 5 ======
+      $('btn-next-4').addEventListener('click', () => showStep(5));
+
+      // ====== Step 5: Lead validation ======
+      function validateLead() {
+        const nome = ($('lead-nome').value || '').trim();
+        const tel = ($('lead-tel').value || '').trim();
+        const ok = nome.length >= 2 && tel.replace(/\D/g, '').length >= 10;
+        $('btn-next-5').disabled = !ok;
+      }
+      $('lead-nome').addEventListener('input', validateLead);
+      $('lead-tel').addEventListener('input', validateLead);
+
+      $('btn-next-5').addEventListener('click', () => {
+        const nome = ($('lead-nome').value || '').trim();
+        const tel = ($('lead-tel').value || '').trim();
+        const email = ($('lead-email').value || '').trim();
+
+        if (nome.length < 2 || tel.replace(/\D/g, '').length < 10) return;
+
+        state.lead = { nome, telefone: tel, email };
+        showStep(6);
+      });
+
+      // ====== Step 7: Logo validation ======
+      // q7-opts already handled by initOptions
+
+      // ====== Step 8: Domain validation ======
+      // Already handled
+
+      // ====== SUBMIT ======
+      $('btn-submit').addEventListener('click', async () => {
+        const btn = $('btn-submit');
+        btn.disabled = true;
+        btn.textContent = 'Enviando...';
+
+        // Build payload
+        const payload = {
+          ...state.respostas,
+          ...state.lead,
+          portfolio_escolhido: state.selectedPortfolio !== null ? state.selectedPortfolio : undefined,
+          nome_pagina: ($('b-nome-pagina').value || '').trim(),
+          cor_preferida: ($('b-cor').value || '').trim(),
+          logo: state.respostas.q7 || '',
+          dominio: state.respostas.q8 || '',
+          extra: ($('b-extra').value || '').trim(),
+          sourceUrl: window.location.href,
+        };
+
+        // Generate eventId
+        const eventId = `quiz-${window.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2,8)}`}`;
+        payload.eventId = eventId;
+
+        // Push dataLayer for GTM
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'leadSubmission',
+          eventID: eventId,
+          lead_nome: state.lead.nome,
+          lead_telefone: state.lead.telefone,
+          lead_email: state.lead.email || '',
+          lead_profissao: state.respostas.q2 || '',
+        });
+
+        // SEND LEAD
+        try {
+          await fetch('/api/lead', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              nome: state.lead.nome,
+              email: state.lead.email || `${state.lead.nome.toLowerCase().replace(/\s+/g,'.')}@quiz.express`,
+              telefone: state.lead.telefone,
+              eventId,
+              sourceUrl: window.location.href,
+            }),
+          });
+        } catch (e) { /* non-fatal */ }
+
+        // SEND BRIEFING
+        try {
+          await fetch('/api/briefing', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          });
+        } catch (e) { /* non-fatal */ }
+
+        // Clean up storage
+        try {
+          localStorage.removeItem('quiz-v2-state');
+        } catch (e) { /* ignore */ }
+
+        showStep('done');
+      });
+
+      // ====== Restore from localStorage (auto-save) ======
+      function saveState() {
+        try {
+          localStorage.setItem('quiz-v2-state', JSON.stringify({ respostas: state.respostas, passo: state.passo }));
+        } catch (e) { /* ignore */ }
+      }
+
+      function loadState() {
+        try {
+          const raw = localStorage.getItem('quiz-v2-state');
+          if (!raw) return;
+          const saved = JSON.parse(raw);
+          if (saved.respostas) {
+            Object.entries(saved.respostas).forEach(([k, v]) => {
+              state.respostas[k] = v;
+              // Restore visual selection
+              const container = document.getElementById(`${k.replace('q','q')}-opts`);
+              if (container) {
+                const btn = container.querySelector(`[data-value="${v}"]`);
+                if (btn) {
+                  btn.classList.add('selected');
+                  const step = container.closest('.step');
+                  if (step) {
+                    const nextBtn = step.querySelector('.btn-solid');
+                    if (nextBtn) nextBtn.disabled = false;
+                  }
+                }
+              }
+            });
+          }
+          if (saved.passo && saved.passo > 1) {
+            state.passo = saved.passo;
+          }
+        } catch (e) { /* ignore */ }
+      }
+
+      // Auto-save on step change
+      const origShowStep = showStep;
+      window.goStep = (n) => {
+        origShowStep(n);
+        saveState();
+      };
+      showStep = (n) => {
+        origShowStep(n);
+        saveState();
+      };
+
+      // ====== Boot ======
+      loadState();
+      showStep(state.passo);
+
+      // PageView event
+      (function() {
+        const pvId = `quiz-pv-${window.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2,8)}`}`;
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: 'pageView', eventID: pvId });
+        fetch('/api/track/pageview', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ eventId: pvId, page: '/pagina-express-v2/', sourceUrl: window.location.href }),
+        }).catch(() => {});
+      })();
+
+    })();
+  </script>
+</body>
+</html>
