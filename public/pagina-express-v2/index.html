@@ -17,7 +17,7 @@
   <meta property="og:url" content="https://pixelco.com.br/pagina-express-v2/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,0..1" rel="stylesheet">
   <style>
     :root {
       --bg: #08090b;
@@ -44,12 +44,26 @@
     }
     body {
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      font-feature-settings: 'cv01','ss03';
       background: var(--bg);
       color: var(--text);
       display: flex;
       flex-direction: column;
       -webkit-tap-highlight-color: transparent;
+    }
+    .ico {
+      font-family: 'Material Symbols Outlined';
+      font-weight: 400;
+      font-style: normal;
+      font-size: 28px;
+      line-height: 1;
+      letter-spacing: normal;
+      text-transform: none;
+      display: inline-block;
+      white-space: nowrap;
+      word-wrap: normal;
+      direction: ltr;
+      -webkit-font-smoothing: antialiased;
+      font-variation-settings: 'FILL' 1, 'wght' 300, 'GRAD' 0, 'opsz' 24;
     }
     /* ── Header compacto ── */
     .header {
@@ -169,49 +183,73 @@
     .options {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 10px;
       flex: 1;
     }
     .option {
       display: flex;
       align-items: center;
-      gap: 14px;
-      padding: 16px 18px;
-      flex: 1;
+      gap: 16px;
+      width: 100%;
+      padding: 18px 20px;
+      border-radius: var(--radius);
       border: 1.5px solid var(--border);
-      border-radius: var(--radius-sm);
+      background: rgba(255,255,255,0.02);
+      backdrop-filter: blur(4px);
       cursor: pointer;
-      transition: border-color 0.2s, background 0.2s;
-      background: var(--bg);
-      font-size: 14px;
-      font-weight: 500;
+      transition: border-color 0.25s, background 0.25s, transform 0.12s;
+      text-align: left;
       font-family: 'Inter', sans-serif;
       color: var(--text);
-      text-align: left;
-      width: 100%;
-      min-height: var(--btn-h);
+      min-height: 80px;
       -webkit-appearance: none;
       line-height: 1.3;
+      position: relative;
     }
-    .option .icon-wrap {
-      width: 30px;
-      height: 30px;
-      flex-shrink: 0;
+    .option:active { transform: scale(0.985); }
+    .option:hover { border-color: rgba(255,255,255,0.12); }
+    .option.selected {
+      border-color: var(--green-bright);
+      background: rgba(20,168,134,0.07);
+    }
+    .option .opt-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex: 1;
+      min-width: 0;
+    }
+    .option .icon-box {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(20,168,134,0.08);
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 8px;
-      background: var(--accent-2);
-      transition: background 0.2s;
+      flex-shrink: 0;
+      transition: transform 0.25s, background 0.25s;
     }
-    .option .icon-wrap svg {
-      width: 18px;
-      height: 18px;
-      stroke: var(--green-bright);
-      stroke-width: 2;
+    .option.selected .icon-box {
+      background: rgba(20,168,134,0.18);
+      transform: scale(1.08);
     }
-    .option .opt-text {
-      flex: 1;
+    .option .icon-box .ico {
+      font-size: 26px;
+      color: var(--green-bright);
+    }
+    .option .opt-body { flex: 1; min-width: 0; }
+    .option .opt-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.25;
+    }
+    .option .opt-sub {
+      font-size: 12px;
+      color: var(--text-soft);
+      line-height: 1.4;
+      margin-top: 2px;
     }
     .option .dot {
       width: 22px;
@@ -224,13 +262,6 @@
       justify-content: center;
       transition: all 0.25s;
     }
-    .option.selected {
-      border-color: var(--green-bright);
-      background: rgba(20,168,134,0.06);
-    }
-    .option.selected .icon-wrap {
-      background: rgba(20,168,134,0.18);
-    }
     .option.selected .dot {
       border-color: var(--green-bright);
       background: var(--green-bright);
@@ -242,6 +273,25 @@
       border-radius: 50%;
       background: white;
     }
+    .option .badge {
+      position: absolute;
+      top: -10px;
+      right: 16px;
+      font-size: 10px;
+      font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--green-bright), #1ecba4);
+      color: #fff;
+      box-shadow: 0 0 16px rgba(20,168,134,0.35);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .option .badge .ico { font-size: 12px; color: inherit; }
     /* ── Detail fields ── */
     .detail-field {
       display: none;
@@ -478,7 +528,9 @@
     @media (min-width: 500px) {
       .quiz-wrap { padding: 0 24px 16px; }
       .q-card { padding: 28px 26px; }
-      .option { min-height: var(--btn-h); padding: 20px 24px; font-size: 15px; }
+      .option { min-height: 90px; padding: 22px 26px; gap: 20px; }
+      .option .opt-title { font-size: 16px; }
+      .option .opt-sub { font-size: 13px; }
       .btn { font-size: 16px; }
     }
     @media (min-width: 640px) {
@@ -519,26 +571,46 @@
         <h2 class="q-title">Você já tem uma <em>página profissional</em>?</h2>
         <div class="options" id="q1-opts">
           <button class="option" data-value="nao_nunca">
-            <span class="icon-wrap"><i data-lucide="smartphone"></i></span>
-            <span class="opt-text">Não, nunca tive</span>
+            <span class="opt-left">
+              <span class="icon-box"><span class="ico">smartphone</span></span>
+              <span class="opt-body">
+                <span class="opt-title">Não, nunca tive</span>
+                <span class="opt-sub">Nunca criei uma página profissional para meu negócio</span>
+              </span>
+            </span>
             <span class="dot"></span>
           </button>
           <button class="option" data-value="linktree">
-            <span class="icon-wrap"><i data-lucide="link-2"></i></span>
-            <span class="opt-text">Tenho um Linktree / Instagram só</span>
+            <span class="opt-left">
+              <span class="icon-box"><span class="ico">link</span></span>
+              <span class="opt-body">
+                <span class="opt-title">Tenho um Linktree / Instagram só</span>
+                <span class="opt-sub">Uso redes como vitrine, mas quero algo mais profissional</span>
+              </span>
+            </span>
             <span class="dot"></span>
           </button>
           <button class="option" data-value="sim_mas" data-detail="d-q1-sim-mas">
-            <span class="icon-wrap"><i data-lucide="frown"></i></span>
-            <span class="opt-text">Tenho, mas não gosto / está feia</span>
+            <span class="opt-left">
+              <span class="icon-box"><span class="ico">sentiment_dissatisfied</span></span>
+              <span class="opt-body">
+                <span class="opt-title">Tenho, mas não gosto / está feia</span>
+                <span class="opt-sub">Minha página atual não representa bem meu trabalho</span>
+              </span>
+            </span>
             <span class="dot"></span>
           </button>
           <div class="detail-field" id="d-q1-sim-mas">
             <input type="text" class="input" placeholder="O que você não gosta na página atual? Ex: design antigo, sem CTA..." autocomplete="off">
           </div>
           <button class="option" data-value="saiu_do_ar" data-detail="d-q1-saiu-ar">
-            <span class="icon-wrap"><i data-lucide="cloud-off"></i></span>
-            <span class="opt-text">Já tive mas saiu do ar / nunca finalizei</span>
+            <span class="opt-left">
+              <span class="icon-box"><span class="ico">cloud_off</span></span>
+              <span class="opt-body">
+                <span class="opt-title">Já tive mas saiu do ar / nunca finalizei</span>
+                <span class="opt-sub">O projeto ficou parado ou perdi o domínio</span>
+              </span>
+            </span>
             <span class="dot"></span>
           </button>
           <div class="detail-field" id="d-q1-saiu-ar">
@@ -558,33 +630,63 @@
         <h2 class="q-title">Qual é a sua <em>profissão</em>?</h2>
         <div class="options" id="q2-opts">
           <button class="option" data-value="psicologia">
-            <span class="icon-wrap"><i data-lucide="brain"></i></span>
-            <span class="opt-text">Psicóloga(o)</span>
+            <span class="opt-left">
+              <span class="icon-box"><span class="ico">psychology</span></span>
+              <span class="opt-body">
+                <span class="opt-title">Psicóloga(o)</span>
+                <span class="opt-sub">Acolhimento e saúde mental</span>
+              </span>
+            </span>
             <span class="dot"></span>
           </button>
           <button class="option" data-value="advocacia">
-            <span class="icon-wrap"><i data-lucide="scale"></i></span>
-            <span class="opt-text">Advogada(o)</span>
+            <span class="opt-left">
+              <span class="icon-box"><span class="ico">balance</span></span>
+              <span class="opt-body">
+                <span class="opt-title">Advogada(o)</span>
+                <span class="opt-sub">Direito e advocacia</span>
+              </span>
+            </span>
             <span class="dot"></span>
           </button>
           <button class="option" data-value="nutricao">
-            <span class="icon-wrap"><i data-lucide="utensils-crossed"></i></span>
-            <span class="opt-text">Nutricionista</span>
+            <span class="opt-left">
+              <span class="icon-box"><span class="ico">restaurant</span></span>
+              <span class="opt-body">
+                <span class="opt-title">Nutricionista</span>
+                <span class="opt-sub">Nutrição e bem-estar</span>
+              </span>
+            </span>
             <span class="dot"></span>
           </button>
           <button class="option" data-value="arquitetura">
-            <span class="icon-wrap"><i data-lucide="landmark"></i></span>
-            <span class="opt-text">Arquiteta(o) / Design de interiores</span>
+            <span class="opt-left">
+              <span class="icon-box"><span class="ico">account_balance</span></span>
+              <span class="opt-body">
+                <span class="opt-title">Arquiteta(o) / Design de interiores</span>
+                <span class="opt-sub">Espaços e projetos</span>
+              </span>
+            </span>
             <span class="dot"></span>
           </button>
           <button class="option" data-value="consultoria">
-            <span class="icon-wrap"><i data-lucide="bar-chart-3"></i></span>
-            <span class="opt-text">Consultora(o) / Coach</span>
+            <span class="opt-left">
+              <span class="icon-box"><span class="ico">bar_chart</span></span>
+              <span class="opt-body">
+                <span class="opt-title">Consultora(o) / Coach</span>
+                <span class="opt-sub">Mentoria e desenvolvimento</span>
+              </span>
+            </span>
             <span class="dot"></span>
           </button>
           <button class="option" data-value="outro" data-detail="d-q2-outro">
-            <span class="icon-wrap"><i data-lucide="briefcase"></i></span>
-            <span class="opt-text">Outra profissão</span>
+            <span class="opt-left">
+              <span class="icon-box"><span class="ico">work</span></span>
+              <span class="opt-body">
+                <span class="opt-title">Outra profissão</span>
+                <span class="opt-sub">Outra área de atuação</span>
+              </span>
+            </span>
             <span class="dot"></span>
           </button>
           <div class="detail-field" id="d-q2-outro">
@@ -618,30 +720,50 @@
         <div class="q-number">Pergunta 3</div>
         <h2 class="q-title">Qual seu maior <em>desafio</em> hoje?</h2>
         <div class="options" id="q4-opts">
-          <button class="option" data-value="clientes">
-            <span class="icon-wrap"><i data-lucide="trending-up"></i></span>
-            <span class="opt-text">Não consigo atrair clientes novos</span>
-            <span class="dot"></span>
-          </button>
-          <button class="option" data-value="tempo">
-            <span class="icon-wrap"><i data-lucide="clock"></i></span>
-            <span class="opt-text">Não tenho tempo de criar uma página</span>
-            <span class="dot"></span>
-          </button>
-          <button class="option" data-value="tentei">
-            <span class="icon-wrap"><i data-lucide="wrench"></i></span>
-            <span class="opt-text">Já tentei fazer e desisti / ficou ruim</span>
-            <span class="dot"></span>
-          </button>
-          <button class="option" data-value="outro_desafio" data-detail="d-q4-outro">
-            <span class="icon-wrap"><i data-lucide="message-square"></i></span>
-            <span class="opt-text">Outro desafio</span>
-            <span class="dot"></span>
-          </button>
-          <div class="detail-field" id="d-q4-outro">
-            <input type="text" class="input" placeholder="Qual seu maior desafio hoje?" autocomplete="off">
-          </div>
-        </div>
+                  <button class="option" data-value="clientes">
+                    <span class="opt-left">
+                      <span class="icon-box"><span class="ico">trending_up</span></span>
+                      <span class="opt-body">
+                        <span class="opt-title">Não consigo atrair clientes novos</span>
+                        <span class="opt-sub">Meu marketing digital não gera resultados</span>
+                      </span>
+                    </span>
+                    <span class="dot"></span>
+                  </button>
+                  <button class="option" data-value="tempo">
+                    <span class="opt-left">
+                      <span class="icon-box"><span class="ico">schedule</span></span>
+                      <span class="opt-body">
+                        <span class="opt-title">Não tenho tempo de criar uma página</span>
+                        <span class="opt-sub">Minha agenda não permite dedicar horas ao site</span>
+                      </span>
+                    </span>
+                    <span class="dot"></span>
+                  </button>
+                  <button class="option" data-value="tentei">
+                    <span class="opt-left">
+                      <span class="icon-box"><span class="ico">build</span></span>
+                      <span class="opt-body">
+                        <span class="opt-title">Já tentei fazer e desisti / ficou ruim</span>
+                        <span class="opt-sub">O resultado não ficou profissional</span>
+                      </span>
+                    </span>
+                    <span class="dot"></span>
+                  </button>
+                  <button class="option" data-value="outro_desafio" data-detail="d-q4-outro">
+                    <span class="opt-left">
+                      <span class="icon-box"><span class="ico">chat</span></span>
+                      <span class="opt-body">
+                        <span class="opt-title">Outro desafio</span>
+                        <span class="opt-sub">Tenho um desafio diferente</span>
+                      </span>
+                    </span>
+                    <span class="dot"></span>
+                  </button>
+                  <div class="detail-field" id="d-q4-outro">
+                    <input type="text" class="input" placeholder="Qual seu maior desafio hoje?" autocomplete="off">
+                  </div>
+                </div>
       </div>
       <div class="btn-row">
         <button class="btn btn-ghost" onclick="goStep(3)">← Voltar</button>
@@ -735,18 +857,33 @@
           <label class="field-label">Já tem logo?</label>
           <div class="options" id="q9-opts">
             <button class="option" data-value="sim_logo">
-              <span class="icon-wrap"><i data-lucide="palette"></i></span>
-              <span class="opt-text">Sim, tenho logo em boa qualidade</span>
+              <span class="opt-left">
+                <span class="icon-box"><span class="ico">palette</span></span>
+                <span class="opt-body">
+                  <span class="opt-title">Sim, tenho logo em boa qualidade</span>
+                  <span class="opt-sub">Arquivo em alta resolução, pronta pra usar</span>
+                </span>
+              </span>
               <span class="dot"></span>
             </button>
             <button class="option" data-value="sim_simples">
-              <span class="icon-wrap"><i data-lucide="camera"></i></span>
-              <span class="opt-text">Tenho uma logo simples / print</span>
+              <span class="opt-left">
+                <span class="icon-box"><span class="ico">camera_alt</span></span>
+                <span class="opt-body">
+                  <span class="opt-title">Tenho uma logo simples / print</span>
+                  <span class="opt-sub">Precisa de refinamento ou vetorização</span>
+                </span>
+              </span>
               <span class="dot"></span>
             </button>
             <button class="option" data-value="nao_logo">
-              <span class="icon-wrap"><i data-lucide="x"></i></span>
-              <span class="opt-text">Ainda não tenho logo</span>
+              <span class="opt-left">
+                <span class="icon-box"><span class="ico">close</span></span>
+                <span class="opt-body">
+                  <span class="opt-title">Ainda não tenho logo</span>
+                  <span class="opt-sub">Preciso de ajuda com identidade visual</span>
+                </span>
+              </span>
               <span class="dot"></span>
             </button>
           </div>
@@ -765,21 +902,36 @@
         <h2 class="q-title">Já tem <em>domínio</em>?</h2>
         <div class="options" id="q10-opts">
           <button class="option" data-value="ja_tenho" data-detail="d-q10-dominio">
-            <span class="icon-wrap"><i data-lucide="globe"></i></span>
-            <span class="opt-text">Já tenho domínio</span>
+            <span class="opt-left">
+              <span class="icon-box"><span class="ico">language</span></span>
+              <span class="opt-body">
+                <span class="opt-title">Já tenho domínio</span>
+                <span class="opt-sub">Já comprei, só preciso apontar</span>
+              </span>
+            </span>
             <span class="dot"></span>
           </button>
           <div class="detail-field" id="d-q10-dominio">
             <input type="text" class="input" placeholder="Qual seu domínio? Ex: meusite.com.br" autocomplete="url">
           </div>
           <button class="option" data-value="preciso">
-            <span class="icon-wrap"><i data-lucide="sparkles"></i></span>
-            <span class="opt-text">Preciso registrar um</span>
+            <span class="opt-left">
+              <span class="icon-box"><span class="ico">auto_awesome</span></span>
+              <span class="opt-body">
+                <span class="opt-title">Preciso registrar um</span>
+                <span class="opt-sub">Ainda não tenho domínio registrado</span>
+              </span>
+            </span>
             <span class="dot"></span>
           </button>
           <button class="option" data-value="nao_sei">
-            <span class="icon-wrap"><i data-lucide="help-circle"></i></span>
-            <span class="opt-text">Não sei / me ajuda nessa parte</span>
+            <span class="opt-left">
+              <span class="icon-box"><span class="ico">help</span></span>
+              <span class="opt-body">
+                <span class="opt-title">Não sei / me ajuda nessa parte</span>
+                <span class="opt-sub">Pode me orientar sobre domínios</span>
+              </span>
+            </span>
             <span class="dot"></span>
           </button>
         </div>
@@ -827,16 +979,14 @@
 
   </div>
 
-  <!-- CDN: anime.js + Lucide -->
+  <!-- CDN: anime.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
-  <script src="https://unpkg.com/lucide@latest"></script>
 
   <script>
     (() => {
       'use strict';
 
-      // ── Init Lucide Icons ──
-      lucide.createIcons();
+      // ── State ──
 
       // ── STATE ──
       const state = {
@@ -966,8 +1116,7 @@
         // Animate the new step
         if (active) animateStepIn(active);
 
-        // Re-init Lucide icons (in case of DOM change)
-        lucide.createIcons();
+        // Re-init Material Symbols
       }
 
       window.goStep = showStep;
