@@ -699,26 +699,38 @@
         psicologia: [
           { img: `${BASE}/02-psicologa.webp`, label: 'Psicóloga clínica', sub: 'nicolegaggiola.com.br' },
           { img: `${BASE}/04-erica.webp`, label: 'Erica Dourado', sub: 'ericadourado.com.br' },
+          { img: `${BASE}/03-mafua.webp`, label: 'Arquitetura clean', sub: 'mafuaarquitetura.com.br' },
+          { img: `${BASE}/06-instituto.webp`, label: 'Página institucional', sub: 'institutoibrasil.org' },
         ],
         advocacia: [
           { img: `${BASE}/01-advogado.webp`, label: 'Advogado criminalista', sub: 'vitormancini.adv.br' },
-          { img: `${BASE}/06-instituto.webp`, label: 'Instituto', sub: 'institutoibrasil.org' },
+          { img: `${BASE}/06-instituto.webp`, label: 'Instituto jurídico', sub: 'institutoibrasil.org' },
+          { img: `${BASE}/02-psicologa.webp`, label: 'Referência de layout', sub: 'nicolegaggiola.com.br' },
+          { img: `${BASE}/04-erica.webp`, label: 'Autoconstelação', sub: 'ericadourado.com.br' },
         ],
         nutricao: [
           { img: `${BASE}/05-nutricionista.webp`, label: 'Nutricionista', sub: 'raphaelnutri.com' },
-          { img: `${BASE}/02-psicologa.webp`, label: 'Referência clean', sub: 'nicolegaggiola.com.br' },
+          { img: `${BASE}/02-psicologa.webp`, label: 'Layout clean', sub: 'nicolegaggiola.com.br' },
+          { img: `${BASE}/01-advogado.webp`, label: 'Página de autoridade', sub: 'vitormancini.adv.br' },
+          { img: `${BASE}/06-instituto.webp`, label: 'Design institucional', sub: 'institutoibrasil.org' },
         ],
         arquitetura: [
           { img: `${BASE}/03-mafua.webp`, label: 'Arquitetura de interiores', sub: 'mafuaarquitetura.com.br' },
-          { img: `${BASE}/06-instituto.webp`, label: 'Institucional', sub: 'institutoibrasil.org' },
+          { img: `${BASE}/06-instituto.webp`, label: 'Portfolio institucional', sub: 'institutoibrasil.org' },
+          { img: `${BASE}/02-psicologa.webp`, label: 'Layout inspiração', sub: 'nicolegaggiola.com.br' },
+          { img: `${BASE}/01-advogado.webp`, label: 'Design premium', sub: 'vitormancini.adv.br' },
         ],
         consultoria: [
           { img: `${BASE}/04-erica.webp`, label: 'Erica Dourado', sub: 'ericadourado.com.br' },
           { img: `${BASE}/03-mafua.webp`, label: 'Portfólio profissional', sub: 'mafuaarquitetura.com.br' },
+          { img: `${BASE}/01-advogado.webp`, label: 'Página de serviço', sub: 'vitormancini.adv.br' },
+          { img: `${BASE}/05-nutricionista.webp`, label: 'Landing page exemplo', sub: 'raphaelnutri.com' },
         ],
         outro: [
           { img: `${BASE}/06-instituto.webp`, label: 'Institucional versátil', sub: 'institutoibrasil.org' },
           { img: `${BASE}/01-advogado.webp`, label: 'Página de autoridade', sub: 'vitormancini.adv.br' },
+          { img: `${BASE}/02-psicologa.webp`, label: 'Layout profissional', sub: 'nicolegaggiola.com.br' },
+          { img: `${BASE}/04-erica.webp`, label: 'Design autoral', sub: 'ericadourado.com.br' },
         ],
       };
 
@@ -828,11 +840,11 @@
         showStep(6);
       });
 
-      // ====== Step 7: Logo validation ======
-      // q7-opts already handled by initOptions
+      // ====== Step 7: Logo → Step 8 ======
+      $('btn-next-7').addEventListener('click', () => showStep(8));
 
-      // ====== Step 8: Domain validation ======
-      // Already handled
+      // ====== Step 8: Domínio → Step 9 ======
+      $('btn-next-8').addEventListener('click', () => showStep(9));
 
       // ====== SUBMIT ======
       $('btn-submit').addEventListener('click', async () => {
