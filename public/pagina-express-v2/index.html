@@ -35,7 +35,7 @@
       --border-hover: rgba(255,255,255,0.14);
       --radius-sm: 10px;
       --radius: 16px;
-      --btn-h: 64px;
+      --btn-h: 80px;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body {
@@ -138,6 +138,7 @@
       display: flex;
       flex-direction: column;
       min-height: 0;
+      overflow-y: auto;
     }
     .q-number {
       font-family: 'JetBrains Mono', monospace;
@@ -170,13 +171,13 @@
       flex-direction: column;
       gap: 8px;
       flex: 1;
-      justify-content: center;
     }
     .option {
       display: flex;
       align-items: center;
       gap: 14px;
       padding: 16px 18px;
+      flex: 1;
       border: 1.5px solid var(--border);
       border-radius: var(--radius-sm);
       cursor: pointer;
@@ -273,9 +274,6 @@
       grid-template-columns: 1fr 1fr;
       gap: 8px;
       flex: 1;
-      min-height: 0;
-      overflow-y: auto;
-      align-items: start;
     }
     .port-card {
       position: relative;
@@ -480,7 +478,7 @@
     @media (min-width: 500px) {
       .quiz-wrap { padding: 0 24px 16px; }
       .q-card { padding: 28px 26px; }
-      .option { min-height: 68px; padding: 18px 22px; font-size: 15px; }
+      .option { min-height: var(--btn-h); padding: 20px 24px; font-size: 15px; }
       .btn { font-size: 16px; }
     }
     @media (min-width: 640px) {
