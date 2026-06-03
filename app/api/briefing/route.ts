@@ -40,7 +40,127 @@ function answerOrDash(v: unknown) {
   return s || '—'
 }
 
+function mapQuizLabel(key: string, value: string): string {
+  const labels: Record<string, Record<string, string>> = {
+    q1: {
+      nao_nunca: 'Não, nunca tive uma página profissional',
+      linktree: 'Tenho um Linktree / Instagram só',
+      sim_mas: 'Tenho, mas não gosto / está feia',
+      saiu_do_ar: 'Já tive mas saiu do ar / nunca finalizei',
+    },
+    q2: {
+      psicologia: 'Psicóloga(o)',
+      advocacia: 'Advogada(o)',
+      nutricao: 'Nutricionista',
+      arquitetura: 'Arquitet(o) / Designer de interiores',
+      consultoria: 'Consultora(o) / Coach',
+      outro: 'Outra profissão',
+    },
+    q4: {
+      clientes: 'Não consigo atrair clientes novos',
+      tempo: 'Não tenho tempo de criar uma página',
+      tentei: 'Já tentei fazer e desisti / ficou ruim',
+      outro_desafio: 'Outro desafio',
+    },
+    q7: {
+      sim_logo: 'Sim, tenho logo em boa qualidade',
+      sim_simples: 'Tenho uma logo simples / print',
+      nao_logo: 'Ainda não tenho logo',
+    },
+    q8: {
+      ja_tenho: 'Já tenho domínio',
+      preciso: 'Preciso registrar um',
+      nao_sei: 'Não sei / ajuda nessa parte',
+    },
+  };
+  return labels[key]?.[value] || value;
+}
+
 function renderMarkdown(b: Briefing, meta: { id: string; recebido: string }) {
+  // Detecta se é quiz v2 (tem q1, q2) ou briefing antigo (tem nome_completo)
+  const isQuiz = 'q1' in b;
+
+  if (isQuiz) {
+    return renderQuizPlaybook(b, meta);
+  }
+
+  return renderLegacyBriefing(b, meta);
+}
+
+function renderQuizPlaybook(b: Briefing, meta: { id: string; recebido: string }) {
+  const nome = answerOrDash(b.nome || b.nome_completo || '');
+  const tel = answerOrDash(b.telefone || b.lead_telefone || '');
+  const email = answerOrDash(b.email || b.lead_email || '');
+
+  // Mapeia respostas
+  const situacao = mapQuizLabel('q1', (b.q1 as string) || '');
+  const profissao = mapQuizLabel('q2', (b.q2 as string) || '');
+  const desafio = mapQuizLabel('q4', (b.q4 as string) || '');
+  const logoStatus = mapQuizLabel('q7', (b.q7 as string) || '');
+  const dominioStatus = mapQuizLabel('q8', (b.q8 as string) || '');
+  const nomePagina = answerOrDash(b.nome_pagina);
+  const corPref = answerOrDash(b.cor_preferida);
+  const extra = answerOrDash(b.extra);
+  const portfolioIdx = b.portfolio_escolhido as string | undefined;
+
+  return `# Briefing de produção — ${nome}
+> ${profissao} · Recebido em ${meta.recebido}
+
+---
+
+## 👤 Cliente
+
+| Campo | Valor |
+|---|---|
+| Nome | ${nome} |
+| WhatsApp | ${tel} |
+| E-mail | ${email} |
+| Como quer aparecer na página | ${nomePagina} |
+
+## 📍 Contexto
+
+**Situação atual:** ${situacao}
+
+**Profissão:** ${profissao}
+
+**Maior desafio:** ${desafio}
+
+## 🎨 Direcionais de Design
+
+**Cor / paleta preferida:** ${corPref}
+
+**Logo:** ${logoStatus}
+
+**Domínio:** ${dominioStatus}
+
+${portfolioIdx ? `**Página de referência escolhida:** #${portfolioIdx} no portfolio (ver quiz response)` : ''}
+
+## 📄 Estrutura sugerida da página
+
+Com base nas respostas do cliente, a página deve conter:
+
+1. **Hero** — Nome profissional + título + CTA principal
+2. **Sobre / Contexto** — Conecta com a dor do cliente ideal
+3. **Serviço / Oferta** — O que vende, como funciona, preço
+4. **Prova social** — Depoimentos, números, autoridade
+5. **CTA final** — WhatsApp / formulário
+
+> _Conteúdo detalhado de cada seção deve ser definido na revisão com o cliente._
+
+## 💰 Plano
+
+**Plano LP (R$499)** — hospedagem e domínio por conta do cliente.
+
+## 📝 Observações do briefing
+
+${extra !== '—' ? extra : 'Nenhuma observação adicional.'}
+
+---
+
+_Playbook gerado automaticamente pelo quiz Página Express em ${meta.recebido}_\n`;
+}
+
+function renderLegacyBriefing(b: Briefing, meta: { id: string; recebido: string }) {
   const Q = (label: string, key: string) => `**${label}:** ${answerOrDash(b[key])}`
   const Qblock = (label: string, key: string) => {
     const v = answerOrDash(b[key])
