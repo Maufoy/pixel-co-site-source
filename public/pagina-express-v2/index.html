@@ -273,7 +273,9 @@
       grid-template-columns: 1fr 1fr;
       gap: 8px;
       flex: 1;
-      align-content: start;
+      min-height: 0;
+      overflow-y: auto;
+      align-items: start;
     }
     .port-card {
       position: relative;
@@ -282,8 +284,8 @@
       cursor: pointer;
       border: 1.5px solid var(--border);
       transition: border-color 0.2s, transform 0.15s;
-      aspect-ratio: 3/4;
       background: var(--bg);
+      aspect-ratio: 3/4;
     }
     .port-card.selected {
       border-color: var(--green-bright);
