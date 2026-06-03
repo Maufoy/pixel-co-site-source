@@ -96,9 +96,11 @@ function renderQuizPlaybook(b: Briefing, meta: { id: string; recebido: string })
   const situacao = mapQuizLabel('q1', (b.q1 as string) || '');
   const profissao = mapQuizLabel('q2', (b.q2 as string) || '');
   const desafio = mapQuizLabel('q4', (b.q4 as string) || '');
-  const logoStatus = mapQuizLabel('q7', (b.q7 as string) || '');
-  const dominioStatus = mapQuizLabel('q8', (b.q8 as string) || '');
+  const logoStatus = mapQuizLabel('q9', (b.q9 as string) || '');
+  const dominioStatus = mapQuizLabel('q10', (b.q10 as string) || '');
   const nomePagina = answerOrDash(b.nome_pagina);
+  const clientePerfil = answerOrDash(b.cliente_perfil);
+  const oferta = answerOrDash(b.oferta);
   const corPref = answerOrDash(b.cor_preferida);
   const extra = answerOrDash(b.extra);
   const portfolioIdx = b.portfolio_escolhido as string | undefined;
@@ -116,14 +118,21 @@ function renderQuizPlaybook(b: Briefing, meta: { id: string; recebido: string })
 | WhatsApp | ${tel} |
 | E-mail | ${email} |
 | Como quer aparecer na página | ${nomePagina} |
+| Profissão | ${profissao} |
 
 ## 📍 Contexto
 
 **Situação atual:** ${situacao}
 
-**Profissão:** ${profissao}
-
 **Maior desafio:** ${desafio}
+
+## 🧠 Cliente ideal
+
+${clientePerfil !== '—' ? `> ${clientePerfil.replace(/\n/g, '\n> ')}` : '—'}
+
+## 💼 Oferta
+
+${oferta !== '—' ? `> ${oferta.replace(/\n/g, '\n> ')}` : '—'}
 
 ## 🎨 Direcionais de Design
 
@@ -133,7 +142,7 @@ function renderQuizPlaybook(b: Briefing, meta: { id: string; recebido: string })
 
 **Domínio:** ${dominioStatus}
 
-${portfolioIdx ? `**Página de referência escolhida:** #${portfolioIdx} no portfolio (ver quiz response)` : ''}
+${portfolioIdx ? `**Página de referência escolhida:** #${portfolioIdx} no portfolio` : ''}
 
 ## 📄 Estrutura sugerida da página
 

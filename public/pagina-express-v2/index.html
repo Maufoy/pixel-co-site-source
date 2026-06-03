@@ -559,15 +559,15 @@
       </div>
     </div>
 
-    <!-- STEPS 6-8: Briefing leve -->
-    <!-- STEP 6: Nome na página -->
-    <div class="step" data-step="6" data-name="Briefing">
+    <!-- STEPS 6-7: Conteúdo do briefing -->
+    <!-- STEP 6: Cliente ideal -->
+    <div class="step" data-step="6" data-name="Cliente ideal">
       <div class="q-card">
-        <div class="q-number">Quase lá • 1 de 3</div>
-        <h2 class="q-title">Como quer ser chamado(a) <em>na sua página</em>?</h2>
-        <p class="q-sub">Ex: "Maria", "Dra. Maria Silva", "Estúdio Marina".<br>Se deixar vazio, usamos seu nome.</p>
+        <div class="q-number">Quase lá • 1 de 2</div>
+        <h2 class="q-title">Descreve em 2 frases <em>seu cliente ideal</em></h2>
+        <p class="q-sub">Quem é a pessoa que mais precisa do seu serviço? Idade, profissão, momento de vida.<br><em>Sem "qualquer pessoa" — quanto mais específico, melhor a página converte.</em></p>
         <div class="field">
-          <input type="text" class="input" id="b-nome-pagina" placeholder="Como aparece na página">
+          <textarea class="input" id="b-cliente-perfil" style="min-height:100px;resize:vertical;font-family:'Sora',sans-serif" placeholder="Ex: Mulheres de 35-50 anos, executivas, que sentem ansiedade alta e não conseguem mais dormir direito."></textarea>
         </div>
       </div>
       <div class="btn-row">
@@ -576,10 +576,43 @@
       </div>
     </div>
 
-    <!-- STEP 7: Cor / estilo -->
-    <div class="step" data-step="7" data-name="Briefing">
+    <!-- STEP 7: Oferta -->
+    <div class="step" data-step="7" data-name="Oferta">
       <div class="q-card">
-        <div class="q-number">Quase lá • 2 de 3</div>
+        <div class="q-number">Quase lá • 2 de 2</div>
+        <h2 class="q-title">O que você <em>vende exatamente</em>?</h2>
+        <p class="q-sub">Descreve seu serviço principal em poucas linhas. É um pacote, sessão avulsa, programa de X semanas, mentoria?<br>Isso vira a seção principal da sua página.</p>
+        <div class="field">
+          <textarea class="input" id="b-oferta" style="min-height:100px;resize:vertical;font-family:'Sora',sans-serif" placeholder="Ex: Acompanhamento psicológico individual para mulheres com ansiedade. São 12 sessões semanais com plano personalizado de tratamento."></textarea>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-ghost" onclick="goStep(6)">← Voltar</button>
+        <button class="btn btn-solid" onclick="goStep(8)">Próximo →</button>
+      </div>
+    </div>
+
+    <!-- STEPS 8-11: Briefing técnico -->
+    <!-- STEP 8: Nome na página -->
+    <div class="step" data-step="8" data-name="Briefing">
+      <div class="q-card">
+        <div class="q-number">Quase lá • 1 de 4</div>
+        <h2 class="q-title">Como quer ser chamado(a) <em>na sua página</em>?</h2>
+        <p class="q-sub">Ex: "Maria", "Dra. Maria Silva", "Estúdio Marina".<br>Se deixar vazio, usamos seu nome.</p>
+        <div class="field">
+          <input type="text" class="input" id="b-nome-pagina" placeholder="Como aparece na página">
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-ghost" onclick="goStep(7)">← Voltar</button>
+        <button class="btn btn-solid" onclick="goStep(9)">Próximo →</button>
+      </div>
+    </div>
+
+    <!-- STEP 9: Cor / estilo -->
+    <div class="step" data-step="9" data-name="Briefing">
+      <div class="q-card">
+        <div class="q-number">Quase lá • 2 de 4</div>
         <h2 class="q-title"><em>Cores e logo</em> — o básico</h2>
         <div class="field" style="margin-bottom:20px">
           <label class="field-label">Tem uma cor ou paleta preferida?</label>
@@ -587,7 +620,7 @@
         </div>
         <div class="field">
           <label class="field-label">Já tem logo?</label>
-          <div class="options" id="q7-opts">
+          <div class="options" id="q9-opts">
             <button class="option" data-value="sim_logo">
               <span class="dot"></span>
               <span>Sim, tenho logo em boa qualidade</span>
@@ -604,17 +637,17 @@
         </div>
       </div>
       <div class="btn-row">
-        <button class="btn btn-ghost" onclick="goStep(6)">← Voltar</button>
-        <button class="btn btn-solid" id="btn-next-7" disabled>Próximo →</button>
+        <button class="btn btn-ghost" onclick="goStep(8)">← Voltar</button>
+        <button class="btn btn-solid" id="btn-next-9" disabled>Próximo →</button>
       </div>
     </div>
 
-    <!-- STEP 8: Domínio -->
-    <div class="step" data-step="8" data-name="Briefing">
+    <!-- STEP 10: Domínio -->
+    <div class="step" data-step="10" data-name="Briefing">
       <div class="q-card">
-        <div class="q-number">Quase lá • 3 de 3</div>
+        <div class="q-number">Quase lá • 3 de 4</div>
         <h2 class="q-title">Já tem <em>domínio</em>?</h2>
-        <div class="options" id="q8-opts">
+        <div class="options" id="q10-opts">
           <button class="option" data-value="ja_tenho">
             <span class="dot"></span>
             <span>Já tenho domínio</span>
@@ -630,13 +663,13 @@
         </div>
       </div>
       <div class="btn-row">
-        <button class="btn btn-ghost" onclick="goStep(7)">← Voltar</button>
-        <button class="btn btn-solid" id="btn-next-8" disabled>Próximo →</button>
+        <button class="btn btn-ghost" onclick="goStep(9)">← Voltar</button>
+        <button class="btn btn-solid" id="btn-next-10" disabled>Próximo →</button>
       </div>
     </div>
 
-    <!-- STEP 9: Extra + Submit -->
-    <div class="step" data-step="9" data-name="Finalizar">
+    <!-- STEP 11: Extra + Submit -->
+    <div class="step" data-step="11" data-name="Finalizar">
       <div class="q-card">
         <div class="q-number">Pra fechar</div>
         <h2 class="q-title">Algo mais que queira <em>contar</em>?</h2>
@@ -646,7 +679,7 @@
         </div>
       </div>
       <div class="btn-row">
-        <button class="btn btn-ghost" onclick="goStep(8)">← Voltar</button>
+        <button class="btn btn-ghost" onclick="goStep(10)">← Voltar</button>
         <button class="btn btn-solid" id="btn-submit">Enviar e receber proposta</button>
       </div>
     </div>
@@ -680,7 +713,7 @@
         selectedPortfolio: null,
       };
 
-      const TOTAL = 9;
+      const TOTAL = 11;
 
       // ====== DOM refs ======
       const $ = (id) => document.getElementById(id);
@@ -778,8 +811,8 @@
       initOptions('q1-opts', 'q1');
       initOptions('q2-opts', 'q2');
       initOptions('q4-opts', 'q4');
-      initOptions('q7-opts', 'q7');
-      initOptions('q8-opts', 'q8');
+      initOptions('q9-opts', 'q9');
+      initOptions('q10-opts', 'q10');
 
       // ====== Step 1 → 2 ======
       $('btn-next-1').addEventListener('click', () => showStep(2));
@@ -840,11 +873,11 @@
         showStep(6);
       });
 
-      // ====== Step 7: Logo → Step 8 ======
-      $('btn-next-7').addEventListener('click', () => showStep(8));
+      // ====== Step 9: Logo → Step 10 ======
+      $('btn-next-9').addEventListener('click', () => showStep(10));
 
-      // ====== Step 8: Domínio → Step 9 ======
-      $('btn-next-8').addEventListener('click', () => showStep(9));
+      // ====== Step 10: Domínio → Step 11 ======
+      $('btn-next-10').addEventListener('click', () => showStep(11));
 
       // ====== SUBMIT ======
       $('btn-submit').addEventListener('click', async () => {
@@ -858,9 +891,11 @@
           ...state.lead,
           portfolio_escolhido: state.selectedPortfolio !== null ? state.selectedPortfolio : undefined,
           nome_pagina: ($('b-nome-pagina').value || '').trim(),
+          cliente_perfil: ($('b-cliente-perfil').value || '').trim(),
+          oferta: ($('b-oferta').value || '').trim(),
           cor_preferida: ($('b-cor').value || '').trim(),
-          logo: state.respostas.q7 || '',
-          dominio: state.respostas.q8 || '',
+          logo: state.respostas.q9 || '',
+          dominio: state.respostas.q10 || '',
           extra: ($('b-extra').value || '').trim(),
           sourceUrl: window.location.href,
         };
