@@ -9,6 +9,19 @@
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-MVWRMS98');</script>
   <!-- End Google Tag Manager -->
+  <script>
+    (function(){
+      var eventId = 'pv-' + (window.crypto && window.crypto.randomUUID ? window.crypto.randomUUID() : Date.now() + '-' + Math.random().toString(36).slice(2,10));
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'pageView', eventID: eventId, pagePath: window.location.pathname });
+      fetch('/api/track/pageview', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ eventId: eventId, url: window.location.href, pathname: window.location.pathname }),
+        keepalive: true
+      }).catch(function(){});
+    })();
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Briefing — Pixel.Co Página Express</title>
@@ -1285,7 +1298,8 @@
           event: 'lead',
           lead_nome: nome,
           lead_email: email,
-          lead_telefone: telefone
+          lead_telefone: telefone,
+          eventID: eventId
         });
 
         fetch('/api/lead', {
