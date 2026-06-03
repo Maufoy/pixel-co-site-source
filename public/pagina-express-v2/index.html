@@ -117,6 +117,7 @@
       display: flex;
       flex-direction: column;
       min-height: 0;
+      height: 100%;
     }
     .step {
       display: none;
@@ -390,14 +391,17 @@
       transform: scale(0.96);
     }
     /* ── Final screen ── */
+    .step[data-step="done"].active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+    }
     .final {
       text-align: center;
-      padding: 32px 12px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      padding: 24px 12px;
+      width: 100%;
+      max-width: 400px;
     }
     .final .check-circle {
       width: 64px;
@@ -804,7 +808,7 @@
 
     </div><!-- /step-wrapper -->
 
-    <!-- SUCCESS -->
+    <!-- SUCCESS (dentro do quiz-wrap, fora do step-wrapper) -->
     <div class="step" data-step="done" id="step-done">
       <div class="final">
         <div class="check-circle">
@@ -931,6 +935,7 @@
           steps.forEach(s => s.classList.remove('active'));
           $('step-done').classList.add('active');
           progressWrap.style.display = 'none';
+          $('step-wrapper').style.display = 'none';
           // Animate success screen
           const finalEl = document.querySelector('.final');
           if (finalEl) {
