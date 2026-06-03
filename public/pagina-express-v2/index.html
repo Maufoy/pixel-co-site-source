@@ -9,7 +9,7 @@
   })(window,document,'script','dataLayer','GTM-MVWRMS98');</script>
   <!-- End Google Tag Manager -->
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Pixel.Co — Qual página combina com você?</title>
   <meta name="description" content="Responda 4 perguntas rápidas e veja páginas profissionais reais feitas para a sua área. A partir de R$499.">
   <meta property="og:title" content="Pixel.Co — Qual página combina com você?">
@@ -17,94 +17,106 @@
   <meta property="og:url" content="https://pixelco.com.br/pagina-express-v2/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #F6F7F5;
-      --bg-card: #FFFFFF;
-      --bg-accent: #E8F0EA;
-      --text: #1A1A1A;
-      --text-soft: #6B6B6B;
+      --bg: #08090b;
+      --bg-card: #111215;
+      --bg-elevated: #191b1f;
+      --text: #f7f8f8;
+      --text-soft: #8a8f98;
+      --text-muted: #5c5f66;
       --green-deep: #002D25;
-      --green-mid: #003A30;
-      --green-bright: #025547;
+      --green-mid: #0d7a66;
+      --green-bright: #14a886;
       --accent-1: #C1D66D;
-      --accent-2: #B49DD0;
-      --border: #E2E4E0;
-      --radius: 14px;
+      --accent-2: rgba(20,168,134,0.12);
+      --border: rgba(255,255,255,0.07);
+      --border-hover: rgba(255,255,255,0.14);
+      --radius-sm: 10px;
+      --radius: 16px;
+      --btn-h: 64px;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html, body {
+      height: 100dvh;
+      overflow: hidden;
+    }
     body {
-      font-family: 'Sora', system-ui, sans-serif;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-feature-settings: 'cv01','ss03';
       background: var(--bg);
       color: var(--text);
-      min-height: 100dvh;
       display: flex;
       flex-direction: column;
       -webkit-tap-highlight-color: transparent;
     }
-    /* ====== Full-screen layout ====== */
+    /* ── Header compacto ── */
     .header {
-      padding: 12px 18px;
+      padding: 8px 16px 0;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       flex-shrink: 0;
     }
-    .logo { text-decoration: none; }
     .logo-text {
-      font-weight: 700; font-size: 18px;
-      color: var(--text); letter-spacing: -0.03em;
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      text-decoration: none;
     }
-    .logo-text .dot { color: var(--accent-1); }
     .header-small {
-      font-size: 10px; color: var(--text-soft);
-      font-family: 'IBM Plex Mono', monospace;
-      text-transform: uppercase; letter-spacing: 0.12em;
+      font-size: 9px;
+      color: var(--text-muted);
+      font-family: 'JetBrains Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
     }
+    /* ── Quiz wrap (preenche tudo) ── */
     .quiz-wrap {
       flex: 1;
       display: flex;
       flex-direction: column;
-      padding: 0 18px 18px;
-      max-width: 600px;
+      padding: 0 16px 12px;
+      max-width: 520px;
       width: 100%;
       margin: 0 auto;
+      min-height: 0;
     }
-    /* ====== Progress ====== */
+    /* ── Progress bar (compacta) ── */
     .progress-wrap {
-      margin-bottom: 16px;
       flex-shrink: 0;
+      margin-bottom: 12px;
     }
     .progress-meta {
       display: flex;
       justify-content: space-between;
-      font-size: 10px;
-      color: var(--text-soft);
-      margin-bottom: 6px;
-      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+      font-family: 'JetBrains Mono', monospace;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
     }
     .progress-bar {
-      height: 5px;
+      height: 4px;
       background: var(--border);
-      border-radius: 3px;
+      border-radius: 2px;
       overflow: hidden;
     }
     .progress-fill {
       height: 100%;
       background: linear-gradient(90deg, var(--green-deep), var(--green-bright));
-      border-radius: 3px;
-      transition: width 0.5s cubic-bezier(.2,.8,.2,1);
+      border-radius: 2px;
       width: 0%;
     }
-    /* ====== Step container (fills remaining space) ====== */
+    /* ── Step container ── */
     .step-wrapper {
       flex: 1;
       display: flex;
       flex-direction: column;
+      min-height: 0;
     }
     .step {
       display: none;
@@ -113,58 +125,49 @@
       display: flex;
       flex-direction: column;
       flex: 1;
-      animation: stepIn 0.35s ease;
+      min-height: 0;
     }
-    @keyframes stepIn {
-      0% { opacity: 0; transform: translateY(12px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes popIn {
-      0% { opacity: 0; transform: scale(0.92); }
-      60% { transform: scale(1.03); }
-      100% { opacity: 1; transform: scale(1); }
-    }
-    @keyframes bounceDot {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.4); }
-    }
-    /* ====== Question card ====== */
+    /* ── Question card ── */
     .q-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 24px 20px;
+      border-radius: var(--radius);
+      padding: 20px 18px;
       flex: 1;
       display: flex;
       flex-direction: column;
+      min-height: 0;
     }
     .q-number {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.14em;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--accent-2);
-      margin-bottom: 6px;
+      color: var(--green-bright);
+      margin-bottom: 4px;
     }
     .q-title {
-      font-size: clamp(20px, 5vw, 26px);
-      font-weight: 700;
+      font-size: clamp(18px, 4.5vw, 24px);
+      font-weight: 600;
       line-height: 1.2;
-      margin-bottom: 18px;
-      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+      letter-spacing: -0.015em;
     }
-    .q-title em { font-style: italic; color: var(--green-bright); }
+    .q-title em {
+      font-style: italic;
+      color: var(--green-bright);
+    }
     .q-sub {
-      font-size: 13px;
+      font-size: 12px;
       color: var(--text-soft);
-      margin-bottom: 18px;
-      line-height: 1.45;
+      margin-bottom: 14px;
+      line-height: 1.5;
     }
-    /* ====== Options with emoji ====== */
+    /* ── Options (Lucide icons) ── */
     .options {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
       flex: 1;
       justify-content: center;
     }
@@ -173,38 +176,44 @@
       align-items: center;
       gap: 14px;
       padding: 16px 18px;
-      border: 2px solid var(--border);
-      border-radius: 14px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
       cursor: pointer;
-      transition: border-color 0.2s, background 0.2s, transform 0.15s;
-      background: var(--bg-card);
-      font-size: 15px;
-      font-weight: 600;
-      font-family: 'Sora', sans-serif;
+      transition: border-color 0.2s, background 0.2s;
+      background: var(--bg);
+      font-size: 14px;
+      font-weight: 500;
+      font-family: 'Inter', sans-serif;
       color: var(--text);
       text-align: left;
       width: 100%;
-      min-height: 60px;
+      min-height: var(--btn-h);
       -webkit-appearance: none;
+      line-height: 1.3;
     }
-    .option:active { transform: scale(0.97); }
-    .option.selected {
-      border-color: var(--green-bright);
-      background: #F0F9F0;
-      animation: popIn 0.3s ease;
-    }
-    .option .opt-emoji {
-      font-size: 26px;
+    .option .icon-wrap {
+      width: 30px;
+      height: 30px;
       flex-shrink: 0;
-      width: 36px;
-      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      background: var(--accent-2);
+      transition: background 0.2s;
+    }
+    .option .icon-wrap svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--green-bright);
+      stroke-width: 2;
     }
     .option .opt-text {
       flex: 1;
-      line-height: 1.3;
     }
     .option .dot {
-      width: 22px; height: 22px;
+      width: 22px;
+      height: 22px;
       border-radius: 50%;
       border: 2px solid var(--border);
       flex-shrink: 0;
@@ -213,228 +222,279 @@
       justify-content: center;
       transition: all 0.25s;
     }
+    .option.selected {
+      border-color: var(--green-bright);
+      background: rgba(20,168,134,0.06);
+    }
+    .option.selected .icon-wrap {
+      background: rgba(20,168,134,0.18);
+    }
     .option.selected .dot {
       border-color: var(--green-bright);
       background: var(--green-bright);
-      animation: bounceDot 0.35s ease;
     }
     .option.selected .dot::after {
       content: '';
-      width: 8px; height: 8px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
       background: white;
     }
-    /* ====== Conditional detail ====== */
+    /* ── Detail fields ── */
     .detail-field {
       display: none;
-      margin-top: 10px;
-      animation: stepIn 0.25s ease;
     }
-    .detail-field.visible { display: block; }
+    .detail-field.visible {
+      display: block;
+      margin-top: 6px;
+    }
     .detail-field .input {
       width: 100%;
       padding: 14px 16px;
-      border: 2px solid var(--border);
-      border-radius: 12px;
-      font-size: 15px;
-      font-family: 'Sora', sans-serif;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-family: 'Inter', sans-serif;
       color: var(--text);
-      background: var(--bg-card);
+      background: var(--bg);
       outline: none;
       transition: border-color 0.2s;
     }
-    .detail-field .input:focus { border-color: var(--green-bright); }
-    /* ====== Portfolio ====== */
+    .detail-field .input:focus {
+      border-color: var(--green-bright);
+    }
+    .detail-field .input::placeholder {
+      color: var(--text-muted);
+    }
+    /* ── Portfolio ── */
     .port-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 10px;
+      gap: 8px;
       flex: 1;
     }
     .port-card {
       position: relative;
-      border-radius: 12px;
+      border-radius: var(--radius-sm);
       overflow: hidden;
       cursor: pointer;
-      border: 2px solid var(--border);
+      border: 1.5px solid var(--border);
       transition: border-color 0.2s, transform 0.15s;
       aspect-ratio: 3/4;
-      background: var(--bg-accent);
+      background: var(--bg);
     }
-    .port-card:active { transform: scale(0.96); }
     .port-card.selected {
       border-color: var(--green-bright);
-      box-shadow: 0 0 0 3px rgba(0,45,37,0.15);
-      animation: popIn 0.25s ease;
+      box-shadow: 0 0 0 2px rgba(20,168,134,0.2);
     }
-    .port-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .port-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
     .port-label {
       position: absolute;
       bottom: 0; left: 0; right: 0;
-      padding: 8px 10px;
-      background: linear-gradient(transparent, rgba(0,0,0,0.75));
+      padding: 6px 8px;
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
       color: white;
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 500;
     }
-    .port-label small { display: block; opacity: 0.7; font-weight: 300; font-size: 9px; font-family: 'IBM Plex Mono', monospace; }
-    /* ====== Form fields ====== */
-    .field { margin-bottom: 14px; }
+    .port-label small {
+      display: block;
+      opacity: 0.6;
+      font-weight: 400;
+      font-size: 8px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    /* ── Form fields ── */
+    .field { margin-bottom: 12px; }
     .field-label {
       display: block;
-      font-size: 13px;
-      font-weight: 600;
-      margin-bottom: 6px;
-      color: var(--text);
+      font-size: 12px;
+      font-weight: 500;
+      margin-bottom: 4px;
+      color: var(--text-soft);
     }
     .field .input, .field textarea.input {
       width: 100%;
-      padding: 16px 18px;
-      border: 2px solid var(--border);
-      border-radius: 12px;
-      font-size: 15px;
-      font-family: 'Sora', sans-serif;
+      padding: 14px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-family: 'Inter', sans-serif;
       color: var(--text);
-      background: var(--bg-card);
+      background: var(--bg);
       outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
+      transition: border-color 0.2s;
     }
     .field .input:focus {
       border-color: var(--green-bright);
-      box-shadow: 0 0 0 3px rgba(0,45,37,0.08);
     }
-    /* ====== Big buttons ====== */
+    .field .input::placeholder {
+      color: var(--text-muted);
+    }
+    /* ── Big buttons ── */
     .btn-row {
       display: flex;
-      gap: 10px;
-      margin-top: 14px;
+      gap: 8px;
+      margin-top: 10px;
       flex-shrink: 0;
     }
     .btn {
-      padding: 18px 24px;
-      border-radius: 999px;
-      font-family: 'Sora', sans-serif;
-      font-size: 16px;
+      min-height: var(--btn-h);
+      padding: 0 28px;
+      border-radius: var(--radius);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
       font-weight: 600;
       cursor: pointer;
       border: none;
-      transition: transform 0.15s, box-shadow 0.2s, opacity 0.2s;
+      transition: transform 0.12s, box-shadow 0.2s, opacity 0.2s;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
       text-decoration: none;
       flex: 1;
-      min-height: 58px;
+      letter-spacing: -0.01em;
+      -webkit-tap-highlight-color: transparent;
     }
     .btn-solid {
       background: linear-gradient(135deg, var(--green-deep) 0%, var(--green-bright) 100%);
       color: white;
+      box-shadow: 0 2px 12px rgba(20,168,134,0.25);
     }
-    .btn-solid:not(:disabled):active { transform: scale(0.97); }
+    .btn-solid:active:not(:disabled) {
+      transform: scale(0.97);
+      box-shadow: 0 1px 6px rgba(20,168,134,0.15);
+    }
     .btn-solid:disabled {
-      opacity: 0.35;
+      opacity: 0.3;
       cursor: not-allowed;
       transform: none;
       box-shadow: none;
     }
     .btn-ghost {
       background: transparent;
-      border: 2px solid var(--border);
-      color: var(--text);
+      border: 1.5px solid var(--border);
+      color: var(--text-soft);
       flex: 0 0 auto;
-      padding: 18px 18px;
+      min-width: 64px;
+      font-weight: 500;
     }
-    .btn-ghost:active { transform: scale(0.97); }
-    /* ====== Final ====== */
+    .btn-ghost:active {
+      transform: scale(0.96);
+    }
+    /* ── Final screen ── */
     .final {
       text-align: center;
-      padding: 40px 16px;
+      padding: 32px 12px;
       flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      animation: popIn 0.4s ease;
+      align-items: center;
     }
-    .final h2 {
-      font-size: clamp(26px, 6vw, 34px);
-      font-weight: 700;
-      line-height: 1.15;
-      letter-spacing: -0.02em;
-      margin-bottom: 12px;
-    }
-    .final h2 em { color: var(--green-bright); font-style: italic; }
-    .final p {
-      font-size: 15px;
-      color: var(--text-soft);
-      max-width: 400px;
-      margin: 0 auto 24px;
-      line-height: 1.5;
-    }
-    .final .small {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: rgba(0,0,0,0.3);
-    }
-    .final .checkmark {
-      width: 64px; height: 64px;
+    .final .check-circle {
+      width: 64px;
+      height: 64px;
       border-radius: 50%;
-      background: var(--accent-1);
-      color: var(--green-deep);
+      background: var(--green-bright);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 24px;
-      font-size: 32px;
-      animation: popIn 0.4s ease;
+      margin-bottom: 20px;
     }
-    @media (min-width: 600px) {
-      .quiz-wrap { padding: 0 24px 24px; }
-      .q-card { padding: 32px 28px; }
-      .option { min-height: 64px; padding: 18px 22px; font-size: 16px; }
-      .option .opt-emoji { font-size: 28px; width: 40px; }
+    .final .check-circle svg {
+      width: 32px;
+      height: 32px;
+      stroke: white;
+      stroke-width: 2.5;
     }
-    /* ====== Brag strip ====== */
-    .brag {
+    .final h2 {
+      font-size: clamp(24px, 5.5vw, 30px);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+    .final h2 em {
+      color: var(--green-bright);
+      font-style: italic;
+    }
+    .final p {
+      font-size: 13px;
+      color: var(--text-soft);
+      max-width: 360px;
+      margin: 0 auto 20px;
+      line-height: 1.55;
+    }
+    .final .small {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .final .brag {
       display: flex;
-      gap: 20px;
+      gap: 16px;
       justify-content: center;
       flex-wrap: wrap;
-      margin-top: 20px;
-      padding: 14px 0;
+      margin-top: 18px;
+      padding: 12px 0 0;
       border-top: 1px solid var(--border);
     }
-    .brag span {
-      font-size: 11px;
+    .final .brag span {
+      font-size: 10px;
       color: var(--text-soft);
-      font-family: 'IBM Plex Mono', monospace;
+      font-family: 'JetBrains Mono', monospace;
       text-transform: uppercase;
       letter-spacing: 0.06em;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
     }
-    .brag .chk { color: var(--green-bright); }
+    .final .brag .chk {
+      color: var(--green-bright);
+    }
+    /* ── Scrollbar (clean) ── */
+    .q-card::-webkit-scrollbar {
+      width: 4px;
+    }
+    .q-card::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 2px;
+    }
+    /* ── Responsive ── */
+    @media (min-width: 500px) {
+      .quiz-wrap { padding: 0 24px 16px; }
+      .q-card { padding: 28px 26px; }
+      .option { min-height: 68px; padding: 18px 22px; font-size: 15px; }
+      .btn { font-size: 16px; }
+    }
+    @media (min-width: 640px) {
+      .quiz-wrap { max-width: 560px; }
+    }
   </style>
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVWRMS98"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
 
+  <!-- Header: só texto, sem ícone -->
   <header class="header">
-    <a href="/pagina-express-v2/" class="logo">
-      <span class="logo-text">Pixel<span class="dot">.</span>Co</span>
-    </a>
+    <span class="logo-text">Pixel.Co</span>
     <span class="header-small">Página Express</span>
   </header>
 
   <div class="quiz-wrap" id="app">
 
-    <!-- Progress -->
+    <!-- Progress bar -->
     <div class="progress-wrap" id="progress-wrap">
       <div class="progress-meta">
         <span><span id="current-step">1</span> de <span id="total-steps">9</span></span>
@@ -445,7 +505,7 @@
       </div>
     </div>
 
-    <div class="step-wrapper">
+    <div class="step-wrapper" id="step-wrapper">
 
     <!-- STEP 1: Já tem página? -->
     <div class="step active" data-step="1" data-name="Página atual">
@@ -454,17 +514,17 @@
         <h2 class="q-title">Você já tem uma <em>página profissional</em>?</h2>
         <div class="options" id="q1-opts">
           <button class="option" data-value="nao_nunca">
-            <span class="opt-emoji">📱</span>
+            <span class="icon-wrap"><i data-lucide="smartphone"></i></span>
             <span class="opt-text">Não, nunca tive</span>
             <span class="dot"></span>
           </button>
           <button class="option" data-value="linktree">
-            <span class="opt-emoji">🔗</span>
+            <span class="icon-wrap"><i data-lucide="link-2"></i></span>
             <span class="opt-text">Tenho um Linktree / Instagram só</span>
             <span class="dot"></span>
           </button>
           <button class="option" data-value="sim_mas" data-detail="d-q1-sim-mas">
-            <span class="opt-emoji">😕</span>
+            <span class="icon-wrap"><i data-lucide="frown"></i></span>
             <span class="opt-text">Tenho, mas não gosto / está feia</span>
             <span class="dot"></span>
           </button>
@@ -472,7 +532,7 @@
             <input type="text" class="input" placeholder="O que você não gosta na página atual? Ex: design antigo, sem CTA..." autocomplete="off">
           </div>
           <button class="option" data-value="saiu_do_ar" data-detail="d-q1-saiu-ar">
-            <span class="opt-emoji">😢</span>
+            <span class="icon-wrap"><i data-lucide="cloud-off"></i></span>
             <span class="opt-text">Já tive mas saiu do ar / nunca finalizei</span>
             <span class="dot"></span>
           </button>
@@ -492,40 +552,40 @@
         <div class="q-number">Pergunta 2</div>
         <h2 class="q-title">Qual é a sua <em>profissão</em>?</h2>
         <div class="options" id="q2-opts">
-                  <button class="option" data-value="psicologia">
-                    <span class="opt-emoji">🧠</span>
-                    <span class="opt-text">Psicóloga(o)</span>
-                    <span class="dot"></span>
-                  </button>
-                  <button class="option" data-value="advocacia">
-                    <span class="opt-emoji">⚖️</span>
-                    <span class="opt-text">Advogada(o)</span>
-                    <span class="dot"></span>
-                  </button>
-                  <button class="option" data-value="nutricao">
-                    <span class="opt-emoji">🥗</span>
-                    <span class="opt-text">Nutricionista</span>
-                    <span class="dot"></span>
-                  </button>
-                  <button class="option" data-value="arquitetura">
-                    <span class="opt-emoji">🏛️</span>
-                    <span class="opt-text">Arquiteta(o) / Design de interiores</span>
-                    <span class="dot"></span>
-                  </button>
-                  <button class="option" data-value="consultoria">
-                    <span class="opt-emoji">📊</span>
-                    <span class="opt-text">Consultora(o) / Coach</span>
-                    <span class="dot"></span>
-                  </button>
-                  <button class="option" data-value="outro" data-detail="d-q2-outro">
-                    <span class="opt-emoji">💼</span>
-                    <span class="opt-text">Outra profissão</span>
-                    <span class="dot"></span>
-                  </button>
-                  <div class="detail-field" id="d-q2-outro">
-                    <input type="text" class="input" placeholder="Qual sua profissão? Ex: Fisioterapeuta, Corretor..." autocomplete="off">
-                  </div>
-                </div>
+          <button class="option" data-value="psicologia">
+            <span class="icon-wrap"><i data-lucide="brain"></i></span>
+            <span class="opt-text">Psicóloga(o)</span>
+            <span class="dot"></span>
+          </button>
+          <button class="option" data-value="advocacia">
+            <span class="icon-wrap"><i data-lucide="scale"></i></span>
+            <span class="opt-text">Advogada(o)</span>
+            <span class="dot"></span>
+          </button>
+          <button class="option" data-value="nutricao">
+            <span class="icon-wrap"><i data-lucide="utensils-crossed"></i></span>
+            <span class="opt-text">Nutricionista</span>
+            <span class="dot"></span>
+          </button>
+          <button class="option" data-value="arquitetura">
+            <span class="icon-wrap"><i data-lucide="landmark"></i></span>
+            <span class="opt-text">Arquiteta(o) / Design de interiores</span>
+            <span class="dot"></span>
+          </button>
+          <button class="option" data-value="consultoria">
+            <span class="icon-wrap"><i data-lucide="bar-chart-3"></i></span>
+            <span class="opt-text">Consultora(o) / Coach</span>
+            <span class="dot"></span>
+          </button>
+          <button class="option" data-value="outro" data-detail="d-q2-outro">
+            <span class="icon-wrap"><i data-lucide="briefcase"></i></span>
+            <span class="opt-text">Outra profissão</span>
+            <span class="dot"></span>
+          </button>
+          <div class="detail-field" id="d-q2-outro">
+            <input type="text" class="input" placeholder="Qual sua profissão? Ex: Fisioterapeuta, Corretor..." autocomplete="off">
+          </div>
+        </div>
       </div>
       <div class="btn-row">
         <button class="btn btn-ghost" onclick="goStep(1)">← Voltar</button>
@@ -554,22 +614,22 @@
         <h2 class="q-title">Qual seu maior <em>desafio</em> hoje?</h2>
         <div class="options" id="q4-opts">
           <button class="option" data-value="clientes">
-            <span class="opt-emoji">📈</span>
+            <span class="icon-wrap"><i data-lucide="trending-up"></i></span>
             <span class="opt-text">Não consigo atrair clientes novos</span>
             <span class="dot"></span>
           </button>
           <button class="option" data-value="tempo">
-            <span class="opt-emoji">⏰</span>
+            <span class="icon-wrap"><i data-lucide="clock"></i></span>
             <span class="opt-text">Não tenho tempo de criar uma página</span>
             <span class="dot"></span>
           </button>
           <button class="option" data-value="tentei">
-            <span class="opt-emoji">🔧</span>
+            <span class="icon-wrap"><i data-lucide="wrench"></i></span>
             <span class="opt-text">Já tentei fazer e desisti / ficou ruim</span>
             <span class="dot"></span>
           </button>
           <button class="option" data-value="outro_desafio" data-detail="d-q4-outro">
-            <span class="opt-emoji">💭</span>
+            <span class="icon-wrap"><i data-lucide="message-square"></i></span>
             <span class="opt-text">Outro desafio</span>
             <span class="dot"></span>
           </button>
@@ -609,15 +669,14 @@
       </div>
     </div>
 
-    <!-- STEPS 6-7: Conteúdo do briefing -->
     <!-- STEP 6: Cliente ideal -->
     <div class="step" data-step="6" data-name="Cliente ideal">
       <div class="q-card">
-        <div class="q-number">Quase lá • 1 de 2</div>
+        <div class="q-number">Conteúdo • 1 de 2</div>
         <h2 class="q-title">Descreve em 2 frases <em>seu cliente ideal</em></h2>
-        <p class="q-sub">Quem é a pessoa que mais precisa do seu serviço? Idade, profissão, momento de vida.<br><em>Sem "qualquer pessoa" — quanto mais específico, melhor a página converte.</em></p>
+        <p class="q-sub">Quem mais precisa do seu serviço? Idade, profissão, momento de vida.<br><em style="color:var(--text-muted);font-size:11px">Quanto mais específico, melhor a página converte.</em></p>
         <div class="field">
-          <textarea class="input" id="b-cliente-perfil" style="min-height:100px;resize:vertical;font-family:'Sora',sans-serif" placeholder="Ex: Mulheres de 35-50 anos, executivas, que sentem ansiedade alta e não conseguem mais dormir direito."></textarea>
+          <textarea class="input" id="b-cliente-perfil" style="min-height:100px;resize:vertical;font-family:'Inter',sans-serif" placeholder="Ex: Mulheres de 35-50 anos, executivas, que sentem ansiedade..."></textarea>
         </div>
       </div>
       <div class="btn-row">
@@ -629,11 +688,11 @@
     <!-- STEP 7: Oferta -->
     <div class="step" data-step="7" data-name="Oferta">
       <div class="q-card">
-        <div class="q-number">Quase lá • 2 de 2</div>
+        <div class="q-number">Conteúdo • 2 de 2</div>
         <h2 class="q-title">O que você <em>vende exatamente</em>?</h2>
-        <p class="q-sub">Descreve seu serviço principal em poucas linhas. É um pacote, sessão avulsa, programa de X semanas, mentoria?<br>Isso vira a seção principal da sua página.</p>
+        <p class="q-sub">Descreve seu serviço principal. Pacote, sessão avulsa, mentoria... Isso vira a seção principal da sua página.</p>
         <div class="field">
-          <textarea class="input" id="b-oferta" style="min-height:100px;resize:vertical;font-family:'Sora',sans-serif" placeholder="Ex: Acompanhamento psicológico individual para mulheres com ansiedade. São 12 sessões semanais com plano personalizado de tratamento."></textarea>
+          <textarea class="input" id="b-oferta" style="min-height:100px;resize:vertical;font-family:'Inter',sans-serif" placeholder="Ex: Acompanhamento psicológico individual para mulheres com ansiedade. 12 sessões com plano personalizado."></textarea>
         </div>
       </div>
       <div class="btn-row">
@@ -642,11 +701,10 @@
       </div>
     </div>
 
-    <!-- STEPS 8-11: Briefing técnico -->
     <!-- STEP 8: Nome na página -->
     <div class="step" data-step="8" data-name="Briefing">
       <div class="q-card">
-        <div class="q-number">Quase lá • 1 de 4</div>
+        <div class="q-number">Briefing • 1 de 4</div>
         <h2 class="q-title">Como quer ser chamado(a) <em>na sua página</em>?</h2>
         <p class="q-sub">Ex: "Maria", "Dra. Maria Silva", "Estúdio Marina".<br>Se deixar vazio, usamos seu nome.</p>
         <div class="field">
@@ -659,12 +717,12 @@
       </div>
     </div>
 
-    <!-- STEP 9: Cor / estilo -->
+    <!-- STEP 9: Cores / Logo -->
     <div class="step" data-step="9" data-name="Briefing">
       <div class="q-card">
-        <div class="q-number">Quase lá • 2 de 4</div>
+        <div class="q-number">Briefing • 2 de 4</div>
         <h2 class="q-title"><em>Cores e logo</em> — o básico</h2>
-        <div class="field" style="margin-bottom:20px">
+        <div class="field" style="margin-bottom:16px">
           <label class="field-label">Tem uma cor ou paleta preferida?</label>
           <input type="text" class="input" id="b-cor" placeholder="Ex: azul marinho e dourado, verde e branco...">
         </div>
@@ -672,17 +730,17 @@
           <label class="field-label">Já tem logo?</label>
           <div class="options" id="q9-opts">
             <button class="option" data-value="sim_logo">
-              <span class="opt-emoji">🎨</span>
+              <span class="icon-wrap"><i data-lucide="palette"></i></span>
               <span class="opt-text">Sim, tenho logo em boa qualidade</span>
               <span class="dot"></span>
             </button>
             <button class="option" data-value="sim_simples">
-              <span class="opt-emoji">📸</span>
+              <span class="icon-wrap"><i data-lucide="camera"></i></span>
               <span class="opt-text">Tenho uma logo simples / print</span>
               <span class="dot"></span>
             </button>
             <button class="option" data-value="nao_logo">
-              <span class="opt-emoji">❌</span>
+              <span class="icon-wrap"><i data-lucide="x"></i></span>
               <span class="opt-text">Ainda não tenho logo</span>
               <span class="dot"></span>
             </button>
@@ -698,11 +756,11 @@
     <!-- STEP 10: Domínio -->
     <div class="step" data-step="10" data-name="Briefing">
       <div class="q-card">
-        <div class="q-number">Quase lá • 3 de 4</div>
+        <div class="q-number">Briefing • 3 de 4</div>
         <h2 class="q-title">Já tem <em>domínio</em>?</h2>
         <div class="options" id="q10-opts">
           <button class="option" data-value="ja_tenho" data-detail="d-q10-dominio">
-            <span class="opt-emoji">🌐</span>
+            <span class="icon-wrap"><i data-lucide="globe"></i></span>
             <span class="opt-text">Já tenho domínio</span>
             <span class="dot"></span>
           </button>
@@ -710,12 +768,12 @@
             <input type="text" class="input" placeholder="Qual seu domínio? Ex: meusite.com.br" autocomplete="url">
           </div>
           <button class="option" data-value="preciso">
-            <span class="opt-emoji">🆕</span>
+            <span class="icon-wrap"><i data-lucide="sparkles"></i></span>
             <span class="opt-text">Preciso registrar um</span>
             <span class="dot"></span>
           </button>
           <button class="option" data-value="nao_sei">
-            <span class="opt-emoji">🤷</span>
+            <span class="icon-wrap"><i data-lucide="help-circle"></i></span>
             <span class="opt-text">Não sei / me ajuda nessa parte</span>
             <span class="dot"></span>
           </button>
@@ -732,9 +790,9 @@
       <div class="q-card">
         <div class="q-number">Pra fechar</div>
         <h2 class="q-title">Algo mais que queira <em>contar</em>?</h2>
-        <p class="q-sub">Espaço livre. Se quiser, conta mais sobre seu negócio, seu público, ou o que espera da página.</p>
+        <p class="q-sub">Espaço livre. Conte mais sobre seu negócio, seu público, ou o que espera da página.</p>
         <div class="field">
-          <textarea class="input" id="b-extra" style="min-height:120px;resize:vertical;font-family:'Sora',sans-serif" placeholder="Ex: Atendo presencial e online, meu diferencial é tal..."></textarea>
+          <textarea class="input" id="b-extra" style="min-height:120px;resize:vertical;font-family:'Inter',sans-serif" placeholder="Ex: Atendo presencial e online, meu diferencial é tal..."></textarea>
         </div>
       </div>
       <div class="btn-row">
@@ -748,7 +806,9 @@
     <!-- SUCCESS -->
     <div class="step" data-step="done" id="step-done">
       <div class="final">
-        <div class="checkmark">✓</div>
+        <div class="check-circle">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
         <h2>Briefing <em>recebido!</em> 🎉</h2>
         <p>A gente já tá com tudo aqui. Em até 1h útil você recebe no WhatsApp a confirmação de início e o link de preview no fim do dia 2.</p>
         <div class="small">Pode fechar essa página · Nada se perde</div>
@@ -762,21 +822,28 @@
 
   </div>
 
+  <!-- CDN: anime.js + Lucide -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
   <script>
     (() => {
       'use strict';
 
-      // ====== STATE ======
+      // ── Init Lucide Icons ──
+      lucide.createIcons();
+
+      // ── STATE ──
       const state = {
-        passo: 1,         // pergunta atual: 1-9, depois 'done'
-        respostas: {},    // { q1: 'nao_nunca', q2: 'psicologia', ... }
-        lead: {},         // { nome, telefone, email }
+        passo: 1,
+        respostas: {},
+        lead: {},
         selectedPortfolio: null,
       };
 
       const TOTAL = 11;
 
-      // ====== DOM refs ======
+      // ── DOM refs ──
       const $ = (id) => document.getElementById(id);
       const steps = document.querySelectorAll('.step');
       const progressFill = $('progress-fill');
@@ -784,10 +851,343 @@
       const totalStepsEl = $('total-steps');
       const stepNameEl = $('step-name');
       const progressWrap = $('progress-wrap');
+      const stepWrapper = $('step-wrapper');
 
       totalStepsEl.textContent = TOTAL;
 
-      // ====== Portfolio data ======
+      // ── anime.js: step transition ──
+      function animateStepIn(container) {
+        const card = container.querySelector('.q-card');
+        const btnRow = container.querySelector('.btn-row');
+        if (card) {
+          anime({
+            targets: card,
+            opacity: [0, 1],
+            translateY: [16, 0],
+            easing: 'easeOutCubic',
+            duration: 400,
+          });
+        }
+        if (btnRow) {
+          btnRow.style.opacity = 0;
+          btnRow.style.transform = 'translateY(10px)';
+          anime({
+            targets: btnRow,
+            opacity: [0, 1],
+            translateY: [10, 0],
+            easing: 'easeOutCubic',
+            duration: 350,
+            delay: 150,
+          });
+        }
+        // Animate options stagger
+        const opts = container.querySelectorAll('.option');
+        if (opts.length) {
+          opts.forEach((opt, i) => {
+            opt.style.opacity = 0;
+            opt.style.transform = 'translateY(12px)';
+          });
+          anime({
+            targets: container.querySelectorAll('.option'),
+            opacity: [0, 1],
+            translateY: [12, 0],
+            easing: 'easeOutCubic',
+            duration: 350,
+            delay: anime.stagger(50, { start: 100 }),
+          });
+        }
+      }
+
+      // ── anime.js: option selection ──
+      function animateSelect(btn) {
+        anime({
+          targets: btn.querySelector('.dot'),
+          scale: [1, 1.35, 1],
+          easing: 'easeOutBack',
+          duration: 400,
+        });
+        anime({
+          targets: btn.querySelector('.icon-wrap'),
+          scale: [1, 1.12, 1],
+          easing: 'easeOutBack',
+          duration: 400,
+        });
+      }
+
+      // ── anime.js: progress bar ──
+      function animateProgress(percent) {
+        anime({
+          targets: progressFill,
+          width: `${percent}%`,
+          easing: 'easeOutCubic',
+          duration: 500,
+        });
+      }
+
+      // ── Step management ──
+      function showStep(n) {
+        if (n === 'done') {
+          steps.forEach(s => s.classList.remove('active'));
+          $('step-done').classList.add('active');
+          progressWrap.style.display = 'none';
+          // Animate success screen
+          const finalEl = document.querySelector('.final');
+          if (finalEl) {
+            anime({
+              targets: finalEl,
+              opacity: [0, 1],
+              translateY: [20, 0],
+              easing: 'easeOutCubic',
+              duration: 500,
+            });
+            anime({
+              targets: finalEl.querySelector('.check-circle'),
+              scale: [0, 1],
+              rotate: ['-180deg', '0deg'],
+              easing: 'easeOutBack',
+              duration: 600,
+            });
+          }
+          return;
+        }
+        state.passo = Math.max(1, Math.min(TOTAL, n));
+        steps.forEach(s => s.classList.toggle('active', Number(s.dataset.step) === state.passo));
+        currentStepEl.textContent = state.passo;
+        const active = [...steps].find(s => Number(s.dataset.step) === state.passo);
+        stepNameEl.textContent = active?.dataset.name || '';
+        animateProgress((state.passo / TOTAL) * 100);
+
+        // Animate the new step
+        if (active) animateStepIn(active);
+
+        // Re-init Lucide icons (in case of DOM change)
+        lucide.createIcons();
+      }
+
+      window.goStep = showStep;
+
+      // ── Option selection ──
+      function initOptions(containerId, key) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        const btns = container.querySelectorAll('.option');
+        btns.forEach(btn => {
+          btn.addEventListener('click', () => {
+            btns.forEach(b => {
+              b.classList.remove('selected');
+              const detailId = b.dataset.detail;
+              if (detailId) {
+                const df = document.getElementById(detailId);
+                if (df) df.classList.remove('visible');
+              }
+            });
+            btn.classList.add('selected');
+            animateSelect(btn);
+            const val = btn.dataset.value;
+            state.respostas[key] = val;
+
+            const detailId = btn.dataset.detail;
+            if (detailId) {
+              const df = document.getElementById(detailId);
+              if (df) df.classList.add('visible');
+            }
+
+            const step = container.closest('.step');
+            if (step) {
+              const nextBtn = step.querySelector('.btn-solid');
+              if (nextBtn) nextBtn.disabled = false;
+            }
+          });
+        });
+      }
+
+      initOptions('q1-opts', 'q1');
+      initOptions('q2-opts', 'q2');
+      initOptions('q4-opts', 'q4');
+      initOptions('q9-opts', 'q9');
+      initOptions('q10-opts', 'q10');
+
+      // ── Step 1 → 2 ──
+      $('btn-next-1').addEventListener('click', () => showStep(2));
+
+      // ── Step 2 → 3 (Portfolio) ──
+      $('btn-next-2').addEventListener('click', () => {
+        const prof = state.respostas.q2;
+        const items = portfolioMap[prof] || portfolioMap.outro;
+        const grid = $('port-grid');
+        grid.innerHTML = '';
+        state.selectedPortfolio = null;
+        $('btn-next-3').disabled = true;
+
+        items.forEach((item, idx) => {
+          const card = document.createElement('div');
+          card.className = 'port-card';
+          card.dataset.idx = idx;
+          card.innerHTML = `
+            <img src="${item.img}" alt="${item.label}" loading="lazy">
+            <div class="port-label">${item.label}<small>${item.sub}</small></div>
+          `;
+          card.addEventListener('click', () => {
+            grid.querySelectorAll('.port-card').forEach(c => c.classList.remove('selected'));
+            card.classList.add('selected');
+            anime({
+              targets: card,
+              scale: [0.95, 1],
+              easing: 'easeOutBack',
+              duration: 350,
+            });
+            state.selectedPortfolio = idx;
+            $('btn-next-3').disabled = false;
+          });
+          grid.appendChild(card);
+          // Stagger animation
+          anime({
+            targets: card,
+            opacity: [0, 1],
+            translateY: [12, 0],
+            easing: 'easeOutCubic',
+            duration: 350,
+            delay: idx * 80,
+          });
+        });
+
+        showStep(3);
+      });
+
+      // ── Step 3 → 4 ──
+      $('btn-next-3').addEventListener('click', () => showStep(4));
+
+      // ── Step 4 → 5 ──
+      $('btn-next-4').addEventListener('click', () => showStep(5));
+
+      // ── Step 5: Lead validation ──
+      function validateLead() {
+        const nome = ($('lead-nome').value || '').trim();
+        const tel = ($('lead-tel').value || '').trim();
+        const ok = nome.length >= 2 && tel.replace(/\D/g, '').length >= 10;
+        $('btn-next-5').disabled = !ok;
+      }
+      $('lead-nome').addEventListener('input', validateLead);
+      $('lead-tel').addEventListener('input', validateLead);
+
+      $('btn-next-5').addEventListener('click', () => {
+        const nome = ($('lead-nome').value || '').trim();
+        const tel = ($('lead-tel').value || '').trim();
+        const email = ($('lead-email').value || '').trim();
+
+        if (nome.length < 2 || tel.replace(/\D/g, '').length < 10) return;
+        state.lead = { nome, telefone: tel, email };
+        showStep(6);
+      });
+
+      // ── Step 9: Logo → Step 10 ──
+      $('btn-next-9').addEventListener('click', () => showStep(10));
+
+      // ── Step 10: Domínio → Step 11 ──
+      $('btn-next-10').addEventListener('click', () => showStep(11));
+
+      // ── SUBMIT ──
+      $('btn-submit').addEventListener('click', async () => {
+        const btn = $('btn-submit');
+        btn.disabled = true;
+        btn.textContent = 'Enviando...';
+
+        const payload = {
+          ...state.respostas,
+          ...state.lead,
+          portfolio_escolhido: state.selectedPortfolio !== null ? state.selectedPortfolio : undefined,
+          nome_pagina: ($('b-nome-pagina').value || '').trim(),
+          cliente_perfil: ($('b-cliente-perfil').value || '').trim(),
+          oferta: ($('b-oferta').value || '').trim(),
+          detalhe_situacao: (document.getElementById('d-q1-sim-mas')?.querySelector('.input')?.value || document.getElementById('d-q1-saiu-ar')?.querySelector('.input')?.value || '').trim(),
+          detalhe_profissao: (document.getElementById('d-q2-outro')?.querySelector('.input')?.value || '').trim(),
+          detalhe_desafio: (document.getElementById('d-q4-outro')?.querySelector('.input')?.value || '').trim(),
+          detalhe_dominio: (document.getElementById('d-q10-dominio')?.querySelector('.input')?.value || '').trim(),
+          cor_preferida: ($('b-cor').value || '').trim(),
+          logo: state.respostas.q9 || '',
+          dominio: state.respostas.q10 || '',
+          extra: ($('b-extra').value || '').trim(),
+          sourceUrl: window.location.href,
+        };
+
+        const eventId = `quiz-${window.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2,8)}`}`;
+        payload.eventId = eventId;
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'leadSubmission',
+          eventID: eventId,
+          lead_nome: state.lead.nome,
+          lead_telefone: state.lead.telefone,
+          lead_email: state.lead.email || '',
+          lead_profissao: state.respostas.q2 || '',
+        });
+
+        try {
+          await fetch('/api/lead', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              nome: state.lead.nome,
+              email: state.lead.email || `${state.lead.nome.toLowerCase().replace(/\s+/g,'.')}@quiz.express`,
+              telefone: state.lead.telefone,
+              eventId,
+              sourceUrl: window.location.href,
+            }),
+          });
+        } catch (e) { /* non-fatal */ }
+
+        try {
+          await fetch('/api/briefing', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          });
+        } catch (e) { /* non-fatal */ }
+
+        try { localStorage.removeItem('quiz-v2-state'); } catch (e) {}
+
+        showStep('done');
+      });
+
+      // ── Persist via localStorage ──
+      function saveState() {
+        try {
+          localStorage.setItem('quiz-v2-state', JSON.stringify({ respostas: state.respostas, passo: state.passo }));
+        } catch (e) { /* ignore */ }
+      }
+
+      function loadState() {
+        try {
+          const raw = localStorage.getItem('quiz-v2-state');
+          if (!raw) return;
+          const saved = JSON.parse(raw);
+          if (saved.respostas) {
+            Object.entries(saved.respostas).forEach(([k, v]) => {
+              state.respostas[k] = v;
+              const container = document.getElementById(`${k.replace('q','q')}-opts`);
+              if (container) {
+                const btn = container.querySelector(`[data-value="${v}"]`);
+                if (btn) {
+                  btn.classList.add('selected');
+                  const step = container.closest('.step');
+                  if (step) {
+                    const nextBtn = step.querySelector('.btn-solid');
+                    if (nextBtn) nextBtn.disabled = false;
+                  }
+                }
+              }
+            });
+          }
+          if (saved.passo && saved.passo > 1) state.passo = saved.passo;
+        } catch (e) { /* ignore */ }
+      }
+
+      const origShowStep = showStep;
+      window.goStep = (n) => { origShowStep(n); saveState(); };
+      showStep = (n) => { origShowStep(n); saveState(); };
+
+      // ── Portfolio data ──
       const BASE = '/pagina-express-v1/portfolio';
       const portfolioMap = {
         psicologia: [
@@ -828,253 +1228,7 @@
         ],
       };
 
-      // ====== Step management ======
-      function showStep(n) {
-        if (n === 'done') {
-          steps.forEach(s => s.classList.remove('active'));
-          $('step-done').classList.add('active');
-          progressWrap.style.display = 'none';
-          return;
-        }
-        state.passo = Math.max(1, Math.min(TOTAL, n));
-        steps.forEach(s => s.classList.toggle('active', Number(s.dataset.step) === state.passo));
-        currentStepEl.textContent = state.passo;
-        const active = [...steps].find(s => Number(s.dataset.step) === state.passo);
-        stepNameEl.textContent = active?.dataset.name || '';
-        progressFill.style.width = `${(state.passo / TOTAL) * 100}%`;
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-
-      window.goStep = showStep;
-
-      // ====== Option selection (generic) ======
-      function initOptions(containerId, key) {
-        const container = document.getElementById(containerId);
-        if (!container) return;
-        const btns = container.querySelectorAll('.option');
-        btns.forEach(btn => {
-          btn.addEventListener('click', () => {
-            btns.forEach(b => {
-              b.classList.remove('selected');
-              // Hide detail fields
-              const detailId = b.dataset.detail;
-              if (detailId) {
-                const df = document.getElementById(detailId);
-                if (df) df.classList.remove('visible');
-              }
-            });
-            btn.classList.add('selected');
-            const val = btn.dataset.value;
-            state.respostas[key] = val;
-
-            // Show detail field if present
-            const detailId = btn.dataset.detail;
-            if (detailId) {
-              const df = document.getElementById(detailId);
-              if (df) df.classList.add('visible');
-            }
-
-            // Enable next button
-            const step = container.closest('.step');
-            if (step) {
-              const nextBtn = step.querySelector('.btn-solid');
-              if (nextBtn) nextBtn.disabled = false;
-            }
-          });
-        });
-      }
-
-      initOptions('q1-opts', 'q1');
-      initOptions('q2-opts', 'q2');
-      initOptions('q4-opts', 'q4');
-      initOptions('q9-opts', 'q9');
-      initOptions('q10-opts', 'q10');
-
-      // ====== Step 1 → 2 ======
-      $('btn-next-1').addEventListener('click', () => showStep(2));
-
-      // ====== Step 2 → 3 (Portfolio) ======
-      $('btn-next-2').addEventListener('click', () => {
-        const prof = state.respostas.q2;
-        const items = portfolioMap[prof] || portfolioMap.outro;
-        const grid = $('port-grid');
-        grid.innerHTML = '';
-        state.selectedPortfolio = null;
-        $('btn-next-3').disabled = true;
-
-        items.forEach((item, idx) => {
-          const card = document.createElement('div');
-          card.className = 'port-card';
-          card.dataset.idx = idx;
-          card.innerHTML = `
-            <img src="${item.img}" alt="${item.label}" loading="lazy">
-            <div class="port-label">${item.label}<small>${item.sub}</small></div>
-          `;
-          card.addEventListener('click', () => {
-            grid.querySelectorAll('.port-card').forEach(c => c.classList.remove('selected'));
-            card.classList.add('selected');
-            state.selectedPortfolio = idx;
-            $('btn-next-3').disabled = false;
-          });
-          grid.appendChild(card);
-        });
-
-        showStep(3);
-      });
-
-      // ====== Step 3 → 4 ======
-      $('btn-next-3').addEventListener('click', () => showStep(4));
-
-      // ====== Step 4 → 5 ======
-      $('btn-next-4').addEventListener('click', () => showStep(5));
-
-      // ====== Step 5: Lead validation ======
-      function validateLead() {
-        const nome = ($('lead-nome').value || '').trim();
-        const tel = ($('lead-tel').value || '').trim();
-        const ok = nome.length >= 2 && tel.replace(/\D/g, '').length >= 10;
-        $('btn-next-5').disabled = !ok;
-      }
-      $('lead-nome').addEventListener('input', validateLead);
-      $('lead-tel').addEventListener('input', validateLead);
-
-      $('btn-next-5').addEventListener('click', () => {
-        const nome = ($('lead-nome').value || '').trim();
-        const tel = ($('lead-tel').value || '').trim();
-        const email = ($('lead-email').value || '').trim();
-
-        if (nome.length < 2 || tel.replace(/\D/g, '').length < 10) return;
-
-        state.lead = { nome, telefone: tel, email };
-        showStep(6);
-      });
-
-      // ====== Step 9: Logo → Step 10 ======
-      $('btn-next-9').addEventListener('click', () => showStep(10));
-
-      // ====== Step 10: Domínio → Step 11 ======
-      $('btn-next-10').addEventListener('click', () => showStep(11));
-
-      // ====== SUBMIT ======
-      $('btn-submit').addEventListener('click', async () => {
-        const btn = $('btn-submit');
-        btn.disabled = true;
-        btn.textContent = 'Enviando...';
-
-        // Build payload
-        const payload = {
-          ...state.respostas,
-          ...state.lead,
-          portfolio_escolhido: state.selectedPortfolio !== null ? state.selectedPortfolio : undefined,
-          nome_pagina: ($('b-nome-pagina').value || '').trim(),
-          cliente_perfil: ($('b-cliente-perfil').value || '').trim(),
-          oferta: ($('b-oferta').value || '').trim(),
-          detalhe_situacao: (document.getElementById('d-q1-sim-mas')?.querySelector('.input')?.value || document.getElementById('d-q1-saiu-ar')?.querySelector('.input')?.value || '').trim(),
-          detalhe_profissao: (document.getElementById('d-q2-outro')?.querySelector('.input')?.value || '').trim(),
-          detalhe_desafio: (document.getElementById('d-q4-outro')?.querySelector('.input')?.value || '').trim(),
-          detalhe_dominio: (document.getElementById('d-q10-dominio')?.querySelector('.input')?.value || '').trim(),
-          cor_preferida: ($('b-cor').value || '').trim(),
-          logo: state.respostas.q9 || '',
-          dominio: state.respostas.q10 || '',
-          extra: ($('b-extra').value || '').trim(),
-          sourceUrl: window.location.href,
-        };
-
-        // Generate eventId
-        const eventId = `quiz-${window.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2,8)}`}`;
-        payload.eventId = eventId;
-
-        // Push dataLayer for GTM
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({
-          event: 'leadSubmission',
-          eventID: eventId,
-          lead_nome: state.lead.nome,
-          lead_telefone: state.lead.telefone,
-          lead_email: state.lead.email || '',
-          lead_profissao: state.respostas.q2 || '',
-        });
-
-        // SEND LEAD
-        try {
-          await fetch('/api/lead', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              nome: state.lead.nome,
-              email: state.lead.email || `${state.lead.nome.toLowerCase().replace(/\s+/g,'.')}@quiz.express`,
-              telefone: state.lead.telefone,
-              eventId,
-              sourceUrl: window.location.href,
-            }),
-          });
-        } catch (e) { /* non-fatal */ }
-
-        // SEND BRIEFING
-        try {
-          await fetch('/api/briefing', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload),
-          });
-        } catch (e) { /* non-fatal */ }
-
-        // Clean up storage
-        try {
-          localStorage.removeItem('quiz-v2-state');
-        } catch (e) { /* ignore */ }
-
-        showStep('done');
-      });
-
-      // ====== Restore from localStorage (auto-save) ======
-      function saveState() {
-        try {
-          localStorage.setItem('quiz-v2-state', JSON.stringify({ respostas: state.respostas, passo: state.passo }));
-        } catch (e) { /* ignore */ }
-      }
-
-      function loadState() {
-        try {
-          const raw = localStorage.getItem('quiz-v2-state');
-          if (!raw) return;
-          const saved = JSON.parse(raw);
-          if (saved.respostas) {
-            Object.entries(saved.respostas).forEach(([k, v]) => {
-              state.respostas[k] = v;
-              // Restore visual selection
-              const container = document.getElementById(`${k.replace('q','q')}-opts`);
-              if (container) {
-                const btn = container.querySelector(`[data-value="${v}"]`);
-                if (btn) {
-                  btn.classList.add('selected');
-                  const step = container.closest('.step');
-                  if (step) {
-                    const nextBtn = step.querySelector('.btn-solid');
-                    if (nextBtn) nextBtn.disabled = false;
-                  }
-                }
-              }
-            });
-          }
-          if (saved.passo && saved.passo > 1) {
-            state.passo = saved.passo;
-          }
-        } catch (e) { /* ignore */ }
-      }
-
-      // Auto-save on step change
-      const origShowStep = showStep;
-      window.goStep = (n) => {
-        origShowStep(n);
-        saveState();
-      };
-      showStep = (n) => {
-        origShowStep(n);
-        saveState();
-      };
-
-      // ====== Boot ======
+      // ── Boot ──
       loadState();
       showStep(state.passo);
 
