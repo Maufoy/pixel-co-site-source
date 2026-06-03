@@ -39,36 +39,23 @@
       font-family: 'Sora', system-ui, sans-serif;
       background: var(--bg);
       color: var(--text);
-      min-height: 100vh;
+      min-height: 100dvh;
       display: flex;
       flex-direction: column;
-      align-items: center;
       -webkit-tap-highlight-color: transparent;
     }
-    /* ====== Mobile-first base ====== */
+    /* ====== Full-screen layout ====== */
     .header {
-      width: 100%;
-      max-width: 900px;
-      padding: 14px 16px;
+      padding: 12px 18px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-    }
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      text-decoration: none;
-    }
-    .logo-mark {
-      width: 28px; height: 28px;
-      background: var(--green-deep);
-      border-radius: 7px;
       flex-shrink: 0;
     }
+    .logo { text-decoration: none; }
     .logo-text {
-      font-weight: 600; font-size: 16px;
-      color: var(--text); letter-spacing: -0.02em;
+      font-weight: 700; font-size: 18px;
+      color: var(--text); letter-spacing: -0.03em;
     }
     .logo-text .dot { color: var(--accent-1); }
     .header-small {
@@ -77,19 +64,23 @@
       text-transform: uppercase; letter-spacing: 0.12em;
     }
     .quiz-wrap {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 0 18px 18px;
+      max-width: 600px;
       width: 100%;
-      max-width: 780px;
-      padding: 0 16px 60px;
+      margin: 0 auto;
     }
     /* ====== Progress ====== */
     .progress-wrap {
-      margin-bottom: 24px;
-      padding-top: 4px;
+      margin-bottom: 16px;
+      flex-shrink: 0;
     }
     .progress-meta {
       display: flex;
       justify-content: space-between;
-      font-size: 11px;
+      font-size: 10px;
       color: var(--text-soft);
       margin-bottom: 6px;
       font-family: 'IBM Plex Mono', monospace;
@@ -97,55 +88,55 @@
       letter-spacing: 0.08em;
     }
     .progress-bar {
-      height: 4px;
+      height: 5px;
       background: var(--border);
-      border-radius: 2px;
+      border-radius: 3px;
       overflow: hidden;
     }
     .progress-fill {
       height: 100%;
       background: linear-gradient(90deg, var(--green-deep), var(--green-bright));
-      border-radius: 2px;
+      border-radius: 3px;
       transition: width 0.5s cubic-bezier(.2,.8,.2,1);
       width: 0%;
     }
-    /* ====== Steps ====== */
+    /* ====== Step container (fills remaining space) ====== */
+    .step-wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
     .step {
       display: none;
     }
     .step.active {
-      display: block;
-      animation: stepIn 0.4s cubic-bezier(.2,.8,.2,1);
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      animation: stepIn 0.35s ease;
     }
     @keyframes stepIn {
-      0% { opacity: 0; transform: translateY(16px) scale(0.98); }
-      100% { opacity: 1; transform: translateY(0) scale(1); }
+      0% { opacity: 0; transform: translateY(12px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
     @keyframes popIn {
-      0% { opacity: 0; transform: scale(0.9); }
-      70% { transform: scale(1.03); }
+      0% { opacity: 0; transform: scale(0.92); }
+      60% { transform: scale(1.03); }
       100% { opacity: 1; transform: scale(1); }
-    }
-    @keyframes shimmer {
-      0% { background-position: -200% 0; }
-      100% { background-position: 200% 0; }
     }
     @keyframes bounceDot {
       0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.3); }
+      50% { transform: scale(1.4); }
     }
-    @keyframes checkPop {
-      0% { transform: scale(0); }
-      60% { transform: scale(1.2); }
-      100% { transform: scale(1); }
-    }
-    /* ====== Card ====== */
+    /* ====== Question card ====== */
     .q-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 28px 20px;
-      margin-bottom: 16px;
+      border-radius: 16px;
+      padding: 24px 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
     }
     .q-number {
       font-family: 'IBM Plex Mono', monospace;
@@ -156,57 +147,64 @@
       margin-bottom: 6px;
     }
     .q-title {
-      font-size: clamp(20px, 5vw, 28px);
+      font-size: clamp(20px, 5vw, 26px);
       font-weight: 700;
-      line-height: 1.15;
-      margin-bottom: 20px;
+      line-height: 1.2;
+      margin-bottom: 18px;
       letter-spacing: -0.02em;
     }
-    .q-title em {
-      font-style: italic;
-      color: var(--green-bright);
-    }
+    .q-title em { font-style: italic; color: var(--green-bright); }
     .q-sub {
-      font-size: 14px;
+      font-size: 13px;
       color: var(--text-soft);
-      margin-bottom: 24px;
-      line-height: 1.5;
+      margin-bottom: 18px;
+      line-height: 1.45;
     }
-    /* ====== Options (touch-friendly) ====== */
+    /* ====== Options with emoji ====== */
     .options {
       display: flex;
       flex-direction: column;
       gap: 10px;
+      flex: 1;
+      justify-content: center;
     }
     .option {
       display: flex;
       align-items: center;
       gap: 14px;
-      padding: 14px 16px;
+      padding: 16px 18px;
       border: 2px solid var(--border);
-      border-radius: 12px;
+      border-radius: 14px;
       cursor: pointer;
       transition: border-color 0.2s, background 0.2s, transform 0.15s;
       background: var(--bg-card);
-      font-size: 14px;
-      font-weight: 500;
+      font-size: 15px;
+      font-weight: 600;
       font-family: 'Sora', sans-serif;
       color: var(--text);
       text-align: left;
       width: 100%;
-      min-height: 52px;
+      min-height: 60px;
       -webkit-appearance: none;
     }
-    .option:active {
-      transform: scale(0.98);
-    }
+    .option:active { transform: scale(0.97); }
     .option.selected {
       border-color: var(--green-bright);
       background: #F0F9F0;
-      animation: popIn 0.3s cubic-bezier(.2,.8,.2,1);
+      animation: popIn 0.3s ease;
+    }
+    .option .opt-emoji {
+      font-size: 26px;
+      flex-shrink: 0;
+      width: 36px;
+      text-align: center;
+    }
+    .option .opt-text {
+      flex: 1;
+      line-height: 1.3;
     }
     .option .dot {
-      width: 20px; height: 20px;
+      width: 22px; height: 22px;
       border-radius: 50%;
       border: 2px solid var(--border);
       flex-shrink: 0;
@@ -218,45 +216,40 @@
     .option.selected .dot {
       border-color: var(--green-bright);
       background: var(--green-bright);
-      animation: bounceDot 0.4s ease;
+      animation: bounceDot 0.35s ease;
     }
     .option.selected .dot::after {
       content: '';
-      width: 7px; height: 7px;
+      width: 8px; height: 8px;
       border-radius: 50%;
       background: white;
-      animation: checkPop 0.3s ease;
     }
-    /* ====== Conditional detail field ====== */
+    /* ====== Conditional detail ====== */
     .detail-field {
       display: none;
-      margin-top: 12px;
-      animation: stepIn 0.3s ease;
+      margin-top: 10px;
+      animation: stepIn 0.25s ease;
     }
-    .detail-field.visible {
-      display: block;
-    }
+    .detail-field.visible { display: block; }
     .detail-field .input {
       width: 100%;
-      padding: 12px 14px;
+      padding: 14px 16px;
       border: 2px solid var(--border);
-      border-radius: 10px;
-      font-size: 14px;
+      border-radius: 12px;
+      font-size: 15px;
       font-family: 'Sora', sans-serif;
       color: var(--text);
       background: var(--bg-card);
-      transition: border-color 0.2s;
       outline: none;
+      transition: border-color 0.2s;
     }
-    .detail-field .input:focus {
-      border-color: var(--green-bright);
-    }
+    .detail-field .input:focus { border-color: var(--green-bright); }
     /* ====== Portfolio ====== */
     .port-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      margin-bottom: 20px;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      flex: 1;
     }
     .port-card {
       position: relative;
@@ -264,24 +257,17 @@
       overflow: hidden;
       cursor: pointer;
       border: 2px solid var(--border);
-      transition: border-color 0.25s, transform 0.2s;
+      transition: border-color 0.2s, transform 0.15s;
       aspect-ratio: 3/4;
       background: var(--bg-accent);
     }
-    .port-card:active {
-      transform: scale(0.97);
-    }
+    .port-card:active { transform: scale(0.96); }
     .port-card.selected {
       border-color: var(--green-bright);
       box-shadow: 0 0 0 3px rgba(0,45,37,0.15);
-      animation: popIn 0.3s ease;
+      animation: popIn 0.25s ease;
     }
-    .port-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
+    .port-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .port-label {
       position: absolute;
       bottom: 0; left: 0; right: 0;
@@ -291,14 +277,8 @@
       font-size: 11px;
       font-weight: 500;
     }
-    .port-label small {
-      display: block;
-      opacity: 0.7;
-      font-weight: 300;
-      font-size: 9px;
-      font-family: 'IBM Plex Mono', monospace;
-    }
-    /* ====== Lead form ====== */
+    .port-label small { display: block; opacity: 0.7; font-weight: 300; font-size: 9px; font-family: 'IBM Plex Mono', monospace; }
+    /* ====== Form fields ====== */
     .field { margin-bottom: 14px; }
     .field-label {
       display: block;
@@ -309,82 +289,85 @@
     }
     .field .input, .field textarea.input {
       width: 100%;
-      padding: 14px 16px;
+      padding: 16px 18px;
       border: 2px solid var(--border);
-      border-radius: 10px;
+      border-radius: 12px;
       font-size: 15px;
       font-family: 'Sora', sans-serif;
       color: var(--text);
       background: var(--bg-card);
-      transition: border-color 0.2s, box-shadow 0.2s;
       outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
     .field .input:focus {
       border-color: var(--green-bright);
       box-shadow: 0 0 0 3px rgba(0,45,37,0.08);
     }
-    /* ====== Buttons ====== */
+    /* ====== Big buttons ====== */
     .btn-row {
       display: flex;
       gap: 10px;
-      margin-top: 20px;
-      flex-direction: column;
+      margin-top: 14px;
+      flex-shrink: 0;
     }
     .btn {
-      padding: 16px 24px;
+      padding: 18px 24px;
       border-radius: 999px;
       font-family: 'Sora', sans-serif;
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 600;
       cursor: pointer;
       border: none;
-      transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+      transition: transform 0.15s, box-shadow 0.2s, opacity 0.2s;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
       text-decoration: none;
-      width: 100%;
+      flex: 1;
+      min-height: 58px;
     }
     .btn-solid {
       background: linear-gradient(135deg, var(--green-deep) 0%, var(--green-bright) 100%);
       color: white;
     }
-    .btn-solid:not(:disabled):active {
-      transform: scale(0.97);
-    }
+    .btn-solid:not(:disabled):active { transform: scale(0.97); }
     .btn-solid:disabled {
-      opacity: 0.4;
+      opacity: 0.35;
       cursor: not-allowed;
       transform: none;
       box-shadow: none;
     }
     .btn-ghost {
       background: transparent;
-      border: 1px solid var(--border);
+      border: 2px solid var(--border);
       color: var(--text);
+      flex: 0 0 auto;
+      padding: 18px 18px;
     }
-    .btn-ghost:active {
-      transform: scale(0.97);
-    }
-    /* ====== Final screen ====== */
+    .btn-ghost:active { transform: scale(0.97); }
+    /* ====== Final ====== */
     .final {
       text-align: center;
       padding: 40px 16px;
-      animation: popIn 0.5s cubic-bezier(.2,.8,.2,1);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      animation: popIn 0.4s ease;
     }
     .final h2 {
-      font-size: clamp(26px, 6vw, 36px);
+      font-size: clamp(26px, 6vw, 34px);
       font-weight: 700;
       line-height: 1.15;
       letter-spacing: -0.02em;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
     .final h2 em { color: var(--green-bright); font-style: italic; }
     .final p {
       font-size: 15px;
       color: var(--text-soft);
-      max-width: 440px;
+      max-width: 400px;
       margin: 0 auto 24px;
       line-height: 1.5;
     }
@@ -394,31 +377,24 @@
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: rgba(0,0,0,0.3);
-      margin-top: 20px;
     }
     .final .checkmark {
-      width: 56px; height: 56px;
+      width: 64px; height: 64px;
       border-radius: 50%;
       background: var(--accent-1);
       color: var(--green-deep);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 20px;
-      font-size: 28px;
-      animation: checkPop 0.5s cubic-bezier(.2,.8,.2,1);
+      margin: 0 auto 24px;
+      font-size: 32px;
+      animation: popIn 0.4s ease;
     }
-    /* ====== Tablet+ ====== */
     @media (min-width: 600px) {
-      .header { padding: 20px 24px; }
-      .quiz-wrap { padding: 0 24px 60px; }
-      .q-card { padding: 36px 32px; }
-      .q-title { font-size: clamp(22px, 3vw, 30px); }
-      .btn-row { flex-direction: row; }
-      .btn { width: auto; }
-      .btn-ghost { order: -1; }
-      .port-grid { gap: 14px; }
-      .q-number { font-size: 11px; }
+      .quiz-wrap { padding: 0 24px 24px; }
+      .q-card { padding: 32px 28px; }
+      .option { min-height: 64px; padding: 18px 22px; font-size: 16px; }
+      .option .opt-emoji { font-size: 28px; width: 40px; }
     }
     /* ====== Brag strip ====== */
     .brag {
@@ -451,7 +427,6 @@
 
   <header class="header">
     <a href="/pagina-express-v2/" class="logo">
-      <div class="logo-mark"></div>
       <span class="logo-text">Pixel<span class="dot">.</span>Co</span>
     </a>
     <span class="header-small">Página Express</span>
@@ -470,6 +445,8 @@
       </div>
     </div>
 
+    <div class="step-wrapper">
+
     <!-- STEP 1: Já tem página? -->
     <div class="step active" data-step="1" data-name="Página atual">
       <div class="q-card">
@@ -477,26 +454,30 @@
         <h2 class="q-title">Você já tem uma <em>página profissional</em>?</h2>
         <div class="options" id="q1-opts">
           <button class="option" data-value="nao_nunca">
+            <span class="opt-emoji">📱</span>
+            <span class="opt-text">Não, nunca tive</span>
             <span class="dot"></span>
-            <span>Não, nunca tive</span>
           </button>
           <button class="option" data-value="linktree">
+            <span class="opt-emoji">🔗</span>
+            <span class="opt-text">Tenho um Linktree / Instagram só</span>
             <span class="dot"></span>
-            <span>Tenho um Linktree / Instagram só</span>
           </button>
           <button class="option" data-value="sim_mas" data-detail="d-q1-sim-mas">
+            <span class="opt-emoji">😕</span>
+            <span class="opt-text">Tenho, mas não gosto / está feia</span>
             <span class="dot"></span>
-            <span>Tenho, mas não gosto / está feia</span>
           </button>
           <div class="detail-field" id="d-q1-sim-mas">
-            <input type="text" class="input" placeholder="O que você não gosta na página atual? Ex: design antigo, sem CTA, não carrega no celular..." autocomplete="off">
+            <input type="text" class="input" placeholder="O que você não gosta na página atual? Ex: design antigo, sem CTA..." autocomplete="off">
           </div>
           <button class="option" data-value="saiu_do_ar" data-detail="d-q1-saiu-ar">
+            <span class="opt-emoji">😢</span>
+            <span class="opt-text">Já tive mas saiu do ar / nunca finalizei</span>
             <span class="dot"></span>
-            <span>Já tive mas saiu do ar / nunca finalizei</span>
           </button>
           <div class="detail-field" id="d-q1-saiu-ar">
-            <input type="text" class="input" placeholder="O que aconteceu? Ex: domínio venceu, freela sumiu, desisti..." autocomplete="off">
+            <input type="text" class="input" placeholder="O que aconteceu? Ex: domínio venceu, freela sumiu..." autocomplete="off">
           </div>
         </div>
       </div>
@@ -511,34 +492,40 @@
         <div class="q-number">Pergunta 2</div>
         <h2 class="q-title">Qual é a sua <em>profissão</em>?</h2>
         <div class="options" id="q2-opts">
-          <button class="option" data-value="psicologia">
-            <span class="dot"></span>
-            <span>Psicóloga(o)</span>
-          </button>
-          <button class="option" data-value="advocacia">
-            <span class="dot"></span>
-            <span>Advogada(o)</span>
-          </button>
-          <button class="option" data-value="nutricao">
-            <span class="dot"></span>
-            <span>Nutricionista</span>
-          </button>
-          <button class="option" data-value="arquitetura">
-            <span class="dot"></span>
-            <span>Arquiteta(o) / Designer de interiores</span>
-          </button>
-          <button class="option" data-value="consultoria">
-            <span class="dot"></span>
-            <span>Consultora(o) / Coach</span>
-          </button>
-          <button class="option" data-value="outro" data-detail="d-q2-outro">
-            <span class="dot"></span>
-            <span>Outra profissão</span>
-          </button>
-          <div class="detail-field" id="d-q2-outro">
-            <input type="text" class="input" placeholder="Qual sua profissão? Ex: Fisioterapeuta, Corretor, Personal Trainer..." autocomplete="off">
-          </div>
-        </div>
+                  <button class="option" data-value="psicologia">
+                    <span class="opt-emoji">🧠</span>
+                    <span class="opt-text">Psicóloga(o)</span>
+                    <span class="dot"></span>
+                  </button>
+                  <button class="option" data-value="advocacia">
+                    <span class="opt-emoji">⚖️</span>
+                    <span class="opt-text">Advogada(o)</span>
+                    <span class="dot"></span>
+                  </button>
+                  <button class="option" data-value="nutricao">
+                    <span class="opt-emoji">🥗</span>
+                    <span class="opt-text">Nutricionista</span>
+                    <span class="dot"></span>
+                  </button>
+                  <button class="option" data-value="arquitetura">
+                    <span class="opt-emoji">🏛️</span>
+                    <span class="opt-text">Arquiteta(o) / Design de interiores</span>
+                    <span class="dot"></span>
+                  </button>
+                  <button class="option" data-value="consultoria">
+                    <span class="opt-emoji">📊</span>
+                    <span class="opt-text">Consultora(o) / Coach</span>
+                    <span class="dot"></span>
+                  </button>
+                  <button class="option" data-value="outro" data-detail="d-q2-outro">
+                    <span class="opt-emoji">💼</span>
+                    <span class="opt-text">Outra profissão</span>
+                    <span class="dot"></span>
+                  </button>
+                  <div class="detail-field" id="d-q2-outro">
+                    <input type="text" class="input" placeholder="Qual sua profissão? Ex: Fisioterapeuta, Corretor..." autocomplete="off">
+                  </div>
+                </div>
       </div>
       <div class="btn-row">
         <button class="btn btn-ghost" onclick="goStep(1)">← Voltar</button>
@@ -567,20 +554,24 @@
         <h2 class="q-title">Qual seu maior <em>desafio</em> hoje?</h2>
         <div class="options" id="q4-opts">
           <button class="option" data-value="clientes">
+            <span class="opt-emoji">📈</span>
+            <span class="opt-text">Não consigo atrair clientes novos</span>
             <span class="dot"></span>
-            <span>Não consigo atrair clientes novos</span>
           </button>
           <button class="option" data-value="tempo">
+            <span class="opt-emoji">⏰</span>
+            <span class="opt-text">Não tenho tempo de criar uma página</span>
             <span class="dot"></span>
-            <span>Não tenho tempo de criar uma página</span>
           </button>
           <button class="option" data-value="tentei">
+            <span class="opt-emoji">🔧</span>
+            <span class="opt-text">Já tentei fazer e desisti / ficou ruim</span>
             <span class="dot"></span>
-            <span>Já tentei fazer e desisti / ficou ruim</span>
           </button>
           <button class="option" data-value="outro_desafio" data-detail="d-q4-outro">
+            <span class="opt-emoji">💭</span>
+            <span class="opt-text">Outro desafio</span>
             <span class="dot"></span>
-            <span>Outro desafio</span>
           </button>
           <div class="detail-field" id="d-q4-outro">
             <input type="text" class="input" placeholder="Qual seu maior desafio hoje?" autocomplete="off">
@@ -681,16 +672,19 @@
           <label class="field-label">Já tem logo?</label>
           <div class="options" id="q9-opts">
             <button class="option" data-value="sim_logo">
+              <span class="opt-emoji">🎨</span>
+              <span class="opt-text">Sim, tenho logo em boa qualidade</span>
               <span class="dot"></span>
-              <span>Sim, tenho logo em boa qualidade</span>
             </button>
             <button class="option" data-value="sim_simples">
+              <span class="opt-emoji">📸</span>
+              <span class="opt-text">Tenho uma logo simples / print</span>
               <span class="dot"></span>
-              <span>Tenho uma logo simples / print</span>
             </button>
             <button class="option" data-value="nao_logo">
+              <span class="opt-emoji">❌</span>
+              <span class="opt-text">Ainda não tenho logo</span>
               <span class="dot"></span>
-              <span>Ainda não tenho logo</span>
             </button>
           </div>
         </div>
@@ -708,19 +702,22 @@
         <h2 class="q-title">Já tem <em>domínio</em>?</h2>
         <div class="options" id="q10-opts">
           <button class="option" data-value="ja_tenho" data-detail="d-q10-dominio">
+            <span class="opt-emoji">🌐</span>
+            <span class="opt-text">Já tenho domínio</span>
             <span class="dot"></span>
-            <span>Já tenho domínio</span>
           </button>
           <div class="detail-field" id="d-q10-dominio">
             <input type="text" class="input" placeholder="Qual seu domínio? Ex: meusite.com.br" autocomplete="url">
           </div>
           <button class="option" data-value="preciso">
+            <span class="opt-emoji">🆕</span>
+            <span class="opt-text">Preciso registrar um</span>
             <span class="dot"></span>
-            <span>Preciso registrar um</span>
           </button>
           <button class="option" data-value="nao_sei">
+            <span class="opt-emoji">🤷</span>
+            <span class="opt-text">Não sei / me ajuda nessa parte</span>
             <span class="dot"></span>
-            <span>Não sei / me ajuda nessa parte</span>
           </button>
         </div>
       </div>
@@ -745,6 +742,8 @@
         <button class="btn btn-solid" id="btn-submit">Enviar e receber proposta</button>
       </div>
     </div>
+
+    </div><!-- /step-wrapper -->
 
     <!-- SUCCESS -->
     <div class="step" data-step="done" id="step-done">
