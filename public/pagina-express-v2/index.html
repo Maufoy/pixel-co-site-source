@@ -1293,7 +1293,10 @@
           });
         } catch (e) { /* non-fatal */ }
 
-        try { localStorage.removeItem('quiz-v2-state'); } catch (e) {}
+      try { await fetch('/api/quiz-stats', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ respostas: state.respostas }) }); } catch(e) {}
+
+        try {
+          localStorage.removeItem('quiz-v2-state'); } catch (e) {}
 
         showStep('done');
       });
