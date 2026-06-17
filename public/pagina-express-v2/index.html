@@ -988,7 +988,17 @@
         respostas: {},
         lead: {},
         selectedPortfolio: null,
+        utm: {},
       };
+
+      // ── UTM params from URL ──
+      function parseUTM() {
+        const p = new URLSearchParams(window.location.search);
+        const utm = {};
+        ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','fbclid','gclid']
+          .forEach(k => { const v = p.get(k); if (v) utm[k] = v; });
+        state.utm = utm;
+      }
 
       const TOTAL = 11;
 
@@ -1269,6 +1279,13 @@
           dominio: state.respostas.q10 || '',
           extra: ($('b-extra').value || '').trim(),
           sourceUrl: window.location.href,
+          utm_source: state.utm.utm_source || '',
+          utm_medium: state.utm.utm_medium || '',
+          utm_campaign: state.utm.utm_campaign || '',
+          utm_content: state.utm.utm_content || '',
+          utm_term: state.utm.utm_term || '',
+          fbclid: state.utm.fbclid || '',
+          gclid: state.utm.gclid || '',
         };
 
         const eventId = `quiz-${window.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2,8)}`}`;
@@ -1294,6 +1311,9 @@
               telefone: state.lead.telefone,
               eventId,
               sourceUrl: window.location.href,
+              utm_source: state.utm.utm_source || '',
+              utm_medium: state.utm.utm_medium || '',
+              utm_campaign: state.utm.utm_campaign || '',
             }),
           });
         } catch (e) { /* non-fatal */ }
@@ -1405,6 +1425,7 @@
       };
 
       // ── Boot ──
+      parseUTM();
       loadState();
       showStep(state.passo);
 

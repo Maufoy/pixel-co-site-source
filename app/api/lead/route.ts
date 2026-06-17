@@ -28,7 +28,8 @@ async function sendWhatsApp(message: string) {
 export async function POST(req: NextRequest) {
   let body: {
     nome?: string; email?: string; telefone?: string; eventId?: string; sourceUrl?: string;
-    portfolio_escolhido?: number; nome_pagina?: string
+    portfolio_escolhido?: number; nome_pagina?: string;
+    utm_source?: string; utm_medium?: string; utm_campaign?: string
   }
   try {
     body = await req.json()
@@ -49,7 +50,7 @@ export async function POST(req: NextRequest) {
   const id = `lead-${stamp.file}-${shortId}`
   const eventId = (body.eventId || id).trim()
 
-  const content = `# Lead — Página Express\n\n**Recebido:** ${stamp.human} (BRT)\n**ID:** ${id}\n\n**Nome:** ${nome}\n**E-mail:** ${email}\n**Telefone:** ${telefone || '—'}\n`
+  const content = `# Lead — Página Express\n\n**Recebido:** ${stamp.human} (BRT)\n**ID:** ${id}\n\n**Nome:** ${nome}\n**E-mail:** ${email}\n**Telefone:** ${telefone || '—'}\n${body.utm_source ? `**Origem:** ${[body.utm_source, body.utm_medium, body.utm_campaign].filter(Boolean).join(' / ')}\n` : ''}`
 
   try {
     await mkdir(LEADS_DIR, { recursive: true })

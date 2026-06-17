@@ -21,7 +21,7 @@ type PageViewEventInput = {
 }
 
 type SubmitApplicationInput = LeadEventInput & {
-  portfolio_escolhido?: string
+  portfolio_escolhido?: number | string
   nome_pagina?: string
 }
 

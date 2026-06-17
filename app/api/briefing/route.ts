@@ -168,6 +168,9 @@ Com base nas respostas do cliente, a página deve conter:
 
 ${extra !== '—' ? extra : 'Nenhuma observação adicional.'}
 
+${(b.utm_source as string) ? `---
+**Origem:** ${[b.utm_source, b.utm_medium, b.utm_campaign].filter(Boolean).join(' / ')}` : ''}
+
 ---
 
 _Playbook gerado automaticamente pelo quiz Página Express em ${meta.recebido}_\n`;
