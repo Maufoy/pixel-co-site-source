@@ -1226,6 +1226,19 @@
 
         if (nome.length < 2 || tel.replace(/\D/g, '').length < 10) return;
         state.lead = { nome, telefone: tel, email };
+
+        // Dispara evento de Lead no GTM (Meta Pixel)
+        const eventId = `quiz-lead-${Date.now()}-${Math.random().toString(36).slice(2,8)}`;
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'Lead',
+          eventID: eventId,
+          lead_nome: nome,
+          lead_telefone: tel,
+          lead_email: email || '',
+          lead_profissao: state.respostas.q2 || '',
+        });
+
         showStep(6);
       });
 
@@ -1263,7 +1276,7 @@
 
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
-          event: 'Lead',
+          event: 'BriefingComplete',
           eventID: eventId,
           lead_nome: state.lead.nome,
           lead_telefone: state.lead.telefone,
