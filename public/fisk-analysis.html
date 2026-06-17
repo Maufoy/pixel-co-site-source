@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fisk Macapá — Análise de Anúncios</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+:root { --bg:#080a0f; --card:#0e121c; --border:#1a2030; --text:#e8ecf4; --sub:#8892a8; --accent:#85adff; --green:#4ade80; --yellow:#fbbf24; --red:#f87171; --orange:#fb923c; --purple:#a78bfa; --fisk:#e31e24; }
+body { font-family:'Inter',-apple-system,sans-serif; background:var(--bg); color:var(--text); line-height:1.5; }
+.header { background:linear-gradient(135deg,#0e121c 0%,#1a1020 100%); border-bottom:1px solid var(--border); padding:48px 24px 32px; text-align:center; }
+.header h1 { font-size:28px; font-weight:800; letter-spacing:-0.03em; }
+.header h1 span { color:var(--fisk); }
+.header .sub { color:var(--sub); font-size:14px; margin-top:4px; }
+.header .period { display:inline-block; background:rgba(227,30,36,0.08); border:1px solid rgba(227,30,36,0.15); border-radius:20px; padding:4px 16px; font-size:12px; color:var(--sub); margin-top:12px; }
+.container { max-width:1120px; margin:0 auto; padding:24px 20px; }
+.kpi-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:10px; margin-bottom:28px; }
+.kpi-card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px 14px; text-align:center; }
+.kpi-card .label { font-size:9px; text-transform:uppercase; letter-spacing:0.06em; font-weight:600; color:var(--sub); margin-bottom:4px; }
+.kpi-card .value { font-size:24px; font-weight:800; letter-spacing:-0.02em; }
+.kpi-card .note { font-size:11px; color:var(--sub); margin-top:2px; }
+.section { margin-bottom:28px; }
+.section-title { font-size:15px; font-weight:700; margin-bottom:14px; display:flex; align-items:center; gap:8px; }
+.section-title .badge { font-size:10px; background:rgba(133,173,255,0.1); color:var(--accent); padding:2px 10px; border-radius:20px; }
+.prob-card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:20px; margin-bottom:10px; border-left:3px solid var(--red); }
+.prob-card.warn { border-left-color:var(--yellow); }
+.prob-card.good { border-left-color:var(--green); }
+.prob-card h3 { font-size:14px; font-weight:700; margin-bottom:6px; display:flex; align-items:center; gap:8px; }
+.prob-card h3 .tag { font-size:9px; text-transform:uppercase; padding:2px 8px; border-radius:6px; font-weight:700; }
+.prob-card h3 .tag.red { background:rgba(248,113,113,0.12); color:var(--red); }
+.prob-card h3 .tag.green { background:rgba(74,222,128,0.12); color:var(--green); }
+.prob-card h3 .tag.yellow { background:rgba(251,191,36,0.12); color:var(--yellow); }
+.prob-card p { font-size:13px; color:var(--sub); line-height:1.6; }
+.prob-card .highlight { color:var(--text); font-weight:600; }
+.prob-card .stat-row { display:flex; gap:16px; margin-top:8px; flex-wrap:wrap; font-size:12px; }
+.prob-card .stat-row strong { color:var(--text); }
+.two-col { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+@media(max-width:640px){ .two-col{grid-template-columns:1fr} }
+.pl-row { display:flex; align-items:center; gap:10px; margin-bottom:6px; }
+.pl-row .pl-label { font-size:12px; font-weight:600; min-width:110px; }
+.pl-row .pl-track { flex:1; height:20px; background:rgba(255,255,255,0.03); border-radius:5px; overflow:hidden; }
+.pl-row .pl-fill { height:100%; border-radius:5px; display:flex; align-items:center; padding-left:6px; font-size:10px; font-weight:700; color:#fff; }
+.pl-row .pl-pct { font-size:11px; color:var(--sub); min-width:36px; text-align:right; }
+.age-bar { display:flex; align-items:center; gap:10px; margin-bottom:5px; }
+.age-bar .ab-r { font-size:12px; font-weight:600; min-width:40px; }
+.age-bar .ab-t { flex:1; height:16px; background:rgba(255,255,255,0.03); border-radius:4px; overflow:hidden; }
+.age-bar .ab-f { height:100%; border-radius:4px; display:flex; align-items:center; padding-left:4px; font-size:9px; font-weight:700; color:#fff; }
+.age-bar .ab-v { font-size:11px; color:var(--sub); min-width:56px; text-align:right; }
+.card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:20px; margin-bottom:12px; }
+.camp-card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:20px; margin-bottom:12px; border-left:3px solid var(--accent); }
+.camp-card .ch { display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:6px; margin-bottom:10px; }
+.camp-card .cn { font-size:15px; font-weight:700; }
+.camp-card .cn .active { font-size:9px; background:rgba(74,222,128,0.1); color:var(--green); padding:2px 8px; border-radius:6px; font-weight:600; margin-left:6px; }
+.camp-card .cb { font-size:18px; font-weight:800; color:var(--accent); }
+.camp-card .cs { display:grid; grid-template-columns:repeat(auto-fit,minmax(90px,1fr)); gap:6px; margin-bottom:10px; }
+.camp-card .cs .s { text-align:center; padding:6px; background:rgba(0,0,0,0.2); border-radius:6px; }
+.camp-card .cs .s .sl { font-size:8px; text-transform:uppercase; letter-spacing:0.04em; color:var(--sub); font-weight:600; }
+.camp-card .cs .s .sv { font-size:13px; font-weight:700; margin-top:1px; }
+.chart-box { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:20px; }
+.chart-box h3 { font-size:12px; font-weight:700; margin-bottom:12px; color:var(--text); }
+.chart-container { position:relative; height:200px; }
+
+.action-step { display:flex; gap:14px; align-items:flex-start; padding:14px 0; border-bottom:1px solid rgba(255,255,255,0.04); }
+.action-step:last-child { border-bottom:none; }
+.action-step .num { width:26px; height:26px; border-radius:50%; background:var(--accent); color:#000; font-size:12px; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.action-step .num.green { background:var(--green); }
+.action-step .num.yellow { background:var(--yellow); }
+.action-step .num.orange { background:var(--orange); }
+.action-step .content h4 { font-size:13px; font-weight:700; margin-bottom:2px; }
+.action-step .content p { font-size:12px; color:var(--sub); line-height:1.5; }
+
+.footer { text-align:center; padding:32px; color:var(--sub); font-size:12px; border-top:1px solid var(--border); margin-top:48px; }
+.footer strong { color:var(--text); }
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.kpi-card,.prob-card,.camp-card,.card,.action-step{animation:fadeUp .4s ease both}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Fisk <span>Macapá</span></h1>
+  <div class="sub">Análise de desempenho de anúncios — Últimos 30 dias</div>
+  <div class="period">📅 18/05 a 17/06 de 2026</div>
+</div>
+
+<div class="container">
+
+  <div class="kpi-row">
+    <div class="kpi-card">
+      <div class="label">Investimento</div>
+      <div class="value" style="color:var(--accent)">R$ 1.965</div>
+      <div class="note">total no período</div>
+    </div>
+    <div class="kpi-card">
+      <div class="label">Impressões</div>
+      <div class="value" style="color:var(--text)">379K</div>
+      <div class="note">alcance: 98K</div>
+    </div>
+    <div class="kpi-card">
+      <div class="label">CTR</div>
+      <div class="value" style="color:var(--yellow)">0,92%</div>
+      <div class="note">média mercado: 0,9-1,5%</div>
+    </div>
+    <div class="kpi-card">
+      <div class="label">CPC</div>
+      <div class="value" style="color:var(--yellow)">R$ 0,57</div>
+      <div class="note">custo por clique</div>
+    </div>
+    <div class="kpi-card">
+      <div class="label">CPM</div>
+      <div class="value" style="color:var(--green)">R$ 5,18</div>
+      <div class="note">barato</div>
+    </div>
+    <div class="kpi-card">
+      <div class="label">Frequência</div>
+      <div class="value" style="color:var(--yellow)">3,87</div>
+      <div class="note">um pouco alto</div>
+    </div>
+  </div>
+
+  <!-- ── PROBLEMAS ── -->
+  <div class="section">
+    <div class="section-title">🚨 Problemas Críticos</div>
+    
+    <div class="prob-card">
+      <h3><span>🔴 Zero leads gerados — R$ 1.254 investidos em campanhas de Lead</span><span class="tag red">urgente</span></h3>
+      <p>As duas campanhas de lead (<strong>Macapá Matrículas</strong> e <strong>Santana Matrículas</strong>) somam <span class="highlight">R$ 1.254,74</span> investidos, com <span class="highlight">0 leads</span> registrados. O funil de captura está completamente quebrado.</p>
+      <div class="stat-row">
+        <span>💵 <strong>R$ 1.254</strong> gastos</span>
+        <span>👆 <strong>948</strong> link clicks</span>
+        <span>👁️ <strong>0</strong> landing page views</span>
+        <span>🎯 <strong>0</strong> leads</span>
+      </div>
+    </div>
+
+    <div class="prob-card">
+      <h3><span>🔴 Landing page views ZERO em todas as campanhas</span><span class="tag red">urgente</span></h3>
+      <p>Nenhuma campanha tem landing page views registradas. Isso significa que <span class="highlight">o link do anúncio não está levando a lugar nenhum</span>, ou o pixel não está capturando o evento de landing page view. Verificar links e pixel.</p>
+    </div>
+
+    <div class="prob-card warn">
+      <h3><span>🟡 CTR baixo nas campanhas de Lead (0,57-0,68%)</span><span class="tag yellow">médio</span></h3>
+      <p>As campanhas de lead têm CTR significativamente menor que as de topo de funil (1,24%). CPC também é mais alto (R$ 1,27-1,42 vs R$ 0,26-0,38). Criativos de lead podem precisar de otimização.</p>
+    </div>
+
+    <div class="prob-card warn">
+      <h3><span>🟡 Frequência em 3,87 — cansaço do público</span><span class="tag yellow">médio</span></h3>
+      <p>Frequência de <span class="highlight">3,87</span> significa que cada pessoa viu o anúncio quase 4 vezes em 30 dias. Ideal é manter abaixo de 3. Pode estar causando queda no CTR nas campanhas de lead.</p>
+    </div>
+  </div>
+
+  <!-- ── PÚBLICO ── -->
+  <div class="section">
+    <div class="section-title">👥 Distribuição de Público</div>
+    <div class="two-col">
+      <div class="card">
+        <h3 style="font-size:13px;font-weight:700;margin-bottom:10px;">📱 Plataforma</h3>
+        <div class="pl-row">
+          <div class="pl-label" style="color:var(--purple)">Instagram</div>
+          <div class="pl-track"><div class="pl-fill" style="width:91%;background:linear-gradient(90deg,#a78bfa,#8b5cf6)">R$ 1.795</div></div>
+          <div class="pl-pct" style="color:var(--purple)">91%</div>
+        </div>
+        <div class="pl-row">
+          <div class="pl-label">Facebook</div>
+          <div class="pl-track"><div class="pl-fill" style="width:6%;background:var(--accent)">R$ 118</div></div>
+          <div class="pl-pct">6%</div>
+        </div>
+        <div class="pl-row">
+          <div class="pl-label" style="color:var(--green)">WhatsApp</div>
+          <div class="pl-track"><div class="pl-fill" style="width:3%;background:var(--green)">R$ 51</div></div>
+          <div class="pl-pct" style="color:var(--green)">3%</div>
+        </div>
+        <div style="margin-top:8px;font-size:11px;color:var(--sub);">📱 99,98% mobile app — público mobile-first</div>
+      </div>
+      <div>
+        <div class="card" style="margin-bottom:10px;">
+          <h3 style="font-size:13px;font-weight:700;margin-bottom:10px;">🎂 Idade</h3>
+          <div class="age-bar"><div class="ab-r">18-24</div><div class="ab-t"><div class="ab-f" style="width:24%;background:var(--accent)">R$ 477</div></div><div class="ab-v">24%</div></div>
+          <div class="age-bar"><div class="ab-r" style="color:var(--green)">25-34</div><div class="ab-t"><div class="ab-f" style="width:36%;background:var(--green)">R$ 713</div></div><div class="ab-v" style="color:var(--green)">36%</div></div>
+          <div class="age-bar"><div class="ab-r">35-44</div><div class="ab-t"><div class="ab-f" style="width:26%;background:var(--yellow)">R$ 505</div></div><div class="ab-v">26%</div></div>
+          <div class="age-bar"><div class="ab-r">45+</div><div class="ab-t"><div class="ab-f" style="width:14%;background:var(--orange)">R$ 270</div></div><div class="ab-v">14%</div></div>
+        </div>
+        <div class="card">
+          <h3 style="font-size:13px;font-weight:700;margin-bottom:8px;">⚥ Gênero</h3>
+          <div class="age-bar"><div class="ab-r" style="color:#f472b6">Feminino</div><div class="ab-t"><div class="ab-f" style="width:71%;background:#f472b6">R$ 1.401</div></div><div class="ab-v" style="color:#f472b6">71%</div></div>
+          <div class="age-bar"><div class="ab-r" style="color:var(--accent)">Masculino</div><div class="ab-t"><div class="ab-f" style="width:29%;background:var(--accent)">R$ 557</div></div><div class="ab-v">29%</div></div>
+          <div style="margin-top:6px;font-size:11px;color:var(--sub);">👩 Público majoritariamente feminino (71%)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CAMPANHAS ── -->
+  <div class="section">
+    <div class="section-title">📢 Campanhas <span class="badge">4 ativas</span></div>
+
+    <div class="camp-card" style="border-left-color:var(--fisk);">
+      <div class="ch">
+        <div><div class="cn">MACAPÁ | LEADS | MATRÍCULAS <span class="active">🟢 ATIVA</span></div><div style="font-size:11px;color:var(--sub);margin-top:2px;">🎯 Leads</div></div>
+        <div class="cb">R$ 746,84</div>
+      </div>
+      <div class="cs">
+        <div class="s"><div class="sl">CTR</div><div class="sv" style="color:var(--yellow)">0,68%</div></div>
+        <div class="s"><div class="sl">CPC</div><div class="sv" style="color:var(--red)">R$ 1,27</div></div>
+        <div class="s"><div class="sl">CPM</div><div class="sv">R$ 8,54</div></div>
+        <div class="s"><div class="sl">Impressões</div><div class="sv">87.405</div></div>
+        <div class="s"><div class="sl">Cliques</div><div class="sv">590</div></div>
+        <div class="s"><div class="sl">Leads</div><div class="sv" style="color:var(--red)">0</div></div>
+      </div>
+      <div style="font-size:11px;color:var(--sub);">
+        📱 88% Instagram | 10% Facebook | 2% WhatsApp &nbsp;|&nbsp; Idade: 25-34 (R$292) > 35-44 (R$230) > 18-24 (R$119)
+      </div>
+    </div>
+
+    <div class="camp-card">
+      <div class="ch">
+        <div><div class="cn">SANTANA | LEADS | MATRÍCULAS — 2 <span class="active">🟢 ATIVA</span></div><div style="font-size:11px;color:var(--sub);margin-top:2px;">🎯 Leads</div></div>
+        <div class="cb">R$ 507,90</div>
+      </div>
+      <div class="cs">
+        <div class="s"><div class="sl">CTR</div><div class="sv" style="color:var(--yellow)">0,57%</div></div>
+        <div class="s"><div class="sl">CPC</div><div class="sv" style="color:var(--red)">R$ 1,42</div></div>
+        <div class="s"><div class="sl">CPM</div><div class="sv">R$ 8,06</div></div>
+        <div class="s"><div class="sl">Impressões</div><div class="sv">63.034</div></div>
+        <div class="s"><div class="sl">Cliques</div><div class="sv">358</div></div>
+        <div class="s"><div class="sl">Leads</div><div class="sv" style="color:var(--red)">0</div></div>
+      </div>
+      <div style="font-size:11px;color:var(--sub);">
+        📱 84% Instagram | 10% WhatsApp | 6% Facebook &nbsp;|&nbsp; Idade: 25-34 (R$201) > 35-44 (R$178) > 18-24 (R$61)
+      </div>
+    </div>
+
+    <div class="camp-card" style="border-left-color:var(--green);">
+      <div class="ch">
+        <div><div class="cn">MACAPÁ | VISITA AO PERFIL | TOPO DE FUNIL <span class="active">🟢 ATIVA</span></div><div style="font-size:11px;color:var(--sub);margin-top:2px;">🎯 Tráfego</div></div>
+        <div class="cb">R$ 507,58</div>
+      </div>
+      <div class="cs">
+        <div class="s"><div class="sl">CTR</div><div class="sv" style="color:var(--green)">1,24%</div></div>
+        <div class="s"><div class="sl">CPC</div><div class="sv" style="color:var(--green)">R$ 0,26</div></div>
+        <div class="s"><div class="sl">CPM</div><div class="sv" style="color:var(--green)">R$ 3,17</div></div>
+        <div class="s"><div class="sl">Impressões</div><div class="sv">160K</div></div>
+        <div class="s"><div class="sl">Cliques</div><div class="sv">1.984</div></div>
+      </div>
+      <div style="font-size:11px;color:var(--sub);">
+        📱 100% Instagram &nbsp;|&nbsp; Idade: 18-24 (R$224) > 25-34 (R$149) > 35-44 (R$70)
+      </div>
+    </div>
+
+    <div class="camp-card" style="border-left-color:var(--green);">
+      <div class="ch">
+        <div><div class="cn">SANTANA | VISITA AO PERFIL | TOPO DE FUNIL <span class="active">🟢 ATIVA</span></div><div style="font-size:11px;color:var(--sub);margin-top:2px;">🎯 Tráfego</div></div>
+        <div class="cb">R$ 203,06</div>
+      </div>
+      <div class="cs">
+        <div class="s"><div class="sl">CTR</div><div class="sv" style="color:var(--yellow)">0,79%</div></div>
+        <div class="s"><div class="sl">CPC</div><div class="sv" style="color:var(--green)">R$ 0,38</div></div>
+        <div class="s"><div class="sl">CPM</div><div class="sv" style="color:var(--green)">R$ 2,95</div></div>
+        <div class="s"><div class="sl">Impressões</div><div class="sv">68.735</div></div>
+        <div class="s"><div class="sl">Cliques</div><div class="sv">540</div></div>
+      </div>
+      <div style="font-size:11px;color:var(--sub);">
+        📱 100% Instagram &nbsp;|&nbsp; Idade: 25-34 (R$72) > 18-24 (R$72) > 35-44 (R$27)
+      </div>
+    </div>
+  </div>
+
+  <!-- ── GRAFICOS ── -->
+  <div class="section">
+    <div class="section-title">📈 Comparativos</div>
+    <div class="two-col">
+      <div class="chart-box">
+        <h3>Investimento por Campanha</h3>
+        <div class="chart-container"><canvas id="spendChart"></canvas></div>
+      </div>
+      <div class="chart-box">
+        <h3>CTR por Campanha (%)</h3>
+        <div class="chart-container"><canvas id="ctrChart"></canvas></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── INSIGHTS ── -->
+  <div class="section">
+    <div class="section-title">🔍 Insights</div>
+    <div class="two-col">
+      <div class="card">
+        <div style="font-size:22px;margin-bottom:6px">📊</div>
+        <h4 style="font-size:13px;font-weight:700;margin-bottom:4px;">Instagram domina 91% do budget</h4>
+        <p style="font-size:12px;color:var(--sub);line-height:1.5;">R$ 1.795 em Instagram vs R$ 118 em Facebook. Concentração alta — se houver problema na plataforma, todo o tráfego para.</p>
+      </div>
+      <div class="card">
+        <div style="font-size:22px;margin-bottom:6px">👩</div>
+        <h4 style="font-size:13px;font-weight:700;margin-bottom:4px;">Público 71% feminino</h4>
+        <p style="font-size:12px;color:var(--sub);line-height:1.5;">Alinhado com o perfil de cursos de idiomas (mães matriculando filhos). Faixa 25-34 é a mais relevante.</p>
+      </div>
+      <div class="card" style="border-left:3px solid var(--red);">
+        <div style="font-size:22px;margin-bottom:6px">🔗</div>
+        <h4 style="font-size:13px;font-weight:700;margin-bottom:4px;">0 landing page views — links podem estar quebrados</h4>
+        <p style="font-size:12px;color:var(--sub);line-height:1.5;">Nenhuma campanha teve landing page view registrada. Testar manualmente os links dos anúncios no mobile, tanto nas campanhas de lead quanto nas de visita ao perfil.</p>
+      </div>
+      <div class="card">
+        <div style="font-size:22px;margin-bottom:6px">🔄</div>
+        <h4 style="font-size:13px;font-weight:700;margin-bottom:4px;">111 conversas WhatsApp iniciadas</h4>
+        <p style="font-size:12px;color:var(--sub);line-height:1.5;">As campanhas de "Visita ao Perfil" podem estar gerando contatos via WhatsApp. Verificar se essas conversas estão sendo acompanhadas.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ACOES ── -->
+  <div class="section">
+    <div class="section-title">🎯 Plano de Ação</div>
+    <div class="card">
+      <div class="action-step">
+        <div class="num">1</div>
+        <div class="content">
+          <h4>Testar links das campanhas de lead manualmente</h4>
+          <p>0 landing page views indica que os links podem estar quebrados ou redirecionando incorretamente. Testar em mobile pelo Instagram. Prioridade máxima — R$ 1.254 estão sendo gastos sem conversão.</p>
+        </div>
+      </div>
+      <div class="action-step">
+        <div class="num green">2</div>
+        <div class="content">
+          <h4>Verificar pixel e eventos de lead</h4>
+          <p>Confirmar se o Meta Pixel está instalado na página de destino e se o evento de lead está sendo disparado corretamente. Usar Meta Pixel Helper no Chrome.</p>
+        </div>
+      </div>
+      <div class="action-step">
+        <div class="num yellow">3</div>
+        <div class="content">
+          <h4>Renovar criativos — frequência em 3,87</h4>
+          <p>A frequência está alta. Criar novos criativos para as campanhas de lead, especialmente para o público 25-34 feminino que já viu o anúncio várias vezes.</p>
+        </div>
+      </div>
+      <div class="action-step">
+        <div class="num orange">4</div>
+        <div class="content">
+          <h4>Otimizar criativos de lead para melhorar CTR</h4>
+          <p>CTR de 0,57-0,68% está abaixo do potencial. Testar novas abordagens: fotos reais de alunos/filial, depoimentos, oferta mais clara (ex: "Matrícula com desconto").</p>
+        </div>
+      </div>
+      <div class="action-step">
+        <div class="num" style="background:var(--accent)">5</div>
+        <div class="content">
+          <h4>Considerar WhatsApp como canal de conversão direta</h4>
+          <p>Já existem 111 conversas iniciadas via WhatsApp organicamente. Testar um criativo com CTA direto para WhatsApp Business para capturar leads pelo canal que já está gerando contato.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <strong>Fisk Macapá</strong> — Relatório gerado em 17/06/2026 · Dados: Meta Ads API
+</div>
+
+<script>
+const spendCtx = document.getElementById('spendChart');
+new Chart(spendCtx,{
+  type:'doughnut',
+  data:{
+    labels:['Macapá Matrículas','Santana Matrículas','Macapá Topo Funil','Santana Topo Funil'],
+    datasets:[{
+      data:[746.84,507.90,507.58,203.06],
+      backgroundColor:['#e31e24','#f87171','rgba(133,173,255,0.7)','rgba(133,173,255,0.4)'],
+      borderWidth:0,
+    }]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{
+      legend:{position:'bottom',labels:{color:'#8892a8',font:{size:10},padding:10}},
+      tooltip:{callbacks:{label:c=>'R$ '+c.raw.toFixed(2)}}
+    }
+  }
+});
+
+new Chart(document.getElementById('ctrChart'),{
+  type:'bar',
+  data:{
+    labels:['Macapá Matrículas','Santana Matrículas','Macapá Topo','Santana Topo'],
+    datasets:[{
+      label:'CTR (%)',
+      data:[0.68,0.57,1.24,0.79],
+      backgroundColor:['rgba(227,30,36,0.6)','rgba(248,113,113,0.6)','rgba(74,222,128,0.6)','rgba(133,173,255,0.6)'],
+      borderColor:['#e31e24','#f87171','#4ade80','#85adff'],
+      borderWidth:1,borderRadius:4,
+    }]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{labels:{color:'#8892a8',font:{size:10}}}},
+    scales:{
+      x:{ticks:{color:'#8892a8',font:{size:9}},grid:{color:'rgba(255,255,255,0.03)'}},
+      y:{beginAtZero:true,ticks:{color:'#8892a8',callback:v=>v+'%'},grid:{color:'rgba(255,255,255,0.03)'}}
+    }
+  }
+});
+</script>
+</body>
+</html>

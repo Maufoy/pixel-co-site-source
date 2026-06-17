@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { writeFile, mkdir } from 'fs/promises'
 import { join } from 'path'
-import { sendMetaLeadEvent } from '@/lib/meta-capi'
+import { sendMetaLeadEvent, sendMetaSubmitApplication } from '@/lib/meta-capi'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -26,7 +26,10 @@ async function sendWhatsApp(message: string) {
 }
 
 export async function POST(req: NextRequest) {
-  let body: { nome?: string; email?: string; telefone?: string; eventId?: string; sourceUrl?: string }
+  let body: {
+    nome?: string; email?: string; telefone?: string; eventId?: string; sourceUrl?: string;
+    portfolio_escolhido?: number; nome_pagina?: string
+  }
   try {
     body = await req.json()
   } catch {
@@ -64,7 +67,18 @@ export async function POST(req: NextRequest) {
     sourceUrl: body.sourceUrl,
   })
 
-  return NextResponse.json({ ok: true, id, eventId, meta })
+  // Also send SubmitApplication via CAPI (briefing complete)
+  const metaSubmit = await sendMetaSubmitApplication(req, {
+    eventId: `submit-${eventId}`,
+    nome,
+    email,
+    telefone,
+    sourceUrl: body.sourceUrl,
+    portfolio_escolhido: body.portfolio_escolhido,
+    nome_pagina: body.nome_pagina,
+  })
+
+  return NextResponse.json({ ok: true, id, eventId, meta, metaSubmit })
 }
 
 export async function GET() {

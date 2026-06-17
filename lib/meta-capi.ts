@@ -20,6 +20,11 @@ type PageViewEventInput = {
   pathname?: string
 }
 
+type SubmitApplicationInput = LeadEventInput & {
+  portfolio_escolhido?: string
+  nome_pagina?: string
+}
+
 type MetaUserData = {
   em?: string[]
   ph?: string[]
@@ -194,4 +199,93 @@ export async function sendMetaPageView(req: NextRequest, input?: PageViewEventIn
     console.warn('[meta-capi] PageView event failed', err)
     return { sent: false, error: err instanceof Error ? err.message : String(err) }
   }
+}
+
+/** Generic CAPI event sender — reuse for any event_name */
+async function sendMetaCapiEvent(params: {
+  req: NextRequest
+  input: LeadEventInput
+  eventName: string
+  customData?: Record<string, unknown>
+}) {
+  const { req, input, eventName, customData } = params
+
+  if (!META_PIXEL_ID || !META_ACCESS_TOKEN) {
+    console.warn(`[meta-capi] META_PIXEL_ID or META_ACCESS_TOKEN not set — skipping ${eventName} event`)
+    return { sent: false, reason: 'missing_config' }
+  }
+
+  const email = normalizeEmail(input.email)
+  const phone = normalizePhone(input.telefone)
+  const { firstName, lastName } = splitName(input.nome)
+
+  const userData: MetaUserData = {
+    client_ip_address: getClientIp(req),
+    client_user_agent: req.headers.get('user-agent') || undefined,
+    fbp: getCookie(req, '_fbp'),
+    fbc: getCookie(req, '_fbc'),
+  }
+
+  if (email) {
+    userData.em = [sha256(email)]
+    userData.external_id = [sha256(email)]
+  }
+
+  if (phone) userData.ph = [sha256(phone)]
+  if (firstName) userData.fn = [sha256(firstName)]
+  if (lastName) userData.ln = [sha256(lastName)]
+
+  const payload: Record<string, unknown> = {
+    data: [
+      {
+        event_name: eventName,
+        event_time: Math.floor(Date.now() / 1000),
+        event_id: input.eventId,
+        action_source: 'website',
+        event_source_url: input.sourceUrl || req.headers.get('referer') || undefined,
+        user_data: userData,
+        custom_data: {
+          content_name: 'Pagina Express',
+          content_category: 'lead_form',
+          ...customData,
+        },
+      },
+    ],
+  }
+
+  if (META_TEST_EVENT_CODE) payload.test_event_code = META_TEST_EVENT_CODE
+
+  const url = new URL(`https://graph.facebook.com/${META_GRAPH_VERSION}/${META_PIXEL_ID}/events`)
+  url.searchParams.set('access_token', META_ACCESS_TOKEN)
+
+  try {
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    })
+    const result = (await res.json().catch(() => ({}))) as Record<string, unknown>
+
+    if (!res.ok) {
+      console.warn(`[meta-capi] ${eventName} event rejected`, { status: res.status, result })
+      return { sent: false, status: res.status, result }
+    }
+
+    return { sent: true, status: res.status, result }
+  } catch (err) {
+    console.warn(`[meta-capi] ${eventName} event failed`, err)
+    return { sent: false, error: err instanceof Error ? err.message : String(err) }
+  }
+}
+
+export async function sendMetaSubmitApplication(req: NextRequest, input: SubmitApplicationInput) {
+  return sendMetaCapiEvent({
+    req,
+    input,
+    eventName: 'SubmitApplication',
+    customData: {
+      portfolio_escolhido: input.portfolio_escolhido,
+      nome_pagina: input.nome_pagina,
+    },
+  })
 }
