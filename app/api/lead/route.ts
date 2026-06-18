@@ -29,7 +29,8 @@ export async function POST(req: NextRequest) {
   let body: {
     nome?: string; email?: string; telefone?: string; eventId?: string; sourceUrl?: string;
     portfolio_escolhido?: number; nome_pagina?: string;
-    utm_source?: string; utm_medium?: string; utm_campaign?: string
+    utm_source?: string; utm_medium?: string; utm_campaign?: string;
+    stage?: string
   }
   try {
     body = await req.json()
@@ -40,6 +41,7 @@ export async function POST(req: NextRequest) {
   const nome = (body.nome || '').trim()
   const email = (body.email || '').trim()
   const telefone = (body.telefone || '').trim()
+  const stage = body.stage || 'briefing_complete'
 
   if (!nome || !email) {
     return NextResponse.json({ ok: false, error: 'missing_fields' }, { status: 400 })
@@ -50,7 +52,7 @@ export async function POST(req: NextRequest) {
   const id = `lead-${stamp.file}-${shortId}`
   const eventId = (body.eventId || id).trim()
 
-  const content = `# Lead — Página Express\n\n**Recebido:** ${stamp.human} (BRT)\n**ID:** ${id}\n\n**Nome:** ${nome}\n**E-mail:** ${email}\n**Telefone:** ${telefone || '—'}\n${body.utm_source ? `**Origem:** ${[body.utm_source, body.utm_medium, body.utm_campaign].filter(Boolean).join(' / ')}\n` : ''}`
+  const content = `# Lead — Página Express\n\n**Recebido:** ${stamp.human} (BRT)\n**ID:** ${id}\n**Estágio:** ${stage === 'lead_captured' ? '📥 Lead capturado (step 5)' : '✅ Briefing completo'}\n\n**Nome:** ${nome}\n**E-mail:** ${email}\n**Telefone:** ${telefone || '—'}\n${body.utm_source ? `**Origem:** ${[body.utm_source, body.utm_medium, body.utm_campaign].filter(Boolean).join(' / ')}\n` : ''}`
 
   try {
     await mkdir(LEADS_DIR, { recursive: true })
@@ -59,27 +61,35 @@ export async function POST(req: NextRequest) {
     // Non-fatal — still return ok so gate proceeds
   }
 
-  await sendWhatsApp(`*Novo lead — Página Express*\n\n*Nome:* ${nome}\n*E-mail:* ${email}\n*Fone:* ${telefone || '—'}`)
+  // Só envia WhatsApp no primeiro contato (stage = lead_captured)
+  if (stage === 'lead_captured') {
+    await sendWhatsApp(`*Novo lead — Página Express*\n\n*Nome:* ${nome}\n*E-mail:* ${email}\n*Fone:* ${telefone || '—'}\n*Etapa:* Captura inicial`)
+  }
+
+  // Lead CAPI event
   const meta = await sendMetaLeadEvent(req, {
-    eventId,
+    eventId: stage === 'lead_captured' ? eventId : `lead-${eventId}`,
     nome,
     email,
     telefone,
     sourceUrl: body.sourceUrl,
   })
 
-  // Also send SubmitApplication via CAPI (briefing complete)
-  const metaSubmit = await sendMetaSubmitApplication(req, {
-    eventId: `submit-${eventId}`,
-    nome,
-    email,
-    telefone,
-    sourceUrl: body.sourceUrl,
-    portfolio_escolhido: body.portfolio_escolhido,
-    nome_pagina: body.nome_pagina,
-  })
+  // SubmitApplication CAPI só quando briefing está completo
+  let metaSubmit: Record<string, unknown> = { sent: false, reason: 'stage_not_briefing' }
+  if (stage === 'briefing_complete') {
+    metaSubmit = await sendMetaSubmitApplication(req, {
+      eventId: eventId,
+      nome,
+      email,
+      telefone,
+      sourceUrl: body.sourceUrl,
+      portfolio_escolhido: body.portfolio_escolhido,
+      nome_pagina: body.nome_pagina,
+    })
+  }
 
-  return NextResponse.json({ ok: true, id, eventId, meta, metaSubmit })
+  return NextResponse.json({ ok: true, id, eventId, stage, meta, metaSubmit })
 }
 
 export async function GET() {

@@ -1249,6 +1249,23 @@
           lead_profissao: state.respostas.q2 || '',
         });
 
+        // Salva lead no servidor imediatamente (não espera o briefing completo)
+        fetch('/api/lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            nome,
+            email: email || `${nome.toLowerCase().replace(/\s+/g,'.')}@quiz.express`,
+            telefone: tel,
+            eventId,
+            sourceUrl: window.location.href,
+            stage: 'lead_captured',
+            utm_source: state.utm.utm_source || '',
+            utm_medium: state.utm.utm_medium || '',
+            utm_campaign: state.utm.utm_campaign || '',
+          }),
+        }).catch(() => {});
+
         showStep(6);
       });
 
@@ -1311,6 +1328,7 @@
               telefone: state.lead.telefone,
               eventId,
               sourceUrl: window.location.href,
+              stage: 'briefing_complete',
               utm_source: state.utm.utm_source || '',
               utm_medium: state.utm.utm_medium || '',
               utm_campaign: state.utm.utm_campaign || '',
