@@ -26,6 +26,10 @@ const nextConfig = {
         source: '/portfolio-sites/escrita-viva/',
         destination: '/portfolio-sites/escrita-viva/index.html',
       },
+      {
+        source: '/leads/',
+        destination: '/leads.html',
+      },
     ]
   },
 }

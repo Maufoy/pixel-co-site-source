@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pixel.Co — Leads</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,0..1" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #08090b;
+      --bg-card: #111215;
+      --bg-elevated: #191b1f;
+      --text: #f7f8f8;
+      --text-soft: #8a8f98;
+      --text-muted: #5c5f66;
+      --green: #14a886;
+      --green-bg: rgba(20,168,134,0.12);
+      --amber: #eab308;
+      --amber-bg: rgba(234,179,8,0.12);
+      --border: rgba(255,255,255,0.07);
+      --radius: 14px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100dvh;
+    }
+    .container { max-width: 640px; margin: 0 auto; padding: 16px; }
+    .header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 8px 0 16px; border-bottom: 1px solid var(--border); margin-bottom: 20px;
+    }
+    .logo { font-weight: 600; font-size: 18px; letter-spacing: -0.02em; }
+    .logo small { color: var(--text-muted); font-weight: 400; font-size: 12px; }
+    .stats-bar {
+      display: flex; gap: 12px; margin-bottom: 20px;
+    }
+    .stat-card {
+      flex: 1; background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 14px 16px;
+    }
+    .stat-num {
+      font-size: 24px; font-weight: 700; line-height: 1.1;
+    }
+    .stat-label {
+      font-size: 11px; color: var(--text-muted); margin-top: 2px;
+      text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .stat-card.green { border-color: var(--green); }
+    .stat-card.green .stat-num { color: var(--green); }
+    .stat-card.amber { border-color: var(--amber); }
+    .stat-card.amber .stat-num { color: var(--amber); }
+
+    .search-wrap {
+      position: relative; margin-bottom: 16px;
+    }
+    .search-wrap .ico {
+      position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+      color: var(--text-muted); font-size: 20px;
+    }
+    .search-wrap input {
+      width: 100%; padding: 12px 14px 12px 44px;
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); color: var(--text);
+      font-family: 'Inter', sans-serif; font-size: 14px; outline: none;
+    }
+    .search-wrap input:focus { border-color: var(--green); }
+    .search-wrap input::placeholder { color: var(--text-muted); }
+
+    .lead-list { display: flex; flex-direction: column; gap: 10px; }
+    .lead-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 14px 16px;
+      transition: border-color 0.2s;
+    }
+    .lead-card:hover { border-color: rgba(255,255,255,0.14); }
+    .lead-top {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 6px;
+    }
+    .lead-name { font-weight: 600; font-size: 15px; }
+    .lead-badge {
+      font-size: 10px; font-weight: 600; padding: 2px 8px;
+      border-radius: 20px; text-transform: uppercase; letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+    .lead-badge.captured { background: var(--amber-bg); color: var(--amber); }
+    .lead-badge.completed { background: var(--green-bg); color: var(--green); }
+    .lead-details {
+      font-size: 13px; color: var(--text-soft); display: flex;
+      flex-wrap: wrap; gap: 4px 14px;
+    }
+    .lead-details span { display: flex; align-items: center; gap: 4px; }
+    .lead-details .ico { font-size: 14px; color: var(--text-muted); }
+    .lead-origem {
+      font-size: 11px; color: var(--text-muted); margin-top: 6px;
+      padding-top: 6px; border-top: 1px solid var(--border);
+    }
+    .lead-date {
+      font-size: 11px; color: var(--text-muted); font-family: monospace;
+    }
+    .empty {
+      text-align: center; padding: 40px 16px; color: var(--text-muted);
+    }
+    .empty .ico { font-size: 48px; margin-bottom: 12px; display: block; }
+    .loading {
+      text-align: center; padding: 40px; color: var(--text-muted);
+    }
+    .loading .ico { font-size: 32px; animation: spin 1s linear infinite; display: inline-block; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .ico { font-family: 'Material Symbols Outlined'; display: inline-flex; align-items: center;
+      justify-content: center; font-variation-settings: 'FILL' 1, 'wght' 300; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="logo">Pixel.Co <small>leads</small></div>
+      <button onclick="location.reload()" style="background:none;border:none;color:var(--text-soft);cursor:pointer;font-size:24px;display:flex;">
+        <span class="ico">refresh</span>
+      </button>
+    </div>
+
+    <div class="stats-bar" id="statsBar">
+      <div class="stat-card green">
+        <div class="stat-num" id="statTotal">—</div>
+        <div class="stat-label">Total de leads</div>
+      </div>
+      <div class="stat-card green">
+        <div class="stat-num" id="statCompleted">—</div>
+        <div class="stat-label">Briefings</div>
+      </div>
+      <div class="stat-card amber">
+        <div class="stat-num" id="statCaptured">—</div>
+        <div class="stat-label">Só captura</div>
+      </div>
+    </div>
+
+    <div class="search-wrap">
+      <span class="ico">search</span>
+      <input type="text" id="searchInput" placeholder="Buscar por nome, email ou telefone...">
+    </div>
+
+    <div id="leadList" class="lead-list">
+      <div class="loading"><span class="ico">sync</span><br>Carregando...</div>
+    </div>
+  </div>
+
+  <script>
+  const BASE = window.location.origin
+  let allLeads = []
+
+  function formatPhone(tel) {
+    const d = tel.replace(/\D/g, '')
+    if (d.length === 11) return `(${d.slice(0,2)}) ${d.slice(2,7)}-${d.slice(7)}`
+    if (d.length === 10) return `(${d.slice(0,2)}) ${d.slice(2,6)}-${d.slice(6)}`
+    return tel
+  }
+
+  function dateFromRecebido(str) {
+    // "31/05/2026, 11:57:33 (BRT)"
+    return str.replace(/ \(BRT\)$/, '')
+  }
+
+  function renderLead(l) {
+    const stageLabel = l.stage === 'briefing_complete' ? '✅ Completo' : '📥 Captura'
+    const stageClass = l.stage === 'briefing_complete' ? 'completed' : 'captured'
+    return `
+      <div class="lead-card">
+        <div class="lead-top">
+          <div class="lead-name">${l.nome}</div>
+          <span class="lead-badge ${stageClass}">${stageLabel}</span>
+        </div>
+        <div class="lead-details">
+          ${l.telefone !== '—' ? `<span><span class="ico">call</span> ${formatPhone(l.telefone)}</span>` : ''}
+          ${l.email !== '—' ? `<span><span class="ico">mail</span> ${l.email}</span>` : ''}
+        </div>
+        ${l.origem ? `<div class="lead-origem"><span class="ico" style="font-size:12px;vertical-align:middle;">ads_click</span> ${l.origem}</div>` : ''}
+        <div class="lead-date">${dateFromRecebido(l.recebido)}</div>
+      </div>
+    `
+  }
+
+  function render() {
+    const q = document.getElementById('searchInput').value.toLowerCase()
+    const filtered = q ? allLeads.filter(l =>
+      l.nome.toLowerCase().includes(q) ||
+      l.email.toLowerCase().includes(q) ||
+      l.telefone.includes(q)
+    ) : allLeads
+
+    document.getElementById('statTotal').textContent = allLeads.length
+    document.getElementById('statCompleted').textContent = allLeads.filter(l => l.stage === 'briefing_complete').length
+    document.getElementById('statCaptured').textContent = allLeads.filter(l => l.stage === 'lead_captured').length
+
+    const list = document.getElementById('leadList')
+    if (filtered.length === 0) {
+      list.innerHTML = `<div class="empty">
+        <span class="ico">inbox</span>
+        ${q ? 'Nenhum lead encontrado para "' + q + '"' : 'Nenhum lead ainda'}
+      </div>`
+      return
+    }
+    list.innerHTML = filtered.map(renderLead).join('')
+  }
+
+  async function load() {
+    try {
+      const res = await fetch('/api/leads')
+      const data = await res.json()
+      allLeads = data.leads || []
+      render()
+    } catch (e) {
+      document.getElementById('leadList').innerHTML =
+        `<div class="empty"><span class="ico">error</span>Erro ao carregar leads</div>`
+    }
+  }
+
+  document.getElementById('searchInput').addEventListener('input', render)
+  load()
+  </script>
+</body>
+</html>
