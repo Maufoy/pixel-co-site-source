@@ -61,6 +61,9 @@ function mapQuizLabel(key: string, value: string): string {
       tempo: 'Não tenho tempo de criar uma página',
       tentei: 'Já tentei fazer e desisti / ficou ruim',
       outro_desafio: 'Outro desafio',
+      urgente: 'Urgente — quero agora',
+      tenho_tempo: 'Tenho tempo — quero caprichar',
+      planejando: 'Ainda estou planejando',
     },
     q7: {
       sim_logo: 'Sim, tenho logo em boa qualidade',
@@ -323,15 +326,24 @@ export async function POST(req: NextRequest) {
     )
   }
 
-  const summary =
-    `*Novo briefing recebido*\n\n` +
-    `*Cliente:* ${answerOrDash(body.nome_completo)}\n` +
-    `*E-mail:* ${answerOrDash(body.lead_email)}\n` +
-    `*WhatsApp:* ${answerOrDash(body.lead_telefone)}\n` +
-    `*Profissão:* ${answerOrDash(body.profissao)}\n` +
-    `*Cidade:* ${answerOrDash(body.cidade)}\n` +
-    `*Redes:* ${answerOrDash(body.links_atuais)}\n\n` +
-    `*Arquivo:*\n\`${filepath}\``
+  const isQuiz = 'q1' in body;
+
+  const summary = isQuiz
+    ? `*Novo briefing — Página Express v2*\n\n` +
+      `*Nome:* ${answerOrDash(body.nome)}\n` +
+      `*WhatsApp:* ${answerOrDash(body.telefone)}\n` +
+      `*E-mail:* ${answerOrDash(body.email)}\n` +
+      `*Profissão:* ${mapQuizLabel('q2', (body.q2 as string) || '') || answerOrDash(body.q2)}\n` +
+      `*Prazo:* ${mapQuizLabel('q4', (body.q4 as string) || '') || answerOrDash(body.q4)}\n\n` +
+      `*Arquivo:*\n\`${filepath}\``
+    : `*Novo briefing recebido*\n\n` +
+      `*Cliente:* ${answerOrDash(body.nome_completo)}\n` +
+      `*E-mail:* ${answerOrDash(body.lead_email)}\n` +
+      `*WhatsApp:* ${answerOrDash(body.lead_telefone)}\n` +
+      `*Profissão:* ${answerOrDash(body.profissao)}\n` +
+      `*Cidade:* ${answerOrDash(body.cidade)}\n` +
+      `*Redes:* ${answerOrDash(body.links_atuais)}\n\n` +
+      `*Arquivo:*\n\`${filepath}\``
 
   const whats = await sendWhatsApp(summary)
 
