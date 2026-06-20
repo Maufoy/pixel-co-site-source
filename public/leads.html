@@ -115,6 +115,13 @@
 
     .ico { font-family: 'Material Symbols Outlined'; display: inline-flex; align-items: center;
       justify-content: center; font-variation-settings: 'FILL' 1, 'wght' 300; }
+
+    .lead-respostas { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
+    .resp-tag {
+      font-size: 10px; background: rgba(20,168,134,0.10); color: var(--green);
+      padding: 2px 7px; border-radius: 6px; border: 1px solid rgba(20,168,134,0.18);
+      white-space: nowrap;
+    }
   </style>
 </head>
 <body>
@@ -170,6 +177,16 @@
   function renderLead(l) {
     const stageLabel = l.stage === 'briefing_complete' ? '✅ Completo' : '📥 Captura'
     const stageClass = l.stage === 'briefing_complete' ? 'completed' : 'captured'
+
+    // Quiz answers as tags
+    const respostasHtml = l.respostas && Object.keys(l.respostas).length > 0
+      ? `<div class="lead-respostas">${
+          Object.entries(l.respostas).map(([k, v]) =>
+            `<span class="resp-tag">${k}: ${v}</span>`
+          ).join('')
+        }</div>`
+      : ''
+
     return `
       <div class="lead-card">
         <div class="lead-top">
@@ -180,6 +197,7 @@
           ${l.telefone !== '—' ? `<span><span class="ico">call</span> ${formatPhone(l.telefone)}</span>` : ''}
           ${l.email !== '—' ? `<span><span class="ico">mail</span> ${l.email}</span>` : ''}
         </div>
+        ${respostasHtml}
         ${l.origem ? `<div class="lead-origem"><span class="ico" style="font-size:12px;vertical-align:middle;">ads_click</span> ${l.origem}</div>` : ''}
         <div class="lead-date">${dateFromRecebido(l.recebido)}</div>
       </div>

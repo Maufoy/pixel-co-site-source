@@ -17,31 +17,48 @@ interface LeadEntry {
   timestamp: number
   stage: 'lead_captured' | 'briefing_complete'
   origem: string
+  respostas: Record<string, string>
+}
+
+function getLabel(lines: string[], label: string): string {
+  const line = lines.find(l => l.includes(`**${label}:**`))
+  if (!line) return ''
+  return line.split(`**${label}:**`)[1]?.trim() || ''
+}
+
+function parseRespostas(lines: string[]): Record<string, string> {
+  const res: Record<string, string> = {}
+  const section = lines.findIndex(l => l.trim() === '## Respostas do Quiz')
+  if (section === -1) return res
+  for (let i = section + 1; i < lines.length; i++) {
+    const line = lines[i].trim()
+    if (line.startsWith('## ') || line.startsWith('---')) break
+    // Formato: - **Situação atual:** Nunca tive página profissional
+    const match = line.match(/^- \*\*(.+?):\*\*\s(.+)$/)
+    if (match) {
+      res[match[1]] = match[2]
+    }
+  }
+  return res
 }
 
 function parseLeadFile(filename: string, content: string): LeadEntry | null {
   const lines = content.split('\n')
 
-  const get = (label: string): string => {
-    const line = lines.find(l => l.includes(`**${label}:**`))
-    if (!line) return ''
-    const val = line.split(`**${label}:**`)[1]?.trim() || ''
-    return val
-  }
+  const nome = getLabel(lines, 'Nome')
+  const email = getLabel(lines, 'E-mail')
+  const telefone = getLabel(lines, 'Telefone')
+  const recebido = getLabel(lines, 'Recebido')
 
-  const nome = get('Nome')
-  const email = get('E-mail')
-  const telefone = get('Telefone')
-  const recebido = get('Recebido')
-
-  const stageRaw = get('Estágio')
+  const stageRaw = getLabel(lines, 'Estágio')
   const stage: 'lead_captured' | 'briefing_complete' =
-    stageRaw.includes('Briefing completo') ? 'briefing_complete' : 'lead_captured'
+    stageRaw.includes('Briefing completo') || stageRaw.includes('✅')
+      ? 'briefing_complete' : 'lead_captured'
 
-  const origem = get('Origem')
+  const origem = getLabel(lines, 'Origem')
+  const respostas = parseRespostas(lines)
 
   // Parse timestamp from filename: lead-2026-05-31-145733-xxx.md
-  // Format: YYYY-MM-DD-HHMMSS
   const match = filename.match(/lead-(\d{4}-\d{2}-\d{2})-(\d{6})/)
   let timestamp = 0
   if (match) {
@@ -62,6 +79,7 @@ function parseLeadFile(filename: string, content: string): LeadEntry | null {
     timestamp: timestamp || 0,
     stage,
     origem: origem || '',
+    respostas,
   }
 }
 
@@ -84,7 +102,6 @@ export async function GET(req: NextRequest) {
       }
     }
 
-    // Filtrar por search term
     let filtered = leads
     if (search) {
       filtered = leads.filter(l =>
