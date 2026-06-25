@@ -23,6 +23,10 @@ const nextConfig = {
         destination: '/pagina-express-v2/index.html',
       },
       {
+        source: '/portfolio-sites/christiane-reis/',
+        destination: '/portfolio-sites/christiane-reis/index.html',
+      },
+      {
         source: '/portfolio-sites/escrita-viva/',
         destination: '/portfolio-sites/escrita-viva/index.html',
       },

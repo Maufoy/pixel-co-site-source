@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Psicóloga Christiane Reis | Terapia para mulheres</title>
+  <meta name="description" content="Psicoterapia para mulheres com ansiedade, TAG, pânico, depressão pós-parto e estresse emocional. Atendimento online e presencial com Christiane Reis, CRP 05/63249.">
+  <style>
+    :root {
+      --sage: #5f7f6d;
+      --sage-deep: #355344;
+      --rose: #d98574;
+      --plum: #544052;
+      --cream: #fbfaf6;
+      --mist: #edf3ef;
+      --ink: #202520;
+      --muted: #68706a;
+      --line: rgba(32, 37, 32, 0.12);
+      --shadow: 0 18px 55px rgba(26, 35, 29, 0.14);
+      --max: 1120px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+      overflow-x: hidden;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .page-shell {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 12% 20%, rgba(217, 133, 116, 0.12), transparent 34%),
+        linear-gradient(180deg, #fbfaf6 0%, #f4f7f1 100%);
+    }
+
+    .section {
+      padding: 68px 18px;
+    }
+
+    .section.alt {
+      background: #ffffff;
+    }
+
+    .section.tint {
+      background: var(--mist);
+    }
+
+    .wrap {
+      width: min(100%, var(--max));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(251, 250, 246, 0.84);
+      backdrop-filter: blur(16px);
+    }
+
+    .nav {
+      width: min(100%, 1180px);
+      min-height: 70px;
+      margin: 0 auto;
+      padding: 0 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: grid;
+      gap: 1px;
+      line-height: 1.1;
+    }
+
+    .brand strong {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.03rem;
+      font-weight: 700;
+      color: var(--sage-deep);
+    }
+
+    .brand span {
+      color: var(--muted);
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .nav-links {
+      position: fixed;
+      inset: 70px 0 auto 0;
+      padding: 16px 18px 22px;
+      display: grid;
+      gap: 10px;
+      background: rgba(251, 250, 246, 0.98);
+      border-bottom: 1px solid var(--line);
+      transform: translateY(-120%);
+      transition: transform 0.28s ease;
+      box-shadow: var(--shadow);
+    }
+
+    .menu-open .nav-links {
+      transform: translateY(0);
+    }
+
+    .nav-links a {
+      padding: 11px 0;
+      color: var(--sage-deep);
+      font-size: 0.96rem;
+      font-weight: 650;
+    }
+
+    .menu-toggle {
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #ffffff;
+      color: var(--sage-deep);
+      display: inline-grid;
+      place-items: center;
+      cursor: pointer;
+    }
+
+    .menu-toggle svg,
+    .button svg,
+    .icon svg {
+      width: 18px;
+      height: 18px;
+      flex: 0 0 auto;
+    }
+
+    .site-header .header-cta {
+      display: none;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      padding: 102px 18px 36px;
+      display: grid;
+      align-items: center;
+      isolation: isolate;
+      overflow: hidden;
+      color: #ffffff;
+      background:
+        linear-gradient(180deg, rgba(26, 33, 28, 0.96) 0%, rgba(26, 33, 28, 0.9) 34%, rgba(26, 33, 28, 0.12) 58%, rgba(26, 33, 28, 0.76) 100%),
+        url("https://xn--psiclogachristianereis-yfc.com.br/wp-content/uploads/2025/06/IMG-20250608-WA0016-1-1-683x1024.png") center 250px / 100% auto no-repeat,
+        var(--sage-deep);
+    }
+
+    .hero::after {
+      display: none;
+    }
+
+    .hero-layout {
+      width: min(100%, var(--max));
+      margin: 0 auto;
+      display: grid;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .hero-inner {
+      max-width: 680px;
+      min-height: calc(100svh - 138px);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .eyebrow {
+      width: fit-content;
+      padding: 8px 10px;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.14);
+      color: rgba(255, 255, 255, 0.92);
+      font-size: 0.74rem;
+      font-weight: 750;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      backdrop-filter: blur(12px);
+    }
+
+    .hero h1 {
+      max-width: 720px;
+      margin: 0;
+      color: #ffffff;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.45rem, 11vw, 5.8rem);
+      line-height: 0.94;
+      letter-spacing: 0;
+    }
+
+    .hero-copy {
+      max-width: 640px;
+      margin: 0;
+      color: rgba(255, 255, 255, 0.88);
+      font-size: clamp(1.05rem, 4vw, 1.28rem);
+      text-wrap: pretty;
+    }
+
+    .hero-actions {
+      display: grid;
+      gap: 12px;
+      align-items: center;
+      margin-top: auto;
+    }
+
+    .button {
+      min-height: 52px;
+      padding: 14px 18px;
+      border: 0;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-weight: 800;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button.primary {
+      background: #25d366;
+      color: #062315;
+      box-shadow: 0 14px 36px rgba(37, 211, 102, 0.3);
+    }
+
+    .button.secondary {
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      backdrop-filter: blur(12px);
+    }
+
+    .button.dark {
+      background: var(--sage-deep);
+      color: #ffffff;
+      box-shadow: 0 14px 34px rgba(53, 83, 68, 0.24);
+    }
+
+    .hero-proof {
+      display: none;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(14px);
+    }
+
+    .hero-proof span {
+      min-height: 76px;
+      padding: 12px 10px;
+      display: grid;
+      align-content: center;
+      gap: 2px;
+      background: rgba(255, 255, 255, 0.06);
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 0.74rem;
+    }
+
+    .hero-proof strong {
+      color: #ffffff;
+      font-size: 0.92rem;
+    }
+
+    .hero-art {
+      display: grid;
+      gap: 12px;
+    }
+
+    .therapy-map {
+      padding: 16px;
+      border: 1px solid rgba(95, 127, 109, 0.18);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.76);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+
+    .therapy-map-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .therapy-map-top strong {
+      color: var(--sage-deep);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.18rem;
+    }
+
+    .therapy-map-top span {
+      display: inline-flex;
+      min-width: 64px;
+      min-height: 34px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      background: var(--sage-deep);
+      color: #ffffff;
+      font-weight: 850;
+      letter-spacing: 0.06em;
+    }
+
+    .therapy-nodes {
+      margin: 18px 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .therapy-node,
+    .support-note {
+      border: 1px solid rgba(95, 127, 109, 0.14);
+      border-radius: 8px;
+      background: #ffffff;
+    }
+
+    .therapy-node {
+      min-height: 96px;
+      padding: 14px;
+      display: grid;
+      align-content: space-between;
+      color: var(--sage-deep);
+      font-weight: 820;
+    }
+
+    .therapy-node svg {
+      width: 24px;
+      height: 24px;
+      color: var(--rose);
+    }
+
+    .support-note {
+      padding: 14px;
+      color: var(--muted);
+    }
+
+    .support-note strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--plum);
+    }
+
+    .ticker {
+      overflow: hidden;
+      border-block: 1px solid rgba(95, 127, 109, 0.17);
+      background: #ffffff;
+    }
+
+    .ticker-track {
+      width: max-content;
+      display: flex;
+      gap: 28px;
+      padding: 13px 0;
+      color: var(--sage-deep);
+      font-size: 0.82rem;
+      font-weight: 780;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      animation: ticker 30s linear infinite;
+    }
+
+    .ticker-track span {
+      white-space: nowrap;
+    }
+
+    .section-kicker {
+      margin: 0 0 10px;
+      color: var(--rose);
+      font-size: 0.78rem;
+      font-weight: 850;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      max-width: 780px;
+      margin: 0;
+      color: var(--sage-deep);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2rem, 8vw, 4rem);
+      line-height: 1.02;
+      letter-spacing: 0;
+    }
+
+    .section-lead {
+      max-width: 720px;
+      margin: 16px 0 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .pain-grid {
+      margin-top: 30px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .pain-card,
+    .step,
+    .testimonial,
+    .faq-item,
+    .contact-panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #ffffff;
+      box-shadow: 0 12px 32px rgba(26, 35, 29, 0.06);
+    }
+
+    .pain-card {
+      padding: 18px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 8px;
+      display: inline-grid;
+      place-items: center;
+      background: var(--mist);
+      color: var(--sage-deep);
+    }
+
+    .pain-card h3,
+    .step h3,
+    .format h3 {
+      margin: 0;
+      color: var(--sage-deep);
+      font-size: 1.02rem;
+    }
+
+    .pain-card p,
+    .step p,
+    .format p,
+    .testimonial p,
+    .faq-content p {
+      margin: 8px 0 0;
+      color: var(--muted);
+    }
+
+    .about-layout {
+      display: grid;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .portrait-frame {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      min-height: 460px;
+      background: var(--mist);
+      box-shadow: var(--shadow);
+    }
+
+    .portrait-frame img {
+      width: 100%;
+      height: 100%;
+      min-height: 460px;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .credential {
+      position: absolute;
+      left: 14px;
+      right: 14px;
+      bottom: 14px;
+      padding: 14px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.88);
+      color: var(--sage-deep);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 16px 40px rgba(26, 35, 29, 0.15);
+    }
+
+    .credential strong {
+      display: block;
+      font-size: 1rem;
+    }
+
+    .credential span {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .about-copy {
+      display: grid;
+      gap: 18px;
+    }
+
+    .quote-line {
+      padding-left: 18px;
+      border-left: 3px solid var(--rose);
+      color: var(--plum);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.35rem;
+      line-height: 1.32;
+    }
+
+    .formats {
+      display: grid;
+      gap: 12px;
+    }
+
+    .format {
+      padding: 16px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .method-grid {
+      margin-top: 34px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .step {
+      padding: 18px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .step-number {
+      display: inline-flex;
+      width: 34px;
+      height: 34px;
+      margin-bottom: 14px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      background: var(--sage);
+      color: #ffffff;
+      font-weight: 850;
+    }
+
+    .trust-band {
+      padding: 52px 18px;
+      background: var(--sage-deep);
+      color: #ffffff;
+    }
+
+    .trust-grid {
+      width: min(100%, var(--max));
+      margin: 0 auto;
+      display: grid;
+      gap: 18px;
+    }
+
+    .trust-text h2 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.9rem, 7vw, 3.5rem);
+      line-height: 1.04;
+      letter-spacing: 0;
+    }
+
+    .trust-text p {
+      margin: 14px 0 0;
+      color: rgba(255, 255, 255, 0.76);
+    }
+
+    .testimonial-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .testimonial {
+      padding: 18px;
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.18);
+      box-shadow: none;
+    }
+
+    .testimonial p {
+      color: rgba(255, 255, 255, 0.86);
+      font-size: 1.02rem;
+    }
+
+    .testimonial strong {
+      display: block;
+      margin-top: 12px;
+      color: #ffffff;
+      font-size: 0.86rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .faq-list {
+      margin-top: 28px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .faq-trigger {
+      width: 100%;
+      min-height: 58px;
+      padding: 16px;
+      border: 0;
+      background: transparent;
+      color: var(--sage-deep);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      text-align: left;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .faq-trigger svg {
+      width: 18px;
+      height: 18px;
+      transition: transform 0.2s ease;
+      flex: 0 0 auto;
+    }
+
+    .faq-item.is-open .faq-trigger svg {
+      transform: rotate(45deg);
+    }
+
+    .faq-content {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.22s ease;
+    }
+
+    .faq-content > div {
+      overflow: hidden;
+      padding: 0 16px;
+    }
+
+    .faq-item.is-open .faq-content {
+      grid-template-rows: 1fr;
+    }
+
+    .faq-item.is-open .faq-content > div {
+      padding-bottom: 18px;
+    }
+
+    .contact-layout {
+      display: grid;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .contact-panel {
+      padding: 20px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .contact-row {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 12px;
+      align-items: center;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .contact-row:last-of-type {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .contact-row small {
+      display: block;
+      color: var(--rose);
+      font-weight: 850;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .contact-row strong,
+    .contact-row a {
+      color: var(--sage-deep);
+      font-weight: 780;
+      overflow-wrap: anywhere;
+    }
+
+    .map-frame {
+      min-height: 320px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: var(--mist);
+      box-shadow: var(--shadow);
+    }
+
+    .map-frame iframe {
+      width: 100%;
+      height: 320px;
+      border: 0;
+      display: block;
+    }
+
+    .map-link {
+      min-height: 46px;
+      padding: 12px 14px;
+      border: 1px solid rgba(95, 127, 109, 0.2);
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--sage-deep);
+      background: rgba(237, 243, 239, 0.72);
+      font-weight: 800;
+    }
+
+    .site-footer {
+      padding: 26px 18px 30px;
+      background: #ffffff;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.88rem;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes ticker {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    @media (min-width: 720px) {
+      .section {
+        padding: 92px 28px;
+      }
+
+      .hero {
+        min-height: 88svh;
+        padding: 128px 28px 64px;
+        background:
+          linear-gradient(90deg, rgba(26, 33, 28, 0.9) 0%, rgba(26, 33, 28, 0.74) 42%, rgba(26, 33, 28, 0.2) 72%),
+          url("https://xn--psiclogachristianereis-yfc.com.br/wp-content/uploads/2025/06/IMG-20250608-WA0016-1-1-1366x2048.png") right top / auto 115% no-repeat,
+          var(--sage-deep);
+      }
+
+      .hero::after {
+        display: none;
+      }
+
+      .hero-layout {
+        display: block;
+      }
+
+      .hero-inner {
+        min-height: auto;
+      }
+
+      .hero-actions {
+        grid-template-columns: max-content;
+        margin-top: 0;
+      }
+
+      .hero-proof {
+        display: grid;
+        max-width: 670px;
+      }
+
+      .pain-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .about-layout,
+      .contact-layout,
+      .trust-grid {
+        grid-template-columns: 0.9fr 1.1fr;
+      }
+
+      .method-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .testimonial-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .site-footer {
+        padding-bottom: 30px;
+      }
+    }
+
+    @media (min-width: 960px) {
+      .menu-toggle {
+        display: none;
+      }
+
+      .nav-links {
+        position: static;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        gap: 22px;
+        background: transparent;
+        border: 0;
+        box-shadow: none;
+        transform: none;
+      }
+
+      .nav-links a {
+        padding: 6px 0;
+        font-size: 0.88rem;
+      }
+
+      .site-header .header-cta {
+        min-height: 42px;
+        padding: 10px 14px;
+        display: inline-flex;
+      }
+
+      .pain-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .method-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <nav class="nav" aria-label="Navegação principal">
+        <a class="brand" href="#inicio" aria-label="Psicóloga Christiane Reis">
+          <strong>Christiane Reis</strong>
+          <span>Psicóloga | CRP 05/63249</span>
+        </a>
+        <div class="nav-links" id="navLinks">
+          <a href="#dores">Quando buscar ajuda</a>
+          <a href="#sobre">Sobre</a>
+          <a href="#metodo">TCC</a>
+          <a href="#duvidas">Dúvidas</a>
+          <a href="#contato">Contato</a>
+        </div>
+        <a class="button dark header-cta" href="https://wa.me/5521982355809?text=Ol%C3%A1%2C%20Christiane!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20consulta.">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M19.05 4.91A9.82 9.82 0 0 0 12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.86 9.86 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91a9.86 9.86 0 0 0-2.91-7.01Zm-7.01 15.24h-.01a8.18 8.18 0 0 1-4.17-1.14l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.53 3.69-8.22 8.23-8.22a8.18 8.18 0 0 1 5.82 2.41 8.19 8.19 0 0 1 2.41 5.82c0 4.53-3.69 8.22-8.23 8.22Zm4.51-6.16c-.25-.12-1.46-.72-1.69-.8-.23-.08-.39-.12-.56.12-.17.25-.64.8-.78.96-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.39-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.35-.76-1.85-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.24 3.75.59.25 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.46-.6 1.67-1.18.21-.58.21-1.08.14-1.18-.06-.11-.23-.17-.48-.29Z"/></svg>
+          Agendar
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Abrir menu">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 7h16v2H4V7Zm0 4h16v2H4v-2Zm0 4h16v2H4v-2Z"/></svg>
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="inicio">
+        <div class="hero-layout">
+          <div class="hero-inner reveal">
+            <span class="eyebrow">Atendimento online e presencial</span>
+            <h1>Psicóloga Christiane Reis</h1>
+            <p class="hero-copy">Ansiedade, estresse, pânico e tristeza não precisam ocupar todo o espaço da sua vida. Encontre um processo terapêutico acolhedor, sigiloso e guiado pela TCC.</p>
+            <div class="hero-actions">
+              <a class="button primary" href="https://wa.me/5521982355809?text=Ol%C3%A1%2C%20Christiane!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20consulta.">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M19.05 4.91A9.82 9.82 0 0 0 12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.86 9.86 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91a9.86 9.86 0 0 0-2.91-7.01Z"/></svg>
+                Agendar pelo WhatsApp
+              </a>
+            </div>
+            <div class="hero-proof" aria-label="Informações principais">
+              <span><strong>CRP 05/63249</strong> registro profissional</span>
+              <span><strong>TCC</strong> abordagem baseada em evidências</span>
+              <span><strong>Mulheres</strong> acolhimento com escuta e ética</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="ticker" aria-hidden="true">
+        <div class="ticker-track">
+          <span>Christiane Reis</span><span>Psicologia</span><span>Terapia para mulheres</span><span>Ansiedade</span><span>TCC</span><span>Atendimento online</span><span>Atendimento presencial</span>
+          <span>Christiane Reis</span><span>Psicologia</span><span>Terapia para mulheres</span><span>Ansiedade</span><span>TCC</span><span>Atendimento online</span><span>Atendimento presencial</span>
+        </div>
+      </div>
+
+      <section class="section" id="dores">
+        <div class="wrap">
+          <p class="section-kicker reveal">Quando buscar ajuda</p>
+          <h2 class="section-title reveal">Se por fora você dá conta, mas por dentro está exausta, a terapia pode ser o próximo passo.</h2>
+          <p class="section-lead reveal">A psicoterapia cria um espaço para nomear o que pesa, entender padrões e construir respostas mais saudáveis para o dia a dia.</p>
+
+          <div class="pain-grid">
+            <article class="pain-card reveal">
+              <span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 2.2 1.02 4.17 2.61 5.46L7 22h10l-.61-7.54A6.98 6.98 0 0 0 12 2Zm0 2a5 5 0 0 1 3.42 8.65l-.4.37.56 6.98H8.42l.56-6.98-.4-.37A5 5 0 0 1 12 4Z"/></svg></span>
+              <div>
+                <h3>Ansiedade e pensamentos acelerados</h3>
+                <p>Preocupação constante, dificuldade para relaxar e sensação de estar sempre antecipando problemas.</p>
+              </div>
+            </article>
+            <article class="pain-card reveal">
+              <span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2 2 7v7c0 5 4 8 10 8s10-3 10-8V7L12 2Zm0 2.24L20 8v6c0 3.67-2.77 6-8 6s-8-2.33-8-6V8l8-3.76Zm-1 4.76h2v5h-2V9Zm0 6h2v2h-2v-2Z"/></svg></span>
+              <div>
+                <h3>TAG e medo constante</h3>
+                <p>Quando a mente não desliga e o corpo vive em estado de alerta, mesmo sem um motivo claro.</p>
+              </div>
+            </article>
+            <article class="pain-card reveal">
+              <span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 .01 20.01A10 10 0 0 0 12 2Zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16Zm-1-13h2v6h-2V7Zm0 8h2v2h-2v-2Z"/></svg></span>
+              <div>
+                <h3>Crises de pânico</h3>
+                <p>Falta de ar, medo intenso, sensação de perda de controle ou de que algo ruim vai acontecer.</p>
+              </div>
+            </article>
+            <article class="pain-card reveal">
+              <span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3a6 6 0 0 0-6 6v2H5a3 3 0 0 0 0 6h1v4h2v-4h8v4h2v-4h1a3 3 0 0 0 0-6h-1V9a6 6 0 0 0-6-6Zm-4 8V9a4 4 0 0 1 8 0v2H8Zm-3 2h14a1 1 0 1 1 0 2H5a1 1 0 1 1 0-2Z"/></svg></span>
+              <div>
+                <h3>Depressão pós-parto</h3>
+                <p>Tristeza intensa, culpa, irritabilidade ou desconexão em uma fase que costuma exigir muito da mulher.</p>
+              </div>
+            </article>
+            <article class="pain-card reveal">
+              <span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M11 2h2v7h-2V2Zm5.66 2.93 1.41 1.41-4.95 4.95-1.41-1.41 4.95-4.95ZM20 11v2h-7v-2h7ZM6.34 4.93l4.95 4.95-1.41 1.41-4.95-4.95 1.41-1.41ZM4 11h7v2H4v-2Zm8 4a3 3 0 0 1 3 3v4H9v-4a3 3 0 0 1 3-3Z"/></svg></span>
+              <div>
+                <h3>Estresse emocional</h3>
+                <p>Irritabilidade, cansaço mental e sensação de estar funcionando no limite todos os dias.</p>
+              </div>
+            </article>
+            <article class="pain-card reveal">
+              <span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 21.35 10.55 20.03C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.08A6 6 0 0 1 16.5 3C19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35Z"/></svg></span>
+              <div>
+                <h3>Relacionamentos e autoestima</h3>
+                <p>Dificuldade de se posicionar, insegurança e repetição de padrões que machucam.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section alt" id="sobre">
+        <div class="wrap about-layout">
+          <div class="portrait-frame reveal">
+            <img src="https://xn--psiclogachristianereis-yfc.com.br/wp-content/uploads/2025/06/IMG-20250608-WA0016-1-2-683x1024.png" alt="Psicóloga Christiane Reis">
+            <div class="credential">
+              <strong>Christiane Reis Nogueira Brito</strong>
+              <span>Psicóloga | CRP 05/63249</span>
+            </div>
+          </div>
+          <div class="about-copy">
+            <p class="section-kicker reveal">Sobre a Christiane</p>
+            <h2 class="section-title reveal">Um espaço seguro para falar do que você sente sem precisar se explicar demais.</h2>
+            <p class="section-lead reveal">Christiane Reis é psicóloga especializada em psicoterapia para mulheres. Atua com acolhimento, ética e sigilo, ajudando mulheres que enfrentam ansiedade, TAG, depressão pós-parto, estresse emocional e desafios nos relacionamentos.</p>
+            <p class="quote-line reveal">O objetivo da terapia não é exigir que você dê conta de tudo. É construir, juntas, um caminho mais leve e possível.</p>
+            <div class="formats reveal">
+              <div class="format">
+                <h3>Atendimento presencial</h3>
+                <p>Avenida Amaral Peixoto, n. 60, sala 1103.</p>
+              </div>
+              <div class="format">
+                <h3>Atendimento online</h3>
+                <p>Sessões por vídeo para quem precisa de flexibilidade e privacidade.</p>
+              </div>
+            </div>
+            <a class="button dark reveal" href="https://wa.me/5521982355809?text=Ol%C3%A1%2C%20Christiane!%20Gostaria%20de%20saber%20sobre%20hor%C3%A1rios%20para%20terapia.">
+              Falar com a Christiane
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section tint" id="metodo">
+        <div class="wrap">
+          <p class="section-kicker reveal">Como funciona a TCC</p>
+          <h2 class="section-title reveal">Uma abordagem prática para entender pensamentos, emoções e comportamentos.</h2>
+          <p class="section-lead reveal">A Terapia Cognitivo-Comportamental trabalha de forma colaborativa. Você é acolhida, entende seus padrões e testa novas estratégias com acompanhamento.</p>
+
+          <div class="method-grid">
+            <article class="step reveal">
+              <span class="step-number">1</span>
+              <h3>Avaliação e acolhimento</h3>
+              <p>Você conta sua história, suas queixas e seus objetivos em um espaço de escuta, confiança e sigilo.</p>
+            </article>
+            <article class="step reveal">
+              <span class="step-number">2</span>
+              <h3>Mapeamento dos padrões</h3>
+              <p>Juntas, vocês identificam situações, pensamentos e reações que mantêm o sofrimento no dia a dia.</p>
+            </article>
+            <article class="step reveal">
+              <span class="step-number">3</span>
+              <h3>Construção de estratégias</h3>
+              <p>Você aprende recursos para lidar com ansiedade, emoções intensas, culpa, medo e autocrítica.</p>
+            </article>
+            <article class="step reveal">
+              <span class="step-number">4</span>
+              <h3>Prática na vida real</h3>
+              <p>As mudanças começam a sair da sessão para a rotina, respeitando seu ritmo e seus limites.</p>
+            </article>
+            <article class="step reveal">
+              <span class="step-number">5</span>
+              <h3>Revisão do caminho</h3>
+              <p>Vocês observam o que funcionou, ajustam o que precisa e fortalecem aprendizados importantes.</p>
+            </article>
+            <article class="step reveal">
+              <span class="step-number">6</span>
+              <h3>Mais autonomia</h3>
+              <p>Quando os objetivos avançam, você segue com mais clareza sobre como cuidar de si.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="trust-band">
+        <div class="trust-grid">
+          <div class="trust-text reveal">
+            <p class="section-kicker">O que pacientes relatam</p>
+            <h2>Organizar o que parece confuso também é cuidado.</h2>
+            <p>Depoimentos preservados sem identificação, mantendo a privacidade de quem foi atendida.</p>
+          </div>
+          <div class="testimonial-grid">
+            <article class="testimonial reveal">
+              <p>Não tenho palavras para agradecer tudo o que vem fazendo pela minha saúde mental. Obrigada por me ajudar a me organizar.</p>
+              <strong>Paciente atendida</strong>
+            </article>
+            <article class="testimonial reveal">
+              <p>Te agradeço pelo apoio neste tempo em que compartilhei contigo minhas dificuldades. Muito obrigada.</p>
+              <strong>Paciente atendida</strong>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="duvidas">
+        <div class="wrap">
+          <p class="section-kicker reveal">Dúvidas comuns</p>
+          <h2 class="section-title reveal">Começar terapia pode ser mais simples do que parece.</h2>
+          <p class="section-lead reveal">Respostas diretas para você se sentir mais segura antes de agendar.</p>
+
+          <div class="faq-list">
+            <article class="faq-item is-open reveal">
+              <button class="faq-trigger" type="button">
+                A terapia funciona em quanto tempo?
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M11 5h2v6h6v2h-6v6h-2v-6H5v-2h6V5Z"/></svg>
+              </button>
+              <div class="faq-content"><div><p>Isso varia de pessoa para pessoa. Algumas mulheres percebem mudanças nas primeiras sessões, outras precisam de mais tempo. O processo respeita seu ritmo.</p></div></div>
+            </article>
+            <article class="faq-item reveal">
+              <button class="faq-trigger" type="button">
+                Como funciona a primeira sessão?
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M11 5h2v6h6v2h-6v6h-2v-6H5v-2h6V5Z"/></svg>
+              </button>
+              <div class="faq-content"><div><p>A primeira sessão é um momento de escuta. Você fala sobre o que está sentindo, sem pressa e sem julgamento, para que o caminho terapêutico comece a ser construído.</p></div></div>
+            </article>
+            <article class="faq-item reveal">
+              <button class="faq-trigger" type="button">
+                As sessões são online ou presenciais?
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M11 5h2v6h6v2h-6v6h-2v-6H5v-2h6V5Z"/></svg>
+              </button>
+              <div class="faq-content"><div><p>Christiane realiza atendimentos online e presenciais. Você pode escolher o formato que faz mais sentido para sua rotina.</p></div></div>
+            </article>
+            <article class="faq-item reveal">
+              <button class="faq-trigger" type="button">
+                Quanto tempo dura cada sessão?
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M11 5h2v6h6v2h-6v6h-2v-6H5v-2h6V5Z"/></svg>
+              </button>
+              <div class="faq-content"><div><p>Cada sessão dura, em média, de 45 a 50 minutos.</p></div></div>
+            </article>
+            <article class="faq-item reveal">
+              <button class="faq-trigger" type="button">
+                Com que frequência preciso fazer terapia?
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M11 5h2v6h6v2h-6v6h-2v-6H5v-2h6V5Z"/></svg>
+              </button>
+              <div class="faq-content"><div><p>Geralmente, as sessões acontecem uma vez por semana, mas a frequência é combinada de acordo com suas necessidades.</p></div></div>
+            </article>
+            <article class="faq-item reveal">
+              <button class="faq-trigger" type="button">
+                A terapia é sigilosa?
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M11 5h2v6h6v2h-6v6h-2v-6H5v-2h6V5Z"/></svg>
+              </button>
+              <div class="faq-content"><div><p>Sim. A psicoterapia é um espaço de confiança e sigilo profissional, seguindo princípios éticos da profissão.</p></div></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section alt" id="contato">
+        <div class="wrap contact-layout">
+          <div>
+            <p class="section-kicker reveal">Contato</p>
+            <h2 class="section-title reveal">Vamos dar o primeiro passo com calma?</h2>
+            <p class="section-lead reveal">Envie uma mensagem para consultar horários e escolher entre atendimento online ou presencial.</p>
+          </div>
+          <div class="contact-panel reveal">
+            <div class="contact-row">
+              <span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M19.05 4.91A9.82 9.82 0 0 0 12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.86 9.86 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91a9.86 9.86 0 0 0-2.91-7.01Z"/></svg></span>
+              <div><small>WhatsApp</small><a href="https://wa.me/5521982355809?text=Ol%C3%A1%2C%20Christiane!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20consulta.">+55 (21) 98235-5809</a></div>
+            </div>
+            <div class="contact-row">
+              <span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z"/></svg></span>
+              <div><small>E-mail</small><a href="mailto:spatolabrs@gmail.com">spatolabrs@gmail.com</a></div>
+            </div>
+            <div class="contact-row">
+              <span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z"/></svg></span>
+              <div><small>Endereço</small><strong>Avenida Amaral Peixoto, n. 60, sala 1103</strong></div>
+            </div>
+            <a class="button primary" href="https://wa.me/5521982355809?text=Ol%C3%A1%2C%20Christiane!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20consulta.">Agendar minha consulta</a>
+            <div class="map-frame">
+              <iframe title="Mapa da localização do consultório" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Avenida%20Amaral%20Peixoto%2060%20sala%201103%20Niteroi%20RJ&output=embed"></iframe>
+            </div>
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Avenida%20Amaral%20Peixoto%2060%20sala%201103%20Niteroi%20RJ" target="_blank" rel="noopener">Abrir localização no Google Maps</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        ©2026 - Todos os direitos reservados - Christiane Reis Nogueira Brito
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const menuButton = document.querySelector(".menu-toggle");
+    const navLinks = document.querySelector(".nav-links");
+
+    menuButton.addEventListener("click", () => {
+      const isOpen = document.body.classList.toggle("menu-open");
+      menuButton.setAttribute("aria-expanded", String(isOpen));
+      menuButton.setAttribute("aria-label", isOpen ? "Fechar menu" : "Abrir menu");
+    });
+
+    navLinks.addEventListener("click", (event) => {
+      if (event.target.matches("a")) {
+        document.body.classList.remove("menu-open");
+        menuButton.setAttribute("aria-expanded", "false");
+        menuButton.setAttribute("aria-label", "Abrir menu");
+      }
+    });
+
+    document.querySelectorAll(".faq-trigger").forEach((button) => {
+      button.addEventListener("click", () => {
+        button.closest(".faq-item").classList.toggle("is-open");
+      });
+    });
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14 });
+
+    document.querySelectorAll(".reveal").forEach((element) => revealObserver.observe(element));
+  </script>
+</body>
+</html>
