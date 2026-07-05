@@ -110,6 +110,7 @@ export async function POST(req: NextRequest) {
     portfolio_escolhido?: number; nome_pagina?: string;
     utm_source?: string; utm_medium?: string; utm_campaign?: string;
     stage?: string;
+    leadId?: string;
     respostas?: Record<string, string>
   }
   try {
@@ -130,7 +131,8 @@ export async function POST(req: NextRequest) {
 
   const stamp = nowStamp()
   const shortId = Math.random().toString(36).slice(2, 8)
-  const id = `lead-${stamp.file}-${shortId}`
+  const isUpdate = !!body.leadId
+  const id = isUpdate ? body.leadId! : `lead-${stamp.file}-${shortId}`
   const eventId = (body.eventId || id).trim()
 
   const respostasMd = fmtRespostas(respostas)
@@ -156,8 +158,8 @@ export async function POST(req: NextRequest) {
   try {
     await mkdir(LEADS_DIR, { recursive: true })
     await writeFile(join(LEADS_DIR, `${id}.md`), content, 'utf8')
-  } catch {
-    // Non-fatal
+  } catch (e) {
+    console.error('Failed to write lead file:', e)
   }
 
   // Só envia WhatsApp no primeiro contato

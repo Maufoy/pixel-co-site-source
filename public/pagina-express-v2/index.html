@@ -965,6 +965,7 @@
         passo: 1,
         respostas: {},
         lead: {},
+        leadId: null,
         selectedPortfolio: null,
         utm: {},
       };
@@ -1207,7 +1208,7 @@
       $('lead-nome').addEventListener('input', validateLead);
       $('lead-tel').addEventListener('input', validateLead);
 
-      $('btn-next-5').addEventListener('click', () => {
+      $('btn-next-5').addEventListener('click', async () => {
         const nome = ($('lead-nome').value || '').trim();
         const tel = ($('lead-tel').value || '').trim();
         const email = ($('lead-email').value || '').trim();
@@ -1227,24 +1228,28 @@
           lead_profissao: state.respostas.q2 || '',
         });
 
-        // Salva lead no servidor imediatamente (não espera o briefing completo)
-        fetch('/api/lead', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            nome,
-            email: email || `${nome.toLowerCase().replace(/\s+/g,'.')}@quiz.express`,
-            telefone: tel,
-            eventId,
-            sourceUrl: window.location.href,
-            stage: 'lead_captured',
-            respostas: state.respostas,
-            portfolio_escolhido: state.selectedPortfolio,
-            utm_source: state.utm.utm_source || '',
-            utm_medium: state.utm.utm_medium || '',
-            utm_campaign: state.utm.utm_campaign || '',
-          }),
-        }).catch(() => {});
+        // Salva lead no servidor e guarda o ID para atualizar depois
+        try {
+          const res = await fetch('/api/lead', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              nome,
+              email: email || `${nome.toLowerCase().replace(/\s+/g,'.')}@quiz.express`,
+              telefone: tel,
+              eventId,
+              sourceUrl: window.location.href,
+              stage: 'lead_captured',
+              respostas: state.respostas,
+              portfolio_escolhido: state.selectedPortfolio,
+              utm_source: state.utm.utm_source || '',
+              utm_medium: state.utm.utm_medium || '',
+              utm_campaign: state.utm.utm_campaign || '',
+            }),
+          });
+          const data = await res.json();
+          if (data.id) state.leadId = data.id;
+        } catch (e) { /* non-fatal */ }
 
         showStep(6);
       });
@@ -1316,6 +1321,7 @@
               email: state.lead.email || `${state.lead.nome.toLowerCase().replace(/\s+/g,'.')}@quiz.express`,
               telefone: state.lead.telefone,
               eventId,
+              leadId: state.leadId,
               sourceUrl: window.location.href,
               stage: 'briefing_complete',
               utm_source: state.utm.utm_source || '',
