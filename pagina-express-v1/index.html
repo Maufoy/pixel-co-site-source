@@ -2031,7 +2031,7 @@
         </div>
       </div>
 
-      <a href="https://pixelco.com.br/pagina-express-v2/" class="vsl-cta">
+      <a href="https://pay.kiwify.com.br/nP6uq1x" class="vsl-cta checkout-link">
         QUERO MINHA PÁGINA
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
@@ -2084,6 +2084,30 @@
           overlay.classList.remove('hidden');
         });
       }
+    })();
+  </script>
+
+  <script>
+    (function(){
+      // Capturar UTMs da URL
+      var params = new URLSearchParams(window.location.search);
+      var utms = {};
+      ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','fbclid','gclid'].forEach(function(key){
+        var val = params.get(key);
+        if (val) utms[key] = val;
+      });
+
+      // Armazenar pra usar nos cliques
+      var utmString = Object.keys(utms).map(function(k){ return k + '=' + encodeURIComponent(utms[k]); }).join('&');
+
+      // Aplicar em todos os links .checkout-link
+      var links = document.querySelectorAll('.checkout-link');
+      links.forEach(function(link){
+        var baseUrl = link.getAttribute('href');
+        if (utmString) {
+          link.setAttribute('href', baseUrl + (baseUrl.indexOf('?') === -1 ? '?' : '&') + utmString);
+        }
+      });
     })();
   </script>
 
@@ -2401,7 +2425,7 @@
                 <polyline points="20 6 9 17 4 12" />
               </svg>Entrega em <strong>3 dias úteis</strong></li>
           </ul>
-          <a href="https://pixelco.com.br/pagina-express-v2/" class="offer-cta">
+          <a href="https://pay.kiwify.com.br/nP6uq1x" class="offer-cta checkout-link">
             QUERO MINHA PÁGINA →
           </a>
           <div class="offer-foot">🚀 7 dias de garantia · Parcelamos no cartão</div>
@@ -2517,7 +2541,7 @@
       <span class="label" style="display:inline-block">🔥 Lançamento — Vagas limitadas</span>
       <h2>Briefing hoje. <em>Link no ar</em> antes do fim da semana. Por R$297.</h2>
       <p>Preenche o briefing em 3 minutos no nosso quiz e a gente já começa. Entrega em até 3 dias úteis. Garantia de 7 dias.</p>
-      <a href="https://pixelco.com.br/pagina-express-v2/" class="btn-solid" style="background:var(--accent-1);color:var(--bg-deep);font-weight:700">
+      <a href="https://pay.kiwify.com.br/nP6uq1x" class="btn-solid checkout-link" style="background:var(--accent-1);color:var(--bg-deep);font-weight:700">
         QUERO MINHA PÁGINA POR R$297
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
           stroke-linejoin="round" style="width:16px;height:16px">
