@@ -25,14 +25,30 @@
       }).catch(function(){});
     })();
   </script>
+  <script>
+    // Capture UTMs and store in sessionStorage before redirect
+    (function() {
+      try {
+        var params = new URLSearchParams(window.location.search);
+        var utmData = {};
+        ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','fbclid','gclid'].forEach(function(k) {
+          var v = params.get(k);
+          if (v) utmData[k] = v;
+        });
+        if (Object.keys(utmData).length > 0) {
+          sessionStorage.setItem('pagina_express_utms', JSON.stringify(utmData));
+        }
+      } catch(e) {}
+    })();
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pixel.Co — Landing page no ar em 3 dias úteis</title>
-  <meta name="description" content="Landing page profissional pra profissionais liberais. Copy, design e publicação em 3 dias úteis. A partir de R$499.">
-  <meta property="og:title" content="Pixel.Co — Landing page no ar em 3 dias úteis">
-  <meta property="og:description" content="Copy, design e publicação. Briefing segunda, link no ar quarta. A partir de R$499.">
+  <title>Pixel.Co — Sua página profissional no ar em 3 dias</title>
+  <meta name="description" content="Landing page profissional no ar em 3 dias úteis. A partir de R$499 ou 12x R$51,61.">
+  <meta property="og:title" content="Pixel.Co — Sua página profissional no ar em 3 dias">
+  <meta property="og:description" content="Copy, design e publicação. Briefing hoje, link no ar em 3 dias. A partir de R$499 ou 12x R$51,61.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://pixelco.com.br/pagina-express-v1/">
+  <meta property="og:url" content="https://pixelco.com.br/pagina-express-v3/">
   <link rel="icon" type="image/svg+xml"
     href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23002D25'/%3E%3Crect x='22' y='22' width='20' height='20' rx='4' fill='%23FAFFEE'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -2002,15 +2018,6 @@
       <span class="logo-mark"></span>
       <span class="logo-text">Pixel<span class="dot">.</span>Co</span>
     </a>
-    <nav class="nav-pills">
-      <a href="#como-funciona">como funciona</a>
-      <a href="#exemplos">exemplos</a>
-      <a href="#oferta">preços</a>
-      <a href="#faq">faq</a>
-    </nav>
-    <a href="/pagina-express-v1/briefing/" class="cta-pill-header">
-      Começar briefing →
-    </a>
   </header>
 
   <!-- ============ HERO VSL ============ -->
@@ -2341,7 +2348,7 @@
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
                 stroke-linejoin="round">
                 <polyline points="20 6 9 17 4 12" />
-              </svg><strong>R$297</strong> à vista, sem mensalidade</li>
+              </svg><strong>R$499</strong> à vista ou 12x R$51,61 no cartão</li>
           </ul>
         </div>
         <div class="compare-col sem">
@@ -2395,9 +2402,9 @@
           <div class="offer-name" style="background:#C1D66D;color:#002D25;font-weight:700">🔥 LANÇAMENTO — ÚLTIMAS 7 VAGAS</div>
           <h3 class="offer-title">Landing page completa, no ar em 3 dias</h3>
           <div class="offer-price-wrap">
-            <div class="offer-price-crossed">De R$499 → R$297</div>
-            <div class="offer-price"><span class="cur">R$</span><span class="val">297</span></div>
-            <div class="offer-price-sub">ou 6x de <strong>R$49</strong> no cartão</div>
+            <div class="offer-price-text">A partir de</div>
+            <div class="offer-price"><span class="cur">R$</span><span class="val">499</span></div>
+            <div class="offer-price-sub">ou 12x de <strong>R$51,61</strong> no cartão</div>
           </div>
           <ul class="offer-list">
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
@@ -2433,7 +2440,7 @@
 
       </div>
       <div class="compare-callout">
-        <span>Mesmo trabalho em agência:</span> <strike>R$ 3.000+</strike> · <strong>aqui R$297</strong>
+        <span>Mesmo trabalho em agência:</span> <strike>R$ 3.000+</strike> · <strong>aqui R$499</strong>
       </div>
     </div>
   </section>
@@ -2449,7 +2456,7 @@
           <span class="num">3 vagas</span> abertas pra esta semana
           <span class="small">de 5 slots de produção · sem fila</span>
         </div>
-        <a href="/pagina-express-v1/briefing/" class="btn-solid"
+        <a href="https://pay.kiwify.com.br/nP6uq1x" class="btn-solid checkout-link"
           style="padding:14px 26px;font-size:14px">
           Reservar minha vaga →
         </a>
@@ -2517,7 +2524,7 @@
         </details>
         <details class="faq-item">
           <summary class="faq-q">E se eu já tiver domínio?</summary>
-          <p class="faq-a">Aí o plano R$297 é o seu. A gente faz o apontamento e publica no que você já tem. Funciona
+          <p class="faq-a">Aí o plano R$499 é o seu. A gente faz o apontamento e publica no que você já tem. Funciona
             com .com.br, .com, .co, .digital — qualquer extensão.</p>
         </details>
         <details class="faq-item">
@@ -2539,10 +2546,10 @@
   <section class="final-cta grain">
     <div class="container">
       <span class="label" style="display:inline-block">🔥 Lançamento — Vagas limitadas</span>
-      <h2>Briefing hoje. <em>Link no ar</em> antes do fim da semana. Por R$297.</h2>
+      <h2>Briefing hoje. <em>Link no ar</em> antes do fim da semana. Por R$499.</h2>
       <p>Preenche o briefing em 3 minutos no nosso quiz e a gente já começa. Entrega em até 3 dias úteis. Garantia de 7 dias.</p>
       <a href="https://pay.kiwify.com.br/nP6uq1x" class="btn-solid checkout-link" style="background:var(--accent-1);color:var(--bg-deep);font-weight:700">
-        QUERO MINHA PÁGINA POR R$297
+        QUERO MINHA PÁGINA POR R$499
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
           stroke-linejoin="round" style="width:16px;height:16px">
           <line x1="5" y1="12" x2="19" y2="12" />
@@ -2563,7 +2570,7 @@
   </footer>
 
   <!-- Fixed mobile CTA -->
-  <a href="/pagina-express-v1/briefing/" class="fixed-cta">✱ Começar briefing</a>
+  <a href="https://pay.kiwify.com.br/nP6uq1x" class="fixed-cta checkout-link">✱ Garantir minha página</a>
 
   <script>
     (() => {
@@ -2637,6 +2644,122 @@
       });
     })();
   </script>
+
+
+<!-- Modal de Captura -->
+<div id="lead-modal" class="modal-overlay" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:9999;align-items:center;justify-content:center;backdrop-filter:blur(4px);">
+  <div class="modal-card" style="background:var(--bg-mid);border:1px solid rgba(193,214,109,0.2);border-radius:24px;padding:40px;max-width:440px;width:90%;position:relative;animation:modalIn 0.3s ease;">
+    <button onclick="fecharModal()" style="position:absolute;top:16px;right:20px;background:none;border:none;color:var(--fg-cream);font-size:24px;cursor:pointer;opacity:0.6;">&times;</button>
+    <div class="label" style="margin-bottom:12px;">FALTA POUCO</div>
+    <h3 style="font-size:22px;margin-bottom:8px;">Preencha seus dados</h3>
+    <p style="font-size:14px;opacity:0.7;margin-bottom:28px;">Você será redirecionado para o checkout após preencher.</p>
+    <form id="lead-form" onsubmit="return false;">
+      <div style="margin-bottom:16px;">
+        <label style="font-size:12px;opacity:0.6;display:block;margin-bottom:4px;">NOME COMPLETO *</label>
+        <input type="text" id="modal-nome" required style="width:100%;padding:14px 16px;border-radius:12px;border:1px solid rgba(193,214,109,0.2);background:var(--bg-deep);color:var(--fg-cream);font-size:15px;">
+      </div>
+      <div style="margin-bottom:16px;">
+        <label style="font-size:12px;opacity:0.6;display:block;margin-bottom:4px;">E-MAIL *</label>
+        <input type="email" id="modal-email" required style="width:100%;padding:14px 16px;border-radius:12px;border:1px solid rgba(193,214,109,0.2);background:var(--bg-deep);color:var(--fg-cream);font-size:15px;">
+      </div>
+      <div style="margin-bottom:24px;">
+        <label style="font-size:12px;opacity:0.6;display:block;margin-bottom:4px;">WHATSAPP (COM DDD) *</label>
+        <input type="tel" id="modal-telefone" required style="width:100%;padding:14px 16px;border-radius:12px;border:1px solid rgba(193,214,109,0.2);background:var(--bg-deep);color:var(--fg-cream);font-size:15px;">
+      </div>
+      <button type="submit" id="modal-submit" style="width:100%;padding:16px;border-radius:12px;border:none;background:var(--accent-1);color:var(--bg-deep);font-size:16px;font-weight:700;cursor:pointer;">IR PARA O CHECKOUT →</button>
+      <p style="text-align:center;margin-top:12px;">
+        <a href="#" onclick="fecharModal();return false;" style="color:var(--fg-cream);opacity:0.4;font-size:13px;text-decoration:underline;">Continuar sem cadastro →</a>
+      </p>
+    </form>
+  </div>
+</div>
+
+<script>
+// Modal state
+var leadModalOpen = false;
+var pendingKiwifyUrl = null;
+
+function abrirModal(kiwifyUrl) {
+  pendingKiwifyUrl = kiwifyUrl;
+  var modal = document.getElementById('lead-modal');
+  if (!modal) return;
+  leadModalOpen = true;
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function fecharModal() {
+  leadModalOpen = false;
+  var modal = document.getElementById('lead-modal');
+  if (!modal) return;
+  modal.style.display = 'none';
+  document.body.style.overflow = '';
+  pendingKiwifyUrl = null;
+}
+
+// Handle form submission
+document.addEventListener('DOMContentLoaded', function() {
+  var form = document.getElementById('lead-form');
+  var submitBtn = document.getElementById('modal-submit');
+  if (!form || !submitBtn) return;
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    var nome = document.getElementById('modal-nome').value.trim();
+    var email = document.getElementById('modal-email').value.trim();
+    var telefone = document.getElementById('modal-telefone').value.trim();
+    if (!nome || !email || !telefone) return;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'ENVIANDO...';
+
+    // Build URL with UTMs
+    var url = pendingKiwifyUrl || 'https://pay.kiwify.com.br/nP6uq1x';
+    var utmsStr = sessionStorage.getItem('pagina_express_utms');
+    if (utmsStr) {
+      try {
+        var utms = JSON.parse(utmsStr);
+        Object.keys(utms).forEach(function(k) {
+          url += (url.indexOf('?') === -1 ? '?' : '&') + encodeURIComponent(k) + '=' + encodeURIComponent(utms[k]);
+        });
+      } catch(e) {}
+    }
+
+    // Send lead to API (fire and forget)
+    var leadId = 'lead-' + Date.now() + '-' + Math.random().toString(36).slice(2,8);
+    fetch('/api/lead', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        nome: nome,
+        email: email,
+        telefone: telefone,
+        eventId: leadId,
+        stage: 'briefing_complete',
+        sourceUrl: window.location.href
+      })
+    }).catch(function(){});
+
+    // Redirect to Kiwify with leadId
+    url += (url.indexOf('?') === -1 ? '?' : '&') + 'leadId=' + encodeURIComponent(leadId);
+    window.location.href = url;
+  });
+
+  // Wire up all checkout-link buttons
+  document.querySelectorAll('.checkout-link').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      var href = btn.getAttribute('href') || 'https://pay.kiwify.com.br/nP6uq1x';
+      abrirModal(href);
+    });
+  });
+});
+
+// Modal animation keyframes
+var style = document.createElement('style');
+style.textContent = '@keyframes modalIn { from { opacity:0; transform:scale(0.95) translateY(10px); } to { opacity:1; transform:scale(1) translateY(0); } }';
+document.head.appendChild(style);
+</script>
 
 </body>
 

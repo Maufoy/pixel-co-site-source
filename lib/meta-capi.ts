@@ -12,6 +12,7 @@ type LeadEventInput = {
   email: string
   telefone: string
   sourceUrl?: string
+  onlyFromAds?: boolean
 }
 
 type PageViewEventInput = {
@@ -69,10 +70,34 @@ function getCookie(req: NextRequest, name: string) {
   return req.cookies.get(name)?.value
 }
 
-export async function sendMetaLeadEvent(req: NextRequest, input: LeadEventInput) {
+/** Check if a request shows evidence of coming from a Meta/Facebook/Instagram ad */
+export function isFromAd(req: NextRequest, sourceUrl?: string): boolean {
+  // 1. _fbc cookie = Meta click ID (set by Facebook Pixel on ad click)
+  if (req.cookies.get('_fbc')?.value) return true
+
+  // 2. fbclid in source URL (direct Facebook ad click)
+  if (sourceUrl && /[?&]fbclid=/.test(sourceUrl)) return true
+
+  // 3. UTM source matching Meta platforms
+  if (sourceUrl) {
+    const match = sourceUrl.match(/[?&]utm_source=([^&]+)/i)
+    if (match) {
+      const source = match[1].toLowerCase()
+      if (['facebook', 'fb', 'meta', 'instagram', 'ig'].includes(source)) return true
+    }
+  }
+
+  return false
+}
+
+export async function sendMetaLeadEvent(req: NextRequest, input: LeadEventInput & { onlyFromAds?: boolean }) {
   if (!META_PIXEL_ID || !META_ACCESS_TOKEN) {
     console.warn('[meta-capi] META_PIXEL_ID or META_ACCESS_TOKEN not set - skipping Lead event')
     return { sent: false, reason: 'missing_config' }
+  }
+
+  if (input.onlyFromAds && !isFromAd(req, input.sourceUrl)) {
+    return { sent: false, reason: 'not_from_ad' }
   }
 
   const email = normalizeEmail(input.email)
@@ -206,13 +231,18 @@ async function sendMetaCapiEvent(params: {
   req: NextRequest
   input: LeadEventInput
   eventName: string
+  onlyFromAds?: boolean
   customData?: Record<string, unknown>
 }) {
-  const { req, input, eventName, customData } = params
+  const { req, input, eventName, onlyFromAds, customData } = params
 
   if (!META_PIXEL_ID || !META_ACCESS_TOKEN) {
     console.warn(`[meta-capi] META_PIXEL_ID or META_ACCESS_TOKEN not set — skipping ${eventName} event`)
     return { sent: false, reason: 'missing_config' }
+  }
+
+  if (onlyFromAds && !isFromAd(req, input.sourceUrl)) {
+    return { sent: false, reason: 'not_from_ad' }
   }
 
   const email = normalizeEmail(input.email)
@@ -283,6 +313,7 @@ export async function sendMetaSubmitApplication(req: NextRequest, input: SubmitA
     req,
     input,
     eventName: 'SubmitApplication',
+    onlyFromAds: input.onlyFromAds,
     customData: {
       portfolio_escolhido: input.portfolio_escolhido,
       nome_pagina: input.nome_pagina,

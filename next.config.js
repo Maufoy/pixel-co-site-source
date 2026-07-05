@@ -7,6 +7,10 @@ const nextConfig = {
   async rewrites() {
     return [
       {
+        source: '/pagina-express-v3/',
+        destination: '/pagina-express-v3/index.html',
+      },
+      {
         source: '/pagina-express-v1/',
         destination: '/pagina-express-v1/index.html',
       },

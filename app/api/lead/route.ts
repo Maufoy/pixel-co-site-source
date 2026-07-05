@@ -177,13 +177,14 @@ export async function POST(req: NextRequest) {
     await sendWhatsApp(msg)
   }
 
-  // Lead CAPI event
+  // Lead CAPI event — só envia se veio de anúncio
   const meta = await sendMetaLeadEvent(req, {
     eventId: stage === 'lead_captured' ? eventId : `lead-${eventId}`,
     nome,
     email,
     telefone,
     sourceUrl: body.sourceUrl,
+    onlyFromAds: true,
   })
 
   // SubmitApplication CAPI só quando briefing está completo
@@ -197,6 +198,7 @@ export async function POST(req: NextRequest) {
       sourceUrl: body.sourceUrl,
       portfolio_escolhido: body.portfolio_escolhido,
       nome_pagina: body.nome_pagina,
+      onlyFromAds: true,
     })
   }
 
