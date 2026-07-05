@@ -1253,6 +1253,18 @@
           });
           const data = await res.json();
           if (data.id) state.leadId = data.id;
+
+          // Dispara webhook pro n8n agendar recuperação
+          fetch('https://n8n.pixelco.com.br/webhook/lead-captured', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              lead_id: data.id,
+              nome: nome,
+              telefone: tel,
+              email: email || '',
+            }),
+          }).catch(() => {});
         } catch (e) { /* non-fatal */ }
 
         showStep(6);
