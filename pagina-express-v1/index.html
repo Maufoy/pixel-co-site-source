@@ -1598,6 +1598,117 @@
       }
     }
 
+    /* ── VSL Hero ── */
+    .hero-vsl {
+      min-height: 100vh;
+      padding: 140px 24px 80px;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      position: relative;
+    }
+    .hero-vsl .vsl-container {
+      max-width: 720px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .hero-vsl .vsl-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent-1);
+      margin-bottom: 20px;
+    }
+    .hero-vsl .vsl-eyebrow .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent-1);
+    }
+    .hero-vsl .vsl-title {
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 600;
+      line-height: 1.15;
+      margin-bottom: 12px;
+      color: var(--fg-cream);
+    }
+    .hero-vsl .vsl-title em {
+      font-family: 'Newsreader', serif;
+      font-style: italic;
+      color: var(--accent-1);
+    }
+    .hero-vsl .vsl-sub {
+      font-size: 15px;
+      color: rgba(250,255,238,0.7);
+      margin-bottom: 32px;
+    }
+    .vsl-player-wrap {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      margin-bottom: 28px;
+      aspect-ratio: 16 / 9;
+      max-width: 100%;
+    }
+    .vsl-player-wrap video {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+    .vsl-player-wrap .play-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.3);
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .vsl-player-wrap .play-overlay:hover {
+      background: rgba(0,0,0,0.15);
+    }
+    .vsl-player-wrap .play-overlay svg {
+      width: 64px;
+      height: 64px;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
+      transition: transform 0.2s;
+    }
+    .vsl-player-wrap .play-overlay:hover svg {
+      transform: scale(1.08);
+    }
+    .vsl-player-wrap .play-overlay.hidden {
+      display: none;
+    }
+    .hero-vsl .vsl-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 40px;
+      background: var(--accent-1);
+      color: var(--bg-deep);
+      font-weight: 700;
+      font-size: 16px;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin-bottom: 24px;
+    }
+    .hero-vsl .vsl-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(193,214,109,0.3);
+    }
+    .hero-vsl .hero-trust {
+      justify-content: center;
+      margin-top: 0;
+    }
+
     .motion-ready .header {
       animation: fadeUp 0.65s cubic-bezier(.2, .8, .2, 1) 0.05s both;
     }
@@ -1631,33 +1742,38 @@
     }
 
     .motion-ready .hero-mock-main,
-    .motion-ready .hero-mock-side,
-    .motion-ready .reveal-target {
+    .motion-ready .hero-mock-side {
       will-change: transform, opacity, filter;
     }
 
     @keyframes revealEntry {
       0% {
         opacity: 0;
-        transform: translate3d(0, 28px, 0);
-        filter: blur(8px);
+        transform: translate3d(0, 20px, 0);
       }
 
       100% {
         opacity: 1;
         transform: translate3d(0, 0, 0);
-        filter: blur(0);
       }
     }
 
     .motion-ready .reveal-target {
       opacity: 0;
-      transform: translate3d(0, 28px, 0);
-      filter: blur(8px);
     }
 
     .motion-ready .reveal-target.in-view {
-      animation: revealEntry 0.75s cubic-bezier(.2, .8, .2, 1) var(--reveal-delay, 0ms) forwards;
+      animation: revealEntry 0.5s cubic-bezier(.2, .8, .2, 1) var(--reveal-delay, 0ms) forwards;
+    }
+
+    /* Mobile */
+    @media (max-width: 600px) {
+      .motion-ready .reveal-target.in-view {
+        animation-duration: 1s;
+      }
+      .motion-ready .reveal-target {
+        --reveal-delay: 0ms !important;
+      }
     }
 
     .btn-solid,
@@ -1820,6 +1936,19 @@
         padding: 70px 22px;
       }
 
+      .grain::after {
+        display: none;
+      }
+
+      .ambient {
+        display: none;
+      }
+
+      .hero-vsl {
+        padding: 100px 22px 60px;
+        min-height: auto;
+      }
+
       .hero {
         padding: 110px 22px 60px;
       }
@@ -1884,88 +2013,79 @@
     </a>
   </header>
 
-  <!-- ============ HERO ============ -->
-  <section class="hero grain">
-    <div class="hero-grid-split">
-      <div>
-        <div class="hero-eyebrow"><span class="dot"></span>Landing pages express · 3 dias úteis</div>
-        <h1 class="h1-hero">A sua landing page <em>publicada no ar</em> em <span class="num">3 dias</span> úteis. Não em
-          3 meses.</h1>
-        <p class="hero-sub">Copy, design e publicação. Você manda o briefing segunda, na quinta o link da sua página
-          está pronto pra entrar no anúncio, no story, no rodapé do e-mail.</p>
-        <div class="hero-cta-row">
-          <a href="#exemplos" class="btn-ghost">Ver portfolio</a>
-        </div>
-        <div class="hero-trust">
-          <span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
-              stroke-linejoin="round">
-              <polyline points="20 6 9 17 4 12" />
-            </svg>
-            3 dias úteis
-          </span>
-          <span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
-              stroke-linejoin="round">
-              <polyline points="20 6 9 17 4 12" />
-            </svg>
-            3 rodadas de ajuste
-          </span>
-          <span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
-              stroke-linejoin="round">
-              <polyline points="20 6 9 17 4 12" />
-            </svg>
-            publicada no ar
-          </span>
-          <span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
-              stroke-linejoin="round">
-              <polyline points="20 6 9 17 4 12" />
-            </svg>
-            mobile responsiva
-          </span>
+  <!-- ============ HERO VSL ============ -->
+  <section class="hero-vsl grain">
+    <div class="vsl-container">
+      <div class="vsl-eyebrow"><span class="dot"></span>Landing pages profissionais · 3 dias úteis</div>
+      <h1 class="vsl-title">A sua página profissional <em>no ar em 3 dias</em></h1>
+      <p class="vsl-sub">Veja como funciona no vídeo abaixo</p>
+
+      <div class="vsl-player-wrap">
+        <video id="vsl-video" poster="vsl-poster.jpg" preload="metadata" playsinline>
+          <source src="vsl.mp4" type="video/mp4">
+        </video>
+        <div class="play-overlay" id="vsl-play">
+          <svg viewBox="0 0 24 24" fill="#FAFFEE" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
         </div>
       </div>
-      <div class="hero-mock-stage">
-        <!-- side mock (variant 3: split layout) -->
-        <div class="hero-mock-side">
-          <div class="browser-mockup">
-            <div class="browser-bar">
-              <div class="lights"><i></i><i></i><i></i></div>
-              <div class="url mono">estudio-marina.com</div>
-            </div>
-            <div class="browser-screen">
-              <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:18px;height:100%">
-                <div style="display:flex;flex-direction:column;gap:10px;justify-content:center">
-                  <div class="bs-tag"></div>
-                  <div class="bs-h" style="width:90%"></div>
-                  <div class="bs-h w55"></div>
-                  <div class="bs-l w75"></div>
-                  <div class="bs-cta"></div>
-                </div>
-                <div
-                  style="background:rgba(180,157,208,0.12);border:1px solid rgba(180,157,208,0.3);border-radius:8px;min-height:120px">
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- main mock: real image (Mafuá) -->
-        <div class="hero-mock-main">
-          <div class="browser-mockup with-img">
-            <div class="browser-bar">
-              <div class="lights"><i></i><i></i><i></i></div>
-              <div class="url mono">mafuaarquitetura.com.br</div>
-            </div>
-            <div class="browser-screen">
-              <img src="portfolio/03-mafua.webp" alt="Mafuá Arquitetura" fetchpriority="high" decoding="async">
-            </div>
-          </div>
-        </div>
+
+      <a href="https://pixelco.com.br/pagina-express-v2/" class="vsl-cta">
+        QUERO MINHA PÁGINA
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </a>
+
+      <div class="hero-trust" style="margin-top:0">
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
+          3 dias úteis
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
+          3 rodadas de ajuste
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
+          Publicada no ar
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
+          7 dias de garantia
+        </span>
       </div>
     </div>
   </section>
+
+  <script>
+    (function(){
+      var video = document.getElementById('vsl-video');
+      var overlay = document.getElementById('vsl-play');
+      if (video && overlay) {
+        overlay.addEventListener('click', function(){
+          overlay.classList.add('hidden');
+          video.play().catch(function(){});
+        });
+        video.addEventListener('play', function(){
+          overlay.classList.add('hidden');
+        });
+        video.addEventListener('pause', function(){
+          if (video.ended) return;
+          overlay.classList.remove('hidden');
+        });
+      }
+    })();
+  </script>
 
   <!-- ============ PONTE ============ -->
   <section class="section grain" style="padding:120px 32px;text-align:center">
@@ -2197,7 +2317,7 @@
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
                 stroke-linejoin="round">
                 <polyline points="20 6 9 17 4 12" />
-              </svg><strong>R$499</strong> à vista, sem mensalidade</li>
+              </svg><strong>R$297</strong> à vista, sem mensalidade</li>
           </ul>
         </div>
         <div class="compare-col sem">
@@ -2247,13 +2367,13 @@
         <h2 style="margin-left:auto;margin-right:auto">Tudo que você precisa pra ir <span class="it">pro ar.</span></h2>
       </div>
       <div class="offer-grid">
-        <div class="offer-card">
-          <div class="offer-name">Plano LP</div>
-          <h3 class="offer-title">Só a página, no seu domínio</h3>
+        <div class="offer-card featured">
+          <div class="offer-name" style="background:#C1D66D;color:#002D25;font-weight:700">🔥 LANÇAMENTO — ÚLTIMAS 7 VAGAS</div>
+          <h3 class="offer-title">Landing page completa, no ar em 3 dias</h3>
           <div class="offer-price-wrap">
-            <div class="offer-price-crossed">R$ 3.000 em agência</div>
-            <div class="offer-price"><span class="cur">R$</span><span class="val">499</span></div>
-            <div class="offer-price-sub">pagamento único · pix ou cartão</div>
+            <div class="offer-price-crossed">De R$499 → R$297</div>
+            <div class="offer-price"><span class="cur">R$</span><span class="val">297</span></div>
+            <div class="offer-price-sub">ou 6x de <strong>R$49</strong> no cartão</div>
           </div>
           <ul class="offer-list">
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
@@ -2281,15 +2401,15 @@
                 <polyline points="20 6 9 17 4 12" />
               </svg>Entrega em <strong>3 dias úteis</strong></li>
           </ul>
-          <a href="/pagina-express-v1/briefing/" class="offer-cta">
-            Começar com plano LP →
+          <a href="https://pixelco.com.br/pagina-express-v2/" class="offer-cta">
+            QUERO MINHA PÁGINA →
           </a>
-          <div class="offer-foot">hospedagem e domínio por conta sua</div>
+          <div class="offer-foot">🚀 7 dias de garantia · Parcelamos no cartão</div>
         </div>
 
       </div>
       <div class="compare-callout">
-        <span>Mesmo trabalho em agência:</span> <strike>R$ 3.000+</strike> · <strong>aqui R$499</strong>
+        <span>Mesmo trabalho em agência:</span> <strike>R$ 3.000+</strike> · <strong>aqui R$297</strong>
       </div>
     </div>
   </section>
@@ -2373,7 +2493,7 @@
         </details>
         <details class="faq-item">
           <summary class="faq-q">E se eu já tiver domínio?</summary>
-          <p class="faq-a">Aí o plano R$499 é o seu. A gente faz o apontamento e publica no que você já tem. Funciona
+          <p class="faq-a">Aí o plano R$297 é o seu. A gente faz o apontamento e publica no que você já tem. Funciona
             com .com.br, .com, .co, .digital — qualquer extensão.</p>
         </details>
         <details class="faq-item">
@@ -2394,18 +2514,18 @@
   <!-- ============ FINAL CTA ============ -->
   <section class="final-cta grain">
     <div class="container">
-      <span class="label" style="display:inline-block">Pronto pra ir pro ar</span>
-      <h2>Briefing hoje. <em>Link no ar</em> antes do fim da semana.</h2>
-      <p>Preenche o briefing em 20 minutos e a gente já começa. Entrega em até 3 dias úteis.</p>
-      <a href="/pagina-express-v1/briefing/" class="btn-solid">
-        Começar agora
+      <span class="label" style="display:inline-block">🔥 Lançamento — Vagas limitadas</span>
+      <h2>Briefing hoje. <em>Link no ar</em> antes do fim da semana. Por R$297.</h2>
+      <p>Preenche o briefing em 3 minutos no nosso quiz e a gente já começa. Entrega em até 3 dias úteis. Garantia de 7 dias.</p>
+      <a href="https://pixelco.com.br/pagina-express-v2/" class="btn-solid" style="background:var(--accent-1);color:var(--bg-deep);font-weight:700">
+        QUERO MINHA PÁGINA POR R$297
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
           stroke-linejoin="round" style="width:16px;height:16px">
           <line x1="5" y1="12" x2="19" y2="12" />
           <polyline points="12 5 19 12 12 19" />
         </svg>
       </a>
-      <div class="final-cta-note">início confirmado em até 1h útil após o briefing · seg a sex, 9h–19h</div>
+      <div class="final-cta-note">🚀 7 dias de garantia · Parcelamos no cartão · Início em até 1h útil após o briefing</div>
     </div>
   </section>
 
@@ -2462,6 +2582,16 @@
         item.style.setProperty('--reveal-delay', `${Math.min(siblingIndex * 70, 280)}ms`);
       });
 
+      // Marcar imediatamente elementos já visíveis (resolve o gap mobile)
+      // e NÃO observar eles de novo no IntersectionObserver
+      const alreadyVisible = [];
+      revealItems.forEach((item) => {
+        if (item.getBoundingClientRect().top < window.innerHeight) {
+          item.classList.add('in-view');
+          alreadyVisible.push(item);
+        }
+      });
+
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
@@ -2476,9 +2606,11 @@
           }, { once: true });
           observer.unobserve(el);
         });
-      }, { threshold: 0.16, rootMargin: '0px 0px -8% 0px' });
+      }, { threshold: 0.25 });
 
-      revealItems.forEach((item) => observer.observe(item));
+      revealItems.forEach((item) => {
+        if (!alreadyVisible.includes(item)) observer.observe(item);
+      });
     })();
   </script>
 
