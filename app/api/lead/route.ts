@@ -109,6 +109,7 @@ export async function POST(req: NextRequest) {
     nome?: string; email?: string; telefone?: string; eventId?: string; sourceUrl?: string;
     portfolio_escolhido?: number; nome_pagina?: string;
     utm_source?: string; utm_medium?: string; utm_campaign?: string;
+    utm_content?: string; utm_term?: string; fbclid?: string; gclid?: string;
     stage?: string;
     leadId?: string;
     respostas?: Record<string, string>
@@ -147,7 +148,7 @@ export async function POST(req: NextRequest) {
     `**Nome:** ${nome}`,
     `**E-mail:** ${email}`,
     `**Telefone:** ${telefone || '—'}`,
-    body.utm_source ? `**Origem:** ${[body.utm_source, body.utm_medium, body.utm_campaign].filter(Boolean).join(' / ')}` : '',
+    body.utm_source ? `**Origem:** ${[body.utm_source, body.utm_medium, body.utm_campaign, body.utm_content, body.utm_term, body.fbclid, body.gclid].filter(Boolean).join(' / ')}` : '',
     ``,
     respostasMd ? `## Respostas do Quiz\n\n${respostasMd}` : '',
     body.portfolio_escolhido !== undefined && body.portfolio_escolhido !== null

@@ -1245,6 +1245,10 @@
               utm_source: state.utm.utm_source || '',
               utm_medium: state.utm.utm_medium || '',
               utm_campaign: state.utm.utm_campaign || '',
+              utm_content: state.utm.utm_content || '',
+              utm_term: state.utm.utm_term || '',
+              fbclid: state.utm.fbclid || '',
+              gclid: state.utm.gclid || '',
             }),
           });
           const data = await res.json();
@@ -1327,6 +1331,10 @@
               utm_source: state.utm.utm_source || '',
               utm_medium: state.utm.utm_medium || '',
               utm_campaign: state.utm.utm_campaign || '',
+              utm_content: state.utm.utm_content || '',
+              utm_term: state.utm.utm_term || '',
+              fbclid: state.utm.fbclid || '',
+              gclid: state.utm.gclid || '',
             }),
           });
         } catch (e) { /* non-fatal */ }
