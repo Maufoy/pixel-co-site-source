@@ -103,6 +103,29 @@
     .lead-date {
       font-size: 11px; color: var(--text-muted); font-family: monospace;
     }
+    .lead-actions { margin-top: 8px; display: flex; gap: 6px; }
+    .lead-actions a {
+      font-size: 11px; font-weight: 500; text-decoration: none;
+      padding: 4px 10px; border-radius: 6px; display: inline-flex; align-items: center; gap: 4px;
+    }
+    .lead-actions .btn-recover {
+      background: var(--green-bg); color: var(--green); border: 1px solid rgba(20,168,134,0.18);
+    }
+    .lead-actions .btn-view {
+      background: rgba(255,255,255,0.05); color: var(--text-soft); border: 1px solid var(--border);
+    }
+    .filter-tabs {
+      display: flex; gap: 6px; margin-bottom: 14px; flex-wrap: wrap;
+    }
+    .filter-tab {
+      font-size: 12px; font-weight: 500; padding: 6px 14px; border-radius: 20px;
+      background: var(--bg-card); border: 1px solid var(--border); color: var(--text-soft);
+      cursor: pointer; transition: all 0.2s; font-family: 'Inter', sans-serif;
+    }
+    .filter-tab.active {
+      background: var(--green-bg); border-color: var(--green); color: var(--green);
+    }
+    .filter-tab:hover { border-color: rgba(255,255,255,0.2); }
     .empty {
       text-align: center; padding: 40px 16px; color: var(--text-muted);
     }
@@ -148,6 +171,12 @@
       </div>
     </div>
 
+    <div class="filter-tabs">
+      <button class="filter-tab active" data-filter="all">Todos</button>
+      <button class="filter-tab" data-filter="briefing_complete">✅ Briefing</button>
+      <button class="filter-tab" data-filter="lead_captured">📥 Só captura</button>
+    </div>
+
     <div class="search-wrap">
       <span class="ico">search</span>
       <input type="text" id="searchInput" placeholder="Buscar por nome, email ou telefone...">
@@ -161,12 +190,17 @@
   <script>
   const BASE = window.location.origin
   let allLeads = []
+  let currentFilter = 'all'
 
   function formatPhone(tel) {
     const d = tel.replace(/\D/g, '')
     if (d.length === 11) return `(${d.slice(0,2)}) ${d.slice(2,7)}-${d.slice(7)}`
     if (d.length === 10) return `(${d.slice(0,2)}) ${d.slice(2,6)}-${d.slice(6)}`
     return tel
+  }
+
+  function phoneDigits(tel) {
+    return tel.replace(/\D/g, '')
   }
 
   function dateFromRecebido(str) {
@@ -187,6 +221,14 @@
         }</div>`
       : ''
 
+    // WhatsApp recovery button for captured leads
+    const phone = phoneDigits(l.telefone || '')
+    const actionsHtml = l.stage === 'lead_captured' && phone
+      ? `<div class="lead-actions">
+          <a href="https://wa.me/55${phone}?text=Oi%20${encodeURIComponent(l.nome)}!%20Vi%20que%20você%20começou%20o%20briefing%20da%20sua%20página%20mas%20não%20finalizou.%20Quer%20que%20eu%20termine%20junto%20com%20você%3F" target="_blank" class="btn-recover"><span class="ico" style="font-size:12px">chat</span> Recuperar no WhatsApp</a>
+        </div>`
+      : ''
+
     return `
       <div class="lead-card">
         <div class="lead-top">
@@ -198,19 +240,36 @@
           ${l.email !== '—' ? `<span><span class="ico">mail</span> ${l.email}</span>` : ''}
         </div>
         ${respostasHtml}
+        ${actionsHtml}
         ${l.origem ? `<div class="lead-origem"><span class="ico" style="font-size:12px;vertical-align:middle;">ads_click</span> ${l.origem}</div>` : ''}
         <div class="lead-date">${dateFromRecebido(l.recebido)}</div>
       </div>
     `
   }
 
+  function setFilter(filter) {
+    currentFilter = filter
+    document.querySelectorAll('.filter-tab').forEach(t =>
+      t.classList.toggle('active', t.dataset.filter === filter)
+    )
+    render()
+  }
+
   function render() {
     const q = document.getElementById('searchInput').value.toLowerCase()
-    const filtered = q ? allLeads.filter(l =>
-      l.nome.toLowerCase().includes(q) ||
-      l.email.toLowerCase().includes(q) ||
-      l.telefone.includes(q)
-    ) : allLeads
+    let filtered = allLeads
+
+    if (currentFilter !== 'all') {
+      filtered = filtered.filter(l => l.stage === currentFilter)
+    }
+
+    if (q) {
+      filtered = filtered.filter(l =>
+        l.nome.toLowerCase().includes(q) ||
+        l.email.toLowerCase().includes(q) ||
+        l.telefone.includes(q)
+      )
+    }
 
     document.getElementById('statTotal').textContent = allLeads.length
     document.getElementById('statCompleted').textContent = allLeads.filter(l => l.stage === 'briefing_complete').length
@@ -220,7 +279,7 @@
     if (filtered.length === 0) {
       list.innerHTML = `<div class="empty">
         <span class="ico">inbox</span>
-        ${q ? 'Nenhum lead encontrado para "' + q + '"' : 'Nenhum lead ainda'}
+        ${q ? 'Nenhum lead encontrado para "' + q + '"' : 'Nenhum lead com esse status'}
       </div>`
       return
     }
@@ -240,6 +299,9 @@
   }
 
   document.getElementById('searchInput').addEventListener('input', render)
+  document.querySelectorAll('.filter-tab').forEach(t =>
+    t.addEventListener('click', () => setFilter(t.dataset.filter))
+  )
   load()
   </script>
 </body>

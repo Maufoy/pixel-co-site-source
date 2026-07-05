@@ -790,60 +790,38 @@
       </div>
     </div>
 
-    <!-- STEP 6: Cliente ideal -->
-    <div class="step" data-step="6" data-name="Cliente ideal">
+    <!-- STEP 6: Conteúdo (cliente ideal + oferta) -->
+    <div class="step" data-step="6" data-name="Conteúdo">
       <div class="q-card">
-        <div class="q-number">Conteúdo • 1 de 2</div>
-        <h2 class="q-title">Descreve em 2 frases <em>seu cliente ideal</em></h2>
-        <p class="q-sub">Quem mais precisa do seu serviço? Idade, profissão, momento de vida.<br><em style="color:var(--text-muted);font-size:11px">Quanto mais específico, melhor a página converte.</em></p>
+        <div class="q-number">Conteúdo</div>
+        <h2 class="q-title">Conte sobre seu <em>negócio</em></h2>
+        <p class="q-sub">Duas respostas rápidas pra gente entender seu trabalho.</p>
         <div class="field">
-          <textarea class="input" id="b-cliente-perfil" style="min-height:100px;resize:vertical;font-family:'Inter',sans-serif" placeholder="Ex: Mulheres de 35-50 anos, executivas, que sentem ansiedade..."></textarea>
+          <label class="field-label">Quem é seu cliente ideal?</label>
+          <textarea class="input" id="b-cliente-perfil" style="min-height:80px;resize:vertical;font-family:'Inter',sans-serif" placeholder="Ex: Mulheres de 35-50 anos, executivas, que sentem ansiedade..."></textarea>
+        </div>
+        <div class="field">
+          <label class="field-label">O que você vende exatamente?</label>
+          <textarea class="input" id="b-oferta" style="min-height:80px;resize:vertical;font-family:'Inter',sans-serif" placeholder="Ex: Acompanhamento psicológico individual, 12 sessões com plano personalizado."></textarea>
         </div>
       </div>
       <div class="btn-row">
         <button class="btn btn-ghost" onclick="goStep(5)">← Voltar</button>
-        <button class="btn btn-solid" onclick="goStep(7)">Próximo →</button>
+        <button class="btn btn-solid" id="btn-next-6" disabled>Próximo →</button>
       </div>
     </div>
 
-    <!-- STEP 7: Oferta -->
-    <div class="step" data-step="7" data-name="Oferta">
+    <!-- STEP 7: Identidade visual (nome na página + cores + logo) -->
+    <div class="step" data-step="7" data-name="Identidade">
       <div class="q-card">
-        <div class="q-number">Conteúdo • 2 de 2</div>
-        <h2 class="q-title">O que você <em>vende exatamente</em>?</h2>
-        <p class="q-sub">Descreve seu serviço principal. Pacote, sessão avulsa, mentoria... Isso vira a seção principal da sua página.</p>
+        <div class="q-number">Identidade visual</div>
+        <h2 class="q-title">Como você quer <em>aparecer</em>?</h2>
+        <p class="q-sub">Nome, cores e logo — o básico pra sua identidade.</p>
         <div class="field">
-          <textarea class="input" id="b-oferta" style="min-height:100px;resize:vertical;font-family:'Inter',sans-serif" placeholder="Ex: Acompanhamento psicológico individual para mulheres com ansiedade. 12 sessões com plano personalizado."></textarea>
+          <label class="field-label">Como quer ser chamado(a) na página?</label>
+          <input type="text" class="input" id="b-nome-pagina" placeholder="Ex: Maria, Dra. Maria Silva, Estúdio Marina">
         </div>
-      </div>
-      <div class="btn-row">
-        <button class="btn btn-ghost" onclick="goStep(6)">← Voltar</button>
-        <button class="btn btn-solid" onclick="goStep(8)">Próximo →</button>
-      </div>
-    </div>
-
-    <!-- STEP 8: Nome na página -->
-    <div class="step" data-step="8" data-name="Briefing">
-      <div class="q-card">
-        <div class="q-number">Briefing • 1 de 4</div>
-        <h2 class="q-title">Como quer ser chamado(a) <em>na sua página</em>?</h2>
-        <p class="q-sub">Ex: "Maria", "Dra. Maria Silva", "Estúdio Marina".<br>Se deixar vazio, usamos seu nome.</p>
         <div class="field">
-          <input type="text" class="input" id="b-nome-pagina" placeholder="Como aparece na página">
-        </div>
-      </div>
-      <div class="btn-row">
-        <button class="btn btn-ghost" onclick="goStep(7)">← Voltar</button>
-        <button class="btn btn-solid" onclick="goStep(9)">Próximo →</button>
-      </div>
-    </div>
-
-    <!-- STEP 9: Cores / Logo -->
-    <div class="step" data-step="9" data-name="Briefing">
-      <div class="q-card">
-        <div class="q-number">Briefing • 2 de 4</div>
-        <h2 class="q-title"><em>Cores e logo</em> — o básico</h2>
-        <div class="field" style="margin-bottom:16px">
           <label class="field-label">Tem uma cor ou paleta preferida?</label>
           <input type="text" class="input" id="b-cor" placeholder="Ex: azul marinho e dourado, verde e branco...">
         </div>
@@ -884,15 +862,15 @@
         </div>
       </div>
       <div class="btn-row">
-        <button class="btn btn-ghost" onclick="goStep(8)">← Voltar</button>
-        <button class="btn btn-solid" id="btn-next-9" disabled>Próximo →</button>
+        <button class="btn btn-ghost" onclick="goStep(6)">← Voltar</button>
+        <button class="btn btn-solid" id="btn-next-7" disabled>Próximo →</button>
       </div>
     </div>
 
-    <!-- STEP 10: Domínio -->
-    <div class="step" data-step="10" data-name="Briefing">
+    <!-- STEP 8: Domínio -->
+    <div class="step" data-step="8" data-name="Domínio">
       <div class="q-card">
-        <div class="q-number">Briefing • 3 de 4</div>
+        <div class="q-number">Domínio</div>
         <h2 class="q-title">Já tem <em>domínio</em>?</h2>
         <div class="options" id="q10-opts">
           <button class="option" data-value="ja_tenho" data-detail="d-q10-dominio">
@@ -931,13 +909,13 @@
         </div>
       </div>
       <div class="btn-row">
-        <button class="btn btn-ghost" onclick="goStep(9)">← Voltar</button>
-        <button class="btn btn-solid" id="btn-next-10" disabled>Próximo →</button>
+        <button class="btn btn-ghost" onclick="goStep(7)">← Voltar</button>
+        <button class="btn btn-solid" id="btn-next-8" disabled>Próximo →</button>
       </div>
     </div>
 
-    <!-- STEP 11: Extra + Submit -->
-    <div class="step" data-step="11" data-name="Finalizar">
+    <!-- STEP 9: Extra + Submit -->
+    <div class="step" data-step="9" data-name="Finalizar">
       <div class="q-card">
         <div class="q-number">Pra fechar</div>
         <h2 class="q-title">Algo mais que queira <em>contar</em>?</h2>
@@ -947,7 +925,7 @@
         </div>
       </div>
       <div class="btn-row">
-        <button class="btn btn-ghost" onclick="goStep(10)">← Voltar</button>
+        <button class="btn btn-ghost" onclick="goStep(8)">← Voltar</button>
         <button class="btn btn-solid" id="btn-submit">Enviar e receber proposta</button>
       </div>
     </div>
@@ -1000,7 +978,7 @@
         state.utm = utm;
       }
 
-      const TOTAL = 11;
+      const TOTAL = 9;
 
       // ── DOM refs ──
       const $ = (id) => document.getElementById(id);
@@ -1219,7 +1197,7 @@
       // ── Step 4 → 5 ──
       $('btn-next-4').addEventListener('click', () => showStep(5));
 
-      // ── Step 5: Lead validation ──
+      // ── Step 5: Lead validation + save → Step 6 ──
       function validateLead() {
         const nome = ($('lead-nome').value || '').trim();
         const tel = ($('lead-tel').value || '').trim();
@@ -1271,11 +1249,20 @@
         showStep(6);
       });
 
-      // ── Step 9: Logo → Step 10 ──
-      $('btn-next-9').addEventListener('click', () => showStep(10));
+      // ── Step 6: Conteúdo → Step 7 ──
+      function validateStep6() {
+        const ok = ($('b-cliente-perfil').value || '').trim().length >= 3;
+        $('btn-next-6').disabled = !ok;
+      }
+      $('b-cliente-perfil').addEventListener('input', validateStep6);
+      $('b-cliente-perfil').addEventListener('change', validateStep6);
+      $('btn-next-6').addEventListener('click', () => showStep(7));
 
-      // ── Step 10: Domínio → Step 11 ──
-      $('btn-next-10').addEventListener('click', () => showStep(11));
+      // ── Step 7: Identidade → Step 8 ──
+      $('btn-next-7').addEventListener('click', () => showStep(8));
+
+      // ── Step 8: Domínio → Step 9 ──
+      $('btn-next-8').addEventListener('click', () => showStep(9));
 
       // ── SUBMIT ──
       $('btn-submit').addEventListener('click', async () => {
