@@ -1,1156 +1,352 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <!-- Google Tag Manager -->
-  <script>(function (w, d, s, l, i) {
-      w[l] = w[l] || []; w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-      var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
-      j.async = true; j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-      f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-MVWRMS98');</script>
-  <script>
-    (function () {
-      var eventId = 'pv-' + (window.crypto && window.crypto.randomUUID ? window.crypto.randomUUID() : Date.now() + '-' + Math.random().toString(36).slice(2, 10));
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({ event: 'pageView', eventID: eventId, pagePath: window.location.pathname });
-      fetch('/api/track/pageview', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ eventId: eventId, url: window.location.href, pathname: window.location.pathname }), keepalive: true }).catch(function () { });
-    })();
-  </script>
-  <script>
-    (function () {
-      try {
-        var params = new URLSearchParams(window.location.search);
-        var utmData = {};
-        ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'fbclid', 'gclid'].forEach(function (k) { var v = params.get(k); if (v) utmData[k] = v; });
-        if (Object.keys(utmData).length > 0) sessionStorage.setItem('pagina_express_utms', JSON.stringify(utmData));
-      } catch (e) { }
-    })();
-  </script>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MVWRMS98');</script>
+  <script>(function(){var e='pv-'+(window.crypto&&window.crypto.randomUUID?window.crypto.randomUUID():Date.now()+'-'+Math.random().toString(36).slice(2,10));window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'pageView',eventID:e,pagePath:window.location.pathname});fetch('/api/track/pageview',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({eventId:e,url:window.location.href,pathname:window.location.pathname}),keepalive:true}).catch(function(){})})();</script>
+  <script>(function(){try{var p=new URLSearchParams(window.location.search),u={};['utm_source','utm_medium','utm_campaign','utm_content','utm_term','fbclid','gclid'].forEach(function(k){var v=p.get(k);if(v)u[k]=v});if(Object.keys(u).length>0)sessionStorage.setItem('pagina_express_utms',JSON.stringify(u))}catch(e){}})();</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pixel.Co — Landing page profissional em 3 dias</title>
-  <meta name="description" content="Seu serviço já é bom. Sua página precisa estar à sua altura. Landing page profissional no ar em 3 dias. A partir de R$499.">
-  <meta property="og:title" content="Pixel.Co — Seu serviço já é bom. Sua página precisa estar à sua altura.">
-  <meta property="og:description" content="Landing page profissional no ar em 3 dias úteis. A partir de R$499. Comprou hoje, página no ar em 3 dias.">
+  <meta name="description" content="Seu servico ja e bom. Sua pagina precisa estar a sua altura. Landing page profissional no ar em 3 dias. A partir de R$499.">
+  <meta property="og:title" content="Pixel.Co — Seu servico ja e bom. Sua pagina precisa estar a sua altura.">
+  <meta property="og:description" content="Landing page profissional no ar em 3 dias uteis. A partir de R$499. Comprou hoje, pagina no ar em 3 dias.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://pixelco.com.br/pagina-express-v3/apple.html">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23000000'/%3E%3Crect x='22' y='22' width='20' height='20' rx='4' fill='%23ffffff'/%3E%3C/svg%3E">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a0a0a'/%3E%3Crect x='22' y='22' width='20' height='20' rx='4' fill='%23ffffff'/%3E%3C/svg%3E">
   <style>
-    /* ═══════════════════════════════════════════
-       APPLE DESIGN SYSTEM — Página Express V4
-       SF Pro · single accent blue · premium finish
-       ═══════════════════════════════════════════ */
+    *,:after,:before{margin:0;padding:0;box-sizing:border-box}
+    html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;scroll-behavior:smooth;overflow-x:clip}
+    body{font-family:system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;font-weight:400;line-height:1.47;letter-spacing:-0.374px;color:#1d1d1f;background:#fff;overflow-x:clip;width:100%;max-width:100vw}
 
-    *,
-    *::before,
-    *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      scroll-behavior: smooth;
-      overflow-x: clip;
-    }
-
-    body {
-      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-      font-weight: 400;
-      line-height: 1.47;
-      letter-spacing: -0.374px;
-      color: #1d1d1f;
-      background: #ffffff;
-      overflow-x: clip;
-      width: 100%;
-      max-width: 100vw;
-    }
-
-    :root {
-      --black: #0a0a0a;
-      --off-black: #0a0a0a;
-      --light-gray: #f5f5f7;
-      --near-black: #1d1d1f;
-      --apple-blue: #0071e3;
-      --link-blue: #0066cc;
-      --link-light: #2997ff;
-      --text-secondary: rgba(0, 0, 0, 0.8);
-      --text-tertiary: rgba(0, 0, 0, 0.48);
-      --white: #ffffff;
-      --nav-bg: rgba(0, 0, 0, 0.85);
-      --card-shadow: rgba(0, 0, 0, 0.18) 2px 4px 24px 0px;
-      --card-bg: #141414;
-      --grain-opacity: 0.03;
-    }
+    :root{--bg-dark:#0a0a0a;--bg-light:#f5f5f7;--bg-card:#141414;--near-black:#1d1d1f;--blue:#0071e3;--blue-link:#0066cc;--blue-light:#2997ff;--text-sec:rgba(0,0,0,.8);--text-ter:rgba(0,0,0,.48);--white:#fff;--shadow:rgba(0,0,0,.12) 0 4px 24px}
 
     /* ── Typography ── */
-    .hero-h1 {
-      font-size: clamp(32px, 5.5vw, 56px);
-      font-weight: 600;
-      line-height: 1.07;
-      letter-spacing: -0.28px;
-      text-wrap: balance;
-    }
+    h1,h2,h3{font-weight:600;line-height:1.07;letter-spacing:-.28px;text-wrap:balance}
+    .h-d{font-size:clamp(30px,5.5vw,52px);font-weight:600;line-height:1.07;letter-spacing:-.28px}
+    .h-s{font-size:clamp(26px,3.8vw,36px);font-weight:600;line-height:1.1;letter-spacing:-.28px}
+    .h-t{font-size:20px;font-weight:400;line-height:1.14;letter-spacing:.196px}
+    .b-17{font-size:17px;font-weight:400;line-height:1.47;letter-spacing:-.374px}
+    .b-14{font-size:14px;font-weight:400;line-height:1.29;letter-spacing:-.224px;color:var(--text-sec)}
+    .b-12{font-size:12px;font-weight:400;line-height:1.33;letter-spacing:-.12px;color:var(--text-ter)}
+    .i{font-style:italic}
 
-    .section-h2 {
-      font-size: clamp(28px, 4vw, 40px);
-      font-weight: 600;
-      line-height: 1.10;
-      letter-spacing: -0.28px;
-      text-wrap: balance;
-    }
+    /* ── Liquid Glass Nav ── */
+    .nav{position:fixed;top:0;left:0;right:0;z-index:100;height:48px;display:flex;align-items:center;justify-content:center;padding:0 22px;background:rgba(10,10,10,.78);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%)}
+    .nav-inner{max-width:1100px;width:100%;display:flex;align-items:center;justify-content:space-between}
+    .nav-l{display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.92);font-size:13px;font-weight:500;letter-spacing:-.12px;text-decoration:none}
+    .nav-l .sq{width:14px;height:14px;border-radius:3px;background:rgba(255,255,255,.9)}
+    .nav-links{display:flex;gap:32px;list-style:none}
+    .nav-links a{color:rgba(255,255,255,.75);font-size:12px;font-weight:400;text-decoration:none;transition:color .2s}
+    .nav-links a:hover{color:rgba(255,255,255,1)}
+    .nav-cta{color:var(--blue-light);font-size:12px;font-weight:400;text-decoration:none}
+    .nav-cta:hover{text-decoration:underline}
 
-    .tile-h3 {
-      font-size: clamp(20px, 2.2vw, 28px);
-      font-weight: 400;
-      line-height: 1.14;
-      letter-spacing: 0.196px;
-      text-wrap: balance;
-    }
+    /* ── Buttons ── */
+    .b-b{display:inline-flex;align-items:center;gap:6px;background:var(--blue);color:var(--white);font-size:17px;font-weight:400;padding:9px 18px;border-radius:8px;border:none;cursor:pointer;text-decoration:none;transition:opacity .25s,transform .15s}
+    .b-b:hover{opacity:.85;text-decoration:none}.b-b:active{transform:scale(.97)}
+    .b-p{display:inline-flex;align-items:center;gap:4px;background:transparent;color:var(--white);font-size:14px;font-weight:400;padding:5px 16px;border-radius:980px;border:1px solid rgba(255,255,255,.55);cursor:pointer;text-decoration:none;transition:opacity .2s}
+    .b-p:hover{opacity:.7;text-decoration:none}
 
-    .body-17 {
-      font-size: 17px;
-      font-weight: 400;
-      line-height: 1.47;
-      letter-spacing: -0.374px;
-    }
-
-    .body-14 {
-      font-size: 14px;
-      font-weight: 400;
-      line-height: 1.29;
-      letter-spacing: -0.224px;
-      color: var(--text-secondary);
-    }
-
-    .body-12 {
-      font-size: 12px;
-      font-weight: 400;
-      line-height: 1.33;
-      letter-spacing: -0.12px;
-      color: var(--text-tertiary);
-    }
-
-    .eyebrow {
-      font-size: 12px;
-      font-weight: 400;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      color: var(--text-tertiary);
-    }
-    .dark .eyebrow {
-      color: rgba(255, 255, 255, 0.45);
-    }
-
-    .semibold {
-      font-weight: 600;
-    }
-    .italic {
-      font-style: italic;
-    }
-
-    /* ── Section containers ── */
-    .section {
-      padding: 100px 24px;
-    }
-    .section.dark {
-      background: var(--off-black);
-      color: var(--white);
-      position: relative;
-    }
-    .section.dark::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0.025;
-      z-index: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.65' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    }
-    .section.dark .container,
-    .section.dark .container-wide {
-      position: relative;
-      z-index: 1;
-    }
-    .section.dark .body-14 {
-      color: rgba(255, 255, 255, 0.65);
-    }
-    .section.dark .body-17 {
-      color: rgba(255, 255, 255, 0.85);
-    }
-    .section.light {
-      background: var(--light-gray);
-      color: var(--near-black);
-    }
-    .section.white {
-      background: var(--white);
-    }
-
-    .container {
-      max-width: 980px;
-      margin: 0 auto;
-    }
-    .container-wide {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .text-center {
-      text-align: center;
-    }
-
-    /* ── Apple Navigation ── */
-    .nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      height: 44px;
-      background: rgba(0, 0, 0, 0.8);
-      backdrop-filter: saturate(180%) blur(20px);
-      -webkit-backdrop-filter: saturate(180%) blur(20px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0 22px;
-    }
-
-    .nav-inner {
-      max-width: 980px;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      color: rgba(255, 255, 255, 0.92);
-      font-size: 12px;
-      font-weight: 400;
-      letter-spacing: -0.12px;
-      text-decoration: none;
-    }
-
-    .nav-logo-square {
-      width: 16px;
-      height: 16px;
-      border-radius: 3px;
-      background: rgba(255, 255, 255, 0.9);
-    }
-
-    .nav-cta {
-      color: var(--link-light);
-      font-size: 12px;
-      font-weight: 400;
-      letter-spacing: -0.12px;
-      text-decoration: none;
-    }
-    .nav-cta:hover {
-      text-decoration: underline;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-      list-style: none;
-    }
-    .nav-links a {
-      color: rgba(255, 255, 255, 0.8);
-      font-size: 12px;
-      font-weight: 400;
-      letter-spacing: -0.12px;
-      text-decoration: none;
-    }
-    .nav-links a:hover {
-      color: rgba(255, 255, 255, 1);
-    }
-
-    /* ── Apple buttons ── */
-    .btn-blue {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: var(--apple-blue);
-      color: var(--white);
-      font-size: 17px;
-      font-weight: 400;
-      line-height: 1;
-      padding: 8px 16px;
-      border-radius: 8px;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
-      transition: opacity 0.25s, transform 0.15s;
-    }
-    .btn-blue:hover {
-      opacity: 0.85;
-      text-decoration: none;
-    }
-    .btn-blue:active {
-      transform: scale(0.97);
-    }
-
-    .btn-outline {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      background: transparent;
-      color: var(--white);
-      font-size: 14px;
-      font-weight: 400;
-      line-height: 1.43;
-      letter-spacing: -0.224px;
-      padding: 5px 14px;
-      border-radius: 980px;
-      border: 1px solid rgba(255, 255, 255, 0.6);
-      cursor: pointer;
-      text-decoration: none;
-      transition: opacity 0.2s;
-    }
-    .btn-outline:hover {
-      opacity: 0.7;
-      text-decoration: none;
-    }
-
-    .btn-outline-blue {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      background: transparent;
-      color: var(--link-blue);
-      font-size: 14px;
-      font-weight: 400;
-      line-height: 1.43;
-      letter-spacing: -0.224px;
-      padding: 5px 14px;
-      border-radius: 980px;
-      border: 1px solid var(--link-blue);
-      cursor: pointer;
-      text-decoration: none;
-      transition: opacity 0.2s;
-    }
-    .btn-outline-blue:hover {
-      opacity: 0.7;
-      text-decoration: none;
-    }
+    /* ── Sections ── */
+    .sec{padding:100px 24px;position:relative}
+    .sec-d{background:var(--bg-dark);color:var(--white)}.sec-d .b-14{color:rgba(255,255,255,.65)}.sec-l{background:var(--bg-light);color:var(--near-black)}
+    .sec::before{content:'';position:absolute;inset:0;pointer-events:none;opacity:.02;z-index:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.65' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+    .sec-l::before{opacity:.015}
+    .container{max-width:1100px;margin:0 auto;position:relative;z-index:1}
+    .c-wide{max-width:1200px;margin:0 auto;position:relative;z-index:1}
+    .tc{text-align:center}
 
     /* ── Hero ── */
-    .hero {
-      padding: 130px 24px 80px;
-      background: var(--black);
-      color: var(--white);
-      text-align: center;
-    }
+    .hero{padding:130px 24px 80px;background:var(--bg-dark);color:var(--white);text-align:center;position:relative;overflow:hidden}
+    .hero::before{content:'';position:absolute;top:-30%;left:-20%;width:70%;height:80%;background:radial-gradient(circle at 30% 40%,rgba(0,113,227,.04),transparent 60%);pointer-events:none}
+    .hero::after{content:'';position:absolute;bottom:-20%;right:-20%;width:60%;height:70%;background:radial-gradient(circle at 70% 60%,rgba(0,113,227,.03),transparent 60%);pointer-events:none}
+    .hero .container{position:relative;z-index:1}
+    .hero-eyebrow{font-size:12px;font-weight:400;letter-spacing:.5px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:14px}
+    .hero .h-d{max-width:700px;margin:0 auto 14px}
+    .hero-sub{font-size:20px;font-weight:400;line-height:1.2;letter-spacing:.2px;color:rgba(255,255,255,.8);max-width:580px;margin:0 auto 32px}
+    .hero-actions{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:48px}
 
-    .hero .hero-h1 {
-      max-width: 740px;
-      margin: 0 auto 14px;
-    }
+    .vsl-w{max-width:680px;margin:0 auto;border-radius:16px;overflow:hidden;background:var(--bg-card);border:1px solid rgba(255,255,255,.06)}
+    .vsl-w video{width:100%;display:block;aspect-ratio:16/9;object-fit:cover}
+    .vsl-inner{position:relative}
+    .play-o{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:transparent;cursor:pointer}
+    .play-o.hidden{display:none}
+    .play-c{width:60px;height:60px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.15);transition:background .3s}
+    .play-o:hover .play-c{background:rgba(255,255,255,.18)}
+    .play-c svg{width:24px;height:24px;fill:var(--white);margin-left:3px}
 
-    .hero-sub {
-      font-size: 21px;
-      font-weight: 400;
-      line-height: 1.19;
-      letter-spacing: 0.231px;
-      color: rgba(255, 255, 255, 0.85);
-      max-width: 620px;
-      margin: 0 auto 32px;
-    }
-
-    .hero-actions {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 18px;
-      flex-wrap: wrap;
-      margin-bottom: 50px;
-    }
-
-    /* ── VSL Player ── */
-    .vsl-wrap {
-      max-width: 740px;
-      margin: 0 auto;
-      border-radius: 14px;
-      overflow: hidden;
-      background: var(--card-bg);
-    }
-    .vsl-wrap video {
-      width: 100%;
-      display: block;
-      aspect-ratio: 16 / 9;
-      object-fit: cover;
-    }
-
-    .play-overlay {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: transparent;
-      cursor: pointer;
-    }
-    .play-overlay.hidden {
-      display: none;
-    }
-    .play-btn-circle {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.12);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      backdrop-filter: blur(8px);
-      transition: background 0.3s;
-    }
-    .play-overlay:hover .play-btn-circle {
-      background: rgba(255, 255, 255, 0.2);
-    }
-    .play-btn-circle svg {
-      width: 24px;
-      height: 24px;
-      fill: var(--white);
-      margin-left: 3px;
-    }
-
-    .vsl-wrap-inner {
-      position: relative;
-    }
-
-    .hero-meta {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 32px;
-      flex-wrap: wrap;
-      margin-top: 36px;
-    }
-    .hero-meta span {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 14px;
-      font-weight: 400;
-      letter-spacing: -0.224px;
-      color: rgba(255, 255, 255, 0.55);
-    }
-    .hero-meta span svg {
-      width: 12px;
-      height: 12px;
-      stroke: rgba(255, 255, 255, 0.35);
-      stroke-width: 2;
-      fill: none;
-    }
+    .hero-m{display:flex;align-items:center;justify-content:center;gap:28px;flex-wrap:wrap;margin-top:32px}
+    .hero-m span{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:400;color:rgba(255,255,255,.5)}
+    .hero-m svg{width:11px;height:11px;stroke:rgba(255,255,255,.3);stroke-width:2;fill:none}
 
     /* ── Ponte ── */
-    .ponte {
-      padding: 90px 24px;
-      text-align: center;
-    }
-    .ponte p {
-      font-size: clamp(20px, 2.5vw, 28px);
-      font-weight: 400;
-      line-height: 1.14;
-      letter-spacing: 0.196px;
-      color: var(--near-black);
-      max-width: 680px;
-      margin: 0 auto;
-    }
-    .ponte em {
-      color: var(--apple-blue);
-    }
+    .ponte{padding:90px 24px;text-align:center}
+    .ponte p{font-size:clamp(18px,2.5vw,26px);font-weight:400;line-height:1.2;letter-spacing:.196px;color:var(--near-black);max-width:640px;margin:0 auto}
+    .ponte em{color:var(--blue)}
 
-    /* ── Timeline ── */
-    .timeline {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-      margin-top: 52px;
-    }
+    /* ── Como Funciona (Bento) ── */
+    .bento{display:grid;grid-template-columns:2fr 1fr 1fr;gap:14px;margin-top:48px}
+    .bento-card{background:var(--bg-card);border-radius:14px;padding:32px 24px;border:1px solid rgba(255,255,255,.04);transition:transform .3s,box-shadow .3s}
+    .bento-card:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.35)}
+    .bento-card .step{font-size:12px;font-weight:500;color:var(--blue);margin-bottom:6px}
+    .bento-card .day{font-size:11px;color:rgba(255,255,255,.3);margin-bottom:12px}
+    .bento-card h3{font-size:18px;font-weight:600;line-height:1.2;letter-spacing:.15px;color:var(--white);margin-bottom:12px}
+    .bento-card ul{list-style:none}
+    .bento-card li{font-size:13px;font-weight:400;line-height:1.35;color:rgba(255,255,255,.55);padding:3px 0 3px 14px;position:relative}
+    .bento-card li::before{content:'';position:absolute;left:0;top:10px;width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.2)}
 
-    .tl-card {
-      background: var(--card-bg);
-      border-radius: 12px;
-      padding: 28px 18px;
-      text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .tl-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-    }
+    .bento-card:first-child{grid-row:span 2}
+    .bento-card:first-child h3{font-size:22px}
+    .bento-card:first-child li{font-size:14px}
 
-    .tl-step {
-      font-size: 13px;
-      font-weight: 400;
-      letter-spacing: -0.12px;
-      color: var(--apple-blue);
-      margin-bottom: 6px;
-    }
-
-    .tl-day {
-      font-size: 11px;
-      font-weight: 400;
-      letter-spacing: -0.08px;
-      color: rgba(255, 255, 255, 0.35);
-      margin-bottom: 14px;
-    }
-
-    .tl-card h3 {
-      font-size: 20px;
-      font-weight: 600;
-      line-height: 1.19;
-      letter-spacing: 0.2px;
-      color: var(--white);
-      margin-bottom: 10px;
-    }
-
-    .tl-card ul {
-      list-style: none;
-      text-align: left;
-    }
-    .tl-card li {
-      font-size: 13px;
-      font-weight: 400;
-      line-height: 1.3;
-      letter-spacing: -0.12px;
-      color: rgba(255, 255, 255, 0.6);
-      padding: 3px 0 3px 14px;
-      position: relative;
-    }
-    .tl-card li::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 10px;
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.25);
-    }
-
-    .guarantee-text {
-      max-width: 560px;
-      margin: 44px auto 0;
-      padding: 18px 24px;
-      background: var(--card-bg);
-      border-radius: 10px;
-      text-align: center;
-    }
-    .guarantee-text p {
-      font-size: 14px;
-      font-weight: 400;
-      line-height: 1.45;
-      letter-spacing: -0.224px;
-      color: rgba(255, 255, 255, 0.65);
-    }
-    .guarantee-text strong {
-      color: var(--white);
-    }
+    .guarantee{max-width:520px;margin:40px auto 0;padding:18px 24px;background:var(--bg-card);border-radius:12px;border:1px solid rgba(255,255,255,.04);text-align:center}
+    .guarantee p{font-size:14px;font-weight:400;line-height:1.45;color:rgba(255,255,255,.65)}
+    .guarantee strong{color:var(--white)}
 
     /* ── Incluso ── */
-    .incluso-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      margin-top: 48px;
-    }
-    .inc-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      background: var(--white);
-      border-radius: 10px;
-      padding: 18px 20px;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-    .inc-item:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-    }
-    .inc-item svg {
-      width: 16px;
-      height: 16px;
-      fill: none;
-      stroke: var(--apple-blue);
-      stroke-width: 2.5;
-      flex-shrink: 0;
-      margin-top: 3px;
-    }
-    .inc-item span {
-      font-size: 15px;
-      font-weight: 400;
-      line-height: 1.4;
-      letter-spacing: -0.224px;
-      color: var(--near-black);
-    }
-    .incluso-note {
-      font-size: 12px;
-      font-weight: 400;
-      letter-spacing: -0.12px;
-      color: var(--text-tertiary);
-      text-align: center;
-      margin-top: 20px;
-    }
+    .inc-g{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:44px}
+    .inc-i{display:flex;align-items:flex-start;gap:12px;background:var(--white);border-radius:12px;padding:20px;transition:transform .25s,box-shadow .25s}
+    .inc-i:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+    .inc-i svg{width:15px;height:15px;fill:none;stroke:var(--blue);stroke-width:2.5;flex-shrink:0;margin-top:3px}
+    .inc-i span{font-size:14px;font-weight:400;line-height:1.4;color:var(--near-black)}
+    .inc-note{font-size:12px;color:var(--text-ter);text-align:center;margin-top:18px}
 
     /* ── Portfolio ── */
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-top: 48px;
-    }
-    .port-item {
-      border-radius: 12px;
-      overflow: hidden;
-      background: var(--card-bg);
-      transition: transform 0.35s ease, box-shadow 0.35s ease;
-    }
-    .port-item:hover {
-      transform: scale(1.02);
-      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
-    }
-    .port-item img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
+    .port-g{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:44px}
+    .port-i{border-radius:14px;overflow:hidden;background:var(--bg-card);border:1px solid rgba(255,255,255,.04);transition:transform .35s,box-shadow .35s}
+    .port-i:hover{transform:scale(1.02);box-shadow:0 12px 36px rgba(0,0,0,.4)}
+    .port-i img{width:100%;height:auto;display:block}
 
     /* ── Pricing ── */
-    .pricing-card {
-      max-width: 560px;
-      margin: 0 auto;
-      background: var(--white);
-      border-radius: 14px;
-      padding: 44px 36px;
-      text-align: center;
-      box-shadow: var(--card-shadow);
-    }
-    .pricing-badge {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      color: var(--apple-blue);
-      margin-bottom: 6px;
-    }
-    .pricing-card .tile-h3 {
-      margin-bottom: 28px;
-    }
-    .price-label {
-      font-size: 14px;
-      font-weight: 400;
-      letter-spacing: -0.224px;
-      color: var(--text-secondary);
-    }
-    .price-number {
-      font-size: 48px;
-      font-weight: 600;
-      line-height: 1.07;
-      letter-spacing: -0.28px;
-      color: var(--near-black);
-      margin: 2px 0;
-    }
-    .price-number .cur {
-      font-size: 24px;
-      vertical-align: super;
-    }
-    .price-installments {
-      font-size: 14px;
-      font-weight: 400;
-      letter-spacing: -0.224px;
-      color: var(--text-secondary);
-      margin-bottom: 28px;
-    }
-    .price-features {
-      list-style: none;
-      text-align: left;
-      max-width: 340px;
-      margin: 0 auto 28px;
-    }
-    .price-features li {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 15px;
-      font-weight: 400;
-      line-height: 1.35;
-      letter-spacing: -0.224px;
-      color: var(--near-black);
-      padding: 5px 0;
-    }
-    .price-features li svg {
-      width: 15px;
-      height: 15px;
-      fill: none;
-      stroke: var(--apple-blue);
-      stroke-width: 2.5;
-      flex-shrink: 0;
-    }
-    .price-footnote {
-      font-size: 12px;
-      font-weight: 400;
-      letter-spacing: -0.12px;
-      color: var(--text-tertiary);
-      margin-top: 14px;
-    }
+    .pc{max-width:560px;margin:0 auto;background:var(--white);border-radius:18px;padding:44px 36px;text-align:center;box-shadow:var(--shadow)}
+    .pc-b{font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--blue);margin-bottom:4px}
+    .pc .h-t{margin-bottom:24px}
+    .p-l{font-size:14px;color:var(--text-sec)}
+    .p-n{font-size:48px;font-weight:600;line-height:1.07;letter-spacing:-.28px;color:var(--near-black);margin:3px 0}
+    .p-n .c{font-size:24px;vertical-align:super}
+    .p-i{font-size:14px;color:var(--text-sec);margin-bottom:24px}
+    .p-f{list-style:none;text-align:left;max-width:320px;margin:0 auto 24px}
+    .p-f li{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:400;line-height:1.35;color:var(--near-black);padding:5px 0}
+    .p-f li svg{width:14px;height:14px;fill:none;stroke:var(--blue);stroke-width:2.5;flex-shrink:0}
+    .p-foot{font-size:12px;color:var(--text-ter);margin-top:14px;line-height:1.4}
 
     /* ── FAQ ── */
-    .faq-list {
-      max-width: 680px;
-      margin: 48px auto 0;
-    }
-    .faq-item {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 16px 0;
-      transition: opacity 0.3s;
-    }
-    .faq-item:first-child {
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-    }
-    .faq-item[open] .faq-a {
-      animation: faqSlide 0.3s ease;
-    }
-    @keyframes faqSlide {
-      from { opacity: 0; transform: translateY(-6px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .faq-q {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 16px;
-      font-weight: 500;
-      line-height: 1.25;
-      letter-spacing: -0.374px;
-      cursor: pointer;
-      user-select: none;
-      list-style: none;
-      color: var(--white);
-    }
-    .faq-q::-webkit-details-marker {
-      display: none;
-    }
-    .faq-q::after {
-      content: '';
-      display: inline-block;
-      width: 14px;
-      height: 14px;
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.4)' stroke-width='2' stroke-linecap='round'%3E%3Cline x1='12' y1='5' x2='12' y2='19'/%3E%3Cline x1='5' y1='12' x2='19' y2='12'/%3E%3C/svg%3E") center/contain no-repeat;
-      transition: transform 0.25s;
-    }
-    details[open] .faq-q::after {
-      transform: rotate(45deg);
-    }
-    .faq-a {
-      font-size: 14px;
-      font-weight: 400;
-      line-height: 1.55;
-      letter-spacing: -0.224px;
-      color: rgba(255, 255, 255, 0.6);
-      padding-top: 10px;
-      max-width: 600px;
-    }
-    .faq-a strong {
-      color: var(--white);
-    }
+    .faq-l{max-width:640px;margin:40px auto 0}
+    .faq-i{border-bottom:1px solid rgba(255,255,255,.07);padding:15px 0}
+    .faq-i:first-child{border-top:1px solid rgba(255,255,255,.07)}
+    .faq-q{display:flex;align-items:center;justify-content:space-between;font-size:16px;font-weight:500;line-height:1.25;letter-spacing:-.374px;cursor:pointer;user-select:none;list-style:none;color:var(--white)}
+    .faq-q::-webkit-details-marker{display:none}
+    .faq-q::after{content:'';display:inline-block;width:13px;height:13px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,.35)' stroke-width='2' stroke-linecap='round'%3E%3Cline x1='12' y1='5' x2='12' y2='19'/%3E%3Cline x1='5' y1='12' x2='19' y2='12'/%3E%3C/svg%3E") center/contain no-repeat;transition:transform .25s}
+    details[open] .faq-q::after{transform:rotate(45deg)}
+    .faq-a{font-size:14px;font-weight:400;line-height:1.55;color:rgba(255,255,255,.55);padding-top:10px;max-width:560px}
+    .faq-a strong{color:var(--white)}
+    details[open] .faq-a{animation:fS .3s ease}
+    @keyframes fS{from{opacity:0;transform:translateY(-5px)} to{opacity:1;transform:translateY(0)}}
 
     /* ── Final CTA ── */
-    .final-cta .section-h2 {
-      margin-bottom: 14px;
-    }
-    .final-cta .body-17 {
-      color: var(--text-secondary);
-      max-width: 520px;
-      margin: 0 auto 32px;
-    }
+    .fc .h-s{margin-bottom:12px}
+    .fc .b-17{color:var(--text-sec);max-width:500px;margin:0 auto 28px}
 
     /* ── Footer ── */
-    .footer {
-      padding: 28px 24px;
-      text-align: center;
-      font-size: 12px;
-      font-weight: 400;
-      letter-spacing: -0.12px;
-      color: rgba(255, 255, 255, 0.4);
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-    }
-    .footer-brand {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 5px;
-      color: rgba(255, 255, 255, 0.55);
-      font-size: 12px;
-      margin-bottom: 4px;
-    }
-    .footer-brand .sq {
-      width: 10px;
-      height: 10px;
-      border-radius: 2px;
-      background: rgba(255, 255, 255, 0.5);
-    }
+    .ft{padding:28px 24px;text-align:center;font-size:12px;color:rgba(255,255,255,.35);border-top:1px solid rgba(255,255,255,.05)}
+    .ft-b{display:flex;align-items:center;justify-content:center;gap:5px;color:rgba(255,255,255,.5);font-size:12px;margin-bottom:3px}
+    .ft-b .s{width:10px;height:10px;border-radius:2px;background:rgba(255,255,255,.4)}
 
-    /* ── Fixed mobile CTA ── */
-    .fixed-mobile-cta {
-      display: none;
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      z-index: 99;
-      background: var(--apple-blue);
-      color: var(--white);
-      font-size: 17px;
-      font-weight: 400;
-      text-align: center;
-      padding: 13px 24px;
-      text-decoration: none;
-    }
-    .fixed-mobile-cta:hover {
-      opacity: 0.85;
-      text-decoration: none;
-    }
-    .fixed-mobile-cta:active {
-      transform: scale(0.98);
-    }
+    /* ── Fixed mobile ── */
+    .f-m{display:none;position:fixed;bottom:0;left:0;right:0;z-index:99;background:var(--blue);color:var(--white);font-size:17px;font-weight:400;text-align:center;padding:13px 24px;text-decoration:none}
+    .f-m:active{transform:scale(.98)}
 
-    /* ── Responsive ── */
-    @media (max-width: 834px) {
-      .section {
-        padding: 70px 20px;
-      }
-      .hero {
-        padding: 110px 20px 60px;
-      }
-      .timeline {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .portfolio-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .pricing-card {
-        padding: 32px 24px;
-      }
-      .price-number {
-        font-size: 40px;
-      }
-    }
+    /* ── Reveal ── */
+    .rv{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+    .rv.in{opacity:1;transform:translateY(0)}
 
-    @media (max-width: 480px) {
-      .section {
-        padding: 56px 16px;
-      }
-      .hero {
-        padding: 100px 16px 50px;
-      }
-      .timeline {
-        grid-template-columns: 1fr;
-      }
-      .incluso-grid {
-        grid-template-columns: 1fr;
-      }
-      .portfolio-grid {
-        grid-template-columns: 1fr;
-      }
-      .nav-links {
-        display: none;
-      }
-      .hero-meta {
-        gap: 10px;
-      }
-      .fixed-mobile-cta {
-        display: block;
-      }
+    @media(max-width:900px){
+      .bento{grid-template-columns:1fr 1fr}
+      .bento-card:first-child{grid-row:auto}
+      .inc-g{grid-template-columns:repeat(2,1fr)}
+      .sec{padding:70px 20px}
+      .hero{padding:110px 20px 60px}
     }
-
-    @media (min-width: 481px) {
-      .fixed-mobile-cta {
-        display: none !important;
-      }
+    @media(max-width:640px){
+      .bento,.inc-g,.port-g{grid-template-columns:1fr}
+      .sec{padding:56px 16px}
+      .hero{padding:100px 16px 50px}
+      .nav-links{display:none}
+      .hero-m{gap:8px}
+      .pc{padding:32px 24px}
+      .p-n{font-size:40px}
+      .f-m{display:block}
     }
+    @media(min-width:641px){.f-m{display:none!important}}
+    @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
   </style>
 </head>
 <body>
 
-  <!-- ═══ NAV ═══ -->
+  <!-- NAV -->
   <nav class="nav">
     <div class="nav-inner">
-      <a href="/pagina-express-v3/apple.html" class="nav-logo">
-        <span class="nav-logo-square"></span>
-        Pixel.Co
-      </a>
+      <a href="/pagina-express-v3/apple.html" class="nav-l"><span class="sq"></span>Pixel.Co</a>
       <ul class="nav-links">
-        <li><a href="#como-funciona">Como Funciona</a></li>
+        <li><a href="#como-funciona">Como funciona</a></li>
         <li><a href="#exemplos">Exemplos</a></li>
-        <li><a href="#oferta">Preços</a></li>
+        <li><a href="#oferta">Precos</a></li>
         <li><a href="#faq">FAQ</a></li>
       </ul>
       <a href="https://pay.kiwify.com.br/nP6uq1x" class="nav-cta checkout-link">Comprar</a>
     </div>
   </nav>
 
-  <!-- ═══ HERO ═══ -->
+  <!-- HERO -->
   <section class="hero">
-    <p class="eyebrow" style="margin-bottom:14px">Landing pages profissionais · 3 dias úteis</p>
-    <h1 class="hero-h1">Seu serviço já é bom. <span class="italic">Sua página precisa estar à sua altura.</span></h1>
-    <p class="hero-sub">Landing page profissional no ar em 3 dias úteis. A partir de R$499. 7 dias de garantia.</p>
-
-    <div class="hero-actions">
-      <a href="https://pay.kiwify.com.br/nP6uq1x" class="btn-blue checkout-link">
-        Quero minha página
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
-        </svg>
-      </a>
-      <a href="#como-funciona" class="btn-outline">Como funciona →</a>
-    </div>
-
-    <div class="vsl-wrap">
-      <div class="vsl-wrap-inner">
-        <video id="vsl-video" poster="vsl-poster.jpg" preload="metadata" playsinline>
-          <source src="vsl.mp4" type="video/mp4">
-        </video>
-        <div class="play-overlay" id="vsl-play">
-          <div class="play-btn-circle">
-            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+    <div class="container">
+      <p class="hero-eyebrow">Landing pages profissionais · 3 dias uteis</p>
+      <h1 class="h-d">Seu servico ja e bom. <span class="i">Sua pagina precisa estar a sua altura.</span></h1>
+      <p class="hero-sub">Landing page profissional no ar em 3 dias uteis. A partir de R$499. 7 dias de garantia.</p>
+      <div class="hero-actions">
+        <a href="https://pay.kiwify.com.br/nP6uq1x" class="b-b checkout-link">
+          Quero minha pagina
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="#como-funciona" class="b-p">Como funciona</a>
+      </div>
+      <div class="vsl-w">
+        <div class="vsl-inner">
+          <video id="vsl-video" poster="vsl-poster.jpg" preload="metadata" playsinline><source src="vsl.mp4" type="video/mp4"></video>
+          <div class="play-o" id="vsl-play">
+            <div class="play-c"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="hero-meta">
-      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>3 dias úteis</span>
-      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>3 rodadas de ajuste</span>
-      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Publicada no ar</span>
-      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>7 dias de garantia</span>
+      <div class="hero-m">
+        <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>3 dias uteis</span>
+        <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>3 rodadas de ajuste</span>
+        <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Publicada no ar</span>
+        <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>7 dias de garantia</span>
+      </div>
     </div>
   </section>
 
   <script>
-    (function () {
-      var video = document.getElementById('vsl-video');
-      var overlay = document.getElementById('vsl-play');
-      if (video && overlay) {
-        overlay.addEventListener('click', function () { overlay.classList.add('hidden'); video.play().catch(function () { }); });
-        video.addEventListener('play', function () { overlay.classList.add('hidden'); });
-        video.addEventListener('pause', function () { if (video.ended) return; overlay.classList.remove('hidden'); });
-      }
-    })();
+    (function(){var v=document.getElementById('vsl-video'),o=document.getElementById('vsl-play');if(v&&o){o.addEventListener('click',function(){o.classList.add('hidden');v.play().catch(function(){})});v.addEventListener('play',function(){o.classList.add('hidden')});v.addEventListener('pause',function(){if(v.ended)return;o.classList.remove('hidden')})}})();
   </script>
 
-  <!-- ═══ PONTE ═══ -->
-  <section class="section light ponte">
+  <!-- PONTE -->
+  <section class="sec-l sec ponte">
     <div class="container">
-      <p>Todo mundo que precisa vender algo precisa de uma página de vendas. <em>E você merece uma página do tamanho do seu trabalho.</em></p>
+      <p>Todo mundo que precisa vender algo precisa de uma pagina de vendas. <em>E voce merece uma pagina do tamanho do seu trabalho.</em></p>
     </div>
   </section>
 
-  <!-- ═══ COMO FUNCIONA ═══ -->
-  <section class="section dark text-center" id="como-funciona">
+  <!-- COMO FUNCIONA (Bento) -->
+  <section class="sec sec-d tc" id="como-funciona">
     <div class="container">
-      <h2 class="section-h2">Comprou hoje. <span class="italic">Página no ar em 3 dias úteis.</span></h2>
-
-      <div class="timeline">
-        <div class="tl-card">
-          <div class="tl-step">Passo 1</div>
-          <div class="tl-day">Agora</div>
-          <h3>Compra</h3>
-          <ul>
-            <li>Pagamento por cartão de crédito (até 12x)</li>
-            <li>Checkout seguro pela Kiwify</li>
-            <li>7 dias de garantia — risco zero pra você</li>
-          </ul>
-        </div>
-        <div class="tl-card">
-          <div class="tl-step">Passo 2</div>
-          <div class="tl-day">Dia 01</div>
-          <h3>Briefing</h3>
-          <ul>
-            <li>Você responde 1 formulário de 20 min</li>
-            <li>A gente entende público, oferta e objeção</li>
-            <li>Define a estrutura e o ângulo da copy</li>
-          </ul>
-        </div>
-        <div class="tl-card">
-          <div class="tl-step">Passo 3</div>
-          <div class="tl-day">Dia 02</div>
-          <h3>Criação</h3>
-          <ul>
-            <li>Copy completa: headline, dobras e CTAs</li>
-            <li>Design com foco em conversão</li>
-            <li>Link de preview enviado com 1 dia útil</li>
-          </ul>
-        </div>
-        <div class="tl-card">
-          <div class="tl-step">Passo 4</div>
-          <div class="tl-day">Dia 03</div>
-          <h3>Ajustes &amp; publicação</h3>
-          <ul>
-            <li>Até 3 rodadas de ajustes inclusas</li>
-            <li>Pixel de tráfego e Analytics configurados</li>
-            <li>Página publicada no seu domínio</li>
-          </ul>
-        </div>
+      <h2 class="h-s">Comprou hoje. <span class="i">Pagina no ar em 3 dias uteis.</span></h2>
+      <div class="bento">
+        <div class="bento-card rv"><div class="step">Passo 1</div><div class="day">Agora</div><h3>Compra</h3><ul><li>Pagamento por cartao de credito (ate 12x)</li><li>Checkout seguro pela Kiwify</li><li>7 dias de garantia, risco zero pra voce</li></ul></div>
+        <div class="bento-card rv"><div class="step">Passo 2</div><div class="day">Dia 01</div><h3>Briefing</h3><ul><li>Voce responde 1 formulario de 20 min</li><li>A gente entende publico, oferta e objecao</li><li>Define a estrutura e o angulo da copy</li></ul></div>
+        <div class="bento-card rv"><div class="step">Passo 3</div><div class="day">Dia 02</div><h3>Criacao</h3><ul><li>Copy completa: headline, dobras e CTAs</li><li>Design com foco em conversao</li><li>Link de preview enviado com 1 dia util</li></ul></div>
+        <div class="bento-card rv"><div class="step">Passo 4</div><div class="day">Dia 03</div><h3>Ajustes & publicacao</h3><ul><li>Ate 3 rodadas de ajustes inclusas</li><li>Pixel de trafego e Analytics configurados</li><li>Pagina publicada no seu dominio</li></ul></div>
       </div>
+      <div class="guarantee rv"><p><strong>Pagamento antecipado com 7 dias de garantia.</strong> Se em 7 dias corridos a pagina nao estiver no ar do jeito que voce pediu, a gente devolve 100% do seu dinheiro. Sem burocracia. <strong>O risco e todo nosso.</strong></p></div>
+    </div>
+  </section>
 
-      <div class="guarantee-text">
-        <p><strong>Pagamento antecipado com 7 dias de garantia.</strong> Se em 7 dias corridos a página não estiver no ar do jeito que você pediu, a gente devolve 100% do seu dinheiro. Sem burocracia. <strong>O risco é todo nosso.</strong></p>
+  <!-- INCLUSO -->
+  <section class="sec sec-l tc">
+    <div class="container">
+      <h2 class="h-s" style="margin-bottom:6px">Pagina completa. <span class="i">Nao um template colorido</span> com seu nome no topo.</h2>
+      <div class="inc-g">
+        <div class="inc-i rv"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Copy completa (headline, dobras, CTAs)</span></div>
+        <div class="inc-i rv"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Pixel de trafego + Analytics</span></div>
+        <div class="inc-i rv"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>3 rodadas de ajustes</span></div>
+        <div class="inc-i rv"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Publicacao no seu dominio</span></div>
+        <div class="inc-i rv"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Formulario de contato integrado</span></div>
+        <div class="inc-i rv"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Mobile responsivo</span></div>
+      </div>
+      <p class="inc-note">hospedagem e dominio nao inclusos</p>
+    </div>
+  </section>
+
+  <!-- EXEMPLOS -->
+  <section class="sec sec-d tc" id="exemplos">
+    <div class="c-wide">
+      <h2 class="h-s">Paginas que <span class="i">nao parecem feitas no Canva</span> de domingo a noite.</h2>
+      <div class="port-g">
+        <div class="port-i rv"><img src="portfolio/portfolio-item1.webp" alt="" loading="lazy" decoding="async"></div>
+        <div class="port-i rv"><img src="portfolio/02-psicologa.webp" alt="Psicologa clinica" loading="lazy" decoding="async"></div>
+        <div class="port-i rv"><img src="portfolio/04-erica.webp" alt="Erica Dourado - Autoconstelacao" loading="lazy" decoding="async"></div>
+        <div class="port-i rv"><img src="portfolio/05-nutricionista.webp" alt="Nutricionista" loading="lazy" decoding="async"></div>
+        <div class="port-i rv"><img src="portfolio/portfolio-item6.webp" alt="" loading="lazy" decoding="async"></div>
+        <div class="port-i rv"><img src="portfolio/03-mafua.webp" alt="" loading="lazy" decoding="async"></div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ INCLUSO ═══ -->
-  <section class="section light text-center">
+  <!-- OFERTA -->
+  <section class="sec sec-l tc" id="oferta">
     <div class="container">
-      <h2 class="section-h2">Página completa. <span class="italic">Não um template colorido</span> com seu nome no topo.</h2>
-
-      <div class="incluso-grid">
-        <div class="inc-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Copy completa (headline, dobras, CTAs)</span></div>
-        <div class="inc-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Pixel de tráfego + Analytics</span></div>
-        <div class="inc-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>3 rodadas de ajustes</span></div>
-        <div class="inc-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Publicação no seu domínio</span></div>
-        <div class="inc-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Formulário de contato integrado</span></div>
-        <div class="inc-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Mobile responsivo</span></div>
-      </div>
-      <p class="incluso-note">hospedagem e domínio não inclusos</p>
-    </div>
-  </section>
-
-  <!-- ═══ EXEMPLOS ═══ -->
-  <section class="section dark text-center" id="exemplos">
-    <div class="container-wide">
-      <h2 class="section-h2">Páginas que <span class="italic">não parecem feitas no Canva</span> de domingo à noite.</h2>
-
-      <div class="portfolio-grid">
-        <div class="port-item"><img src="portfolio/portfolio-item1.webp" alt="" loading="lazy" decoding="async"></div>
-        <div class="port-item"><img src="portfolio/02-psicologa.webp" alt="Psicóloga clínica" loading="lazy" decoding="async"></div>
-        <div class="port-item"><img src="portfolio/04-erica.webp" alt="Erica Dourado — Autoconstelação" loading="lazy" decoding="async"></div>
-        <div class="port-item"><img src="portfolio/05-nutricionista.webp" alt="Nutricionista" loading="lazy" decoding="async"></div>
-        <div class="port-item"><img src="portfolio/portfolio-item6.webp" alt="" loading="lazy" decoding="async"></div>
-        <div class="port-item"><img src="portfolio/03-mafua.webp" alt="" loading="lazy" decoding="async"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ OFERTA ═══ -->
-  <section class="section light text-center" id="oferta">
-    <div class="container">
-      <h2 class="section-h2" style="margin-bottom:48px">Tudo que você precisa pra ir <span class="italic">pro ar.</span></h2>
-
-      <div class="pricing-card">
-        <div class="pricing-badge">Página premium · 7 dias de garantia</div>
-        <h3 class="tile-h3">Página de alta conversão, preparada para anúncios no Facebook, Meta e Google.</h3>
-
-        <div class="price-label">A partir de</div>
-        <div class="price-number"><span class="cur">R$</span>499</div>
-        <div class="price-installments">ou 12x de <span class="semibold">R$51,61</span> no cartão</div>
-
-        <ul class="price-features">
+      <h2 class="h-s" style="margin-bottom:44px">Tudo que voce precisa pra ir <span class="i">pro ar.</span></h2>
+      <div class="pc rv">
+        <div class="pc-b">Pagina premium · 7 dias de garantia</div>
+        <h3 class="h-t">Pagina de alta conversao, preparada para anuncios no Facebook, Meta e Google.</h3>
+        <div class="p-l">A partir de</div>
+        <div class="p-n"><span class="c">R$</span>499</div>
+        <div class="p-i">ou 12x de <strong>R$51,61</strong> no cartao</div>
+        <ul class="p-f">
           <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Copy completa + design + build</li>
           <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>3 rodadas de ajustes</li>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Página publicada no <span class="semibold">seu</span> domínio</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Pagina publicada no <strong>seu</strong> dominio</li>
           <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Pixel + Analytics</li>
           <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Mobile responsivo</li>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Entrega em <span class="semibold">3 dias úteis</span></li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Entrega em <strong>3 dias uteis</strong></li>
         </ul>
-
-        <a href="https://pay.kiwify.com.br/nP6uq1x" class="btn-blue checkout-link" style="font-size:17px;padding:10px 22px">
-          Quero minha página →
-        </a>
-        <div class="price-footnote">7 dias de garantia pela Kiwify · Parcelamos no cartão</div>
+        <a href="https://pay.kiwify.com.br/nP6uq1x" class="b-b checkout-link" style="font-size:17px;padding:10px 22px">Quero minha pagina &rarr;</a>
+        <div class="p-foot">7 dias de garantia pela Kiwify<br>Parcelamos no cartao · A gente entra em contato apos a compra</div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ FAQ ═══ -->
-  <section class="section dark" id="faq">
+  <!-- FAQ -->
+  <section class="sec sec-d" id="faq">
     <div class="container">
-      <h2 class="section-h2 text-center" style="margin-bottom:8px">Antes de mandar o WhatsApp.</h2>
-
-      <div class="faq-list">
-        <details class="faq-item">
-          <summary class="faq-q">Por que pagar antes? Não é arriscado?</summary>
-          <p class="faq-a">Pelo contrário. Você paga antecipado porque tem <strong>7 dias de garantia incondicional pela Kiwify</strong>. Se em 7 dias corridos a página não estiver no ar do jeito que você pediu, a gente devolve 100% do seu dinheiro. Sem burocracia, sem questionar nada. Isso mostra o quanto a gente confia no nosso trabalho — e você só tem a ganhar. <strong>O risco é todo nosso.</strong></p>
-        </details>
-        <details class="faq-item">
-          <summary class="faq-q">Não é melhor eu fazer no Canva?</summary>
-          <p class="faq-a">Você pode. Mas a página do Canva <strong>não aparece no Google</strong>, não carrega rápido e passa uma impressão amadora. Fora que você vai gastar 2 semanas tentando aprender enquanto perde cliente. A nossa página é indexada no Google, responsiva, profissional, preparada para tráfego pago — e fica pronta em 3 dias sem você fazer absolutamente nada.</p>
-        </details>
-        <details class="faq-item">
-          <summary class="faq-q">Como vocês entregam em 3 dias úteis?</summary>
-          <p class="faq-a">A gente trabalha com um briefing estruturado de 20 minutos e um processo de produção em paralelo (copy + design rodam juntos). Não é "rápido porque é raso" — é rápido porque o processo é específico e tem 50+ páginas de bagagem.</p>
-        </details>
-        <details class="faq-item">
-          <summary class="faq-q">E se eu não gostar do design?</summary>
-          <p class="faq-a">Você tem 3 rodadas de ajuste inclusas no preço. Na prática, mais de 80% das páginas saem aprovadas na primeira ou segunda. Se passar de 3 rodadas, conversamos.</p>
-        </details>
-        <details class="faq-item">
-          <summary class="faq-q">Posso editar a página depois?</summary>
-          <p class="faq-a">Sim. A gente entrega o link de edição do nosso editor e um vídeo curto explicando como mexer em texto, imagens e CTAs. Mexidas estruturais (nova dobra, redesign) a gente faz como ajuste pontual.</p>
-        </details>
-        <details class="faq-item">
-          <summary class="faq-q">E se eu já tiver domínio?</summary>
-          <p class="faq-a">Aí o plano R$499 é o seu. A gente faz o apontamento e publica no que você já tem. Funciona com .com.br, .com, .co, .digital — qualquer extensão.</p>
-        </details>
-        <details class="faq-item">
-          <summary class="faq-q">Quantos clientes vocês pegam por semana?</summary>
-          <p class="faq-a">5 slots de produção por semana. Quando enche, abre fila pra próxima. Tem semana com 3 vagas, tem semana cheia — a gente prefere entregar bem do que apertar.</p>
-        </details>
-        <details class="faq-item">
-          <summary class="faq-q">Funciona pra qualquer profissão?</summary>
-          <p class="faq-a">A gente é especializado em profissionais liberais — consultores, coaches, terapeutas, advogados, arquitetos, nutris, fisios. Se você vende um serviço de alto contato pra cliente final, é pra você.</p>
-        </details>
+      <h2 class="h-s tc" style="margin-bottom:4px">Antes de mandar o WhatsApp.</h2>
+      <div class="faq-l">
+        <details class="faq-i rv"><summary class="faq-q">Por que pagar antes? Nao e arriscado?</summary><p class="faq-a">Pelo contrario. Voce paga antecipado porque tem <strong>7 dias de garantia incondicional pela Kiwify</strong>. Se em 7 dias corridos a pagina nao estiver no ar do jeito que voce pediu, a gente devolve 100% do seu dinheiro. Sem burocracia, sem questionar nada. Isso mostra o quanto a gente confia no nosso trabalho, e voce so tem a ganhar. <strong>O risco e todo nosso.</strong></p></details>
+        <details class="faq-i rv"><summary class="faq-q">Nao e melhor eu fazer no Canva?</summary><p class="faq-a">Voce pode. Mas a pagina do Canva <strong>nao aparece no Google</strong>, nao carrega rapido e passa uma impressao amadora. Fora que voce vai gastar 2 semanas tentando aprender enquanto perde cliente. A nossa pagina e indexada no Google, responsiva, profissional, preparada para trafego pago, e fica pronta em 3 dias sem voce fazer absolutamente nada.</p></details>
+        <details class="faq-i rv"><summary class="faq-q">Como voces entregam em 3 dias uteis?</summary><p class="faq-a">A gente trabalha com um briefing estruturado de 20 minutos e um processo de producao em paralelo (copy + design rodam juntos). Nao e rapido porque e raso e rapido porque o processo e especifico e tem 50+ paginas de bagagem.</p></details>
+        <details class="faq-i rv"><summary class="faq-q">E se eu nao gostar do design?</summary><p class="faq-a">Voce tem 3 rodadas de ajuste inclusas no preco. Na pratica, mais de 80% das paginas saem aprovadas na primeira ou segunda. Se passar de 3 rodadas, conversamos.</p></details>
+        <details class="faq-i rv"><summary class="faq-q">Posso editar a pagina depois?</summary><p class="faq-a">Sim. A gente entrega o link de edicao do nosso editor e um video curto explicando como mexer em texto, imagens e CTAs. Mexidas estruturais (nova dobra, redesign) a gente faz como ajuste pontual.</p></details>
+        <details class="faq-i rv"><summary class="faq-q">E se eu ja tiver dominio?</summary><p class="faq-a">Ai o plano R$499 e o seu. A gente faz o apontamento e publica no que voce ja tem. Funciona com .com.br, .com, .co, .digital qualquer extensao.</p></details>
+        <details class="faq-i rv"><summary class="faq-q">Quantos clientes voces pegam por semana?</summary><p class="faq-a">5 slots de producao por semana. Quando enche, abre fila pra proxima. Tem semana com 3 vagas, tem semana cheia a gente prefere entregar bem do que apertar.</p></details>
+        <details class="faq-i rv"><summary class="faq-q">Funciona pra qualquer profissao?</summary><p class="faq-a">A gente e especializado em profissionais liberais consultores, coaches, terapeutas, advogados, arquitetos, nutris, fisios. Se voce vende um servico de alto contato pra cliente final, e pra voce.</p></details>
       </div>
     </div>
   </section>
 
-  <!-- ═══ FINAL CTA ═══ -->
-  <section class="section light text-center final-cta">
+  <!-- FINAL CTA -->
+  <section class="sec sec-l tc fc">
     <div class="container">
-      <h2 class="section-h2">Comprou hoje. <span class="italic">Página no ar</span> em 3 dias úteis. Por R$499.</h2>
-      <p class="body-17">Faz o pagamento agora na Kiwify, e a gente entra em contato pra começar o seu projeto. Entrega em até 3 dias úteis. 7 dias de garantia.</p>
-      <a href="https://pay.kiwify.com.br/nP6uq1x" class="btn-blue checkout-link" style="font-size:17px;padding:10px 22px">
-        Quero minha página por R$499
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
-        </svg>
+      <h2 class="h-s">Comprou hoje. <span class="i">Pagina no ar</span> em 3 dias uteis. Por R$499.</h2>
+      <p class="b-17">Faz o pagamento agora na Kiwify, e a gente entra em contato pra comecar o seu projeto. Entrega em ate 3 dias uteis. 7 dias de garantia.</p>
+      <a href="https://pay.kiwify.com.br/nP6uq1x" class="b-b checkout-link" style="font-size:17px;padding:10px 22px">
+        Quero minha pagina por R$499
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
-      <div class="body-12" style="margin-top:14px">7 dias de garantia pela Kiwify · Parcelamos no cartão · A gente entra em contato após a compra</div>
+      <div class="b-12" style="margin-top:14px">7 dias de garantia pela Kiwify · Parcelamos no cartao · A gente entra em contato apos a compra</div>
     </div>
   </section>
 
-  <!-- ═══ FOOTER ═══ -->
-  <section class="section dark" style="padding:0">
-    <footer class="footer">
-      <div class="footer-brand">
-        <span class="sq"></span>
-        Pixel.Co · landing pages express
-      </div>
-      <div>cnpj · todos os direitos reservados</div>
-    </footer>
-  </section>
+  <!-- FOOTER -->
+  <section class="sec-d sec" style="padding:0"><footer class="ft"><div class="ft-b"><span class="s"></span>Pixel.Co · landing pages express</div><div>cnpj · todos os direitos reservados</div></footer></section>
 
   <!-- Fixed mobile CTA -->
-  <a href="https://pay.kiwify.com.br/nP6uq1x" class="fixed-mobile-cta checkout-link">Quero minha página</a>
+  <a href="https://pay.kiwify.com.br/nP6uq1x" class="f-m checkout-link">Quero minha pagina</a>
 
-  <!-- UTMs script -->
+  <!-- UTMs + Reveal -->
   <script>
-    (function () {
-      var params = new URLSearchParams(window.location.search);
-      var utms = {};
-      ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'fbclid', 'gclid'].forEach(function (k) { var v = params.get(k); if (v) utms[k] = v; });
-      var utmString = Object.keys(utms).map(function (k) { return k + '=' + encodeURIComponent(utms[k]); }).join('&');
-      var links = document.querySelectorAll('.checkout-link');
-      links.forEach(function (l) { var b = l.getAttribute('href'); if (utmString) l.setAttribute('href', b + (b.indexOf('?') === -1 ? '?' : '&') + utmString); });
-    })();
+    (function(){var p=new URLSearchParams(window.location.search),u={};['utm_source','utm_medium','utm_campaign','utm_content','utm_term','fbclid','gclid'].forEach(function(k){var v=p.get(k);if(v)u[k]=v});var s=Object.keys(u).map(function(k){return k+'='+encodeURIComponent(u[k])}).join('&');document.querySelectorAll('.checkout-link').forEach(function(l){var b=l.getAttribute('href');if(s)l.setAttribute('href',b+(b.indexOf('?')===-1?'?':'&')+s)})})();
+    (function(){var e=document.querySelectorAll('.rv'),o=new IntersectionObserver(function(e){e.forEach(function(e){if(!e.isIntersecting)return;e.target.classList.add('in');o.unobserve(e.target)})},{threshold:.12});e.forEach(function(e){if(e.getBoundingClientRect().top<window.innerHeight)e.classList.add('in');else o.observe(e)})})();
   </script>
 
 </body>
