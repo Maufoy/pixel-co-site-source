@@ -67,7 +67,7 @@
     .hero-actions{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:48px}
 
     .vsl-w{max-width:680px;margin:0 auto;border-radius:16px;overflow:hidden;background:var(--bg-card);border:1px solid rgba(255,255,255,.06)}
-    .vsl-w video{width:100%;display:block;aspect-ratio:16/9;object-fit:cover}
+    .vsl-w vídeo{width:100%;display:block;aspect-ratio:16/9;object-fit:cover}
     .vsl-inner{position:relative}
     .play-o{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:transparent;cursor:pointer}
     .play-o.hidden{display:none}
@@ -212,7 +212,7 @@
       </div>
       <div class="vsl-w">
         <div class="vsl-inner">
-          <video id="vsl-video" poster="vsl-poster.jpg" preload="metadata" playsinline><source src="vsl.mp4" type="video/mp4"></video>
+          <vídeo id="vsl-vídeo" poster="vsl-poster.jpg" preload="metadata" playsinline><source src="vsl.mp4" type="vídeo/mp4"></vídeo>
           <div class="play-o" id="vsl-play">
             <div class="play-c"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
           </div>
@@ -228,7 +228,7 @@
   </section>
 
   <script>
-    (function(){var v=document.getElementById('vsl-video'),o=document.getElementById('vsl-play');if(v&&o){o.addEventListener('click',function(){o.classList.add('hidden');v.play().catch(function(){})});v.addEventListener('play',function(){o.classList.add('hidden')});v.addEventListener('pause',function(){if(v.ended)return;o.classList.remove('hidden')})}})();
+    (function(){var v=document.getElementById('vsl-vídeo'),o=document.getElementById('vsl-play');if(v&&o){o.addEventListener('click',function(){o.classList.add('hidden');v.play().catch(function(){})});v.addEventListener('play',function(){o.classList.add('hidden')});v.addEventListener('pause',function(){if(v.ended)return;o.classList.remove('hidden')})}})();
   </script>
 
   <!-- PONTE -->

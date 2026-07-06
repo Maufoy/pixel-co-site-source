@@ -35,6 +35,10 @@ const nextConfig = {
         destination: '/portfolio-sites/escrita-viva/index.html',
       },
       {
+        source: '/pagina-express-v4/',
+        destination: '/pagina-express-v4/index.html',
+      },
+      {
         source: '/leads/',
         destination: '/leads.html',
       },
