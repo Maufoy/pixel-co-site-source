@@ -339,12 +339,122 @@
   <!-- FOOTER -->
   <section class="sec-d sec" style="padding:0"><footer class="ft"><div class="ft-b"><span class="s"></span>Pixel.Co · landing pages express</div><div>cnpj · todos os direitos reservados</div></footer></section>
 
+  <!-- Lead capture modal -->
+  <div id="v4-lead-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:9999;align-items:center;justify-content:center;backdrop-filter:blur(6px);padding:20px;box-sizing:border-box;">
+    <div style="background:#fff;border-radius:20px;padding:32px 24px;max-width:400px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,0.15);font-family:system-ui,-apple-system,sans-serif;animation:modalFadeIn 0.3s ease;box-sizing:border-box;">
+      <h3 style="font-size:20px;font-weight:700;color:#1d1d1f;margin:0 0 4px;">Quase lá!</h3>
+      <p style="font-size:14px;color:#86868b;margin:0 0 20px;line-height:1.4">Preencha seus dados e siga para o checkout na Kiwify</p>
+      <form id="v4-lead-form">
+        <div style="margin-bottom:14px">
+          <label style="font-size:13px;font-weight:600;color:#1d1d1f;display:block;margin-bottom:4px">Nome <span style="color:#ff3b30">*</span></label>
+          <input type="text" id="v4-nome" required style="width:100%;padding:12px 14px;border-radius:12px;border:1.5px solid #d2d2d7;font-size:15px;font-family:inherit;outline:none;box-sizing:border-box;">
+        </div>
+        <div style="margin-bottom:14px">
+          <label style="font-size:13px;font-weight:600;color:#1d1d1f;display:block;margin-bottom:4px">WhatsApp <span style="color:#ff3b30">*</span></label>
+          <input type="tel" id="v4-telefone" required style="width:100%;padding:12px 14px;border-radius:12px;border:1.5px solid #d2d2d7;font-size:15px;font-family:inherit;outline:none;box-sizing:border-box;">
+        </div>
+        <div style="margin-bottom:20px">
+          <label style="font-size:13px;font-weight:600;color:#1d1d1f;display:block;margin-bottom:4px">E-mail</label>
+          <input type="email" id="v4-email" style="width:100%;padding:12px 14px;border-radius:12px;border:1.5px solid #d2d2d7;font-size:15px;font-family:inherit;outline:none;box-sizing:border-box;">
+        </div>
+        <button type="submit" id="v4-modal-enviar" style="width:100%;padding:14px 20px;border-radius:14px;border:none;background:#0071e3;color:#fff;font-size:16px;font-weight:600;cursor:pointer;box-sizing:border-box;">Ir para o checkout →</button>
+        <p style="font-size:11px;color:#86868b;text-align:center;margin:12px 0 0">Pagamento seguro via Kiwify · 7 dias de garantia</p>
+      </form>
+    </div>
+  </div>
+
   <!-- Fixed mobile CTA -->
   <a href="https://pay.kiwify.com.br/nP6uq1x" class="f-m checkout-link">Quero minha página</a>
 
-  <!-- UTMs + Reveal -->
+  <!-- UTMs + Lead capture -->
+  <style>
+    @keyframes modalFadeIn { from { opacity:0; transform:scale(0.95) translateY(10px); } to { opacity:1; transform:scale(1) translateY(0); } }
+  </style>
   <script>
-    (function(){var p=new URLSearchParams(window.location.search),u={};['utm_source','utm_medium','utm_campaign','utm_content','utm_term','fbclid','gclid'].forEach(function(k){var v=p.get(k);if(v)u[k]=v});var s=Object.keys(u).map(function(k){return k+'='+encodeURIComponent(u[k])}).join('&');document.querySelectorAll('.checkout-link').forEach(function(l){var b=l.getAttribute('href');if(s)l.setAttribute('href',b+(b.indexOf('?')===-1?'?':'&')+s)})})();
+    (function(){
+      var p=new URLSearchParams(window.location.search),u={};
+      ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','fbclid','gclid'].forEach(function(k){var v=p.get(k);if(v)u[k]=v});
+      var s=Object.keys(u).map(function(k){return k+'='+encodeURIComponent(u[k])}).join('&');
+
+      // Lead capture modal
+      var modal = document.getElementById('v4-lead-modal');
+      var form = document.getElementById('v4-lead-form');
+      var submitBtn = document.getElementById('v4-modal-enviar');
+
+      function abrirModalV4() {
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      }
+
+      function fecharModalV4() {
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+      }
+
+      // Intercept CTA clicks
+      document.querySelectorAll('.checkout-link').forEach(function(btn) {
+        var originalHref = btn.getAttribute('href');
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          // Store the target URL with UTMs
+          var targetUrl = originalHref;
+          if (s) targetUrl += (targetUrl.indexOf('?') === -1 ? '?' : '&') + s;
+          btn.dataset.targetUrl = targetUrl;
+          abrirModalV4();
+        });
+      });
+
+      // Handle form submit
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        var nome = document.getElementById('v4-nome').value.trim();
+        var telefone = document.getElementById('v4-telefone').value.trim();
+        var email = document.getElementById('v4-email').value.trim();
+        if (!nome || !telefone) return;
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'REDIRECIONANDO...';
+
+        // Get the Kiwify URL from the clicked button
+        var targetUrl = document.querySelector('.checkout-link')?.dataset?.targetUrl ||
+          'https://pay.kiwify.com.br/nP6uq1x';
+
+        var leadId = 'lead-' + Date.now() + '-' + Math.random().toString(36).slice(2,8);
+
+        // Save lead
+        fetch('/api/lead', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ nome: nome, email: email || 'sem@email.com', telefone: telefone, eventId: leadId, stage: 'lead_captured', sourceUrl: window.location.href })
+        }).catch(function(){});
+
+        // Save to checkout-lead tracking (for n8n recovery)
+        fetch('/api/checkout-lead', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ leadId: leadId, nome: nome, email: email, telefone: telefone, status: 'lead' })
+        }).catch(function(){});
+
+        // Trigger n8n recovery workflow
+        fetch('https://n8n.pixelco.com.br/webhook/checkout-recovery', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ leadId: leadId, nome: nome, telefone: telefone })
+        }).catch(function(){});
+
+        // Store lead info for briefing
+        try { sessionStorage.setItem('pagina_express_lead', JSON.stringify({ nome: nome, email: email, telefone: telefone })); } catch(e){}
+
+        // Redirect to Kiwify with leadId + success redirect
+        targetUrl += (targetUrl.indexOf('?') === -1 ? '?' : '&') + 'leadId=' + encodeURIComponent(leadId);
+        targetUrl += '&success_url=' + encodeURIComponent('https://pixelco.com.br/briefing-pos-compra/?leadId=' + leadId);
+        window.location.href = targetUrl;
+      });
+
+      // Close modal on overlay click
+      modal.addEventListener('click', function(e) { if (e.target === modal) fecharModalV4(); });
+    })();
+
     (function(){var e=document.querySelectorAll('.rv'),o=new IntersectionObserver(function(e){e.forEach(function(e){if(!e.isIntersecting)return;e.target.classList.add('in');o.unobserve(e.target)})},{threshold:.12});e.forEach(function(e){if(e.getBoundingClientRect().top<window.innerHeight)e.classList.add('in');else o.observe(e)})})();
   </script>
 

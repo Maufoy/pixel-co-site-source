@@ -2255,8 +2255,34 @@ document.addEventListener('DOMContentLoaded', function() {
       })
     }).catch(function(){});
 
-    // Redirect to Kiwify with leadId
+    // Save to checkout-lead tracking (for n8n recovery)
+    fetch('/api/checkout-lead', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        leadId: leadId,
+        nome: nome,
+        email: email,
+        telefone: telefone,
+        status: 'lead'
+      })
+    }).catch(function(){});
+
+    // Trigger n8n recovery workflow (fire and forget)
+    var n8nUrl = 'https://n8n.pixelco.com.br/webhook/checkout-recovery';
+    fetch(n8nUrl, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        leadId: leadId,
+        nome: nome,
+        telefone: telefone
+      })
+    }).catch(function(){});
+
+    // Redirect to Kiwify with leadId + success_redirect to briefing
     url += (url.indexOf('?') === -1 ? '?' : '&') + 'leadId=' + encodeURIComponent(leadId);
+    url += '&success_url=' + encodeURIComponent('https://pixelco.com.br/briefing-pos-compra/?leadId=' + leadId);
     window.location.href = url;
   });
 
