@@ -7,7 +7,7 @@
     "build": "next build",
     "export": "next build",
     "start": "next start",
-    "deploy": "next build && rm -rf out/portfolio-sites out/pagina-express-v1 out/logos && cp -r public/portfolio-sites out/portfolio-sites && cp -r public/pagina-express-v1 out/pagina-express-v1 && cp -r public/logos out/logos && cp public/CNAME out/CNAME && gh-pages -d out"
+    "deploy": "next build && rm -rf out/portfolio-sites out/pagina-express-v1 out/pagina-express-v3 out/logos && cp -r public/portfolio-sites out/portfolio-sites && cp -r public/pagina-express-v1 out/pagina-express-v1 && cp -r public/pagina-express-v3 out/pagina-express-v3 && cp -r public/logos out/logos && cp public/CNAME out/CNAME && gh-pages -d out"
   },
   "dependencies": {
     "framer-motion": "11.3.8",
