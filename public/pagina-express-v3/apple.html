@@ -8,17 +8,12 @@
       j.async = true; j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
       f.parentNode.insertBefore(j, f);
     })(window, document, 'script', 'dataLayer', 'GTM-MVWRMS98');</script>
-  <!-- End Google Tag Manager -->
   <script>
     (function () {
       var eventId = 'pv-' + (window.crypto && window.crypto.randomUUID ? window.crypto.randomUUID() : Date.now() + '-' + Math.random().toString(36).slice(2, 10));
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({ event: 'pageView', eventID: eventId, pagePath: window.location.pathname });
-      fetch('/api/track/pageview', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ eventId: eventId, url: window.location.href, pathname: window.location.pathname }),
-        keepalive: true
-      }).catch(function () { });
+      fetch('/api/track/pageview', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ eventId: eventId, url: window.location.href, pathname: window.location.pathname }), keepalive: true }).catch(function () { });
     })();
   </script>
   <script>
@@ -26,13 +21,8 @@
       try {
         var params = new URLSearchParams(window.location.search);
         var utmData = {};
-        ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'fbclid', 'gclid'].forEach(function (k) {
-          var v = params.get(k);
-          if (v) utmData[k] = v;
-        });
-        if (Object.keys(utmData).length > 0) {
-          sessionStorage.setItem('pagina_express_utms', JSON.stringify(utmData));
-        }
+        ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'fbclid', 'gclid'].forEach(function (k) { var v = params.get(k); if (v) utmData[k] = v; });
+        if (Object.keys(utmData).length > 0) sessionStorage.setItem('pagina_express_utms', JSON.stringify(utmData));
       } catch (e) { }
     })();
   </script>
@@ -44,15 +34,13 @@
   <meta property="og:description" content="Landing page profissional no ar em 3 dias úteis. A partir de R$499. Comprou hoje, página no ar em 3 dias.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://pixelco.com.br/pagina-express-v3/apple.html">
-  <link rel="icon" type="image/svg+xml"
-    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23000000'/%3E%3Crect x='22' y='22' width='20' height='20' rx='4' fill='%23ffffff'/%3E%3C/svg%3E">
-
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23000000'/%3E%3Crect x='22' y='22' width='20' height='20' rx='4' fill='%23ffffff'/%3E%3C/svg%3E">
   <style>
-    /* ═══════════════════════════════════════
+    /* ═══════════════════════════════════════════
        APPLE DESIGN SYSTEM — Página Express V4
-       ═══════════════════════════════════════ */
+       SF Pro via system-ui · single accent blue
+       ═══════════════════════════════════════════ */
 
-    /* ── Reset ── */
     *,
     *::before,
     *::after {
@@ -80,7 +68,6 @@
       max-width: 100vw;
     }
 
-    /* ── Apple Color Tokens ── */
     :root {
       --black: #000000;
       --light-gray: #f5f5f7;
@@ -93,48 +80,38 @@
       --white: #ffffff;
       --nav-bg: rgba(0, 0, 0, 0.8);
       --card-shadow: rgba(0, 0, 0, 0.22) 3px 5px 30px 0px;
-      --section-gap: 0px;
     }
 
     /* ── Typography ── */
-    h1,
-    h2,
-    h3,
-    h4 {
-      font-weight: 600;
-      letter-spacing: -0.28px;
-      line-height: 1.07;
-    }
-
-    .display-hero {
+    .hero-h1 {
       font-size: clamp(32px, 5.5vw, 56px);
       font-weight: 600;
       line-height: 1.07;
       letter-spacing: -0.28px;
     }
 
-    .section-heading {
+    .section-h2 {
       font-size: clamp(28px, 4vw, 40px);
       font-weight: 600;
       line-height: 1.10;
       letter-spacing: -0.28px;
     }
 
-    .tile-heading {
-      font-size: clamp(22px, 2.5vw, 28px);
+    .tile-h3 {
+      font-size: clamp(20px, 2.2vw, 28px);
       font-weight: 400;
       line-height: 1.14;
       letter-spacing: 0.196px;
     }
 
-    .body-text {
+    .body-17 {
       font-size: 17px;
       font-weight: 400;
       line-height: 1.47;
       letter-spacing: -0.374px;
     }
 
-    .caption-text {
+    .body-14 {
       font-size: 14px;
       font-weight: 400;
       line-height: 1.29;
@@ -142,7 +119,7 @@
       color: var(--text-secondary);
     }
 
-    .micro-text {
+    .body-12 {
       font-size: 12px;
       font-weight: 400;
       line-height: 1.33;
@@ -150,90 +127,131 @@
       color: var(--text-tertiary);
     }
 
-    strong,
+    .eyebrow {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+    }
+    .dark .eyebrow {
+      color: rgba(255, 255, 255, 0.45);
+    }
+
     .semibold {
       font-weight: 600;
     }
-
-    em,
     .italic {
       font-style: italic;
     }
 
-    a {
-      color: var(--link-blue);
-      text-decoration: none;
-      transition: opacity 0.2s;
+    /* ── Section containers ── */
+    .section {
+      padding: 100px 24px;
     }
-    a:hover {
-      text-decoration: underline;
-    }
-
-    /* ── Labels / Eyebrow ── */
-    .apple-label {
-      display: inline-block;
-      font-size: 12px;
-      font-weight: 400;
-      letter-spacing: -0.12px;
-      color: var(--text-tertiary);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 12px;
-    }
-
-    /* ── Layout ── */
-    .section-wrap {
-      width: 100%;
-      padding: 80px 24px;
-    }
-
-    .section-wrap.dark {
+    .section.dark {
       background: var(--black);
       color: var(--white);
     }
-    .section-wrap.dark .body-text {
-      color: rgba(255, 255, 255, 0.85);
-    }
-    .section-wrap.dark .caption-text {
+    .section.dark .body-14 {
       color: rgba(255, 255, 255, 0.65);
     }
-    .section-wrap.dark .micro-text {
-      color: rgba(255, 255, 255, 0.45);
+    .section.dark .body-17 {
+      color: rgba(255, 255, 255, 0.85);
     }
-    .section-wrap.dark a {
-      color: var(--link-light);
-    }
-
-    .section-wrap.light {
+    .section.light {
       background: var(--light-gray);
       color: var(--near-black);
     }
-
-    .section-wrap.white {
+    .section.white {
       background: var(--white);
-      color: var(--near-black);
     }
 
     .container {
       max-width: 980px;
       margin: 0 auto;
     }
-
     .container-wide {
       max-width: 1200px;
       margin: 0 auto;
     }
-
     .text-center {
       text-align: center;
     }
-    .text-left {
-      text-align: left;
+
+    /* ── Apple Navigation ── */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      height: 44px;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 22px;
     }
 
-    /* ── Apple Pill Buttons ── */
+    .nav-inner {
+      max-width: 980px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-    .btn-apple-blue {
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255, 255, 255, 0.92);
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: -0.12px;
+      text-decoration: none;
+    }
+
+    .nav-logo-square {
+      width: 16px;
+      height: 16px;
+      border-radius: 3px;
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .nav-cta {
+      color: var(--link-light);
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: -0.12px;
+      text-decoration: none;
+    }
+    .nav-cta:hover {
+      text-decoration: underline;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: -0.12px;
+      text-decoration: none;
+    }
+    .nav-links a:hover {
+      color: rgba(255, 255, 255, 1);
+    }
+
+    /* ── Apple buttons ── */
+    .btn-blue {
       display: inline-flex;
       align-items: center;
       gap: 6px;
@@ -242,40 +260,41 @@
       font-size: 17px;
       font-weight: 400;
       line-height: 1;
-      padding: 8px 15px;
+      padding: 8px 16px;
       border-radius: 8px;
-      border: 1px solid transparent;
+      border: none;
       cursor: pointer;
       text-decoration: none;
       transition: opacity 0.2s;
     }
-    .btn-apple-blue:hover {
+    .btn-blue:hover {
       opacity: 0.85;
       text-decoration: none;
     }
 
-    .btn-apple-dark {
+    .btn-outline {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      background: var(--near-black);
+      gap: 4px;
+      background: transparent;
       color: var(--white);
-      font-size: 17px;
+      font-size: 14px;
       font-weight: 400;
-      line-height: 1;
-      padding: 8px 15px;
-      border-radius: 8px;
-      border: 1px solid transparent;
+      line-height: 1.43;
+      letter-spacing: -0.224px;
+      padding: 5px 14px;
+      border-radius: 980px;
+      border: 1px solid rgba(255, 255, 255, 0.6);
       cursor: pointer;
       text-decoration: none;
       transition: opacity 0.2s;
     }
-    .btn-apple-dark:hover {
-      opacity: 0.85;
+    .btn-outline:hover {
+      opacity: 0.7;
       text-decoration: none;
     }
 
-    .btn-apple-pill {
+    .btn-outline-blue {
       display: inline-flex;
       align-items: center;
       gap: 4px;
@@ -285,611 +304,455 @@
       font-weight: 400;
       line-height: 1.43;
       letter-spacing: -0.224px;
-      padding: 6px 14px;
+      padding: 5px 14px;
       border-radius: 980px;
       border: 1px solid var(--link-blue);
       cursor: pointer;
       text-decoration: none;
       transition: opacity 0.2s;
     }
-    .btn-apple-pill:hover {
-      opacity: 0.7;
-      text-decoration: none;
-    }
-    .section-wrap.dark .btn-apple-pill {
-      color: var(--link-light);
-      border-color: var(--link-light);
-    }
-
-    .btn-apple-pill-large {
-      font-size: 17px;
-      padding: 8px 18px;
-      border-radius: 980px;
-    }
-
-    .btn-apple-white-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      background: transparent;
-      color: var(--white);
-      font-size: 14px;
-      font-weight: 400;
-      line-height: 1.43;
-      letter-spacing: -0.224px;
-      padding: 6px 14px;
-      border-radius: 980px;
-      border: 1px solid var(--white);
-      cursor: pointer;
-      text-decoration: none;
-      transition: opacity 0.2s;
-    }
-    .btn-apple-white-pill:hover {
+    .btn-outline-blue:hover {
       opacity: 0.7;
       text-decoration: none;
     }
 
-    /* ── Apple Navigation ── */
-    .apple-nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      height: 48px;
-      background: rgba(0, 0, 0, 0.8);
-      backdrop-filter: saturate(180%) blur(20px);
-      -webkit-backdrop-filter: saturate(180%) blur(20px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0 20px;
-    }
-
-    .apple-nav-inner {
-      max-width: 980px;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .apple-nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      color: rgba(255, 255, 255, 0.9);
-      font-size: 12px;
-      font-weight: 400;
-      letter-spacing: -0.12px;
-      text-decoration: none;
-    }
-    .apple-nav-logo svg {
-      width: 18px;
-      height: 48px;
-      fill: rgba(255, 255, 255, 0.9);
-    }
-
-    .apple-nav-links {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-      list-style: none;
-    }
-    .apple-nav-links a {
-      color: rgba(255, 255, 255, 0.85);
-      font-size: 12px;
-      font-weight: 400;
-      letter-spacing: -0.12px;
-      text-decoration: none;
-      transition: opacity 0.2s;
-    }
-    .apple-nav-links a:hover {
-      opacity: 0.65;
-      text-decoration: none;
-    }
-
-    .apple-nav-cta {
-      font-size: 12px;
-      font-weight: 400;
-      color: var(--link-light);
-      text-decoration: none;
-    }
-    .apple-nav-cta:hover {
-      text-decoration: underline;
-    }
-
-    /* ── Hero Section ── */
-    .hero-apple {
-      padding: 120px 24px 80px;
+    /* ── Hero ── */
+    .hero {
+      padding: 130px 24px 80px;
       background: var(--black);
       color: var(--white);
       text-align: center;
     }
 
-    .hero-apple .eyebrow {
-      font-size: 12px;
-      font-weight: 400;
-      letter-spacing: 0.5px;
-      color: rgba(255, 255, 255, 0.5);
-      text-transform: uppercase;
-      margin-bottom: 14px;
+    .hero .hero-h1 {
+      max-width: 740px;
+      margin: 0 auto 14px;
     }
 
-    .hero-apple .hero-headline {
-      max-width: 720px;
-      margin: 0 auto 16px;
-    }
-
-    .hero-apple .hero-sub {
+    .hero-sub {
       font-size: 21px;
       font-weight: 400;
       line-height: 1.19;
       letter-spacing: 0.231px;
       color: rgba(255, 255, 255, 0.85);
-      max-width: 600px;
-      margin: 0 auto 40px;
+      max-width: 620px;
+      margin: 0 auto 32px;
     }
 
-    .hero-apple .hero-actions {
+    .hero-actions {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 16px;
+      gap: 18px;
       flex-wrap: wrap;
-      margin-bottom: 48px;
+      margin-bottom: 50px;
     }
 
     /* ── VSL Player ── */
-    .vsl-player-apple {
-      position: relative;
-      max-width: 720px;
+    .vsl-wrap {
+      max-width: 740px;
       margin: 0 auto;
-      border-radius: 12px;
+      border-radius: 14px;
       overflow: hidden;
       background: #1a1a1a;
     }
-
-    .vsl-player-apple video {
+    .vsl-wrap video {
       width: 100%;
       display: block;
       aspect-ratio: 16 / 9;
       object-fit: cover;
     }
 
-    .vsl-player-apple .play-overlay {
+    .play-overlay {
       position: absolute;
       inset: 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(0, 0, 0, 0.3);
+      background: transparent;
       cursor: pointer;
-      transition: background 0.3s;
     }
-    .vsl-player-apple .play-overlay:hover {
-      background: rgba(0, 0, 0, 0.2);
-    }
-    .vsl-player-apple .play-overlay.hidden {
+    .play-overlay.hidden {
       display: none;
     }
-    .vsl-player-apple .play-overlay svg {
-      width: 56px;
-      height: 56px;
-      fill: rgba(255, 255, 255, 0.85);
-      background: rgba(210, 210, 215, 0.2);
+    .play-btn-circle {
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
-      padding: 14px;
-      backdrop-filter: blur(4px);
-    }
-
-    .hero-trust-apple {
+      background: rgba(255, 255, 255, 0.12);
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 28px;
-      flex-wrap: wrap;
-      margin-top: 40px;
+      backdrop-filter: blur(8px);
+      transition: background 0.3s;
     }
-    .hero-trust-apple span {
+    .play-overlay:hover .play-btn-circle {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    .play-btn-circle svg {
+      width: 24px;
+      height: 24px;
+      fill: var(--white);
+      margin-left: 3px;
+    }
+
+    .vsl-wrap-inner {
+      position: relative;
+    }
+
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+      margin-top: 36px;
+    }
+    .hero-meta span {
       display: flex;
       align-items: center;
       gap: 6px;
       font-size: 14px;
       font-weight: 400;
       letter-spacing: -0.224px;
-      color: rgba(255, 255, 255, 0.65);
+      color: rgba(255, 255, 255, 0.55);
     }
-    .hero-trust-apple span svg {
-      width: 14px;
-      height: 14px;
-      stroke: rgba(255, 255, 255, 0.5);
+    .hero-meta span svg {
+      width: 12px;
+      height: 12px;
+      stroke: rgba(255, 255, 255, 0.35);
       stroke-width: 2;
       fill: none;
     }
 
     /* ── Ponte ── */
-    .ponte-apple {
-      padding: 80px 24px;
+    .ponte {
+      padding: 90px 24px;
       text-align: center;
     }
-    .ponte-apple .container {
-      max-width: 700px;
-    }
-    .ponte-apple p {
+    .ponte p {
       font-size: clamp(20px, 2.5vw, 28px);
       font-weight: 400;
       line-height: 1.14;
       letter-spacing: 0.196px;
       color: var(--near-black);
+      max-width: 680px;
+      margin: 0 auto;
     }
-    .ponte-apple em {
+    .ponte em {
       color: var(--apple-blue);
     }
 
-    /* ── Como Funciona (Timeline) ── */
-    .timeline-apple {
+    /* ── Timeline ── */
+    .timeline {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-      margin-top: 48px;
+      gap: 14px;
+      margin-top: 52px;
     }
 
-    .tl-card-apple {
+    .tl-card {
       background: #1a1a1a;
       border-radius: 12px;
-      padding: 28px 20px;
+      padding: 28px 18px;
       text-align: center;
     }
 
-    .tl-card-apple .tl-step {
-      font-size: 14px;
-      font-weight: 400;
-      letter-spacing: -0.224px;
-      color: var(--apple-blue);
-      margin-bottom: 8px;
-    }
-
-    .tl-card-apple .tl-day {
-      font-size: 12px;
+    .tl-step {
+      font-size: 13px;
       font-weight: 400;
       letter-spacing: -0.12px;
-      color: rgba(255, 255, 255, 0.45);
-      margin-bottom: 12px;
+      color: var(--apple-blue);
+      margin-bottom: 6px;
     }
 
-    .tl-card-apple h3 {
-      font-size: 21px;
+    .tl-day {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: -0.08px;
+      color: rgba(255, 255, 255, 0.35);
+      margin-bottom: 14px;
+    }
+
+    .tl-card h3 {
+      font-size: 20px;
       font-weight: 600;
       line-height: 1.19;
-      letter-spacing: 0.231px;
-      margin-bottom: 12px;
+      letter-spacing: 0.2px;
       color: var(--white);
+      margin-bottom: 10px;
     }
 
-    .tl-card-apple ul {
+    .tl-card ul {
       list-style: none;
       text-align: left;
     }
-    .tl-card-apple ul li {
-      font-size: 14px;
+    .tl-card li {
+      font-size: 13px;
       font-weight: 400;
-      line-height: 1.29;
-      letter-spacing: -0.224px;
-      color: rgba(255, 255, 255, 0.7);
-      padding: 4px 0 4px 16px;
+      line-height: 1.3;
+      letter-spacing: -0.12px;
+      color: rgba(255, 255, 255, 0.6);
+      padding: 3px 0 3px 14px;
       position: relative;
     }
-    .tl-card-apple ul li::before {
+    .tl-card li::before {
       content: '';
       position: absolute;
       left: 0;
-      top: 11px;
-      width: 5px;
-      height: 5px;
+      top: 10px;
+      width: 4px;
+      height: 4px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.25);
     }
 
-    /* ── Guarantee Badge (Apple style) ── */
-    .guarantee-badge-apple {
+    .guarantee-text {
       max-width: 560px;
-      margin: 48px auto 0;
-      padding: 20px 28px;
+      margin: 44px auto 0;
+      padding: 18px 24px;
       background: #1a1a1a;
-      border-radius: 12px;
+      border-radius: 10px;
       text-align: center;
     }
-    .guarantee-badge-apple strong {
-      color: var(--apple-blue);
-    }
-    .guarantee-badge-apple p {
+    .guarantee-text p {
       font-size: 14px;
       font-weight: 400;
-      line-height: 1.43;
+      line-height: 1.45;
       letter-spacing: -0.224px;
-      color: rgba(255, 255, 255, 0.75);
+      color: rgba(255, 255, 255, 0.65);
+    }
+    .guarantee-text strong {
+      color: var(--white);
     }
 
-    /* ── Incluso Grid ── */
-    .incluso-grid-apple {
+    /* ── Incluso ── */
+    .incluso-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
+      gap: 12px;
       margin-top: 48px;
     }
-
-    .inc-item-apple {
+    .inc-item {
       display: flex;
       align-items: flex-start;
       gap: 12px;
       background: var(--white);
-      border-radius: 12px;
-      padding: 20px;
-      box-shadow: none;
+      border-radius: 10px;
+      padding: 18px 20px;
     }
-    .inc-item-apple svg {
-      width: 18px;
-      height: 18px;
-      fill: none;
-      stroke: var(--apple-blue);
-      stroke-width: 2.5;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-    .inc-item-apple span {
-      font-size: 15px;
-      font-weight: 400;
-      line-height: 1.4;
-      letter-spacing: -0.224px;
-      color: var(--near-black);
-    }
-
-    .incluso-note-apple {
-      font-size: 12px;
-      font-weight: 400;
-      letter-spacing: -0.12px;
-      color: var(--text-tertiary);
-      text-align: center;
-      margin-top: 24px;
-    }
-
-    /* ── Portfolio / Examples ── */
-    .examples-grid-apple {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-top: 48px;
-    }
-
-    .ex-card-apple {
-      border-radius: 12px;
-      overflow: hidden;
-      background: #1a1a1a;
-    }
-
-    .ex-card-apple .browser-mockup {
-      width: 100%;
-    }
-    .ex-card-apple .browser-mockup .browser-screen {
-      width: 100%;
-    }
-    .ex-card-apple .browser-mockup img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    /* ── Oferta Card ── */
-    .offer-card-apple {
-      max-width: 600px;
-      margin: 0 auto;
-      background: var(--white);
-      border-radius: 16px;
-      padding: 48px 40px;
-      text-align: center;
-      box-shadow: var(--card-shadow);
-    }
-
-    .offer-badge-apple {
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      color: var(--apple-blue);
-      margin-bottom: 8px;
-    }
-
-    .offer-card-apple h3 {
-      font-size: 28px;
-      font-weight: 400;
-      line-height: 1.14;
-      letter-spacing: 0.196px;
-      color: var(--near-black);
-      margin-bottom: 32px;
-    }
-
-    .offer-price-wrap-apple {
-      margin-bottom: 32px;
-    }
-    .offer-price-text-apple {
-      font-size: 14px;
-      font-weight: 400;
-      letter-spacing: -0.224px;
-      color: var(--text-secondary);
-    }
-    .offer-price-apple {
-      font-size: 48px;
-      font-weight: 600;
-      line-height: 1.07;
-      letter-spacing: -0.28px;
-      color: var(--near-black);
-      margin: 4px 0;
-    }
-    .offer-price-apple .cur {
-      font-size: 24px;
-      vertical-align: super;
-    }
-    .offer-price-sub-apple {
-      font-size: 14px;
-      font-weight: 400;
-      letter-spacing: -0.224px;
-      color: var(--text-secondary);
-    }
-
-    .offer-list-apple {
-      list-style: none;
-      text-align: left;
-      max-width: 380px;
-      margin: 0 auto 32px;
-    }
-    .offer-list-apple li {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 15px;
-      font-weight: 400;
-      line-height: 1.4;
-      letter-spacing: -0.224px;
-      color: var(--near-black);
-      padding: 6px 0;
-    }
-    .offer-list-apple li svg {
+    .inc-item svg {
       width: 16px;
       height: 16px;
       fill: none;
       stroke: var(--apple-blue);
       stroke-width: 2.5;
       flex-shrink: 0;
+      margin-top: 3px;
     }
-
-    .offer-foot-apple {
+    .inc-item span {
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.4;
+      letter-spacing: -0.224px;
+      color: var(--near-black);
+    }
+    .incluso-note {
       font-size: 12px;
       font-weight: 400;
       letter-spacing: -0.12px;
       color: var(--text-tertiary);
-      margin-top: 16px;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    /* ── Portfolio ── */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 48px;
+    }
+    .port-item {
+      border-radius: 12px;
+      overflow: hidden;
+      background: #1a1a1a;
+    }
+    .port-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ── Pricing ── */
+    .pricing-card {
+      max-width: 560px;
+      margin: 0 auto;
+      background: var(--white);
+      border-radius: 14px;
+      padding: 44px 36px;
+      text-align: center;
+      box-shadow: var(--card-shadow);
+    }
+    .pricing-badge {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: var(--apple-blue);
+      margin-bottom: 6px;
+    }
+    .pricing-card .tile-h3 {
+      margin-bottom: 28px;
+    }
+    .price-label {
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: -0.224px;
+      color: var(--text-secondary);
+    }
+    .price-number {
+      font-size: 48px;
+      font-weight: 600;
+      line-height: 1.07;
+      letter-spacing: -0.28px;
+      color: var(--near-black);
+      margin: 2px 0;
+    }
+    .price-number .cur {
+      font-size: 24px;
+      vertical-align: super;
+    }
+    .price-installments {
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: -0.224px;
+      color: var(--text-secondary);
+      margin-bottom: 28px;
+    }
+    .price-features {
+      list-style: none;
+      text-align: left;
+      max-width: 340px;
+      margin: 0 auto 28px;
+    }
+    .price-features li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.35;
+      letter-spacing: -0.224px;
+      color: var(--near-black);
+      padding: 5px 0;
+    }
+    .price-features li svg {
+      width: 15px;
+      height: 15px;
+      fill: none;
+      stroke: var(--apple-blue);
+      stroke-width: 2.5;
+      flex-shrink: 0;
+    }
+    .price-footnote {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: -0.12px;
+      color: var(--text-tertiary);
+      margin-top: 14px;
     }
 
     /* ── FAQ ── */
-    .faq-list-apple {
-      max-width: 700px;
+    .faq-list {
+      max-width: 680px;
       margin: 48px auto 0;
     }
-
-    .faq-item-apple {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 18px 0;
+    .faq-item {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 16px 0;
     }
-    .section-wrap.light .faq-item-apple {
-      border-color: rgba(0, 0, 0, 0.06);
+    .faq-item:first-child {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
     }
-
-    .faq-q-apple {
+    .faq-q {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      font-size: 17px;
+      font-size: 16px;
       font-weight: 500;
-      line-height: 1.24;
+      line-height: 1.25;
       letter-spacing: -0.374px;
       cursor: pointer;
       user-select: none;
       list-style: none;
-    }
-    .faq-q-apple::-webkit-details-marker {
-      display: none;
-    }
-    .faq-q-apple::after {
-      content: '+';
-      font-size: 20px;
-      font-weight: 300;
-      color: rgba(255, 255, 255, 0.4);
-      transition: transform 0.3s;
-    }
-    .section-wrap.light .faq-q-apple::after {
-      color: rgba(0, 0, 0, 0.3);
-    }
-    details[open] .faq-q-apple::after {
-      transform: rotate(45deg);
-    }
-
-    .faq-a-apple {
-      font-size: 15px;
-      font-weight: 400;
-      line-height: 1.5;
-      letter-spacing: -0.224px;
-      color: rgba(255, 255, 255, 0.7);
-      padding-top: 12px;
-      max-width: 620px;
-    }
-    .section-wrap.light .faq-a-apple {
-      color: var(--text-secondary);
-    }
-    .faq-a-apple strong {
       color: var(--white);
     }
-    .section-wrap.light .faq-a-apple strong {
-      color: var(--near-black);
+    .faq-q::-webkit-details-marker {
+      display: none;
+    }
+    .faq-q::after {
+      content: '';
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.4)' stroke-width='2' stroke-linecap='round'%3E%3Cline x1='12' y1='5' x2='12' y2='19'/%3E%3Cline x1='5' y1='12' x2='19' y2='12'/%3E%3C/svg%3E") center/contain no-repeat;
+      transition: transform 0.25s;
+    }
+    details[open] .faq-q::after {
+      transform: rotate(45deg);
+    }
+    .faq-a {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.55;
+      letter-spacing: -0.224px;
+      color: rgba(255, 255, 255, 0.6);
+      padding-top: 10px;
+      max-width: 600px;
+    }
+    .faq-a strong {
+      color: var(--white);
     }
 
     /* ── Final CTA ── */
-    .final-cta-apple {
-      text-align: center;
+    .final-cta .section-h2 {
+      margin-bottom: 14px;
     }
-    .final-cta-apple h2 {
-      margin-bottom: 16px;
-    }
-    .final-cta-apple p {
-      font-size: 17px;
-      font-weight: 400;
-      line-height: 1.47;
-      letter-spacing: -0.374px;
+    .final-cta .body-17 {
       color: var(--text-secondary);
-      max-width: 560px;
+      max-width: 520px;
       margin: 0 auto 32px;
-    }
-    .final-cta-apple .final-note {
-      font-size: 12px;
-      font-weight: 400;
-      letter-spacing: -0.12px;
-      color: var(--text-tertiary);
-      margin-top: 16px;
-    }
-    .section-wrap.dark .final-cta-apple p {
-      color: rgba(255, 255, 255, 0.7);
-    }
-    .section-wrap.dark .final-cta-apple .final-note {
-      color: rgba(255, 255, 255, 0.45);
     }
 
     /* ── Footer ── */
-    .footer-apple {
-      padding: 24px;
+    .footer {
+      padding: 28px 24px;
       text-align: center;
       font-size: 12px;
       font-weight: 400;
       letter-spacing: -0.12px;
-      color: rgba(255, 255, 255, 0.45);
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.4);
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
     }
-    .footer-apple .footer-logo {
+    .footer-brand {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
-      margin-bottom: 6px;
-      color: rgba(255, 255, 255, 0.65);
+      gap: 5px;
+      color: rgba(255, 255, 255, 0.55);
       font-size: 12px;
+      margin-bottom: 4px;
     }
-    .footer-apple .footer-logo svg {
-      width: 14px;
-      height: 14px;
-      fill: rgba(255, 255, 255, 0.65);
+    .footer-brand .sq {
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      background: rgba(255, 255, 255, 0.5);
     }
 
-    /* ── Fixed Mobile CTA ── */
-    .fixed-cta-apple {
+    /* ── Fixed mobile CTA ── */
+    .fixed-mobile-cta {
       display: none;
       position: fixed;
       bottom: 0;
@@ -901,84 +764,65 @@
       font-size: 17px;
       font-weight: 400;
       text-align: center;
-      padding: 14px 24px;
+      padding: 13px 24px;
       text-decoration: none;
-      transition: opacity 0.2s;
     }
-    .fixed-cta-apple:hover {
+    .fixed-mobile-cta:hover {
       opacity: 0.85;
       text-decoration: none;
     }
 
-    /* ── Animations ── */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(18px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    .fade-in.in-view {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
     /* ── Responsive ── */
-
     @media (max-width: 834px) {
-      .timeline-apple {
+      .section {
+        padding: 70px 20px;
+      }
+      .hero {
+        padding: 110px 20px 60px;
+      }
+      .timeline {
         grid-template-columns: repeat(2, 1fr);
       }
-      .incluso-grid-apple {
-        grid-template-columns: 1fr;
-      }
-      .examples-grid-apple {
+      .portfolio-grid {
         grid-template-columns: repeat(2, 1fr);
       }
-      .hero-apple .hero-headline {
-        font-size: clamp(28px, 5vw, 40px);
-      }
-      .hero-apple .hero-sub {
-        font-size: 18px;
-      }
-      .section-wrap {
-        padding: 60px 20px;
-      }
-      .offer-card-apple {
+      .pricing-card {
         padding: 32px 24px;
       }
-      .offer-price-apple {
+      .price-number {
         font-size: 40px;
       }
     }
 
     @media (max-width: 480px) {
-      .timeline-apple {
+      .section {
+        padding: 56px 16px;
+      }
+      .hero {
+        padding: 100px 16px 50px;
+      }
+      .timeline {
         grid-template-columns: 1fr;
       }
-      .examples-grid-apple {
+      .incluso-grid {
         grid-template-columns: 1fr;
       }
-      .apple-nav-links {
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+      .nav-links {
         display: none;
       }
-      .hero-trust-apple {
-        gap: 12px;
+      .hero-meta {
+        gap: 10px;
       }
-      .fixed-cta-apple {
+      .fixed-mobile-cta {
         display: block;
-      }
-      .section-wrap {
-        padding: 48px 16px;
-      }
-      .hero-apple {
-        padding: 100px 16px 60px;
-      }
-      .incluso-grid-apple {
-        grid-template-columns: 1fr;
       }
     }
 
     @media (min-width: 481px) {
-      .fixed-cta-apple {
+      .fixed-mobile-cta {
         display: none !important;
       }
     }
@@ -986,69 +830,57 @@
 </head>
 <body>
 
-  <!-- ═══════════ APPLE NAV ═══════════ -->
-  <nav class="apple-nav">
-    <div class="apple-nav-inner">
-      <a href="/pagina-express-v3/apple.html" class="apple-nav-logo">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <rect x="7" y="7" width="10" height="10" rx="2.5" />
-        </svg>
+  <!-- ═══ NAV ═══ -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/pagina-express-v3/apple.html" class="nav-logo">
+        <span class="nav-logo-square"></span>
         Pixel.Co
       </a>
-      <ul class="apple-nav-links">
+      <ul class="nav-links">
         <li><a href="#como-funciona">Como Funciona</a></li>
         <li><a href="#exemplos">Exemplos</a></li>
-        <li><a href="#oferta">Comprar</a></li>
+        <li><a href="#oferta">Preços</a></li>
         <li><a href="#faq">FAQ</a></li>
       </ul>
-      <a href="https://pay.kiwify.com.br/nP6uq1x" class="apple-nav-cta checkout-link">Comprar</a>
+      <a href="https://pay.kiwify.com.br/nP6uq1x" class="nav-cta checkout-link">Comprar</a>
     </div>
   </nav>
 
-  <!-- ═══════════ HERO ═══════════ -->
-  <section class="hero-apple" id="hero">
-    <div class="eyebrow">Landing pages profissionais · 3 dias úteis</div>
-    <h1 class="display-hero hero-headline">Seu serviço já é bom. <em style="font-style:italic">Sua página precisa estar à sua altura.</em></h1>
+  <!-- ═══ HERO ═══ -->
+  <section class="hero">
+    <p class="eyebrow" style="margin-bottom:14px">Landing pages profissionais · 3 dias úteis</p>
+    <h1 class="hero-h1">Seu serviço já é bom. <span class="italic">Sua página precisa estar à sua altura.</span></h1>
     <p class="hero-sub">Landing page profissional no ar em 3 dias úteis. A partir de R$499. 7 dias de garantia.</p>
 
     <div class="hero-actions">
-      <a href="https://pay.kiwify.com.br/nP6uq1x" class="btn-apple-blue checkout-link">
-        QUERO MINHA PÁGINA
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <a href="https://pay.kiwify.com.br/nP6uq1x" class="btn-blue checkout-link">
+        Quero minha página
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
         </svg>
       </a>
-      <a href="#como-funciona" class="btn-apple-white-pill">Como funciona →</a>
+      <a href="#como-funciona" class="btn-outline">Como funciona →</a>
     </div>
 
-    <div class="vsl-player-apple">
-      <video id="vsl-video" poster="vsl-poster.jpg" preload="metadata" playsinline>
-        <source src="vsl.mp4" type="video/mp4">
-      </video>
-      <div class="play-overlay" id="vsl-play">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M8 5v14l11-7z"/>
-        </svg>
+    <div class="vsl-wrap">
+      <div class="vsl-wrap-inner">
+        <video id="vsl-video" poster="vsl-poster.jpg" preload="metadata" playsinline>
+          <source src="vsl.mp4" type="video/mp4">
+        </video>
+        <div class="play-overlay" id="vsl-play">
+          <div class="play-btn-circle">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="hero-trust-apple">
-      <span>
-        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-        3 dias úteis
-      </span>
-      <span>
-        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-        3 rodadas de ajuste
-      </span>
-      <span>
-        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-        Publicada no ar
-      </span>
-      <span>
-        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-        7 dias de garantia
-      </span>
+    <div class="hero-meta">
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>3 dias úteis</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>3 rodadas de ajuste</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Publicada no ar</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>7 dias de garantia</span>
     </div>
   </section>
 
@@ -1057,34 +889,27 @@
       var video = document.getElementById('vsl-video');
       var overlay = document.getElementById('vsl-play');
       if (video && overlay) {
-        overlay.addEventListener('click', function () {
-          overlay.classList.add('hidden');
-          video.play().catch(function () { });
-        });
+        overlay.addEventListener('click', function () { overlay.classList.add('hidden'); video.play().catch(function () { }); });
         video.addEventListener('play', function () { overlay.classList.add('hidden'); });
-        video.addEventListener('pause', function () {
-          if (video.ended) return;
-          overlay.classList.remove('hidden');
-        });
+        video.addEventListener('pause', function () { if (video.ended) return; overlay.classList.remove('hidden'); });
       }
     })();
   </script>
 
-  <!-- ═══════════ PONTE ═══════════ -->
-  <section class="section-wrap light ponte-apple">
+  <!-- ═══ PONTE ═══ -->
+  <section class="section light ponte">
     <div class="container">
       <p>Todo mundo que precisa vender algo precisa de uma página de vendas. <em>E você merece uma página do tamanho do seu trabalho.</em></p>
     </div>
   </section>
 
-  <!-- ═══════════ COMO FUNCIONA ═══════════ -->
-  <section class="section-wrap dark" id="como-funciona">
-    <div class="container text-center">
-      <span class="apple-label">Como Funciona</span>
-      <h2 class="section-heading">Comprou hoje. <em style="font-style:italic">Página no ar em 3 dias úteis.</em></h2>
+  <!-- ═══ COMO FUNCIONA ═══ -->
+  <section class="section dark text-center" id="como-funciona">
+    <div class="container">
+      <h2 class="section-h2">Comprou hoje. <span class="italic">Página no ar em 3 dias úteis.</span></h2>
 
-      <div class="timeline-apple">
-        <div class="tl-card-apple fade-in">
+      <div class="timeline">
+        <div class="tl-card">
           <div class="tl-step">Passo 1</div>
           <div class="tl-day">Agora</div>
           <h3>Compra</h3>
@@ -1094,7 +919,7 @@
             <li>7 dias de garantia — risco zero pra você</li>
           </ul>
         </div>
-        <div class="tl-card-apple fade-in">
+        <div class="tl-card">
           <div class="tl-step">Passo 2</div>
           <div class="tl-day">Dia 01</div>
           <h3>Briefing</h3>
@@ -1104,7 +929,7 @@
             <li>Define a estrutura e o ângulo da copy</li>
           </ul>
         </div>
-        <div class="tl-card-apple fade-in">
+        <div class="tl-card">
           <div class="tl-step">Passo 3</div>
           <div class="tl-day">Dia 02</div>
           <h3>Criação</h3>
@@ -1114,7 +939,7 @@
             <li>Link de preview enviado com 1 dia útil</li>
           </ul>
         </div>
-        <div class="tl-card-apple fade-in">
+        <div class="tl-card">
           <div class="tl-step">Passo 4</div>
           <div class="tl-day">Dia 03</div>
           <h3>Ajustes &amp; publicação</h3>
@@ -1126,203 +951,137 @@
         </div>
       </div>
 
-      <div class="guarantee-badge-apple fade-in">
-        <p><strong>🔒 Pagamento antecipado com 7 dias de garantia.</strong><br>
-        Se em 7 dias corridos a página não estiver no ar do jeito que você pediu, a gente devolve 100% do seu dinheiro. Sem burocracia. <strong>O risco é todo nosso.</strong></p>
+      <div class="guarantee-text">
+        <p><strong>Pagamento antecipado com 7 dias de garantia.</strong> Se em 7 dias corridos a página não estiver no ar do jeito que você pediu, a gente devolve 100% do seu dinheiro. Sem burocracia. <strong>O risco é todo nosso.</strong></p>
       </div>
     </div>
   </section>
 
-  <!-- ═══════════ INCLUSO ═══════════ -->
-  <section class="section-wrap light">
-    <div class="container text-center">
-      <span class="apple-label">Incluso</span>
-      <h2 class="section-heading" style="margin-bottom:8px">Página completa. <em style="font-style:italic">Não um template colorido</em> com seu nome no topo.</h2>
+  <!-- ═══ INCLUSO ═══ -->
+  <section class="section light text-center">
+    <div class="container">
+      <h2 class="section-h2">Página completa. <span class="italic">Não um template colorido</span> com seu nome no topo.</h2>
 
-      <div class="incluso-grid-apple">
-        <div class="inc-item-apple fade-in">
-          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-          <span>Copy completa (headline, dobras, CTAs)</span>
-        </div>
-        <div class="inc-item-apple fade-in">
-          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-          <span>Pixel de tráfego + Analytics</span>
-        </div>
-        <div class="inc-item-apple fade-in">
-          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-          <span>3 rodadas de ajustes</span>
-        </div>
-        <div class="inc-item-apple fade-in">
-          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-          <span>Publicação no seu domínio</span>
-        </div>
-        <div class="inc-item-apple fade-in">
-          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-          <span>Formulário de contato integrado</span>
-        </div>
-        <div class="inc-item-apple fade-in">
-          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-          <span>Mobile responsivo</span>
-        </div>
+      <div class="incluso-grid">
+        <div class="inc-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Copy completa (headline, dobras, CTAs)</span></div>
+        <div class="inc-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Pixel de tráfego + Analytics</span></div>
+        <div class="inc-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>3 rodadas de ajustes</span></div>
+        <div class="inc-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Publicação no seu domínio</span></div>
+        <div class="inc-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Formulário de contato integrado</span></div>
+        <div class="inc-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Mobile responsivo</span></div>
       </div>
-      <p class="incluso-note-apple">hospedagem e domínio não inclusos</p>
+      <p class="incluso-note">hospedagem e domínio não inclusos</p>
     </div>
   </section>
 
-  <!-- ═══════════ EXEMPLOS ═══════════ -->
-  <section class="section-wrap dark" id="exemplos">
-    <div class="container-wide text-center">
-      <span class="apple-label">Portfolio</span>
-      <h2 class="section-heading" style="margin-bottom:8px">Páginas que <em style="font-style:italic">não parecem feitas no Canva</em> de domingo à noite.</h2>
+  <!-- ═══ EXEMPLOS ═══ -->
+  <section class="section dark text-center" id="exemplos">
+    <div class="container-wide">
+      <h2 class="section-h2">Páginas que <span class="italic">não parecem feitas no Canva</span> de domingo à noite.</h2>
 
-      <div class="examples-grid-apple">
-        <div class="ex-card-apple fade-in">
-          <div class="browser-mockup">
-            <div class="browser-screen">
-              <img src="portfolio/portfolio-item1.webp" alt="" loading="lazy" decoding="async">
-            </div>
-          </div>
-        </div>
-        <div class="ex-card-apple fade-in">
-          <div class="browser-mockup">
-            <div class="browser-screen">
-              <img src="portfolio/02-psicologa.webp" alt="Psicóloga clínica" loading="lazy" decoding="async">
-            </div>
-          </div>
-        </div>
-        <div class="ex-card-apple fade-in">
-          <div class="browser-mockup">
-            <div class="browser-screen">
-              <img src="portfolio/04-erica.webp" alt="Erica Dourado — Autoconstelação" loading="lazy" decoding="async">
-            </div>
-          </div>
-        </div>
-        <div class="ex-card-apple fade-in">
-          <div class="browser-mockup">
-            <div class="browser-screen">
-              <img src="portfolio/05-nutricionista.webp" alt="Nutricionista" loading="lazy" decoding="async">
-            </div>
-          </div>
-        </div>
-        <div class="ex-card-apple fade-in">
-          <div class="browser-mockup">
-            <div class="browser-screen">
-              <img src="portfolio/portfolio-item6.webp" alt="" loading="lazy" decoding="async">
-            </div>
-          </div>
-        </div>
-        <div class="ex-card-apple fade-in">
-          <div class="browser-mockup">
-            <div class="browser-screen">
-              <img src="portfolio/03-mafua.webp" alt="" loading="lazy" decoding="async">
-            </div>
-          </div>
-        </div>
+      <div class="portfolio-grid">
+        <div class="port-item"><img src="portfolio/portfolio-item1.webp" alt="" loading="lazy" decoding="async"></div>
+        <div class="port-item"><img src="portfolio/02-psicologa.webp" alt="Psicóloga clínica" loading="lazy" decoding="async"></div>
+        <div class="port-item"><img src="portfolio/04-erica.webp" alt="Erica Dourado — Autoconstelação" loading="lazy" decoding="async"></div>
+        <div class="port-item"><img src="portfolio/05-nutricionista.webp" alt="Nutricionista" loading="lazy" decoding="async"></div>
+        <div class="port-item"><img src="portfolio/portfolio-item6.webp" alt="" loading="lazy" decoding="async"></div>
+        <div class="port-item"><img src="portfolio/03-mafua.webp" alt="" loading="lazy" decoding="async"></div>
       </div>
     </div>
   </section>
 
-  <!-- ═══════════ OFERTA ═══════════ -->
-  <section class="section-wrap light" id="oferta">
-    <div class="container text-center">
-      <span class="apple-label">O plano</span>
-      <h2 class="section-heading" style="margin-bottom:48px">Tudo que você precisa pra ir <em style="font-style:italic">pro ar.</em></h2>
+  <!-- ═══ OFERTA ═══ -->
+  <section class="section light text-center" id="oferta">
+    <div class="container">
+      <h2 class="section-h2" style="margin-bottom:48px">Tudo que você precisa pra ir <span class="italic">pro ar.</span></h2>
 
-      <div class="offer-card-apple fade-in">
-        <div class="offer-badge-apple">🔥 PÁGINA PREMIUM · 7 DIAS DE GARANTIA</div>
-        <h3>Página de alta conversão, preparada para anúncios no Facebook, Meta e Google.</h3>
+      <div class="pricing-card">
+        <div class="pricing-badge">Página premium · 7 dias de garantia</div>
+        <h3 class="tile-h3">Página de alta conversão, preparada para anúncios no Facebook, Meta e Google.</h3>
 
-        <div class="offer-price-wrap-apple">
-          <div class="offer-price-text-apple">A partir de</div>
-          <div class="offer-price-apple"><span class="cur">R$</span><span class="val">499</span></div>
-          <div class="offer-price-sub-apple">ou 12x de <strong>R$51,61</strong> no cartão</div>
-        </div>
+        <div class="price-label">A partir de</div>
+        <div class="price-number"><span class="cur">R$</span>499</div>
+        <div class="price-installments">ou 12x de <span class="semibold">R$51,61</span> no cartão</div>
 
-        <ul class="offer-list-apple">
+        <ul class="price-features">
           <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Copy completa + design + build</li>
           <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>3 rodadas de ajustes</li>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Página publicada no <strong>seu</strong> domínio</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Página publicada no <span class="semibold">seu</span> domínio</li>
           <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Pixel + Analytics</li>
           <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Mobile responsivo</li>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Entrega em <strong>3 dias úteis</strong></li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Entrega em <span class="semibold">3 dias úteis</span></li>
         </ul>
 
-        <a href="https://pay.kiwify.com.br/nP6uq1x" class="btn-apple-blue checkout-link" style="font-size:17px;padding:10px 24px">
-          QUERO MINHA PÁGINA →
+        <a href="https://pay.kiwify.com.br/nP6uq1x" class="btn-blue checkout-link" style="font-size:17px;padding:10px 22px">
+          Quero minha página →
         </a>
-        <div class="offer-foot-apple">🚀 7 dias de garantia pela Kiwify · Parcelamos no cartão</div>
+        <div class="price-footnote">7 dias de garantia pela Kiwify · Parcelamos no cartão</div>
       </div>
     </div>
   </section>
 
-  <!-- ═══════════ FAQ ═══════════ -->
-  <section class="section-wrap dark" id="faq">
+  <!-- ═══ FAQ ═══ -->
+  <section class="section dark" id="faq">
     <div class="container">
-      <div class="text-center">
-        <span class="apple-label">Perguntas</span>
-        <h2 class="section-heading" style="margin-bottom:8px">Antes de mandar o WhatsApp.</h2>
-      </div>
+      <h2 class="section-h2 text-center" style="margin-bottom:8px">Antes de mandar o WhatsApp.</h2>
 
-      <div class="faq-list-apple">
-        <details class="faq-item-apple fade-in">
-          <summary class="faq-q-apple">Por que pagar antes? Não é arriscado?</summary>
-          <p class="faq-a-apple">Pelo contrário. Você paga antecipado porque tem <strong>7 dias de garantia incondicional pela Kiwify</strong>. Se em 7 dias corridos a página não estiver no ar do jeito que você pediu, a gente devolve 100% do seu dinheiro. Sem burocracia, sem questionar nada. Isso mostra o quanto a gente confia no nosso trabalho — e você só tem a ganhar. <strong>O risco é todo nosso.</strong></p>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary class="faq-q">Por que pagar antes? Não é arriscado?</summary>
+          <p class="faq-a">Pelo contrário. Você paga antecipado porque tem <strong>7 dias de garantia incondicional pela Kiwify</strong>. Se em 7 dias corridos a página não estiver no ar do jeito que você pediu, a gente devolve 100% do seu dinheiro. Sem burocracia, sem questionar nada. Isso mostra o quanto a gente confia no nosso trabalho — e você só tem a ganhar. <strong>O risco é todo nosso.</strong></p>
         </details>
-        <details class="faq-item-apple fade-in">
-          <summary class="faq-q-apple">Não é melhor eu fazer no Canva?</summary>
-          <p class="faq-a-apple">Você pode. Mas a página do Canva <strong>não aparece no Google</strong>, não carrega rápido e passa uma impressão amadora. Fora que você vai gastar 2 semanas tentando aprender enquanto perde cliente. A nossa página é indexada no Google, responsiva, profissional, preparada para tráfego pago — e fica pronta em 3 dias sem você fazer absolutamente nada.</p>
+        <details class="faq-item">
+          <summary class="faq-q">Não é melhor eu fazer no Canva?</summary>
+          <p class="faq-a">Você pode. Mas a página do Canva <strong>não aparece no Google</strong>, não carrega rápido e passa uma impressão amadora. Fora que você vai gastar 2 semanas tentando aprender enquanto perde cliente. A nossa página é indexada no Google, responsiva, profissional, preparada para tráfego pago — e fica pronta em 3 dias sem você fazer absolutamente nada.</p>
         </details>
-        <details class="faq-item-apple fade-in">
-          <summary class="faq-q-apple">Como vocês entregam em 3 dias úteis?</summary>
-          <p class="faq-a-apple">A gente trabalha com um briefing estruturado de 20 minutos e um processo de produção em paralelo (copy + design rodam juntos). Não é "rápido porque é raso" — é rápido porque o processo é específico e tem 50+ páginas de bagagem.</p>
+        <details class="faq-item">
+          <summary class="faq-q">Como vocês entregam em 3 dias úteis?</summary>
+          <p class="faq-a">A gente trabalha com um briefing estruturado de 20 minutos e um processo de produção em paralelo (copy + design rodam juntos). Não é "rápido porque é raso" — é rápido porque o processo é específico e tem 50+ páginas de bagagem.</p>
         </details>
-        <details class="faq-item-apple fade-in">
-          <summary class="faq-q-apple">E se eu não gostar do design?</summary>
-          <p class="faq-a-apple">Você tem 3 rodadas de ajuste inclusas no preço. Na prática, mais de 80% das páginas saem aprovadas na primeira ou segunda. Se passar de 3 rodadas, conversamos.</p>
+        <details class="faq-item">
+          <summary class="faq-q">E se eu não gostar do design?</summary>
+          <p class="faq-a">Você tem 3 rodadas de ajuste inclusas no preço. Na prática, mais de 80% das páginas saem aprovadas na primeira ou segunda. Se passar de 3 rodadas, conversamos.</p>
         </details>
-        <details class="faq-item-apple fade-in">
-          <summary class="faq-q-apple">Posso editar a página depois?</summary>
-          <p class="faq-a-apple">Sim. A gente entrega o link de edição do nosso editor e um vídeo curto explicando como mexer em texto, imagens e CTAs. Mexidas estruturais (nova dobra, redesign) a gente faz como ajuste pontual.</p>
+        <details class="faq-item">
+          <summary class="faq-q">Posso editar a página depois?</summary>
+          <p class="faq-a">Sim. A gente entrega o link de edição do nosso editor e um vídeo curto explicando como mexer em texto, imagens e CTAs. Mexidas estruturais (nova dobra, redesign) a gente faz como ajuste pontual.</p>
         </details>
-        <details class="faq-item-apple fade-in">
-          <summary class="faq-q-apple">E se eu já tiver domínio?</summary>
-          <p class="faq-a-apple">Aí o plano R$499 é o seu. A gente faz o apontamento e publica no que você já tem. Funciona com .com.br, .com, .co, .digital — qualquer extensão.</p>
+        <details class="faq-item">
+          <summary class="faq-q">E se eu já tiver domínio?</summary>
+          <p class="faq-a">Aí o plano R$499 é o seu. A gente faz o apontamento e publica no que você já tem. Funciona com .com.br, .com, .co, .digital — qualquer extensão.</p>
         </details>
-        <details class="faq-item-apple fade-in">
-          <summary class="faq-q-apple">Quantos clientes vocês pegam por semana?</summary>
-          <p class="faq-a-apple">5 slots de produção por semana. Quando enche, abre fila pra próxima. Tem semana com 3 vagas, tem semana cheia — a gente prefere entregar bem do que apertar.</p>
+        <details class="faq-item">
+          <summary class="faq-q">Quantos clientes vocês pegam por semana?</summary>
+          <p class="faq-a">5 slots de produção por semana. Quando enche, abre fila pra próxima. Tem semana com 3 vagas, tem semana cheia — a gente prefere entregar bem do que apertar.</p>
         </details>
-        <details class="faq-item-apple fade-in">
-          <summary class="faq-q-apple">Funciona pra qualquer profissão?</summary>
-          <p class="faq-a-apple">A gente é especializado em profissionais liberais — consultores, coaches, terapeutas, advogados, arquitetos, nutris, fisios. Se você vende um serviço de alto contato pra cliente final, é pra você.</p>
+        <details class="faq-item">
+          <summary class="faq-q">Funciona pra qualquer profissão?</summary>
+          <p class="faq-a">A gente é especializado em profissionais liberais — consultores, coaches, terapeutas, advogados, arquitetos, nutris, fisios. Se você vende um serviço de alto contato pra cliente final, é pra você.</p>
         </details>
       </div>
     </div>
   </section>
 
-  <!-- ═══════════ FINAL CTA ═══════════ -->
-  <section class="section-wrap light final-cta-apple">
+  <!-- ═══ FINAL CTA ═══ -->
+  <section class="section light text-center final-cta">
     <div class="container">
-      <span class="apple-label">🔥 Página premium · Garantia total</span>
-      <h2 class="section-heading">Comprou hoje. <em style="font-style:italic">Página no ar</em> em 3 dias úteis. Por R$499.</h2>
-      <p>Faz o pagamento agora na Kiwify, e a gente entra em contato pra começar o seu projeto. Entrega em até 3 dias úteis. 7 dias de garantia.</p>
-      <a href="https://pay.kiwify.com.br/nP6uq1x" class="btn-apple-blue checkout-link" style="font-size:17px;padding:10px 24px">
-        QUERO MINHA PÁGINA POR R$499
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px">
+      <h2 class="section-h2">Comprou hoje. <span class="italic">Página no ar</span> em 3 dias úteis. Por R$499.</h2>
+      <p class="body-17">Faz o pagamento agora na Kiwify, e a gente entra em contato pra começar o seu projeto. Entrega em até 3 dias úteis. 7 dias de garantia.</p>
+      <a href="https://pay.kiwify.com.br/nP6uq1x" class="btn-blue checkout-link" style="font-size:17px;padding:10px 22px">
+        Quero minha página por R$499
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
         </svg>
       </a>
-      <div class="final-note">🔒 7 dias de garantia pela Kiwify · Parcelamos no cartão · A gente entra em contato após a compra</div>
+      <div class="body-12" style="margin-top:14px">7 dias de garantia pela Kiwify · Parcelamos no cartão · A gente entra em contato após a compra</div>
     </div>
   </section>
 
-  <!-- ═══════════ FOOTER ═══════════ -->
-  <section class="section-wrap dark" style="padding:0">
-    <footer class="footer-apple">
-      <div class="footer-logo">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <rect x="7" y="7" width="10" height="10" rx="2.5" />
-        </svg>
+  <!-- ═══ FOOTER ═══ -->
+  <section class="section dark" style="padding:0">
+    <footer class="footer">
+      <div class="footer-brand">
+        <span class="sq"></span>
         Pixel.Co · landing pages express
       </div>
       <div>cnpj · todos os direitos reservados</div>
@@ -1330,46 +1089,17 @@
   </section>
 
   <!-- Fixed mobile CTA -->
-  <a href="https://pay.kiwify.com.br/nP6uq1x" class="fixed-cta-apple checkout-link">✱ Garantir minha página</a>
+  <a href="https://pay.kiwify.com.br/nP6uq1x" class="fixed-mobile-cta checkout-link">Quero minha página</a>
 
   <!-- UTMs script -->
   <script>
     (function () {
       var params = new URLSearchParams(window.location.search);
       var utms = {};
-      ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'fbclid', 'gclid'].forEach(function (key) {
-        var val = params.get(key);
-        if (val) utms[key] = val;
-      });
+      ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'fbclid', 'gclid'].forEach(function (k) { var v = params.get(k); if (v) utms[k] = v; });
       var utmString = Object.keys(utms).map(function (k) { return k + '=' + encodeURIComponent(utms[k]); }).join('&');
       var links = document.querySelectorAll('.checkout-link');
-      links.forEach(function (link) {
-        var baseUrl = link.getAttribute('href');
-        if (utmString) {
-          link.setAttribute('href', baseUrl + (baseUrl.indexOf('?') === -1 ? '?' : '&') + utmString);
-        }
-      });
-    })();
-  </script>
-
-  <!-- Scroll reveal -->
-  <script>
-    (function () {
-      var items = document.querySelectorAll('.fade-in');
-      var observer = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add('in-view');
-          observer.unobserve(entry.target);
-        });
-      }, { threshold: 0.15 });
-      items.forEach(function (item) {
-        if (item.getBoundingClientRect().top < window.innerHeight) {
-          item.classList.add('in-view');
-        } else {
-          observer.observe(item);
-        }
-      });
+      links.forEach(function (l) { var b = l.getAttribute('href'); if (utmString) l.setAttribute('href', b + (b.indexOf('?') === -1 ? '?' : '&') + utmString); });
     })();
   </script>
 
