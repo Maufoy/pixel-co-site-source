@@ -719,47 +719,6 @@
       margin: 24px auto;
     }
 
-    /* ============ Diag cards ============ */
-    .diag-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-    }
-
-    .diag-card {
-      background: color-mix(in oklab, var(--bg-card) 60%, transparent);
-      backdrop-filter: blur(10px);
-      border: 1px solid color-mix(in oklab, var(--accent-1) 18%, transparent);
-      border-radius: 14px;
-      padding: 28px 22px;
-      transition: border-color 0.3s, transform 0.3s;
-    }
-
-    .diag-card:hover {
-      border-color: color-mix(in oklab, var(--accent-1) 45%, transparent);
-    }
-
-    .diag-num {
-      font-family: 'Sora', sans-serif;
-      font-weight: 700;
-      font-size: 56px;
-      color: var(--accent-1);
-      line-height: 1;
-      margin-bottom: 18px;
-      letter-spacing: -0.03em;
-    }
-
-    .diag-text {
-      font-size: 14px;
-      color: rgba(250, 255, 238, 0.78);
-      line-height: 1.5;
-    }
-
-    .diag-text strong {
-      color: var(--fg-cream);
-      font-weight: 500;
-    }
-
     /* ============ Timeline ============ */
     .timeline-track {
       display: grid;
@@ -940,90 +899,6 @@
 
     .ex-meta .tag {
       color: var(--accent-1);
-    }
-
-    /* ============ Comparison ============ */
-    .compare-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      max-width: 1000px;
-      margin: 48px auto 0;
-    }
-
-    .compare-col {
-      border-radius: 20px;
-      padding: 36px 32px;
-      transition: opacity 0.4s, filter 0.4s, box-shadow 0.4s;
-    }
-
-    .compare-col.com {
-      background: color-mix(in oklab, var(--bg-card) 70%, transparent);
-      border: 2px solid color-mix(in oklab, var(--accent-1) 40%, transparent);
-    }
-
-    .compare-col.sem {
-      background: color-mix(in oklab, var(--bg-card) 40%, transparent);
-      border: 2px solid color-mix(in oklab, var(--accent-2) 30%, transparent);
-    }
-
-    .compare-grid:hover .compare-col.com {
-      box-shadow: 0 0 40px color-mix(in oklab, var(--accent-1) 18%, transparent);
-    }
-
-    .compare-grid:hover .compare-col.sem {
-      opacity: 0.55;
-      filter: saturate(0.6);
-    }
-
-    .compare-col h3 {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 0.22em;
-      margin-bottom: 24px;
-      font-weight: 500;
-    }
-
-    .compare-col.com h3 {
-      color: var(--accent-1);
-    }
-
-    .compare-col.sem h3 {
-      color: var(--accent-2);
-    }
-
-    .compare-list {
-      list-style: none;
-      padding: 0;
-    }
-
-    .compare-list li {
-      padding: 13px 0;
-      border-bottom: 1px solid rgba(250, 255, 238, 0.08);
-      font-size: 15px;
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-    }
-
-    .compare-list li svg {
-      flex-shrink: 0;
-      margin-top: 5px;
-      width: 16px;
-      height: 16px;
-    }
-
-    .compare-col.com li svg {
-      color: var(--accent-1);
-    }
-
-    .compare-col.sem li svg {
-      color: var(--accent-2);
-    }
-
-    .compare-list li:last-child {
-      border-bottom: none;
     }
 
     /* ============ Offer cards ============ */
@@ -1211,159 +1086,6 @@
 
     .offer-card.featured .offer-foot {
       color: rgba(180, 157, 208, 0.7);
-    }
-
-    .compare-callout {
-      text-align: center;
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 12px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: rgba(250, 255, 238, 0.55);
-      margin-top: 36px;
-    }
-
-    .compare-callout strike {
-      color: var(--accent-2);
-      margin: 0 4px;
-    }
-
-    .compare-callout strong {
-      color: var(--accent-1);
-    }
-
-    /* ============ Vagas / urgency ============ */
-    .vagas-strip {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      padding: 22px 28px;
-      background: color-mix(in oklab, var(--bg-card) 70%, transparent);
-      border: 1px solid color-mix(in oklab, var(--accent-1) 30%, transparent);
-      border-radius: 16px;
-      max-width: 720px;
-      margin: 0 auto;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .vagas-dots {
-      display: flex;
-      gap: 6px;
-    }
-
-    .vagas-dots i {
-      width: 12px;
-      height: 12px;
-      border-radius: 3px;
-      background: var(--accent-1);
-      box-shadow: 0 0 8px color-mix(in oklab, var(--accent-1) 50%, transparent);
-      display: inline-block;
-    }
-
-    .vagas-dots i.empty {
-      background: rgba(250, 255, 238, 0.12);
-      box-shadow: none;
-    }
-
-    .vagas-text {
-      font-family: 'Sora', sans-serif;
-      font-size: 16px;
-      color: var(--fg-cream);
-    }
-
-    .vagas-text .num {
-      color: var(--accent-1);
-      font-weight: 700;
-    }
-
-    .vagas-text .small {
-      display: block;
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      opacity: 0.55;
-      margin-top: 4px;
-    }
-
-    /* ============ Prova social ============ */
-    .prova-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-      max-width: 1200px;
-      margin: 48px auto 0;
-    }
-
-    .prova-card {
-      background: color-mix(in oklab, var(--bg-card) 60%, transparent);
-      border: 1px solid color-mix(in oklab, var(--accent-2) 22%, transparent);
-      border-radius: 16px;
-      padding: 30px 26px;
-      position: relative;
-    }
-
-    .prova-card::before {
-      content: '"';
-      position: absolute;
-      top: -8px;
-      left: 14px;
-      font-family: 'Newsreader', serif;
-      font-style: italic;
-      font-size: 84px;
-      color: color-mix(in oklab, var(--accent-2) 35%, transparent);
-      line-height: 1;
-    }
-
-    .prova-text {
-      font-family: 'Newsreader', serif;
-      font-style: italic;
-      font-size: 17px;
-      line-height: 1.45;
-      color: var(--fg-cream);
-      margin-bottom: 22px;
-      padding-top: 22px;
-    }
-
-    .prova-meta {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding-top: 18px;
-      border-top: 1px solid rgba(250, 255, 238, 0.1);
-    }
-
-    .prova-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Sora', sans-serif;
-      font-weight: 600;
-      font-size: 14px;
-      color: var(--bg-deep);
-      flex-shrink: 0;
-    }
-
-    .prova-who {
-      font-size: 13px;
-    }
-
-    .prova-who b {
-      display: block;
-      font-weight: 600;
-      color: var(--fg-cream);
-    }
-
-    .prova-who span {
-      color: rgba(250, 255, 238, 0.55);
-      font-size: 12px;
-      font-family: 'IBM Plex Mono', monospace;
-      letter-spacing: 0.08em;
     }
 
     /* ============ FAQ ============ */
@@ -1834,19 +1556,7 @@
       transform: scaleX(1);
     }
 
-    .motion-ready .vagas-dots i:not(.empty) {
-      animation: slotPulse 2.6s ease-in-out infinite;
-    }
-
-    .motion-ready .vagas-dots i:nth-child(2) {
-      animation-delay: 0.18s;
-    }
-
-    .motion-ready .vagas-dots i:nth-child(3) {
-      animation-delay: 0.36s;
-    }
-
-    .motion-ready .offer-card.in-view .offer-price .val {
+    .offer-card.in-view .offer-price .val {
       animation: pricePop 0.65s cubic-bezier(.2, .8, .2, 1) both;
     }
 
@@ -1854,18 +1564,14 @@
       animation-delay: 0.12s;
     }
 
-    .diag-card:hover,
-    .tl-card:hover,
     .inc-item:hover,
-    .offer-card:hover,
-    .prova-card:hover {
+    .offer-card:hover {
       transform: translateY(-4px);
     }
 
     .tl-card,
     .inc-item,
-    .offer-card,
-    .prova-card {
+    .offer-card {
       transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
     }
 
@@ -1906,10 +1612,6 @@
         height: 380px;
       }
 
-      .diag-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
       .timeline-track {
         grid-template-columns: 1fr;
       }
@@ -1926,15 +1628,7 @@
         grid-template-columns: 1fr 1fr;
       }
 
-      .compare-grid {
-        grid-template-columns: 1fr;
-      }
-
       .offer-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .prova-grid {
         grid-template-columns: 1fr;
       }
 
@@ -1967,10 +1661,6 @@
 
       .hero {
         padding: 110px 22px 60px;
-      }
-
-      .diag-grid {
-        grid-template-columns: 1fr;
       }
 
       .incluso-grid {
@@ -2129,39 +1819,6 @@
     </div>
   </section>
 
-  <!-- ============ DIAGNÓSTICO ============ -->
-  <section class="section grain">
-    <div class="container">
-      <span class="label">Consiga mais indicações com uma página linda</span>
-      <h2>Não falta cliente. Falta uma <span class="it">página que faça o trabalho de explicar</span> antes de você
-        atender.</h2>
-      <p class="section-intro">Profissional liberal raramente trava no serviço — trava no front. A gente resolve a parte
-        de "vitrine" que ninguém ensinou você a montar.</p>
-      <div class="diag-grid">
-        <div class="diag-card">
-          <div class="diag-num">01</div>
-          <p class="diag-text">Seu site atual é um <strong>Linktree</strong> com 4 links coloridos. Ou uma página antiga
-            e feia que não vende nada.</p>
-        </div>
-        <div class="diag-card">
-          <div class="diag-num">02</div>
-          <p class="diag-text">Você <strong>já tentou montar no Wix</strong> num final de semana. Mas é muito ocupado e
-            nenhuma página foi publicada.</p>
-        </div>
-        <div class="diag-card">
-          <div class="diag-num">03</div>
-          <p class="diag-text">Pediu orçamento de agência. <strong>Voltou R$3.000+</strong> com prazo de 6 semanas e 1
-            chamada de alinhamento por semana.</p>
-        </div>
-        <div class="diag-card">
-          <div class="diag-num">04</div>
-          <p class="diag-text">Contratou um freela. Sumiu no terceiro feedback. <strong>O domínio venceu</strong> e a
-            página nem chegou a ir pro ar.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ============ COMO FUNCIONA ============ -->
   <section class="section grain" id="como-funciona">
     <div class="container">
@@ -2296,81 +1953,6 @@
     </div>
   </section>
 
-  <!-- ============ COMPARAÇÃO ============ -->
-  <section class="section grain">
-    <div class="container">
-      <span class="label">Comparação</span>
-      <h2 style="text-align:center;margin-left:auto;margin-right:auto">A diferença entre <span class="it">contratar
-          agência</span> e contratar a gente:</h2>
-      <div class="compare-grid">
-        <div class="compare-col com">
-          <h3>Pixel.Co</h3>
-          <ul class="compare-list">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12" />
-              </svg>Link no ar em <strong>3 dias úteis</strong></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12" />
-              </svg>Briefing de <strong>20 minutos</strong></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12" />
-              </svg>Copy + design + publicação <strong>inclusos</strong></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12" />
-              </svg>3 rodadas de ajuste sem cobrança extra</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12" />
-              </svg>Atendimento direto pelo WhatsApp</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12" />
-              </svg><strong>R$499</strong> à vista ou 12x R$51,61 no cartão</li>
-          </ul>
-        </div>
-        <div class="compare-col sem">
-          <h3>Agência tradicional</h3>
-          <ul class="compare-list">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <line x1="18" y1="6" x2="6" y2="18" />
-                <line x1="6" y1="6" x2="18" y2="18" />
-              </svg>Entrega em 4 a 8 semanas</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <line x1="18" y1="6" x2="6" y2="18" />
-                <line x1="6" y1="6" x2="18" y2="18" />
-              </svg>Reunião de kickoff de 2 horas</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <line x1="18" y1="6" x2="6" y2="18" />
-                <line x1="6" y1="6" x2="18" y2="18" />
-              </svg>Copy e design cobrados à parte</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <line x1="18" y1="6" x2="6" y2="18" />
-                <line x1="6" y1="6" x2="18" y2="18" />
-              </svg>Cada rodada de ajuste, +R$300</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <line x1="18" y1="6" x2="6" y2="18" />
-                <line x1="6" y1="6" x2="18" y2="18" />
-              </svg>E-mail com SLA de 48h</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <line x1="18" y1="6" x2="6" y2="18" />
-                <line x1="6" y1="6" x2="18" y2="18" />
-              </svg><strong>R$3.000 a R$8.000</strong></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ============ OFERTA ============ -->
   <section class="section grain" id="oferta">
     <div class="container">
@@ -2422,60 +2004,6 @@
       </div>
       <div class="compare-callout">
         <span>Mesmo trabalho em agência:</span> <strike>R$ 3.000+</strike> · <strong>aqui R$499</strong>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ VAGAS ============ -->
-  <section class="section grain" style="padding-top:60px;padding-bottom:60px">
-    <div class="container" style="text-align:center">
-      <div class="vagas-strip">
-        <div class="vagas-dots" aria-hidden="true">
-          <i></i><i></i><i></i><i class="empty"></i><i class="empty"></i>
-        </div>
-        <div class="vagas-text">
-          <span class="num">3 vagas</span> abertas pra esta semana
-          <span class="small">de 5 slots de produção · sem fila</span>
-        </div>
-        <a href="https://pay.kiwify.com.br/nP6uq1x" class="btn-solid checkout-link"
-          style="padding:14px 26px;font-size:14px">
-          Reservar minha vaga →
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ PROVA SOCIAL ============ -->
-  <section class="section grain">
-    <div class="container">
-      <span class="label">O que dizem</span>
-      <h2 style="text-align:center;margin-left:auto;margin-right:auto">Profissionais que já estão <span class="it">com o
-          link no rodapé do e-mail.</span></h2>
-      <div class="prova-grid">
-        <div class="prova-card">
-          <p class="prova-text">Mandei o briefing terça e quinta tinha link pra mandar pro meu story. Levou mais tempo
-            eu escolher a foto do que eles montarem.</p>
-          <div class="prova-meta">
-            <div class="prova-avatar">MC</div>
-            <div class="prova-who"><b>Marina C.</b><span>Psicóloga clínica</span></div>
-          </div>
-        </div>
-        <div class="prova-card">
-          <p class="prova-text">Já gastei R$4.500 numa página em 2023 que ficou pronta em 2 meses. A da Pixel saiu em 3
-            dias e é mais limpa.</p>
-          <div class="prova-meta">
-            <div class="prova-avatar">RN</div>
-            <div class="prova-who"><b>Roberto N.</b><span>Coach executivo</span></div>
-          </div>
-        </div>
-        <div class="prova-card">
-          <p class="prova-text">O detalhe que mais gostei: a copy. Eles entenderam o que eu vendo melhor do que eu mesma
-            sabia explicar.</p>
-          <div class="prova-meta">
-            <div class="prova-avatar">AD</div>
-            <div class="prova-who"><b>Ana D.</b><span>Consultora financeira</span></div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -2566,16 +2094,11 @@
         '.section-intro',
         '.ponte-text',
         '.ponte-divider',
-        '.diag-card',
         '.tl-card',
         '.inc-item',
         '.incluso-note',
         '.ex-card',
-        '.compare-col',
         '.offer-card',
-        '.compare-callout',
-        '.vagas-strip',
-        '.prova-card',
         '.faq-item',
         '.final-cta .label',
         '.final-cta h2',
